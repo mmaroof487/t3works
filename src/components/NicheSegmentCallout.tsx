@@ -26,7 +26,7 @@ export default function NicheSegmentCallout() {
                   <div className="h-10 w-10 rounded-full bg-gray-400 border-2 border-[#0f0f0f]" />
                 </div>
               </div>
-              <h3 className="text-4xl font-medium leading-tight mb-6">TGL T3 Hiring Program</h3>
+              <h3 className="text-4xl font-medium leading-tight mb-6">T3W T3 Hiring Program</h3>
               <p className="text-white/80 text-lg max-w-md">
                 Nurturing Talent & Fuelling Innovation. An innovative initiative designed to
                 identify and onboard junior engineers with 6 to 12 months of experience or
@@ -53,7 +53,7 @@ export default function NicheSegmentCallout() {
                   200+ Campuses
                 </span>
               </div>
-              <h3 className="text-4xl font-medium leading-tight mb-6">TGL Campus Hiring</h3>
+              <h3 className="text-4xl font-medium leading-tight mb-6">T3W Campus Hiring</h3>
               <p className="text-white/80 text-lg max-w-md">
                 Transform talent acquisition leveraging immersive internships and mentoring. Hire
                 Ready To Deploy engineers embodying your values, boosting agility while reducing

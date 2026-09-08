@@ -4,7 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const CARDS = [
   {
     id: 'main',
-    bgClass: 'bg-white shadow-sm border border-gray-100/50',
+    bgClass: "bg-white shadow-sm border border-gray-100/50",
+    bgImage: '/images/bgcard.png',
     textClass: 'text-gray-900',
     colSpan: 'md:col-span-2 md:row-span-2',
     content: (
@@ -80,7 +81,7 @@ const CARDS = [
           Workforce
         </h2>
         <p className="text-center text-white/80 max-w-sm mb-10">
-          Explore the incredible potential of remote tech workforce with TGL - secure the finest
+          Explore the incredible potential of remote tech workforce with T3W - secure the finest
           talent globally.
         </p>
         <button className="rounded-3xl border border-white/30 bg-transparent px-8 py-3 text-[15px] font-medium text-white hover:bg-white/10 transition-colors">
@@ -97,7 +98,7 @@ const CARDS = [
     content: (
       <div className="flex h-full flex-col p-6 md:p-10">
         <h2 className="text-4xl font-medium leading-tight text-white tracking-tight">
-          TGL Campus
+          T3W Campus
           <br />
           Hiring
         </h2>
@@ -126,7 +127,7 @@ const CARDS = [
           </span>
         </div>
         <h2 className="text-center text-5xl font-medium leading-tight text-white md:text-7xl tracking-tight mb-6">
-          TGL Campus
+          T3W Campus
           <br />
           Hiring
         </h2>
@@ -175,69 +176,83 @@ export default function Hero() {
     <section className="flex min-h-screen w-full items-center justify-center pt-[84px] pb-12">
       <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="relative h-[650px] w-full">
-          <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-5">
-            {CARDS.map((card) => (
-              <div key={card.id} className={card.colSpan}>
-                {activeCard !== card.id && (
-                  <motion.div
-                    layoutId={`card-${card.id}`}
-                    onHoverStart={() => {
-                      handleHoverStart(card.id);
-                    }}
-                    onHoverEnd={handleHoverEnd}
-                    className={`h-full w-full relative overflow-hidden rounded-[2.5rem] cursor-pointer ${card.bgClass} ${card.textClass}`}
-                  >
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1, transition: { delay: 0.1 } }}
-                      exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                      className="h-full w-full"
-                    >
-                      {card.content}
-                    </motion.div>
-                  </motion.div>
-                )}
-              </div>
-            ))}
-          </div>
-
           <AnimatePresence>
             {activeCard && (
-              <div className="absolute inset-0 z-50 pointer-events-none">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="absolute inset-0 rounded-[2.5rem] bg-white/20 backdrop-blur-md pointer-events-auto"
-                  onHoverStart={() => {
-                    setActiveCard(null);
-                  }}
-                />
-
-                {CARDS.map((card) =>
-                  card.id === activeCard ? (
-                    <motion.div
-                      key={`overlay-${card.id}`}
-                      layoutId={`card-${card.id}`}
-                      className={`pointer-events-auto absolute inset-0 overflow-hidden rounded-[2.5rem] shadow-2xl ${card.bgClass} ${card.textClass}`}
-                      onMouseLeave={() => {
-                        setActiveCard(null);
-                      }}
-                    >
-                      <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, transition: { delay: 0.15, duration: 0.2 } }}
-                        exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                        className="h-full w-full"
-                      >
-                        {card.expandedContent}
-                      </motion.div>
-                    </motion.div>
-                  ) : null
-                )}
-              </div>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute inset-0 z-40 rounded-[2.5rem] bg-white/20 backdrop-blur-md pointer-events-auto"
+                onHoverStart={() => setActiveCard(null)}
+              />
             )}
           </AnimatePresence>
+
+          <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-5">
+            {CARDS.map((card) => {
+              const isActive = activeCard === card.id;
+
+              return (
+                <div key={card.id} className={card.colSpan}>
+                  {isActive && <div className="h-full w-full" />}
+                  <motion.div
+                    layout
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                    onHoverStart={() => {
+                      if (!activeCard) handleHoverStart(card.id);
+                    }}
+                    onHoverEnd={handleHoverEnd}
+                    onMouseLeave={() => {
+                      if (isActive) setActiveCard(null);
+                    }}
+                    className={`
+                      ${isActive ? 'absolute inset-0 z-50 shadow-2xl pointer-events-auto' : 'relative h-full w-full z-10 cursor-pointer'}
+                      overflow-hidden rounded-[2.5rem] ${card.bgClass} ${card.textClass}
+                    `}
+                  >
+                    {card.bgImage && (
+                      <motion.div
+                        layout
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                        className="absolute top-0 left-1/2 z-0 pointer-events-none"
+                        style={{ width: '100vw', height: '100vh', x: '-50%', y: 0 }}
+                      >
+                        <img
+                          src={card.bgImage}
+                          alt=""
+                          className="w-full h-full object-cover object-top"
+                        />
+                      </motion.div>
+                    )}
+
+                    <AnimatePresence>
+                      {!isActive ? (
+                        <motion.div
+                          key="compact"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1, transition: { delay: 0.1 } }}
+                          exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                          className="absolute inset-0 z-10"
+                        >
+                          {card.content}
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="expanded"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1, transition: { delay: 0.15, duration: 0.2 } }}
+                          exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                          className="absolute inset-0 z-10"
+                        >
+                          {card.expandedContent}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

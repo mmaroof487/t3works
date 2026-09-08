@@ -19,7 +19,7 @@ export default function CareerAcceleration() {
             className="flex flex-col justify-between rounded-[2rem] bg-[#4a5d23] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
-              <h3 className="text-3xl font-semibold mb-4">TGL First Jobs</h3>
+              <h3 className="text-3xl font-semibold mb-4">T3W First Jobs</h3>
               <p className="text-white/80 text-lg">
                 Prepare and position yourself for premium entry level jobs.
               </p>
@@ -39,7 +39,7 @@ export default function CareerAcceleration() {
             className="flex flex-col justify-between rounded-[2rem] bg-[#0f0f0f] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
-              <h3 className="text-3xl font-semibold mb-4">Become a TGL Pro</h3>
+              <h3 className="text-3xl font-semibold mb-4">Become a T3W Pro</h3>
               <p className="text-gray-300 text-lg">
                 Accelerated growth for engineers with proven potential.
               </p>
@@ -59,7 +59,7 @@ export default function CareerAcceleration() {
             className="flex flex-col justify-between rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-10 min-h-[320px] text-gray-900 cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
-              <h3 className="text-3xl font-semibold mb-4">Become a TGL Master</h3>
+              <h3 className="text-3xl font-semibold mb-4">Become a T3W Master</h3>
               <p className="text-gray-600 text-lg">
                 Tailored for experienced professionals seeking global play.
               </p>

@@ -24,7 +24,7 @@ export default function JobSeekerFunnel() {
             </div>
 
             <div className="flex flex-col gap-4 w-full sm:w-auto">
-              {['Discover your best jobs', 'Explore new career paths', 'Become a TGL star'].map(
+              {['Discover your best jobs', 'Explore new career paths', 'Become a T3W star'].map(
                 (text) => (
                   <button
                     key={text}
