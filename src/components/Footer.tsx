@@ -49,10 +49,10 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           <div className="flex flex-col gap-4 items-start">
-            <img 
-              src="/images/t3works_whitebg.webp" 
-              alt="T3Works Logo" 
-              className="h-10 w-auto object-contain rounded-md mb-2" 
+            <img
+              src="/images/t3works_whitebg.webp"
+              alt="T3Works Logo"
+              className="h-10 w-auto object-contain rounded-md mb-2"
             />
             <p className="text-sm text-gray-400">
               We help people discover their Talent DNA and accelerate them for high-end engineering
