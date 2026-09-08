@@ -43,12 +43,12 @@ const CARDS = [
     mobileHeight: 'min-h-[400px] sm:min-h-[450px] lg:min-h-0',
     content: (isActive: boolean, isDesktop: boolean) => (
       <div
-        className={`relative flex h-full flex-col p-6 lg:p-10 ${(isActive || !isDesktop) ? 'items-start justify-center lg:w-[55%]' : ''}`}
+        className={`relative flex h-full flex-col p-6 lg:p-10 ${isActive || !isDesktop ? 'items-start justify-center lg:w-[55%]' : ''}`}
       >
         <motion.h2
           layout="position"
           transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
-          className={`font-medium leading-tight text-white tracking-tight relative z-10 ${(isActive || !isDesktop) ? 'mb-4 text-left text-3xl sm:text-4xl lg:text-7xl lg:mb-6' : 'text-3xl sm:text-4xl'}`}
+          className={`font-medium leading-tight text-white tracking-tight relative z-10 ${isActive || !isDesktop ? 'mb-4 text-left text-3xl sm:text-4xl lg:text-7xl lg:mb-6' : 'text-3xl sm:text-4xl'}`}
         >
           Remote Tech
           <br />
@@ -56,7 +56,7 @@ const CARDS = [
         </motion.h2>
 
         <AnimatePresence>
-          {(!isActive && isDesktop) && (
+          {!isActive && isDesktop && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.2 } }}
@@ -106,7 +106,7 @@ const CARDS = [
     mobileHeight: 'min-h-[420px] sm:min-h-[450px] lg:min-h-0',
     content: (isActive: boolean, isDesktop: boolean) => (
       <div
-        className={`relative flex h-full flex-col p-6 lg:p-10 ${(isActive || !isDesktop) ? 'items-start justify-center lg:w-[55%]' : ''}`}
+        className={`relative flex h-full flex-col p-6 lg:p-10 ${isActive || !isDesktop ? 'items-start justify-center lg:w-[55%]' : ''}`}
       >
         <AnimatePresence>
           {(isActive || !isDesktop) && (
@@ -131,7 +131,7 @@ const CARDS = [
         <motion.h2
           layout="position"
           transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
-          className={`font-medium leading-tight text-white tracking-tight relative z-10 ${(isActive || !isDesktop) ? 'text-left text-3xl sm:text-4xl lg:text-7xl mb-4 lg:mb-6' : 'text-3xl sm:text-4xl'}`}
+          className={`font-medium leading-tight text-white tracking-tight relative z-10 ${isActive || !isDesktop ? 'text-left text-3xl sm:text-4xl lg:text-7xl mb-4 lg:mb-6' : 'text-3xl sm:text-4xl'}`}
         >
           T3W Campus
           <br />
@@ -139,7 +139,7 @@ const CARDS = [
         </motion.h2>
 
         <AnimatePresence>
-          {(!isActive && isDesktop) && (
+          {!isActive && isDesktop && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { delay: 0.2 } }}
@@ -284,7 +284,9 @@ export default function Hero() {
                       />
                     )}
 
-                    <div className="relative z-10 h-full w-full">{card.content(isActive, isDesktop)}</div>
+                    <div className="relative z-10 h-full w-full">
+                      {card.content(isActive, isDesktop)}
+                    </div>
                   </motion.div>
                 </div>
               );
