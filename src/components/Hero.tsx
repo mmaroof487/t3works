@@ -224,7 +224,12 @@ export default function Hero() {
   };
 
   return (
-    <section className="flex min-h-screen w-full items-center justify-center pt-[84px] pb-12">
+    <section className="flex min-h-screen w-full items-center justify-center pt-[84px] pb-12 relative">
+      <div className="absolute top-6 left-1/2 -translate-x-1/2 lg:hidden z-50">
+        <div className="inline-flex items-center justify-center bg-white text-[#4a5d23] px-5 py-2 rounded-2xl font-serif font-medium italic text-xl tracking-wide shadow-sm">
+          t3works
+        </div>
+      </div>
       <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="relative h-auto lg:h-[650px] w-full">
           <AnimatePresence>

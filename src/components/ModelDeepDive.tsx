@@ -10,7 +10,12 @@ const BENEFITS = [
 
 export default function ModelDeepDive() {
   return (
-    <section className="w-full bg-[#4a5d23] py-16 md:py-24 text-white relative overflow-hidden">
+    <section className="w-full bg-[#4a5d23] py-16 md:py-24 text-white relative overflow-hidden group">
+      <img
+        src="/images/remote_tech_bg_1788870486090.jpg"
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-overlay scale-[1.15] group-hover:scale-[1.25] transition-transform duration-1000 pointer-events-none"
+      />
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
