@@ -43,7 +43,10 @@ export default function Header() {
     };
   }, []);
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, path: string) => {
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    path: string
+  ) => {
     if (path.startsWith('#')) {
       e.preventDefault();
       const element = document.querySelector(path);
@@ -57,13 +60,14 @@ export default function Header() {
         let start: number | null = null;
 
         const step = (timestamp: number) => {
-          if (!start) start = timestamp;
+          start ??= timestamp;
           const progress = timestamp - start;
-          const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          const easeInOutCubic = (t: number) =>
+            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
           const percentage = Math.min(progress / duration, 1);
-          
+
           window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
-          
+
           if (progress < duration) {
             window.requestAnimationFrame(step);
           }
@@ -71,7 +75,7 @@ export default function Header() {
 
         window.requestAnimationFrame(step);
       } else if (window.location.pathname !== '/') {
-        window.location.href = '/' + path;
+        window.location.assign('/' + path);
       }
     }
   };
@@ -105,9 +109,8 @@ export default function Header() {
                       key={item.name}
                       onClick={(e) => {
                         handleSmoothScroll(e, item.path);
-                        setIsMobileMenuOpen(false);
                       }}
-                      className="text-[16px] font-medium text-[#c4cdbe] hover:text-white transition-colors"
+                      className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap cursor-pointer"
                     >
                       {item.name}
                     </button>
