@@ -15,7 +15,10 @@ export default function Header() {
     };
   }, []);
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, path: string) => {
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+    path: string
+  ) => {
     if (path.startsWith('#')) {
       e.preventDefault();
       const element = document.querySelector(path);
@@ -29,13 +32,14 @@ export default function Header() {
         let start: number | null = null;
 
         const step = (timestamp: number) => {
-          if (!start) start = timestamp;
+          start ??= timestamp;
           const progress = timestamp - start;
-          const easeInOutCubic = (t: number) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+          const easeInOutCubic = (t: number) =>
+            t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
           const percentage = Math.min(progress / duration, 1);
-          
+
           window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
-          
+
           if (progress < duration) {
             window.requestAnimationFrame(step);
           }
@@ -43,7 +47,7 @@ export default function Header() {
 
         window.requestAnimationFrame(step);
       } else if (window.location.pathname !== '/') {
-        window.location.href = '/' + path;
+        window.location.assign('/' + path);
       }
     }
   };
@@ -63,7 +67,11 @@ export default function Header() {
           {/* Logo */}
           <motion.div layout className="flex items-center pl-4 pr-2">
             <Link to="/" className="hover:opacity-80 transition-opacity">
-              <img src="/images/t3works_nobg.webp" alt="T3Works Logo" className="h-12 w-auto object-contain" />
+              <img
+                src="/images/t3works_nobg.webp"
+                alt="T3Works Logo"
+                className="h-12 w-auto object-contain"
+              />
             </Link>
           </motion.div>
 
@@ -87,7 +95,9 @@ export default function Header() {
                   item.path.startsWith('#') ? (
                     <button
                       key={item.name}
-                      onClick={(e) => handleSmoothScroll(e, item.path)}
+                      onClick={(e) => {
+                        handleSmoothScroll(e, item.path);
+                      }}
                       className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap cursor-pointer"
                     >
                       {item.name}
@@ -126,7 +136,9 @@ export default function Header() {
 
           <motion.div layout className="pr-1 pl-2">
             <button
-              onClick={(e) => handleSmoothScroll(e, '#contact')}
+              onClick={(e) => {
+                handleSmoothScroll(e, '#contact');
+              }}
               className="inline-flex items-center justify-center h-[44px] px-6 rounded-[22px] bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors whitespace-nowrap shadow-sm shadow-[#4a5d23]/20 border border-white/5 cursor-pointer"
             >
               Contact Us
