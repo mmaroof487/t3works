@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
@@ -8,8 +6,8 @@ export default function Hero() {
           Build the future with <span className="text-blue-600">T3Works</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-          A production-ready foundation for your next big idea. 
-          Start shipping faster with a modern, scalable, and elegantly crafted architecture.
+          A production-ready foundation for your next big idea. Start shipping faster with a modern,
+          scalable, and elegantly crafted architecture.
         </p>
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <a
@@ -18,7 +16,10 @@ export default function Hero() {
           >
             Start building
           </a>
-          <a href="#" className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors">
+          <a
+            href="#"
+            className="text-sm font-semibold leading-6 text-gray-900 hover:text-blue-600 transition-colors"
+          >
             Learn more <span aria-hidden="true">→</span>
           </a>
         </div>

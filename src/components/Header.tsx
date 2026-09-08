@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
@@ -11,9 +10,15 @@ export default function Header() {
           </Link>
         </div>
         <nav className="hidden md:flex gap-6">
-          <a href="#features" className="text-sm font-medium text-gray-600 hover:text-gray-900">Features</a>
-          <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-gray-900">Pricing</a>
-          <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900">About</a>
+          <a href="#features" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+            Features
+          </a>
+          <a href="#pricing" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+            Pricing
+          </a>
+          <a href="#about" className="text-sm font-medium text-gray-600 hover:text-gray-900">
+            About
+          </a>
         </nav>
         <div className="flex items-center gap-4">
           <button className="text-sm font-medium text-gray-900 hover:text-blue-600">Log in</button>
