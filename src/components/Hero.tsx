@@ -8,7 +8,7 @@ const CARDS = [
     textClass: 'text-gray-900',
     colSpan: 'md:col-span-2 md:row-span-2',
     content: (
-      <div className="flex h-full flex-col p-10 md:p-14">
+      <div className="flex h-full flex-col p-6 md:p-14">
         <div className="mb-8 flex items-center gap-2">
           <span className="rounded-full border border-[#4a5d23]/20 bg-white px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm flex items-center gap-2">
             Great Talent. Global Opportunities.
@@ -28,10 +28,10 @@ const CARDS = [
       </div>
     ),
     expandedContent: (
-      <div className="flex h-full flex-col items-center justify-center p-10 md:p-14">
+      <div className="flex h-full flex-col items-center justify-center p-6 md:p-14">
         <div className="mb-10 flex items-center gap-2">
           <span className="rounded-full border border-[#4a5d23]/20 bg-white px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm flex items-center gap-2">
-            The TalenciaGlobal ecosystem
+            The T3Works ecosystem
             <div className="w-4 h-4 rounded-full bg-[#4a5d23]/10 text-[#4a5d23] flex items-center justify-center text-[10px]">
               →
             </div>
@@ -59,7 +59,7 @@ const CARDS = [
     textClass: 'text-white',
     colSpan: 'md:col-span-1 md:row-span-1',
     content: (
-      <div className="flex h-full flex-col p-8 md:p-10">
+      <div className="flex h-full flex-col p-6 md:p-10">
         <h2 className="text-4xl font-medium leading-tight text-white tracking-tight">
           Remote Tech
           <br />
@@ -73,7 +73,7 @@ const CARDS = [
       </div>
     ),
     expandedContent: (
-      <div className="flex h-full flex-col items-center justify-center p-10">
+      <div className="flex h-full flex-col items-center justify-center p-6 md:p-10">
         <h2 className="mb-6 text-center text-5xl font-medium leading-tight text-white md:text-7xl tracking-tight">
           Remote Tech
           <br />
@@ -95,7 +95,7 @@ const CARDS = [
     textClass: 'text-white',
     colSpan: 'md:col-span-1 md:row-span-1',
     content: (
-      <div className="flex h-full flex-col p-8 md:p-10">
+      <div className="flex h-full flex-col p-6 md:p-10">
         <h2 className="text-4xl font-medium leading-tight text-white tracking-tight">
           TGL Campus
           <br />
@@ -114,7 +114,7 @@ const CARDS = [
       </div>
     ),
     expandedContent: (
-      <div className="flex h-full flex-col items-center justify-center p-10">
+      <div className="flex h-full flex-col items-center justify-center p-6 md:p-10">
         <div className="mb-8 flex flex-col items-center gap-4">
           <div className="flex -space-x-4">
             <div className="h-14 w-14 rounded-full bg-gray-200 border-4 border-[#0f0f0f]" />

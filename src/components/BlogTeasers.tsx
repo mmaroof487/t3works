@@ -28,7 +28,7 @@ const MORE_BLOGS = [
 
 export default function BlogTeasers() {
   return (
-    <section className="w-full bg-transparent py-24">
+    <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

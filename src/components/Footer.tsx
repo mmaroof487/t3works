@@ -45,11 +45,15 @@ export default function Footer() {
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
 
   return (
-    <footer id="contact" className="bg-[#11140e] pt-20 pb-8 border-t border-[#232621]">
+    <footer id="contact" className="w-full bg-[#14150f] py-16 md:py-24 border-t border-[#232621]">
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-20">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-white font-medium mb-4 text-xl">TalenciaGlobal</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="flex flex-col gap-4 items-start">
+            <img 
+              src="/images/t3works_whitebg.webp" 
+              alt="T3Works Logo" 
+              className="h-10 w-auto object-contain rounded-md mb-2" 
+            />
             <p className="text-sm text-gray-400">
               We help people discover their Talent DNA and accelerate them for high-end engineering
               roles.
@@ -76,10 +80,10 @@ export default function Footer() {
 
           <div className="flex flex-col items-start md:items-end justify-start">
             <a
-              href="mailto:hello@talenciaglobal.com"
+              href="mailto:hello@t3works.com"
               className="text-2xl md:text-3xl lg:text-4xl font-medium text-white mb-8 hover:opacity-80 transition-opacity tracking-tight"
             >
-              hello@talenciaglobal.com
+              hello@t3works.com
             </a>
 
             <div
@@ -120,7 +124,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 gap-6">
           <p className="text-sm text-gray-500">
-            Copyright &copy; {new Date().getFullYear()} TalenciaGlobal. All rights reserved.
+            Copyright &copy; {new Date().getFullYear()} T3Works. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="text-sm text-gray-500 hover:text-white transition-colors">

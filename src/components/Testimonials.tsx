@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TESTIMONIALS = [
@@ -46,6 +46,15 @@ const TESTIMONIALS = [
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+    }, 5000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
   };
@@ -55,7 +64,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="w-full bg-transparent py-24 overflow-hidden">
+    <section className="w-full bg-transparent py-16 md:py-24 overflow-hidden">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl">
@@ -63,8 +72,8 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="relative mx-auto max-w-4xl">
-          <div className="flex items-center justify-between absolute top-1/2 -left-4 md:-left-12 -right-4 md:-right-12 -translate-y-1/2 z-10 pointer-events-none">
+        <div className="relative mx-auto max-w-6xl px-14 md:px-24">
+          <div className="flex items-center justify-between absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 pointer-events-none">
             <button
               onClick={prev}
               className="pointer-events-auto flex h-12 w-12 items-center justify-center rounded-full bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors text-gray-900"
@@ -103,7 +112,7 @@ export default function Testimonials() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -50 }}
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
-                className="rounded-[2.5rem] bg-white shadow-sm border border-gray-100/50 p-10 md:p-16 text-center flex flex-col items-center justify-center h-full"
+                className="rounded-[2.5rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-16 text-center flex flex-col items-center justify-center h-full"
               >
                 <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 italic mb-10 leading-relaxed font-serif">
                   "{TESTIMONIALS[currentIndex].quote}"

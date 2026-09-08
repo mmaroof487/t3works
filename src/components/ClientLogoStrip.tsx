@@ -1,6 +1,6 @@
 export default function ClientLogoStrip() {
   return (
-    <section className="w-full bg-transparent py-12 overflow-hidden border-t border-gray-200">
+    <section className="w-full bg-transparent py-8 md:py-12 overflow-hidden border-t border-gray-200">
       <div className="mx-auto w-full max-w-[1400px]">
         {/* Logo Strip */}
         <div className="relative w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">

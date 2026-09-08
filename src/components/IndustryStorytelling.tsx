@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function IndustryStorytelling() {
   return (
-    <section className="w-full bg-[#14150f] py-24 text-white overflow-hidden">
+    <section className="w-full bg-[#14150f] py-16 md:py-24 text-white overflow-hidden">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

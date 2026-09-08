@@ -9,7 +9,7 @@ export default function JobSeekerFunnel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-10 md:p-16 lg:p-20"
+          className="rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-16 lg:p-20"
         >
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
             <div className="lg:max-w-xl">

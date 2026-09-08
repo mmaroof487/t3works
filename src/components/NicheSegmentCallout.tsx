@@ -16,7 +16,7 @@ export default function NicheSegmentCallout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col justify-between rounded-[2.5rem] bg-[#0f0f0f] p-10 md:p-14 min-h-[400px] text-white cursor-default"
+            className="flex flex-col justify-between rounded-[2.5rem] bg-[#0f0f0f] p-8 md:p-14 min-h-[400px] text-white cursor-default"
           >
             <div>
               <div className="mb-6 flex items-center gap-4">
@@ -45,7 +45,7 @@ export default function NicheSegmentCallout() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col justify-between rounded-[2.5rem] bg-[#0f0f0f] p-10 md:p-14 min-h-[400px] text-white cursor-default"
+            className="flex flex-col justify-between rounded-[2.5rem] bg-[#0f0f0f] p-8 md:p-14 min-h-[400px] text-white cursor-default"
           >
             <div>
               <div className="mb-6 flex items-center">

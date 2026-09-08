@@ -16,7 +16,7 @@ export default function CareerAcceleration() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col justify-between rounded-[2rem] bg-[#4a5d23] p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
+            className="flex flex-col justify-between rounded-[2rem] bg-[#4a5d23] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
               <h3 className="text-3xl font-semibold mb-4">TGL First Jobs</h3>
@@ -36,7 +36,7 @@ export default function CareerAcceleration() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col justify-between rounded-[2rem] bg-[#0f0f0f] p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
+            className="flex flex-col justify-between rounded-[2rem] bg-[#0f0f0f] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
               <h3 className="text-3xl font-semibold mb-4">Become a TGL Pro</h3>
@@ -56,7 +56,7 @@ export default function CareerAcceleration() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col justify-between rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-10 min-h-[320px] text-gray-900 cursor-pointer hover:-translate-y-1 transition-transform"
+            className="flex flex-col justify-between rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-10 min-h-[320px] text-gray-900 cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <div>
               <h3 className="text-3xl font-semibold mb-4">Become a TGL Master</h3>

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function IntroEcosystem() {
   return (
-    <section className="w-full bg-transparent py-24">
+    <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -11,8 +11,8 @@ export default function IntroEcosystem() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-4xl text-center mb-20"
         >
-          <h2 className="text-3xl font-medium tracking-tight text-[#0f0f0f] sm:text-4xl lg:text-5xl mb-6">
-            The TalenciaGlobal ecosystem.
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl mb-6">
+            The T3Works ecosystem.
           </h2>
           <p className="text-lg text-gray-600 mb-4">
             We are a global talent hiring platform and a career accelerator for top tier talent,
