@@ -42,7 +42,7 @@ export default function DifferentiatorsStats() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {STATS.map((item, index) => (
             <motion.div
               key={item.label}
@@ -50,12 +50,12 @@ export default function DifferentiatorsStats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center text-center p-6"
+              className="flex flex-col items-center text-center p-2 sm:p-6"
             >
-              <div className="text-5xl md:text-6xl font-bold tracking-tight text-[#0f0f0f] mb-4">
+              <div className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-[#0f0f0f] mb-2 sm:mb-4">
                 {item.stat}
               </div>
-              <div className="text-sm font-semibold uppercase tracking-wider text-gray-500 max-w-[200px]">
+              <div className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-gray-500 max-w-[150px] sm:max-w-[200px]">
                 {item.label}
               </div>
             </motion.div>

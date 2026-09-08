@@ -114,7 +114,7 @@ export default function Testimonials() {
                 transition={{ duration: 0.4, ease: 'easeInOut' }}
                 className="rounded-[2.5rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-16 text-center flex flex-col items-center justify-center h-full"
               >
-                <p className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 italic mb-10 leading-relaxed font-serif">
+                <p className="text-xl md:text-3xl lg:text-4xl font-medium text-gray-900 italic mb-6 md:mb-10 leading-relaxed font-serif">
                   "{TESTIMONIALS[currentIndex].quote}"
                 </p>
                 <div>
