@@ -29,7 +29,7 @@ jobs:
         run: npm run format:check
 
       - name: Type Check
-        run: npm run build -- --noEmit # Or just rely on build which runs tsc
+        run: npx tsc --noEmit
 
       - name: Build
         run: npm run build
