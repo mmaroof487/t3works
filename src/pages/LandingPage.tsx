@@ -1,32 +1,42 @@
 import Hero from '../components/Hero';
+import IntroEcosystem from '../components/IntroEcosystem';
+import JobSeekerFunnel from '../components/JobSeekerFunnel';
+import CareerAcceleration from '../components/CareerAcceleration';
+import HiringSideEntry from '../components/HiringSideEntry';
+import ModelDeepDive from '../components/ModelDeepDive';
+import CapabilityCoverage from '../components/CapabilityCoverage';
+import IndustryStorytelling from '../components/IndustryStorytelling';
+import DifferentiatorsStats from '../components/DifferentiatorsStats';
+import MethodologyExplainer from '../components/MethodologyExplainer';
+import NicheSegmentCallout from '../components/NicheSegmentCallout';
+import IndustryVerticalList from '../components/IndustryVerticalList';
+import Testimonials from '../components/Testimonials';
+import BlogTeasers from '../components/BlogTeasers';
+import ClientLogoStrip from '../components/ClientLogoStrip';
 
 export default function LandingPage() {
   return (
-    <div>
+    <div className="bg-transparent">
       <Hero />
-      <div
-        id="cases"
-        className="min-h-screen flex items-center justify-center bg-[#f8f9f5] border-t border-gray-200"
-      >
-        <h2 className="text-4xl font-bold text-gray-800">Cases Section</h2>
+      <div id="about-us">
+        <IntroEcosystem />
       </div>
-      <div
-        id="service"
-        className="min-h-screen flex items-center justify-center bg-gray-100 border-t border-gray-200"
-      >
-        <h2 className="text-4xl font-bold text-gray-800">Service Section</h2>
+      <JobSeekerFunnel />
+      <CareerAcceleration />
+      <HiringSideEntry />
+      <ModelDeepDive />
+      <CapabilityCoverage />
+      <IndustryStorytelling />
+      <DifferentiatorsStats />
+      <MethodologyExplainer />
+      <NicheSegmentCallout />
+      <div id="clients">
+        <IndustryVerticalList />
+        <Testimonials />
+        <ClientLogoStrip />
       </div>
-      <div
-        id="blog"
-        className="min-h-screen flex items-center justify-center bg-[#f8f9f5] border-t border-gray-200"
-      >
-        <h2 className="text-4xl font-bold text-gray-800">Blog Section</h2>
-      </div>
-      <div
-        id="about-us"
-        className="min-h-screen flex items-center justify-center bg-gray-100 border-t border-gray-200"
-      >
-        <h2 className="text-4xl font-bold text-gray-800">About Us Section</h2>
+      <div id="blogs">
+        <BlogTeasers />
       </div>
     </div>
   );

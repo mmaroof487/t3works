@@ -4,9 +4,21 @@
   --font-sans: 'Inter', system-ui, sans-serif;
   --color-primary: #2563eb;
   --color-primary-dark: #1d4ed8;
+
+  --animate-infinite-scroll: infinite-scroll 25s linear infinite;
+  --animate-infinite-scroll-slow: infinite-scroll 40s linear infinite;
+}
+
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 body {
   font-family: var(--font-sans);
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-[#f8f9f5] text-gray-900;
 }

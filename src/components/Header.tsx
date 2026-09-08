@@ -10,7 +10,9 @@ export default function Header() {
       setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -54,18 +56,28 @@ export default function Header() {
               >
                 {[
                   { name: 'Home', path: '/' },
-                  { name: 'About Us', path: '#about' },
+                  { name: 'About Us', path: '#about-us' },
                   { name: 'Clients', path: '/' },
                   { name: 'Blogs', path: '/blog1' },
-                ].map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                ].map((item) =>
+                  item.path.startsWith('#') ? (
+                    <a
+                      key={item.name}
+                      href={item.path}
+                      className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.name}
+                      to={item.path}
+                      className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
+                    >
+                      {item.name}
+                    </Link>
+                  )
+                )}
               </motion.nav>
             ) : (
               <motion.nav
@@ -77,8 +89,10 @@ export default function Header() {
                 className="flex items-center px-6"
               >
                 <button
-                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
+                  onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap mr-6"
                 >
                   Home
                 </button>

@@ -154,7 +154,9 @@ export default function Hero() {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [activeCard]);
 
   const handleHoverStart = (id: string) => {
@@ -179,7 +181,9 @@ export default function Hero() {
                 {activeCard !== card.id && (
                   <motion.div
                     layoutId={`card-${card.id}`}
-                    onHoverStart={() => handleHoverStart(card.id)}
+                    onHoverStart={() => {
+                      handleHoverStart(card.id);
+                    }}
                     onHoverEnd={handleHoverEnd}
                     className={`h-full w-full relative overflow-hidden rounded-[2.5rem] cursor-pointer ${card.bgClass} ${card.textClass}`}
                   >
@@ -205,7 +209,9 @@ export default function Hero() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   className="absolute inset-0 rounded-[2.5rem] bg-white/20 backdrop-blur-md pointer-events-auto"
-                  onHoverStart={() => setActiveCard(null)}
+                  onHoverStart={() => {
+                    setActiveCard(null);
+                  }}
                 />
 
                 {CARDS.map((card) =>
@@ -214,7 +220,9 @@ export default function Hero() {
                       key={`overlay-${card.id}`}
                       layoutId={`card-${card.id}`}
                       className={`pointer-events-auto absolute inset-0 overflow-hidden rounded-[2.5rem] shadow-2xl ${card.bgClass} ${card.textClass}`}
-                      onMouseLeave={() => setActiveCard(null)}
+                      onMouseLeave={() => {
+                        setActiveCard(null);
+                      }}
                     >
                       <motion.div
                         initial={{ opacity: 0 }}
