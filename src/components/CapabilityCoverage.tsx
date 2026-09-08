@@ -47,7 +47,9 @@ export default function CapabilityCoverage() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.03 }}
-              className="rounded-full bg-white border border-gray-200 px-5 py-2 text-[15px] font-medium text-gray-700 shadow-sm hover:border-[#4a5d23] hover:text-[#4a5d23] transition-colors cursor-default"
+              className={`rounded-full bg-white border border-gray-200 px-5 py-2 text-[15px] font-medium text-gray-700 shadow-sm hover:border-[#4a5d23] hover:text-[#4a5d23] transition-colors cursor-default ${
+                idx >= 8 ? 'hidden md:block' : ''
+              }`}
             >
               {tech}
             </motion.div>

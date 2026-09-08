@@ -27,9 +27,10 @@ export default function HiringSideEntry() {
               {['Hiring made easy', 'Build amazing teams'].map((text) => (
                 <button
                   key={text}
-                  className="rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-gray-800 transition-colors w-full text-center shadow-sm"
+                  className="group relative rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors w-full text-center shadow-sm"
                 >
-                  {text}
+                  <div className="absolute -inset-[5px] pointer-events-none rounded-full border-[3px] border-[#0f0f0f] opacity-0 transition-all duration-[600ms] ease-out group-hover:opacity-100 [-webkit-mask-image:linear-gradient(to_right,white,white),linear-gradient(to_left,white,white)] [-webkit-mask-position:left,right] [-webkit-mask-repeat:no-repeat,no-repeat] [-webkit-mask-size:0%_100%,0%_100%] group-hover:[-webkit-mask-size:50.5%_100%,50.5%_100%]" />
+                  <span className="relative z-10">{text}</span>
                 </button>
               ))}
             </div>
