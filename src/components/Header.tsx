@@ -16,10 +16,14 @@ export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     handleResize();
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -111,7 +115,9 @@ export default function Header() {
                     <Link
                       key={item.name}
                       to={item.path}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                      }}
                       className="text-[16px] font-medium text-[#c4cdbe] hover:text-white transition-colors"
                     >
                       {item.name}
@@ -136,8 +142,18 @@ export default function Header() {
         <div className="flex items-center min-h-[60px] h-[60px] px-4 md:px-6 w-full">
           {/* Left: Logo */}
           <motion.div layout className="flex-1 flex items-center justify-start">
-            <Link to="/" className="hover:opacity-80 transition-opacity flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-              <img src="/images/t3works_nobg.webp" alt="T3Works Logo" className="h-8 md:h-10 w-auto object-contain" />
+            <Link
+              to="/"
+              className="hover:opacity-80 transition-opacity flex items-center"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              <img
+                src="/images/t3works_nobg.webp"
+                alt="T3Works Logo"
+                className="h-8 md:h-10 w-auto object-contain"
+              />
             </Link>
           </motion.div>
 
@@ -157,7 +173,9 @@ export default function Header() {
                     item.path.startsWith('#') ? (
                       <button
                         key={item.name}
-                        onClick={(e) => handleSmoothScroll(e, item.path)}
+                        onClick={(e) => {
+                          handleSmoothScroll(e, item.path);
+                        }}
                         className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap cursor-pointer"
                       >
                         {item.name}
@@ -198,7 +216,9 @@ export default function Header() {
           {/* Right: Mobile Menu Button */}
           <motion.div layout className="flex md:hidden flex-1 items-center justify-end">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              onClick={() => {
+                setIsMobileMenuOpen(!isMobileMenuOpen);
+              }}
               className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
