@@ -1,7 +1,18 @@
 @import 'tailwindcss';
 
+@font-face {
+  font-family: 'Batangas';
+  src: url('/fonts/batangas.woff2') format('woff2'),
+       url('/fonts/batangas.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
+  --font-open-sauce: 'Open Sauce Sans', sans-serif;
+  --font-batangas: 'Batangas', sans-serif;
+  --font-cursive: 'Pacifico', cursive;
   --color-primary: #2563eb;
   --color-primary-dark: #1d4ed8;
 

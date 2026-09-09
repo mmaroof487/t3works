@@ -17,7 +17,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 1024);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -28,7 +28,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1024) {
         setIsScrolled(window.scrollY > 20);
       } else {
         setIsScrolled(false);
@@ -81,7 +81,7 @@ export default function Header() {
   };
 
   return (
-    <div className="fixed bottom-4 md:bottom-auto md:top-6 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
+    <div className="fixed bottom-4 lg:bottom-auto lg:top-6 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
       <motion.header
         layout={!isMobile}
         initial={{ borderRadius: 32 }}
@@ -90,7 +90,7 @@ export default function Header() {
           borderRadius: 32,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
-        className="pointer-events-auto flex flex-col shadow-lg overflow-hidden w-full md:w-auto"
+        className="pointer-events-auto flex flex-col shadow-lg overflow-hidden w-full lg:w-auto"
       >
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -100,7 +100,7 @@ export default function Header() {
               animate={{ height: 'auto', opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="md:hidden w-full overflow-hidden"
+              className="lg:hidden w-full overflow-hidden"
             >
               <div className="flex flex-col items-center gap-6 pt-8 pb-4 border-b border-white/10 mx-6">
                 {NAV_ITEMS.map((item) =>
@@ -142,7 +142,7 @@ export default function Header() {
         </AnimatePresence>
 
         {/* Main Bar */}
-        <div className="flex items-center min-h-[60px] h-[60px] px-4 md:px-6 w-full">
+        <div className="flex items-center min-h-[60px] h-[60px] px-4 lg:px-6 w-full">
           {/* Left: Logo */}
           <motion.div layout className="flex-1 flex items-center justify-start">
             <Link
@@ -155,13 +155,13 @@ export default function Header() {
               <img
                 src="/images/t3works_nobg.webp"
                 alt="T3Works Logo"
-                className="h-8 md:h-10 w-auto object-contain"
+                className="h-8 lg:h-10 w-auto object-contain"
               />
             </Link>
           </motion.div>
 
           {/* Center: Desktop Dynamic Content */}
-          <div className="hidden md:flex shrink-0 items-center justify-center">
+          <div className="hidden lg:flex shrink-0 items-center justify-center">
             <AnimatePresence mode="popLayout" initial={false}>
               {!isScrolled ? (
                 <motion.nav
@@ -217,7 +217,7 @@ export default function Header() {
           </div>
 
           {/* Right: Mobile Menu Button */}
-          <motion.div layout className="flex md:hidden flex-1 items-center justify-end">
+          <motion.div layout className="flex lg:hidden flex-1 items-center justify-end">
             <button
               onClick={() => {
                 setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -229,7 +229,7 @@ export default function Header() {
           </motion.div>
 
           {/* Right: Contact (Desktop Only) */}
-          <motion.div layout className="hidden md:flex flex-1 items-center justify-end">
+          <motion.div layout className="hidden lg:flex flex-1 items-center justify-end">
             <button
               onClick={(e) => {
                 handleSmoothScroll(e, '#contact');
