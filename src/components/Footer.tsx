@@ -24,18 +24,8 @@ const SOCIALS = [
   {
     id: 'x',
     icon: (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M4 4l16 16" />
-        <path d="M4 20L20 4" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
       </svg>
     ),
   },
@@ -45,10 +35,13 @@ export default function Footer() {
   const [hoveredSocial, setHoveredSocial] = useState<string | null>(null);
 
   return (
-    <footer id="contact" className="w-full bg-[#14150f] py-16 md:py-24 border-t border-[#232621]">
+    <footer
+      id="contact"
+      className="w-full bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
+    >
       <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
         {/* Top CTA Section */}
-        <div className="mb-20 pb-16 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+        <div className="mb-12 pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
               Ready to scale your <span className="text-[#4a5d23]">engineering team?</span>
@@ -62,8 +55,9 @@ export default function Footer() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
-          <div className="lg:col-span-4 flex flex-col gap-6 items-start">
+        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12">
+          {/* Logo Section */}
+          <div className="lg:w-[35%] flex flex-col gap-6 items-start">
             <img
               src="/images/t3works_whitebg.webp"
               alt="T3Works Logo"
@@ -107,38 +101,41 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-2 lg:col-start-7 flex flex-col gap-4">
-            <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
-              HQ: India
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Bengaluru, Karnataka
-              <br />
-              India
-            </p>
-          </div>
+          {/* Locations and Contact */}
+          <div className="lg:w-[65%] grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-4">
+              <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
+                HQ: India
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Bengaluru, Karnataka
+                <br />
+                India
+              </p>
+            </div>
 
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
-              US Office
-            </h3>
-            <p className="text-sm text-gray-400 leading-relaxed">
-              Sheridan, Wyoming
-              <br />
-              United States
-            </p>
-          </div>
+            <div className="flex flex-col gap-4">
+              <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
+                US Office
+              </h3>
+              <p className="text-sm text-gray-400 leading-relaxed">
+                Sheridan, Wyoming
+                <br />
+                United States
+              </p>
+            </div>
 
-          <div className="lg:col-span-2 flex flex-col gap-4 items-start md:items-end">
-            <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
-              Contact
-            </h3>
-            <a
-              href="mailto:hello@t3works.com"
-              className="text-lg md:text-xl font-medium text-white hover:text-[#4a5d23] transition-colors"
-            >
-              hello@t3works.com
-            </a>
+            <div className="col-span-2 md:col-span-1 flex flex-col gap-4 items-start xl:items-end">
+              <h3 className="text-white font-medium mb-2 uppercase tracking-wider text-xs">
+                Contact
+              </h3>
+              <a
+                href="mailto:hello@t3works.com"
+                className="text-lg md:text-xl font-medium text-white hover:text-[#4a5d23] transition-colors break-all md:break-normal"
+              >
+                hello@t3works.com
+              </a>
+            </div>
           </div>
         </div>
 

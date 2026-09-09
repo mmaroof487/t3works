@@ -25,8 +25,9 @@ const CARDS = [
           Hire top tier talent. Build high performance teams.
         </h1>
         <div className="mt-6 lg:mt-8 relative z-10">
-          <button className="rounded-3xl bg-[#0f0f0f] px-6 py-3 text-[15px] font-medium text-white hover:bg-gray-800 transition-colors">
-            Hire Top Talent
+          <button className="group relative rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors shadow-sm">
+            <div className="absolute -inset-[5px] pointer-events-none rounded-full border-[3px] border-[#0f0f0f] opacity-0 transition-all duration-[600ms] ease-out group-hover:opacity-100 [-webkit-mask-image:linear-gradient(to_right,white,white),linear-gradient(to_left,white,white)] [-webkit-mask-position:left,right] [-webkit-mask-repeat:no-repeat,no-repeat] [-webkit-mask-size:0%_100%,0%_100%] group-hover:[-webkit-mask-size:50.5%_100%,50.5%_100%]" />
+            <span className="relative z-10">Hire Top Talent</span>
           </button>
         </div>
       </div>
@@ -225,9 +226,17 @@ export default function Hero() {
 
   return (
     <section className="flex min-h-screen w-full items-center justify-center pt-[84px] pb-12 relative">
-      <div className="absolute top-6 left-1/2 -translate-x-1/2 lg:hidden z-50">
-        <div className="inline-flex items-center justify-center bg-white text-[#4a5d23] px-5 py-2 rounded-2xl font-serif font-medium italic text-xl tracking-wide shadow-sm">
-          t3works
+      <div className="absolute top-6 left-4 lg:hidden z-50">
+        <div className="inline-flex items-baseline text-black">
+          <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+          <motion.span
+            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+            animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+            transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+            className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+          >
+            works
+          </motion.span>
         </div>
       </div>
       <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
