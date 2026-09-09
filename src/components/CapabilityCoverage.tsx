@@ -52,7 +52,9 @@ export default function CapabilityCoverage() {
               <span className="text-xs md:text-sm font-mono text-[#4a5d23]/70 transition-colors duration-300 group-hover:text-[#4a5d23] shrink-0">
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-gray-900 tracking-wide">{tech}</span>
+              <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-gray-900 tracking-wide">
+                {tech}
+              </span>
               <span className="absolute bottom-[-1px] left-0 h-[1px] w-0 bg-[#4a5d23] transition-all duration-300 ease-out group-hover:w-full" />
             </motion.div>
           ))}

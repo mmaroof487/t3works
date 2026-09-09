@@ -49,7 +49,9 @@ export default function IndustryVerticalList() {
               <span className="text-xs md:text-sm font-mono text-white/50 transition-colors duration-300 group-hover:text-white shrink-0">
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-white/90 tracking-wide">{industry}</span>
+              <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-white/90 tracking-wide">
+                {industry}
+              </span>
               <span className="absolute bottom-[-1px] left-0 h-[1px] w-0 bg-[#4a5d23] transition-all duration-300 ease-out group-hover:w-full" />
             </motion.div>
           ))}
