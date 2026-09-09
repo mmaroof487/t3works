@@ -12,7 +12,7 @@ export default function ModelDeepDive() {
   return (
     <section className="w-full bg-[#4a5d23] py-16 md:py-24 text-white relative overflow-hidden group">
       <img
-        src="/images/remote_tech_bg_1788870486090.jpg"
+        src="/images/remote_tech_bg_1788870486090.webp"
         alt=""
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 mix-blend-overlay scale-[1.15] group-hover:scale-[1.25] transition-transform duration-1000 pointer-events-none"
       />

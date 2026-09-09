@@ -26,7 +26,7 @@ export default function NicheSegmentCallout() {
               className="w-full lg:w-1/2 aspect-square lg:aspect-[4/3] relative overflow-hidden bg-gray-100"
             >
               <img
-                src="/images/niche_t3_hiring.jpg"
+                src="/images/niche_t3_hiring.webp"
                 alt="T3 Hiring Program"
                 className="absolute inset-0 w-full h-full object-cover object-left"
               />
@@ -66,7 +66,7 @@ export default function NicheSegmentCallout() {
               className="w-full lg:w-1/2 aspect-square lg:aspect-[4/3] relative overflow-hidden bg-gray-100"
             >
               <img
-                src="/images/niche_campus_hiring.jpg"
+                src="/images/niche_campus_hiring.webp"
                 alt="Campus Hiring"
                 className="absolute inset-0 w-full h-full object-cover object-left"
               />

@@ -46,7 +46,7 @@ export default function IndustryVerticalList() {
               transition={{ duration: 0.4, delay: idx * 0.02 }}
               className="group relative flex items-baseline gap-3 md:gap-4 py-4 md:py-5 border-b border-white/10 cursor-default"
             >
-              <span className="text-xs md:text-sm font-mono text-white/50 transition-colors duration-300 group-hover:text-white shrink-0">
+              <span className="text-xs md:text-sm font-mono text-white/70 transition-colors duration-300 group-hover:text-white shrink-0">
                 {String(idx + 1).padStart(2, '0')}
               </span>
               <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-white/90 tracking-wide">

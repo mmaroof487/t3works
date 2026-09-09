@@ -19,7 +19,7 @@ export default function CareerAcceleration() {
             className="group relative overflow-hidden flex flex-col justify-between rounded-[2rem] bg-[#4a5d23] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <img
-              src="/images/career_first_jobs_bg_new.jpg"
+              src="/images/career_first_jobs_bg_new.webp"
               alt=""
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-60 mix-blend-overlay group-hover:scale-105 transition-transform duration-700 pointer-events-none"
             />
@@ -44,7 +44,7 @@ export default function CareerAcceleration() {
             className="group relative overflow-hidden flex flex-col justify-between rounded-[2rem] bg-[#0f0f0f] p-8 md:p-10 min-h-[320px] text-white cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <img
-              src="/images/career_pro_bg_new.jpg"
+              src="/images/career_pro_bg_new.webp"
               alt=""
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-50 mix-blend-lighten group-hover:scale-105 transition-transform duration-700 pointer-events-none"
             />
@@ -69,7 +69,7 @@ export default function CareerAcceleration() {
             className="group relative overflow-hidden flex flex-col justify-between rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-10 min-h-[320px] text-gray-900 cursor-pointer hover:-translate-y-1 transition-transform"
           >
             <img
-              src="/images/career_master_bg_new.jpg"
+              src="/images/career_master_bg_new.webp"
               alt=""
               className="absolute inset-0 w-full h-full object-cover z-0 opacity-100 mix-blend-multiply group-hover:scale-105 transition-transform duration-700 pointer-events-none"
             />

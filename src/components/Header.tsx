@@ -222,7 +222,9 @@ export default function Header() {
               onClick={() => {
                 setIsMobileMenuOpen(!isMobileMenuOpen);
               }}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              className="flex items-center justify-center w-11 h-11 rounded-full bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors"
+              aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMobileMenuOpen}
             >
               {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>

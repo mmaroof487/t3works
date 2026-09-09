@@ -49,7 +49,7 @@ export default function CapabilityCoverage() {
               transition={{ duration: 0.4, delay: idx * 0.02 }}
               className="group relative flex items-baseline gap-3 md:gap-4 py-4 md:py-5 border-b border-gray-200 cursor-default"
             >
-              <span className="text-xs md:text-sm font-mono text-[#4a5d23]/70 transition-colors duration-300 group-hover:text-[#4a5d23] shrink-0">
+              <span className="text-xs md:text-sm font-mono text-[#4a5d23]/90 transition-colors duration-300 group-hover:text-[#4a5d23] shrink-0">
                 {String(idx + 1).padStart(2, '0')}
               </span>
               <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-gray-900 tracking-wide">

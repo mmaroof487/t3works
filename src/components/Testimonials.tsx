@@ -121,7 +121,7 @@ export default function Testimonials() {
                   <div className="text-sm font-bold uppercase tracking-wider text-[#0f0f0f]">
                     {TESTIMONIALS[currentIndex].name}
                   </div>
-                  <div className="text-sm text-gray-500 mt-1">
+                  <div className="text-sm text-gray-600 mt-1">
                     {TESTIMONIALS[currentIndex].title}, {TESTIMONIALS[currentIndex].company}
                   </div>
                 </div>
