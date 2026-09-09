@@ -289,10 +289,10 @@ export default function Hero() {
                         style={
                           isExpandable
                             ? {
-                              WebkitMaskImage:
-                                'linear-gradient(to right, transparent 0%, black 30%)',
-                              maskImage: 'linear-gradient(to right, transparent 0%, black 30%)',
-                            }
+                                WebkitMaskImage:
+                                  'linear-gradient(to right, transparent 0%, black 30%)',
+                                maskImage: 'linear-gradient(to right, transparent 0%, black 30%)',
+                              }
                             : undefined
                         }
                       />

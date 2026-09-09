@@ -2,8 +2,9 @@
 
 @font-face {
   font-family: 'Batangas';
-  src: url('/fonts/batangas.woff2') format('woff2'),
-       url('/fonts/batangas.ttf') format('truetype');
+  src:
+    url('/fonts/batangas.woff2') format('woff2'),
+    url('/fonts/batangas.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
