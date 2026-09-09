@@ -36,7 +36,7 @@ export default function IndustryVerticalList() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-0">
+        <div className="grid grid-cols-1 min-[375px]:grid-cols-2 gap-x-6 lg:gap-x-12 gap-y-0">
           {INDUSTRIES.map((industry, idx) => (
             <motion.div
               key={industry}
@@ -44,12 +44,12 @@ export default function IndustryVerticalList() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.02 }}
-              className="group relative flex items-baseline gap-4 py-5 border-b border-white/10 cursor-default"
+              className="group relative flex items-baseline gap-3 md:gap-4 py-4 md:py-5 border-b border-white/10 cursor-default"
             >
-              <span className="text-sm font-mono text-white/50 transition-colors duration-300 group-hover:text-white">
+              <span className="text-xs md:text-sm font-mono text-white/50 transition-colors duration-300 group-hover:text-white shrink-0">
                 {String(idx + 1).padStart(2, '0')}
               </span>
-              <span className="text-[17px] font-bold text-white/90 tracking-wide">{industry}</span>
+              <span className="text-[14px] md:text-[17px] leading-snug md:leading-normal font-bold text-white/90 tracking-wide">{industry}</span>
               <span className="absolute bottom-[-1px] left-0 h-[1px] w-0 bg-[#4a5d23] transition-all duration-300 ease-out group-hover:w-full" />
             </motion.div>
           ))}
