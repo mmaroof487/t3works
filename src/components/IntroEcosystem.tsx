@@ -12,23 +12,23 @@ export default function IntroEcosystem() {
           className="mx-auto max-w-4xl text-center mb-20"
         >
           <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl mb-6">
-            The T3Works ecosystem.
+            What T3 AI Works does.
           </h2>
           <p className="text-lg text-gray-600 mb-4">
-            We are a global talent hiring platform and a career accelerator for top tier talent,
-            specializing in building high-performance tech teams.
+            We bridge universities and enterprise AI demand, converting raw engineering aptitude
+            into market-ready builders through a merit-gated, rigor-driven pipeline.
           </p>
           <p className="text-lg text-gray-600">
-            Our Core team brings over two decades of experience in constructing high-performing
-            teams for Fortune 500 Companies, fast-growing startups, and global IT majors.
+            Candidates are trained in AI engineering and multi-agent systems, then connected
+            directly with enterprise opportunities — closing the global 4-million AI skill deficit.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200/60">
           {[
-            { stat: '200+', label: 'Global Clients' },
-            { stat: '5,000+', label: 'Managed Techforce' },
-            { stat: '100+', label: 'Technologies supported' },
+            { stat: '500', label: 'Applicants per intake' },
+            { stat: '4M', label: 'Global AI skill deficit' },
+            { stat: '30-60%', label: 'Enterprise cost advantage' },
           ].map((item, index) => (
             <motion.div
               key={item.label}

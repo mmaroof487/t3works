@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CARDS = [
@@ -15,20 +16,25 @@ const CARDS = [
       <div className="flex h-full flex-col p-6 sm:p-10 lg:p-14">
         <div className="mb-6 lg:mb-8 flex items-center gap-2 relative z-10">
           <span className="rounded-full border border-[#4a5d23]/20 bg-white px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm flex items-center gap-2">
-            Great Talent. Global Opportunities.
+            Closing the Global AI Skill Deficit
             <div className="w-4 h-4 rounded-full bg-[#4a5d23] text-white flex items-center justify-center text-[10px]">
               →
             </div>
           </span>
         </div>
-        <h1 className="max-w-xl text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-gray-900 lg:text-7xl relative z-10">
-          Hire top tier talent. Build high performance teams.
+        <h1 className="max-w-xl text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-gray-900 lg:text-6xl relative z-10">
+          Not More Engineers.
+          <br />
+          More Engineering.
         </h1>
         <div className="mt-6 lg:mt-8 relative z-10">
-          <button className="group relative rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors shadow-sm">
+          <Link
+            to="/apply"
+            className="group relative inline-flex rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors shadow-sm"
+          >
             <div className="absolute -inset-[5px] pointer-events-none rounded-full border-[3px] border-[#0f0f0f] opacity-0 transition-all duration-[600ms] ease-out group-hover:opacity-100 [-webkit-mask-image:linear-gradient(to_right,white,white),linear-gradient(to_left,white,white)] [-webkit-mask-position:left,right] [-webkit-mask-repeat:no-repeat,no-repeat] [-webkit-mask-size:0%_100%,0%_100%] group-hover:[-webkit-mask-size:50.5%_100%,50.5%_100%]" />
-            <span className="relative z-10">Hire Top Talent</span>
-          </button>
+            <span className="relative z-10">Apply Now</span>
+          </Link>
         </div>
       </div>
     ),
@@ -51,9 +57,8 @@ const CARDS = [
           transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
           className={`font-medium leading-tight text-white tracking-tight relative z-10 ${isActive || !isDesktop ? 'mb-4 text-left text-3xl sm:text-4xl lg:text-7xl lg:mb-6' : 'text-3xl sm:text-4xl'}`}
         >
-          Remote Tech
-          <br />
-          Workforce
+          For Candidates
+          <br />& Job Seekers
         </motion.h2>
 
         <AnimatePresence>
@@ -65,7 +70,7 @@ const CARDS = [
               className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 flex justify-end z-10"
             >
               <span className="rounded-full bg-[#ffea75] px-3 py-1 text-sm font-semibold text-gray-900 shadow-md">
-                Save up to 60%
+                Top 25% Advance
               </span>
             </motion.div>
           )}
@@ -81,16 +86,19 @@ const CARDS = [
             >
               <div className="mb-6 lg:hidden">
                 <span className="rounded-full bg-[#ffea75] px-3 py-1 text-sm font-semibold text-gray-900 shadow-md">
-                  Save up to 60%
+                  Top 25% Advance
                 </span>
               </div>
               <p className="text-left text-white/80 max-w-sm mb-6 lg:mb-10 relative z-10">
-                Explore the incredible potential of remote tech workforce with T3W - secure the
-                finest talent globally.
+                Convert raw engineering aptitude into a market-ready AI career, guided by industry
+                mentors and enterprise consultants.
               </p>
-              <button className="rounded-3xl border border-white/30 bg-transparent px-8 py-3 text-[15px] font-medium text-white hover:bg-white/10 transition-colors relative z-10">
-                Explore
-              </button>
+              <Link
+                to="/apply"
+                className="rounded-3xl border border-white/30 bg-transparent px-8 py-3 text-[15px] font-medium text-white hover:bg-white/10 transition-colors relative z-10"
+              >
+                Apply Now
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
@@ -123,7 +131,7 @@ const CARDS = [
                 <div className="h-14 w-14 rounded-full bg-gray-400 border-4 border-[#0f0f0f]" />
               </div>
               <span className="rounded-full border border-white/20 px-5 py-2 text-sm font-medium text-white">
-                200+ Clients
+                66% Won't Hire Without AI Skills
               </span>
             </motion.div>
           )}
@@ -134,9 +142,9 @@ const CARDS = [
           transition={{ type: 'spring', bounce: 0.2, duration: 0.8 }}
           className={`font-medium leading-tight text-white tracking-tight relative z-10 ${isActive || !isDesktop ? 'text-left text-3xl sm:text-4xl lg:text-7xl mb-4 lg:mb-6' : 'text-3xl sm:text-4xl'}`}
         >
-          T3W Campus
+          For
           <br />
-          Hiring
+          Companies
         </motion.h2>
 
         <AnimatePresence>
@@ -147,13 +155,8 @@ const CARDS = [
               exit={{ opacity: 0, transition: { duration: 0.1 } }}
               className="absolute bottom-6 left-6 lg:bottom-10 lg:left-10 flex items-center gap-3 z-10"
             >
-              <div className="flex -space-x-3 hidden sm:flex">
-                <div className="h-10 w-10 rounded-full bg-gray-200 border-2 border-[#0f0f0f]" />
-                <div className="h-10 w-10 rounded-full bg-gray-300 border-2 border-[#0f0f0f]" />
-                <div className="h-10 w-10 rounded-full bg-gray-400 border-2 border-[#0f0f0f]" />
-              </div>
               <span className="rounded-full border border-white/20 px-4 py-1.5 text-sm font-medium text-white bg-black/20 backdrop-blur-sm">
-                200+ Clients
+                Zero-Risk PoC
               </span>
             </motion.div>
           )}
@@ -168,12 +171,15 @@ const CARDS = [
               className="flex flex-col items-start"
             >
               <p className="text-left text-white/80 max-w-sm mb-6 lg:mb-10 relative z-10">
-                Hire Ready To Deploy engineers embodying your values, boosting agility while
-                reducing costs.
+                Deploy Day-One ready AI engineers battle-tested in autonomous agents, RAG pipelines,
+                and full-stack security.
               </p>
-              <button className="rounded-3xl border border-white/30 bg-transparent px-8 py-3 text-[15px] font-medium text-white hover:bg-white/10 transition-colors relative z-10">
-                Explore
-              </button>
+              <Link
+                to="/hire"
+                className="rounded-3xl border border-white/30 bg-transparent px-8 py-3 text-[15px] font-medium text-white hover:bg-white/10 transition-colors relative z-10"
+              >
+                Hire AI Talent
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>

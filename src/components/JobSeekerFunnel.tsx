@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 export default function JobSeekerFunnel() {
@@ -14,27 +15,31 @@ export default function JobSeekerFunnel() {
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-12">
             <div className="lg:max-w-xl">
               <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl lg:text-6xl mb-6">
-                Find exciting opportunities.
+                For Universities and Candidates.
               </h2>
               <p className="text-lg text-gray-600">
-                We offer access to a world of opportunities, from finding your next exciting job to
-                consulting opportunities or embarking on your entrepreneurial journey. Wherever your
-                ambitions lie, we're here to take your career to new heights.
+                Guided by active Industry Mentors, Tech Experts, and Enterprise Consultants,
+                candidates get real-world architectural reviews, code audits, and project governance
+                — plus a structured path for experienced developers to realign into high-value AI
+                roles through LangChain and LangGraph mastery.
               </p>
             </div>
 
             <div className="flex flex-col gap-4 w-full sm:w-auto">
-              {['Discover your best jobs', 'Explore new career paths', 'Become a T3W star'].map(
-                (text) => (
-                  <button
-                    key={text}
-                    className="group relative rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors w-full text-center shadow-sm"
-                  >
-                    <div className="absolute -inset-[5px] pointer-events-none rounded-full border-[3px] border-[#0f0f0f] opacity-0 transition-all duration-[600ms] ease-out group-hover:opacity-100 [-webkit-mask-image:linear-gradient(to_right,white,white),linear-gradient(to_left,white,white)] [-webkit-mask-position:left,right] [-webkit-mask-repeat:no-repeat,no-repeat] [-webkit-mask-size:0%_100%,0%_100%] group-hover:[-webkit-mask-size:50.5%_100%,50.5%_100%]" />
-                    <span className="relative z-10">{text}</span>
-                  </button>
-                )
-              )}
+              {[
+                'Industry mentors & tech experts',
+                'Real-world architectural reviews',
+                'Career realignment for seniors',
+              ].map((text) => (
+                <Link
+                  key={text}
+                  to="/apply"
+                  className="group relative rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-colors w-full text-center shadow-sm"
+                >
+                  <div className="absolute -inset-[5px] pointer-events-none rounded-full border-[3px] border-[#0f0f0f] opacity-0 transition-all duration-[600ms] ease-out group-hover:opacity-100 [-webkit-mask-image:linear-gradient(to_right,white,white),linear-gradient(to_left,white,white)] [-webkit-mask-position:left,right] [-webkit-mask-repeat:no-repeat,no-repeat] [-webkit-mask-size:0%_100%,0%_100%] group-hover:[-webkit-mask-size:50.5%_100%,50.5%_100%]" />
+                  <span className="relative z-10">{text}</span>
+                </Link>
+              ))}
             </div>
           </div>
         </motion.div>
