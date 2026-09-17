@@ -12,20 +12,26 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.116.0",
     "clsx": "^2.1.1",
+    "formidable": "^3.5.4",
     "framer-motion": "^13.2.0",
     "lenis": "^1.1.13",
     "lucide-react": "^1.42.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.3",
-    "tailwind-merge": "^3.6.0"
+    "resend": "^6.28.1",
+    "tailwind-merge": "^3.6.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "@types/formidable": "^3.5.1",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@vercel/node": "^13.0.1",
     "@vitejs/plugin-react": "^6.1.0",
     "eslint": "^9.39.5",
     "eslint-config-prettier": "^10.1.8",
