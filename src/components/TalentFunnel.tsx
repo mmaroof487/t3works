@@ -20,14 +20,14 @@ const STAGES: FunnelStage[] = [
     value: 125,
     label: 'Candidates',
     detail: 'Top 25% advance after the Phase 0 proctored assessment.',
-    widthClass: 'w-[70%]',
+    widthClass: 'w-[95%] md:w-[70%]',
   },
   {
     value: 50,
     suffix: '–75',
     label: 'Engineers',
-    detail: 'Final T3 talent after StepX training and rigor-driven filtering.',
-    widthClass: 'w-[42%]',
+    detail: 'Final T3 talent placed into premium salary tiers ($65K - $120K+) after StepX.',
+    widthClass: 'w-[90%] md:w-[42%]',
   },
 ];
 
@@ -59,6 +59,17 @@ function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string
 }
 
 export default function TalentFunnel() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideoInView = useInView(videoRef, { margin: '-100px' });
+
+  useEffect(() => {
+    if (isVideoInView && videoRef.current) {
+      videoRef.current.play().catch(() => undefined);
+    } else if (!isVideoInView && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isVideoInView]);
+
   return (
     <section className="w-full bg-[#14150f] py-16 md:py-24 text-white overflow-hidden">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -81,6 +92,27 @@ export default function TalentFunnel() {
           </p>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl mb-16 md:mb-20 border border-white/10 bg-white/5 aspect-video"
+        >
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            controls
+            playsInline
+            muted
+            loop
+            preload="metadata"
+          >
+            <source src="/videos/t3aiworks-vid3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </motion.div>
+
         <div className="flex flex-col items-center gap-6 mb-16 md:mb-20">
           {STAGES.map((stage, idx) => (
             <motion.div
@@ -92,8 +124,8 @@ export default function TalentFunnel() {
               className={`${stage.widthClass} max-w-2xl`}
             >
               <div className="flex flex-col sm:flex-row items-center sm:items-stretch justify-between gap-4 rounded-[2rem] border border-white/10 bg-white/[0.03] px-8 py-6 sm:py-8 backdrop-blur-sm">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-5xl sm:text-6xl font-bold tracking-tight text-white">
+                <div className="flex items-baseline gap-2 flex-wrap justify-center sm:justify-start">
+                  <span className="text-5xl sm:text-6xl font-bold tracking-tight text-white whitespace-nowrap">
                     <AnimatedNumber value={stage.value} suffix={stage.suffix} />
                   </span>
                   <span className="text-lg font-semibold text-[#8ba05f]">{stage.label}</span>

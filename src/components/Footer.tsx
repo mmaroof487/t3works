@@ -38,9 +38,9 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="w-full bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
+      className="w-full min-h-screen flex flex-col justify-between bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
     >
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}
         <div className="mb-12 pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="max-w-2xl">

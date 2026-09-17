@@ -1,7 +1,19 @@
+import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 
 export default function HiringSideEntry() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideoInView = useInView(videoRef, { margin: '-100px' });
+
+  useEffect(() => {
+    if (isVideoInView && videoRef.current) {
+      videoRef.current.play().catch(() => undefined);
+    } else if (!isVideoInView && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isVideoInView]);
+
   return (
     <section className="w-full bg-transparent py-12">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -12,7 +24,7 @@ export default function HiringSideEntry() {
           transition={{ duration: 0.6 }}
           className="rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8 md:p-16 lg:p-20"
         >
-          <div className="flex flex-col lg:flex-row-reverse lg:items-center justify-between gap-12">
+          <div className="flex flex-col lg:flex-row-reverse lg:items-center justify-between gap-12 mb-12 lg:mb-16">
             <div className="lg:max-w-xl">
               <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl lg:text-6xl mb-6">
                 For Companies.
@@ -37,6 +49,27 @@ export default function HiringSideEntry() {
               ))}
             </div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl border border-black/5 bg-[#14150f] aspect-video"
+          >
+            <video
+              ref={videoRef}
+              className="w-full h-full object-cover"
+              controls
+              playsInline
+              muted
+              loop
+              preload="metadata"
+            >
+              <source src="/videos/t3aiworks-vid2.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </motion.div>
         </motion.div>
       </div>
     </section>
