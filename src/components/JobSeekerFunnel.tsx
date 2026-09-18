@@ -7,7 +7,6 @@ export default function JobSeekerFunnel() {
     <section className="w-full bg-transparent py-12 md:py-20">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 lg:auto-rows-[240px]">
-          
           {/* Title Card (Banner) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -17,13 +16,16 @@ export default function JobSeekerFunnel() {
             className="col-span-1 md:col-span-3 lg:col-span-3 lg:row-span-1 bg-white border border-gray-100 rounded-[2rem] p-8 md:p-12 flex flex-col justify-center shadow-sm relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-               <GraduationCap className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
+              <GraduationCap className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
             </div>
             <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl mb-4 relative z-10">
               For Universities and Candidates.
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl relative z-10 leading-relaxed">
-              Guided by active Industry Mentors, Tech Experts, and Enterprise Consultants, candidates get real-world architectural reviews, code audits, and project governance — plus a structured path for experienced developers to realign into high-value AI roles through LangChain and LangGraph mastery.
+              Guided by active Industry Mentors, Tech Experts, and Enterprise Consultants,
+              candidates get real-world architectural reviews, code audits, and project governance —
+              plus a structured path for experienced developers to realign into high-value AI roles
+              through LangChain and LangGraph mastery.
             </p>
           </motion.div>
 
@@ -50,7 +52,9 @@ export default function JobSeekerFunnel() {
               </div>
               <div className="relative z-10 mt-6 lg:mt-0">
                 <h3 className="text-xl font-medium mb-2">Industry mentors & tech experts</h3>
-                <p className="text-sm text-gray-400 font-medium uppercase tracking-wide">Expert Guidance</p>
+                <p className="text-sm text-gray-400 font-medium uppercase tracking-wide">
+                  Expert Guidance
+                </p>
               </div>
             </Link>
           </motion.div>
@@ -76,8 +80,12 @@ export default function JobSeekerFunnel() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">Real-world architectural reviews</h3>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">Code Audits</p>
+                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                  Real-world architectural reviews
+                </h3>
+                <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">
+                  Code Audits
+                </p>
               </div>
             </Link>
           </motion.div>
@@ -103,12 +111,15 @@ export default function JobSeekerFunnel() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">Career realignment for seniors</h3>
-                <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">Path to AI</p>
+                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                  Career realignment for seniors
+                </h3>
+                <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">
+                  Path to AI
+                </p>
               </div>
             </Link>
           </motion.div>
-
         </div>
       </div>
     </section>

@@ -38,11 +38,11 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="w-full min-h-screen flex flex-col justify-between bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
+      className="w-full h-screen overflow-hidden flex flex-col justify-between bg-[#0a0a0a] py-8 md:py-12 lg:py-16 border-t border-white/5"
     >
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}
-        <div className="mb-12 pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+        <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
               Not more engineers. <span className="text-[#4a5d23]">More engineering.</span>
@@ -61,14 +61,14 @@ export default function Footer() {
             </Link>
             <Link
               to="/hire"
-              className="whitespace-nowrap rounded-3xl bg-[#4a5d23] px-8 py-4 text-base font-semibold text-white hover:bg-[#5b732b] transition-colors text-center"
+              className="whitespace-nowrap rounded-3xl bg-[#8ba05f] px-8 py-4 text-base font-bold text-[#0f0f0f] hover:bg-[#9cb36a] transition-colors text-center shadow-sm shadow-[#8ba05f]/20 border border-white/5"
             >
               Hire AI Talent
             </Link>
           </div>
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12">
+        <div className="flex flex-col lg:flex-row justify-between gap-8 lg:gap-12 mb-6 lg:mb-8 flex-1 overflow-y-auto min-h-0">
           {/* Logo Section */}
           <div className="lg:w-[35%] flex flex-col gap-6 items-start">
             <img
@@ -153,7 +153,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-[#232621] gap-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center pt-6 lg:pt-8 border-t border-[#232621] gap-4 shrink-0">
           <p className="text-sm text-gray-500 font-medium">
             Copyright &copy; {new Date().getFullYear()} T3Works. All rights reserved.
           </p>

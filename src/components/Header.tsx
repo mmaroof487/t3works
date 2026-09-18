@@ -144,7 +144,7 @@ export default function Header() {
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors shadow-sm shadow-[#4a5d23]/20 border border-white/5"
+                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors shadow-sm shadow-[#8ba05f]/20 border border-white/5"
                   >
                     Hire AI Talent
                   </Link>
@@ -253,7 +253,7 @@ export default function Header() {
             </Link>
             <Link
               to="/hire"
-              className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors whitespace-nowrap shadow-sm shadow-[#4a5d23]/20 border border-white/5 cursor-pointer"
+              className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors whitespace-nowrap shadow-sm shadow-[#8ba05f]/20 border border-white/5 cursor-pointer"
             >
               Hire AI Talent
             </Link>

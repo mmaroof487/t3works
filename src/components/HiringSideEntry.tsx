@@ -29,13 +29,15 @@ export default function HiringSideEntry() {
             className="col-span-1 lg:col-span-2 lg:row-span-1 bg-white border border-gray-100 rounded-[2rem] p-8 md:p-12 flex flex-col justify-center shadow-sm relative overflow-hidden group"
           >
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-               <Briefcase className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
+              <Briefcase className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
             </div>
             <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl mb-4 relative z-10">
               For Companies.
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl relative z-10 leading-relaxed">
-              Deploy Day-One ready AI engineers, battle-tested in autonomous agents, RAG pipelines, and full-stack security. Start with a zero-risk Pre-Engagement PoC, move to a guided 4-month internship, or hire full-time.
+              Deploy Day-One ready AI engineers, battle-tested in autonomous agents, RAG pipelines,
+              and full-stack security. Start with a zero-risk Pre-Engagement PoC, move to a guided
+              4-month internship, or hire full-time.
             </p>
           </motion.div>
 
@@ -62,7 +64,9 @@ export default function HiringSideEntry() {
               </div>
               <div className="relative z-10 mt-6 lg:mt-0">
                 <h3 className="text-2xl font-medium mb-2">Pre-Engagement PoC</h3>
-                <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">Zero-Risk Trial</p>
+                <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">
+                  Zero-Risk Trial
+                </p>
               </div>
             </Link>
           </motion.div>
@@ -89,7 +93,9 @@ export default function HiringSideEntry() {
             </video>
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             <button
-              onClick={() => setIsMuted(!isMuted)}
+              onClick={() => {
+                setIsMuted(!isMuted);
+              }}
               className="absolute bottom-6 right-6 p-4 rounded-full bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:bg-black/60 z-10 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-110"
               aria-label={isMuted ? 'Unmute' : 'Mute'}
             >
@@ -118,7 +124,9 @@ export default function HiringSideEntry() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">Guided 4-Month Internship</h3>
+                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                  Guided 4-Month Internship
+                </h3>
                 <p className="text-sm text-gray-500 font-medium">Battle-tested in real projects</p>
               </div>
             </Link>
@@ -145,12 +153,13 @@ export default function HiringSideEntry() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">Accelerated Full-time Hiring</h3>
+                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                  Accelerated Full-time Hiring
+                </h3>
                 <p className="text-sm text-gray-500 font-medium">Ready for Day-One impact</p>
               </div>
             </Link>
           </motion.div>
-
         </div>
       </div>
     </section>

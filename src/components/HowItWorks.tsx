@@ -42,7 +42,7 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 auto-rows-auto lg:auto-rows-[300px]">
           {STEPS.map((step, idx) => (
             <motion.div
               key={step.title}
@@ -50,11 +50,35 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="flex flex-col gap-4 rounded-[2rem] bg-white shadow-sm border border-gray-100/50 p-8"
+              className={`relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] p-8 md:p-10 transition-transform hover:-translate-y-1 group ${
+                idx === 0
+                  ? 'lg:col-span-2 bg-[#8ba05f]/10 border border-[#8ba05f]/30 shadow-md'
+                  : idx === 3
+                    ? 'lg:col-span-2 bg-[#0f0f0f] border border-gray-800 shadow-2xl'
+                    : 'bg-white border border-gray-100 shadow-sm'
+              }`}
             >
-              <div className="text-3xl font-bold text-gray-200 select-none">0{idx + 1}</div>
-              <h3 className="text-xl font-semibold text-[#0f0f0f] leading-snug">{step.title}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">{step.detail}</p>
+              {/* Giant Background Number */}
+              <div
+                className={`absolute -bottom-2 -right-2 text-[120px] md:text-[140px] font-bold leading-none select-none transition-transform duration-700 group-hover:scale-110 ${idx === 3 ? 'text-white/5' : 'text-[#8ba05f]/10'}`}
+              >
+                {idx + 1}
+              </div>
+
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex-1">
+                  <h3
+                    className={`text-2xl md:text-3xl font-semibold leading-snug mb-4 max-w-[80%] ${idx === 3 ? 'text-white' : 'text-[#0f0f0f]'}`}
+                  >
+                    {step.title}
+                  </h3>
+                </div>
+                <p
+                  className={`text-base leading-relaxed ${idx === 3 ? 'text-white/60' : 'text-gray-600'}`}
+                >
+                  {step.detail}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

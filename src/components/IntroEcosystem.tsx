@@ -16,7 +16,7 @@ export default function IntroEcosystem() {
   }, [isVideoInView]);
 
   return (
-    <section className="w-full bg-transparent py-16 md:py-24">
+    <section className="w-full bg-transparent pt-16 md:pt-24 pb-8 md:pb-12">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -68,12 +68,12 @@ export default function IntroEcosystem() {
           </button>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200/60">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mt-12">
           {[
-            { stat: '500', label: 'Applicants per intake' },
-            { stat: '4M', label: 'Global AI skill deficit' },
-            { stat: '30-60%', label: 'Enterprise cost advantage' },
-            { stat: '2.4x', label: 'Productivity boost in 90 days' },
+            { stat: '500', label: 'Applicants per intake', highlight: false },
+            { stat: '4M', label: 'Global AI skill deficit', highlight: false },
+            { stat: '30-60%', label: 'Enterprise cost advantage', highlight: true },
+            { stat: '2.4x', label: 'Productivity boost in 90 days', highlight: false },
           ].map((item, index) => (
             <motion.div
               key={item.label}
@@ -81,12 +81,14 @@ export default function IntroEcosystem() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center py-8 md:py-4 px-4"
+              className={`flex flex-col items-center justify-center p-8 rounded-[2rem] border transition-transform hover:-translate-y-1 ${item.highlight ? 'bg-[#8ba05f]/10 border-[#8ba05f]/30 shadow-md' : 'bg-white border-gray-100 shadow-sm'}`}
             >
-              <div className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-[#0f0f0f] mb-3">
+              <div
+                className={`text-4xl lg:text-5xl font-bold tracking-tight mb-3 whitespace-nowrap ${item.highlight ? 'text-[#8ba05f]' : 'text-[#0f0f0f]'}`}
+              >
                 {item.stat}
               </div>
-              <div className="text-sm font-semibold uppercase tracking-wider text-gray-500">
+              <div className="text-xs font-semibold uppercase tracking-wider text-gray-500 text-center leading-relaxed">
                 {item.label}
               </div>
             </motion.div>
