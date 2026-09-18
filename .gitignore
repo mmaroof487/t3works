@@ -30,3 +30,8 @@ dist-ssr
 
 # Local scripts
 ci.sh
+
+# Vercel
+.vercel
+website-copy-blueprint-v4.pdf
+
