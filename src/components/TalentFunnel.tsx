@@ -15,20 +15,20 @@ const STAGES: FunnelStage[] = [
     value: 500,
     label: 'Applicants',
     detail: 'Initial intake for every cohort.',
-    widthClass: 'w-full',
+    widthClass: 'w-full max-w-4xl',
   },
   {
     value: 125,
     label: 'Candidates',
     detail: 'Top 25% advance after the Phase 0 proctored assessment.',
-    widthClass: 'w-[95%] md:w-[70%]',
+    widthClass: 'w-[95%] max-w-2xl',
   },
   {
     value: 50,
     suffix: '–75',
     label: 'Engineers',
     detail: 'Final T3 talent placed into premium salary tiers ($65K - $120K+) after StepX.',
-    widthClass: 'w-[90%] md:w-[42%]',
+    widthClass: 'w-[90%] max-w-lg',
   },
 ];
 
@@ -132,9 +132,9 @@ export default function TalentFunnel() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.15 }}
-              className={`${stage.widthClass} max-w-2xl`}
+              className={`${stage.widthClass}`}
             >
-              <div className="flex flex-col sm:flex-row items-center sm:items-stretch justify-between gap-4 rounded-[2rem] border border-white/10 bg-white/[0.03] px-8 py-6 sm:py-8 backdrop-blur-sm">
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-[2rem] border border-white/10 bg-white/[0.03] px-8 py-6 sm:py-8 backdrop-blur-sm h-[220px] sm:h-[160px] relative z-10">
                 <div className="flex items-baseline gap-2 flex-wrap justify-center sm:justify-start">
                   <span className="text-5xl sm:text-6xl font-bold tracking-tight text-white whitespace-nowrap">
                     <AnimatedNumber value={stage.value} suffix={stage.suffix} />
@@ -146,8 +146,26 @@ export default function TalentFunnel() {
                 </p>
               </div>
               {idx < STAGES.length - 1 && (
-                <div className="flex justify-center py-3">
-                  <div className="h-6 w-px bg-gradient-to-b from-white/20 to-transparent" />
+                <div className="flex justify-center h-16 sm:h-20 w-full relative mt-2 mb-2">
+                  <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+                    <line x1="50%" y1="0" x2="50%" y2="100%" stroke="rgba(255,255,255,0.15)" strokeWidth="2" strokeDasharray="6 6" />
+                  </svg>
+                  <motion.div
+                    key={`comet-sync-${idx}`}
+                    style={{ top: '-160px' }}
+                    initial={{ y: 0, opacity: 0 }}
+                    animate={{ y: 300, opacity: [0, 1, 1, 0] }}
+                    transition={{
+                      duration: 2.5,
+                      repeat: Infinity,
+                      ease: 'linear',
+                      times: [0, 0.1, 0.8, 1],
+                    }}
+                    className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center z-0"
+                  >
+                    <div className="w-[3px] h-24 bg-gradient-to-t from-[#8ba05f] to-transparent -mb-1" />
+                    <div className="w-2.5 h-2.5 bg-[#8ba05f] rounded-full shadow-[0_0_15px_#8ba05f] z-10" />
+                  </motion.div>
                 </div>
               )}
             </motion.div>
