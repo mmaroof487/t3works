@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 import { motion, useInView, animate } from 'framer-motion';
 
 interface FunnelStage {
@@ -61,6 +62,7 @@ function AnimatedNumber({ value, suffix = '' }: { value: number; suffix?: string
 export default function TalentFunnel() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isVideoInView = useInView(videoRef, { margin: '-100px' });
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     if (isVideoInView && videoRef.current) {
@@ -97,20 +99,29 @@ export default function TalentFunnel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl mb-16 md:mb-20 border border-white/10 bg-white/5 aspect-video"
+          className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl mb-16 md:mb-20 border border-white/10 bg-white/5 aspect-video group"
         >
           <video
             ref={videoRef}
             className="w-full h-full object-cover"
-            controls
             playsInline
-            muted
+            autoPlay
+            muted={isMuted}
             loop
             preload="metadata"
           >
-            <source src="/videos/t3aiworks-vid3.mp4" type="video/mp4" />
+            <source src="/videos/t3aiworks-vid3.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
+          <button
+            onClick={() => {
+              setIsMuted(!isMuted);
+            }}
+            className="absolute bottom-6 right-6 p-3 rounded-full bg-black/40 text-white backdrop-blur-md transition-all hover:bg-black/60 z-10 sm:opacity-0 sm:group-hover:opacity-100"
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+          </button>
         </motion.div>
 
         <div className="flex flex-col items-center gap-6 mb-16 md:mb-20">

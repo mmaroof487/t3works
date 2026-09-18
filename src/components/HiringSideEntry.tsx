@@ -1,10 +1,12 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 
 export default function HiringSideEntry() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const isVideoInView = useInView(videoRef, { margin: '-100px' });
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     if (isVideoInView && videoRef.current) {
@@ -55,20 +57,29 @@ export default function HiringSideEntry() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl border border-black/5 bg-[#14150f] aspect-video"
+            className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl border border-black/5 bg-[#14150f] aspect-video group"
           >
             <video
               ref={videoRef}
               className="w-full h-full object-cover"
-              controls
               playsInline
-              muted
+              autoPlay
+              muted={isMuted}
               loop
               preload="metadata"
             >
-              <source src="/videos/t3aiworks-vid2.mp4" type="video/mp4" />
+              <source src="/videos/t3aiworks-vid2.webm" type="video/webm" />
               Your browser does not support the video tag.
             </video>
+            <button
+              onClick={() => {
+                setIsMuted(!isMuted);
+              }}
+              className="absolute bottom-6 right-6 p-3 rounded-full bg-black/40 text-white backdrop-blur-md transition-all hover:bg-black/60 z-10 sm:opacity-0 sm:group-hover:opacity-100"
+              aria-label={isMuted ? 'Unmute' : 'Mute'}
+            >
+              {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+            </button>
           </motion.div>
         </motion.div>
       </div>
