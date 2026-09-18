@@ -52,7 +52,7 @@ export default function EnterprisePortal() {
     setErrors((prev) => {
       if (!prev[key]) return prev;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [key]: _removed, ...next } = prev;
+      const { [key as string]: _removed, ...next } = prev;
       return next;
     });
   };
