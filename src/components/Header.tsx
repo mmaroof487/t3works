@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -42,6 +42,9 @@ export default function Header() {
     };
   }, []);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const handleSmoothScroll = (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
     path: string
@@ -73,8 +76,8 @@ export default function Header() {
         };
 
         window.requestAnimationFrame(step);
-      } else if (window.location.pathname !== '/') {
-        window.location.assign('/' + path);
+      } else if (location.pathname !== '/') {
+        void navigate('/', { state: { scrollTo: path } });
       }
     }
   };

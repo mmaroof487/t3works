@@ -113,12 +113,11 @@ export default function EnterprisePortal() {
   return (
     <section className="w-full bg-[#f8f9fa] min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16">
       <div className="w-full max-w-[1280px] bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
-        
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/20" />
-          
+
           <div className="relative z-10 flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ba05f] text-white font-bold text-xl">
               T3
@@ -134,7 +133,8 @@ export default function EnterprisePortal() {
               Deploy Day-One ready AI engineers
             </h1>
             <p className="text-lg text-white/70 max-w-md leading-relaxed">
-              Submit your hiring requirement and we'll scope the match within 48 hours — zero upfront fee until PoC or internship validation.
+              Submit your hiring requirement and we'll scope the match within 48 hours — zero
+              upfront fee until PoC or internship validation.
             </p>
           </div>
 
@@ -154,16 +154,14 @@ export default function EnterprisePortal() {
               </div>
               <span className="text-xl font-bold tracking-tight text-[#0f0f0f]">AI Works</span>
             </div>
-            
+
             <span className="inline-flex rounded-full border border-[#8ba05f]/20 bg-[#8ba05f]/5 px-4 py-1.5 text-xs font-semibold text-[#667744] mb-4">
               Enterprise Hiring Portal
             </span>
             <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] mb-3">
               Deploy Day-One ready AI engineers
             </h1>
-            <p className="text-gray-600 text-sm">
-              Submit your requirement. Zero upfront fee.
-            </p>
+            <p className="text-gray-600 text-sm">Submit your requirement. Zero upfront fee.</p>
           </div>
 
           <div className="mb-10 lg:mb-12">
@@ -435,25 +433,27 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
           className="rounded-[2.5rem] bg-white shadow-xl border border-gray-100 p-10 sm:p-14 text-center overflow-hidden relative"
         >
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#8ba05f] to-[#4a5d23]" />
-          
+
           <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#8ba05f]/10 text-[#8ba05f] ring-8 ring-[#8ba05f]/5">
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
-          
+
           <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] md:text-4xl mb-4">
             Requirement received.
           </h1>
-          
+
           <div className="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-100">
-            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">Your T3 Talent Architect</p>
+            <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
+              Your T3 Talent Architect
+            </p>
             <p className="text-2xl font-semibold text-[#0f0f0f]">{talentArchitect}</p>
           </div>
-          
+
           <p className="text-gray-600 mb-10 leading-relaxed text-sm sm:text-base">
             We've emailed a confirmation to your corporate inbox. Expect a requirement scoping call
             within 48 hours.
           </p>
-          
+
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-10 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
