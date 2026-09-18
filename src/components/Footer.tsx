@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const SOCIALS = [
@@ -37,22 +38,34 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="w-full bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
+      className="w-full min-h-screen flex flex-col justify-between bg-[#14150f] pt-24 pb-32 md:pt-32 lg:pt-64 lg:pb-12 border-t border-[#232621]"
     >
-      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}
         <div className="mb-12 pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
           <div className="max-w-2xl">
             <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight mb-4">
-              Ready to scale your <span className="text-[#4a5d23]">engineering team?</span>
+              Not more engineers. <span className="text-[#4a5d23]">More engineering.</span>
             </h2>
             <p className="text-lg text-gray-400">
-              Discover your Talent DNA and build a high-performance remote workforce today.
+              Apply as a candidate or submit a hiring requirement — the T3 AI Works pipeline handles
+              the rest.
             </p>
           </div>
-          <button className="whitespace-nowrap rounded-3xl bg-[#4a5d23] px-8 py-4 text-base font-semibold text-white hover:bg-[#5b732b] transition-colors">
-            Get in touch
-          </button>
+          <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+            <Link
+              to="/apply"
+              className="whitespace-nowrap rounded-3xl border border-white/20 bg-transparent px-8 py-4 text-base font-semibold text-white hover:bg-white/5 transition-colors text-center"
+            >
+              Apply Now
+            </Link>
+            <Link
+              to="/hire"
+              className="whitespace-nowrap rounded-3xl bg-[#4a5d23] px-8 py-4 text-base font-semibold text-white hover:bg-[#5b732b] transition-colors text-center"
+            >
+              Hire AI Talent
+            </Link>
+          </div>
         </div>
 
         <div className="flex flex-col lg:flex-row justify-between gap-12 mb-12">
@@ -60,12 +73,12 @@ export default function Footer() {
           <div className="lg:w-[35%] flex flex-col gap-6 items-start">
             <img
               src="/images/t3works_whitebg.webp"
-              alt="T3Works Logo"
+              alt="T3 AI Works Logo"
               className="h-10 w-auto object-contain rounded-md"
             />
             <p className="text-sm text-gray-400 leading-relaxed max-w-sm">
-              We help people discover their Talent DNA and accelerate them for high-end engineering
-              roles globally.
+              T3 AI Works is a merit-gated talent transformation engine connecting AI-ready
+              engineers with enterprise opportunities worldwide.
             </p>
             <div
               className="flex items-center gap-3 mt-4"

@@ -1,6 +1,20 @@
-import { motion } from 'framer-motion';
+import { useRef, useEffect, useState } from 'react';
+import { Volume2, VolumeX } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
 
 export default function IntroEcosystem() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const isVideoInView = useInView(videoRef, { margin: '-100px' });
+  const [isMuted, setIsMuted] = useState(true);
+
+  useEffect(() => {
+    if (isVideoInView && videoRef.current) {
+      videoRef.current.play().catch(() => undefined);
+    } else if (!isVideoInView && videoRef.current) {
+      videoRef.current.pause();
+    }
+  }, [isVideoInView]);
+
   return (
     <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
@@ -12,23 +26,54 @@ export default function IntroEcosystem() {
           className="mx-auto max-w-4xl text-center mb-20"
         >
           <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl mb-6">
-            The T3Works ecosystem.
+            What T3 AI Works does.
           </h2>
           <p className="text-lg text-gray-600 mb-4">
-            We are a global talent hiring platform and a career accelerator for top tier talent,
-            specializing in building high-performance tech teams.
+            We bridge universities and enterprise AI demand, converting raw engineering aptitude
+            into market-ready builders through a merit-gated, rigor-driven pipeline.
           </p>
           <p className="text-lg text-gray-600">
-            Our Core team brings over two decades of experience in constructing high-performing
-            teams for Fortune 500 Companies, fast-growing startups, and global IT majors.
+            Candidates are trained in AI engineering and multi-agent systems, then connected
+            directly with enterprise opportunities — closing the global 4-million AI skill deficit.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200/60">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative w-full max-w-5xl mx-auto rounded-[32px] overflow-hidden shadow-2xl mb-24 border border-black/5 bg-[#14150f] aspect-video group"
+        >
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            playsInline
+            autoPlay
+            muted={isMuted}
+            loop
+            preload="metadata"
+          >
+            <source src="/videos/t3aiworks-vid1.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+          <button
+            onClick={() => {
+              setIsMuted(!isMuted);
+            }}
+            className="absolute bottom-6 right-6 p-3 rounded-full bg-black/40 text-white backdrop-blur-md transition-all hover:bg-black/60 z-10 sm:opacity-0 sm:group-hover:opacity-100"
+            aria-label={isMuted ? 'Unmute' : 'Mute'}
+          >
+            {isMuted ? <VolumeX className="w-6 h-6" /> : <Volume2 className="w-6 h-6" />}
+          </button>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-gray-200/60">
           {[
-            { stat: '200+', label: 'Global Clients' },
-            { stat: '5,000+', label: 'Managed Techforce' },
-            { stat: '100+', label: 'Technologies supported' },
+            { stat: '500', label: 'Applicants per intake' },
+            { stat: '4M', label: 'Global AI skill deficit' },
+            { stat: '30-60%', label: 'Enterprise cost advantage' },
+            { stat: '2.4x', label: 'Productivity boost in 90 days' },
           ].map((item, index) => (
             <motion.div
               key={item.label}

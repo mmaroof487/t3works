@@ -5,9 +5,8 @@ import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
   { name: 'Home', path: '/' },
-  { name: 'About Us', path: '#about-us' },
-  { name: 'Clients', path: '#clients' },
-  { name: 'Blogs', path: '#blogs' },
+  { name: 'For Candidates', path: '#about-us' },
+  { name: 'For Companies', path: '#clients' },
 ];
 
 export default function Header() {
@@ -127,15 +126,26 @@ export default function Header() {
                     </Link>
                   )
                 )}
-                <button
-                  onClick={(e) => {
-                    handleSmoothScroll(e, '#contact');
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="mt-2 inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors shadow-sm shadow-[#4a5d23]/20 border border-white/5"
-                >
-                  Contact Us
-                </button>
+                <div className="flex flex-col gap-3 w-full mt-2">
+                  <Link
+                    to="/apply"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-white text-[#0f0f0f] text-[15px] font-medium hover:bg-white/90 transition-colors shadow-sm"
+                  >
+                    Apply Now
+                  </Link>
+                  <Link
+                    to="/hire"
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors shadow-sm shadow-[#4a5d23]/20 border border-white/5"
+                  >
+                    Hire AI Talent
+                  </Link>
+                </div>
               </div>
             </motion.div>
           )}
@@ -230,17 +240,20 @@ export default function Header() {
             </button>
           </motion.div>
 
-          {/* Right: Contact (Desktop Only) */}
-          <motion.div layout className="hidden lg:flex flex-1 items-center justify-end">
-            <button
-              onClick={(e) => {
-                handleSmoothScroll(e, '#contact');
-                setIsMobileMenuOpen(false);
-              }}
+          {/* Right: CTAs (Desktop Only) */}
+          <motion.div layout className="hidden lg:flex flex-1 items-center justify-end gap-3">
+            <Link
+              to="/apply"
+              className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-white/5 border border-white/10 text-white text-[15px] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
+            >
+              Apply Now
+            </Link>
+            <Link
+              to="/hire"
               className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-[#4a5d23] text-white text-[15px] font-medium hover:bg-[#3d4d1c] transition-colors whitespace-nowrap shadow-sm shadow-[#4a5d23]/20 border border-white/5 cursor-pointer"
             >
-              Contact Us
-            </button>
+              Hire AI Talent
+            </Link>
           </motion.div>
         </div>
       </motion.header>
