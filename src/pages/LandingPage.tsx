@@ -55,18 +55,28 @@ export default function LandingPage() {
 
   return (
     <div className="bg-transparent">
-      <Hero />
-      <div id="about-us">
+      <div id="home">
+        <Hero />
+      </div>
+      <div id="ecosystem">
         <IntroEcosystem />
       </div>
-      <JobSeekerFunnel />
-      <StudentJourney />
+      <div id="funnel">
+        <JobSeekerFunnel />
+      </div>
+      <div id="student-journey">
+        <StudentJourney />
+      </div>
       <div id="clients">
         <HiringSideEntry />
         <ClientLogos />
       </div>
-      <TalentFunnel />
-      <HowItWorks />
+      <div id="talent-funnel">
+        <TalentFunnel />
+      </div>
+      <div id="how-it-works">
+        <HowItWorks />
+      </div>
       <AdvisoryTeam />
     </div>
   );

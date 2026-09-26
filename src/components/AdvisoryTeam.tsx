@@ -21,17 +21,19 @@ const ADVISORY_MEMBERS = [
       'Scaled a $2 Billion Healthcare Claims platform.',
       'Spearheaded $2.8 Billion in IP Value Created.',
     ],
+    imageUrl: 'https://hrshowcase.in/wp-content/uploads/2022/11/Subramanian-Sivakumar-copy.jpg',
     linkedin: '#',
   },
   {
     id: 3,
-    name: 'gvbabu',
+    name: 'GV Babu',
     title: 'The Applied Tech & Infrastructure Architect',
     bio: [
       'Enterprise, BFSI & Edutech infrastructure expert.',
       "Built Asia's largest IT park training facility for 5,000 students.",
       'Industrial 4.0 & Robotics foundation for ISRO.',
     ],
+    imageUrl: 'https://cdn.hummz.it/indusequitypartners/gv-babu.png',
     linkedin: '#',
   },
   {
@@ -49,7 +51,7 @@ const ADVISORY_MEMBERS = [
 
 export default function AdvisoryTeam() {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section id="leadership" className="py-16 md:py-24 bg-white">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
           <motion.h2
@@ -79,19 +81,36 @@ export default function AdvisoryTeam() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative rounded-[2rem] bg-[#f8f9f5] p-8 border border-gray-100 hover:border-[#4a5d23]/30 hover:shadow-xl hover:shadow-[#4a5d23]/5 transition-all duration-300 flex flex-col gap-6"
+              className="group relative rounded-[2rem] bg-[#f8f9f5] p-8 border border-gray-100 hover:border-[#4a5d23]/30 hover:shadow-xl hover:shadow-[#4a5d23]/5 transition-all duration-300"
             >
-              <div className="text-left flex-1">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-sm font-semibold text-[#4a5d23] mb-4">{member.title}</p>
-                <ul className="text-gray-600 text-sm leading-relaxed mb-6 space-y-2 text-left">
-                  {member.bio.map((point, i) => (
-                    <li key={i} className="flex items-start">
-                      <span className="mr-2 mt-0.5 text-[#4a5d23] font-bold">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex gap-6 flex-col sm:flex-row">
+                <div className="shrink-0">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
+                    {'imageUrl' in member && member.imageUrl ? (
+                      <img
+                        src={member.imageUrl}
+                        alt={member.name}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    ) : (
+                      <span className="text-2xl sm:text-3xl font-bold text-gray-300">
+                        {member.name.charAt(0)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="text-left flex-1">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
+                  <p className="text-sm font-semibold text-[#4a5d23] mb-4">{member.title}</p>
+                  <ul className="text-gray-600 text-sm leading-relaxed mb-6 space-y-2 text-left">
+                    {member.bio.map((point, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="mr-2 mt-0.5 text-[#4a5d23] font-bold">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}

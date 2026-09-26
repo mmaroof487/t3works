@@ -4,13 +4,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { name: 'Home', path: '/' },
-  { name: 'For Candidates', path: '#about-us' },
-  { name: 'For Companies', path: '#clients' },
+  { name: 'Ecosystem', path: '#ecosystem' },
+  { name: 'Journey', path: '#student-journey' },
+  { name: 'Companies', path: '#clients' },
+  { name: 'How It Works', path: '#how-it-works' },
+  { name: 'Leadership', path: '#leadership' },
 ];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -27,18 +29,37 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth >= 1024) {
-        setIsScrolled(window.scrollY > 20);
+      const sections = NAV_ITEMS.map((item) => item.path.substring(1)).filter(Boolean);
+      let current = '';
+
+      // Check if user is at the very bottom of the page
+      const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
+
+      if (isAtBottom && sections.length > 0) {
+        current = sections[sections.length - 1];
       } else {
-        setIsScrolled(false);
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // Increased threshold to 300px to trigger slightly earlier when scrolling down
+            if (rect.top <= 300) {
+              current = section;
+            }
+          }
+        }
+      }
+
+      if (current) {
+        setActiveSection(current);
+      } else if (window.scrollY < 300) {
+        setActiveSection('');
       }
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
     handleScroll();
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
     };
   }, []);
 
@@ -83,13 +104,13 @@ export default function Header() {
   };
 
   return (
-    <div className="fixed bottom-4 lg:bottom-auto lg:top-6 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
+    <div className="fixed bottom-4 lg:bottom-auto lg:top-4 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
       <motion.header
         layout={!isMobile}
-        initial={{ borderRadius: 32 }}
+        initial={{ borderRadius: 16 }}
         animate={{
           backgroundColor: '#232621', // Dark olive green, almost black
-          borderRadius: 32,
+          borderRadius: 16,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
         className="pointer-events-auto flex flex-col shadow-lg overflow-hidden w-full lg:w-auto"
@@ -105,16 +126,26 @@ export default function Header() {
               className="lg:hidden w-full overflow-hidden"
             >
               <div className="flex flex-col items-center gap-6 pt-8 pb-4 border-b border-white/10 mx-6">
-                {NAV_ITEMS.map((item) =>
-                  item.path.startsWith('#') ? (
+                {NAV_ITEMS.map((item) => {
+                  const isActive = activeSection === item.path.substring(1);
+                  return item.path.startsWith('#') ? (
                     <button
                       key={item.name}
                       onClick={(e) => {
                         handleSmoothScroll(e, item.path);
+                        setIsMobileMenuOpen(false);
                       }}
-                      className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap cursor-pointer"
+                      className={`relative text-[15px] px-2 py-1 font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c4cdbe] hover:text-white'}`}
                     >
-                      {item.name}
+                      <span className="relative z-10">{item.name}</span>
+                      {isActive && (
+                        <motion.div
+                          layoutId="mobileNavUnderline"
+                          className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#8ba05f] rounded-full"
+                          initial={false}
+                          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                        />
+                      )}
                     </button>
                   ) : (
                     <Link
@@ -123,19 +154,19 @@ export default function Header() {
                       onClick={() => {
                         setIsMobileMenuOpen(false);
                       }}
-                      className="text-[16px] font-medium text-[#c4cdbe] hover:text-white transition-colors"
+                      className="relative text-[16px] px-2 py-1 font-medium text-[#c4cdbe] hover:text-white transition-colors"
                     >
-                      {item.name}
+                      <span className="relative z-10">{item.name}</span>
                     </Link>
-                  )
-                )}
+                  );
+                })}
                 <div className="flex flex-col gap-3 w-full mt-2">
                   <Link
                     to="/apply"
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-white text-[#0f0f0f] text-[15px] font-medium hover:bg-white/90 transition-colors shadow-sm"
+                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-xl bg-white text-[#0f0f0f] text-[15px] font-medium hover:bg-white/90 transition-colors shadow-sm"
                   >
                     Apply Now
                   </Link>
@@ -144,7 +175,7 @@ export default function Header() {
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-full bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors shadow-sm shadow-[#8ba05f]/20 border border-white/5"
+                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-xl bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors shadow-sm shadow-[#8ba05f]/20 border border-white/5"
                   >
                     Hire AI Talent
                   </Link>
@@ -163,6 +194,9 @@ export default function Header() {
               className="hover:opacity-80 transition-opacity flex items-center"
               onClick={() => {
                 setIsMobileMenuOpen(false);
+                if (location.pathname === '/') {
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
               }}
             >
               <img
@@ -175,58 +209,38 @@ export default function Header() {
 
           {/* Center: Desktop Dynamic Content */}
           <div className="hidden lg:flex shrink-0 items-center justify-center">
-            <AnimatePresence mode="popLayout" initial={false}>
-              {!isScrolled ? (
-                <motion.nav
-                  key="expanded-nav"
-                  initial={{ opacity: 0, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                  className="flex items-center gap-8 px-6"
-                >
-                  {NAV_ITEMS.map((item) =>
-                    item.path.startsWith('#') ? (
-                      <button
-                        key={item.name}
-                        onClick={(e) => {
-                          handleSmoothScroll(e, item.path);
-                        }}
-                        className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap cursor-pointer"
-                      >
-                        {item.name}
-                      </button>
-                    ) : (
-                      <Link
-                        key={item.name}
-                        to={item.path}
-                        className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  )}
-                </motion.nav>
-              ) : (
-                <motion.nav
-                  key="compact-nav"
-                  initial={{ opacity: 0, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
-                  className="flex items-center px-2"
-                >
+            <motion.nav layout className="flex items-center gap-6 px-4">
+              {NAV_ITEMS.map((item) => {
+                const isActive = activeSection === item.path.substring(1);
+                return item.path.startsWith('#') ? (
                   <button
-                    onClick={() => {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    key={item.name}
+                    onClick={(e) => {
+                      handleSmoothScroll(e, item.path);
                     }}
-                    className="text-[15px] font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap mx-2"
+                    className={`relative text-[14px] px-1 py-1 mx-2 font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c4cdbe] hover:text-white'}`}
                   >
-                    Home
+                    <span className="relative z-10">{item.name}</span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="desktopNavUnderline"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#8ba05f] rounded-full"
+                        initial={false}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
                   </button>
-                </motion.nav>
-              )}
-            </AnimatePresence>
+                ) : (
+                  <Link
+                    key={item.name}
+                    to={item.path}
+                    className="relative text-[14px] px-1 py-1 mx-2 font-medium text-[#c4cdbe] hover:text-white transition-colors whitespace-nowrap"
+                  >
+                    <span className="relative z-10">{item.name}</span>
+                  </Link>
+                );
+              })}
+            </motion.nav>
           </div>
 
           {/* Right: Mobile Menu Button */}
@@ -247,13 +261,13 @@ export default function Header() {
           <motion.div layout className="hidden lg:flex flex-1 items-center justify-end gap-3">
             <Link
               to="/apply"
-              className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-white/5 border border-white/10 text-white text-[15px] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
+              className="inline-flex items-center justify-center h-[44px] px-6 rounded-xl bg-white/5 border border-white/10 text-white text-[15px] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
             >
               Apply Now
             </Link>
             <Link
               to="/hire"
-              className="inline-flex items-center justify-center h-[44px] px-6 rounded-full bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors whitespace-nowrap shadow-sm shadow-[#8ba05f]/20 border border-white/5 cursor-pointer"
+              className="inline-flex items-center justify-center h-[44px] px-6 rounded-xl bg-[#8ba05f] text-[#0f0f0f] text-[15px] font-bold hover:bg-[#9cb36a] transition-colors whitespace-nowrap shadow-sm shadow-[#8ba05f]/20 border border-white/5 cursor-pointer"
             >
               Hire AI Talent
             </Link>
