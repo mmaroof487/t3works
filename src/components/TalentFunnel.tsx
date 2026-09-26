@@ -63,7 +63,7 @@ export default function TalentFunnel() {
     }
   }, [isVideoInView]);
   return (
-    <section className="w-full bg-[#0a0a0a] py-12 md:py-20 overflow-hidden text-white">
+    <section className="w-full bg-[#0a0a0a] py-16 md:py-24 overflow-hidden text-white">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16 md:mb-20">
@@ -81,7 +81,7 @@ export default function TalentFunnel() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6"
           >
             Only the <span className="text-[#8ba05f] font-serif italic">Top 10%</span>
             <br />
@@ -137,42 +137,81 @@ export default function TalentFunnel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="relative w-full max-w-5xl mx-auto rounded-[3rem] border border-white/10 bg-[#0d0e0a] overflow-hidden p-8 shadow-2xl flex flex-col items-center"
+          className="relative w-full max-w-5xl mx-auto rounded-[2rem] md:rounded-[3rem] border border-white/10 bg-[#0d0e0a] overflow-hidden p-6 md:p-8 shadow-2xl flex flex-col"
         >
-          <div className="w-full h-32 md:h-48 rounded-full flex overflow-hidden border border-white/10 shadow-inner">
+          {/* Desktop Pill (Hidden on Mobile) */}
+          <div className="hidden md:flex w-full h-48 rounded-full overflow-hidden border border-white/10 shadow-inner">
             <div className="w-[60%] h-full bg-white/5 flex flex-col justify-center items-center relative border-r border-white/10 transition-colors hover:bg-white/10">
-              <span className="text-3xl md:text-5xl font-bold text-white">
+              <span className="text-5xl font-bold text-white">
                 <AnimatedNumber value={500} />
               </span>
-              <span className="text-xs md:text-sm text-white/50 mt-1">Applicants</span>
+              <span className="text-sm text-white/50 mt-1">Applicants</span>
             </div>
             <div className="w-[25%] h-full bg-[#8ba05f]/10 flex flex-col justify-center items-center relative border-r border-white/10 transition-colors hover:bg-[#8ba05f]/20">
-              <span className="text-2xl md:text-4xl font-bold text-white">
+              <span className="text-4xl font-bold text-white">
                 <AnimatedNumber value={125} />
               </span>
-              <span className="text-xs md:text-sm text-[#8ba05f] mt-1">Candidates</span>
+              <span className="text-sm text-[#8ba05f] mt-1">Candidates</span>
             </div>
             <div className="w-[15%] h-full bg-[#8ba05f]/30 flex flex-col justify-center items-center relative shadow-[0_0_30px_rgba(139,160,95,0.4)] transition-colors hover:bg-[#8ba05f]/40">
-              <span className="text-xl md:text-3xl font-bold text-[#8ba05f] drop-shadow-[0_0_10px_rgba(139,160,95,0.8)] whitespace-nowrap">
+              <span className="text-3xl font-bold text-[#8ba05f] drop-shadow-[0_0_10px_rgba(139,160,95,0.8)] whitespace-nowrap">
                 <AnimatedNumber value={50} suffix="-75" />
               </span>
-              <span className="text-[10px] md:text-sm text-white whitespace-nowrap mt-1">
-                Engineers
-              </span>
+              <span className="text-sm text-white whitespace-nowrap mt-1">Engineers</span>
             </div>
           </div>
 
-          <div className="flex justify-between w-full mt-8 px-2 md:px-4">
+          {/* Desktop Details (Hidden on Mobile) */}
+          <div className="hidden md:flex justify-between w-full mt-8 px-4">
             {STAGES.map((s, i) => (
               <div
                 key={i}
                 className={`text-center ${i === 0 ? 'w-[60%]' : i === 1 ? 'w-[25%]' : 'w-[15%]'}`}
               >
-                <p className="text-[10px] md:text-xs text-white/40 max-w-[120px] mx-auto leading-relaxed">
+                <p className="text-xs text-white/40 max-w-[120px] mx-auto leading-relaxed">
                   {s.detail}
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Mobile Stacked View (Hidden on Desktop) */}
+          <div className="flex md:hidden flex-col w-full">
+            {/* Applicants */}
+            <div className="w-full rounded-2xl bg-white/5 border border-white/10 p-6 flex flex-col items-center text-center">
+              <span className="text-4xl font-bold text-white">
+                <AnimatedNumber value={500} />
+              </span>
+              <span className="text-sm font-medium text-white/50 mt-1 mb-3">Applicants</span>
+              <p className="text-sm text-white/40 leading-relaxed">{STAGES[0].detail}</p>
+            </div>
+
+            <div className="w-px h-6 bg-white/10 mx-auto" />
+
+            {/* Candidates */}
+            <div className="w-full rounded-2xl bg-[#8ba05f]/10 border border-white/10 p-6 flex flex-col items-center text-center">
+              <span className="text-4xl font-bold text-white">
+                <AnimatedNumber value={125} />
+              </span>
+              <span className="text-sm font-medium text-[#8ba05f] mt-1 mb-3">Candidates</span>
+              <p className="text-sm text-white/40 leading-relaxed">{STAGES[1].detail}</p>
+            </div>
+
+            <div className="w-px h-6 bg-white/10 mx-auto" />
+
+            {/* Engineers */}
+            <div className="w-full rounded-2xl bg-[#8ba05f]/30 border border-[#8ba05f]/30 p-6 flex flex-col items-center text-center shadow-[0_0_30px_rgba(139,160,95,0.15)] relative overflow-hidden">
+              <div className="absolute inset-0 bg-[#8ba05f]/20 animate-pulse pointer-events-none" />
+              <span className="text-4xl font-bold text-[#8ba05f] drop-shadow-[0_0_15px_rgba(139,160,95,1)] relative z-10">
+                <AnimatedNumber value={50} suffix="-75" />
+              </span>
+              <span className="text-sm font-medium text-white mt-1 mb-3 relative z-10">
+                Engineers
+              </span>
+              <p className="text-sm text-white/70 leading-relaxed relative z-10">
+                {STAGES[2].detail}
+              </p>
+            </div>
           </div>
         </motion.div>
       </div>

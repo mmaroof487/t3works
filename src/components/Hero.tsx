@@ -23,9 +23,9 @@ const CARDS = [
           </span>
         </div>
         <h1 className="max-w-xl text-4xl sm:text-5xl font-semibold leading-[1.1] tracking-tight text-gray-900 lg:text-6xl relative z-10">
-          Not More Engineers.
+          Not more engineers.
           <br />
-          More Engineering.
+          More engineering.
         </h1>
         <div className="mt-6 lg:mt-8 relative z-10">
           <Link

@@ -33,7 +33,7 @@ export default function HowItWorks() {
           transition={{ duration: 0.6 }}
           className="mb-16 max-w-2xl"
         >
-          <h2 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
             How it works
           </h2>
           <p className="text-lg text-gray-600">
@@ -50,7 +50,7 @@ export default function HowItWorks() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className={`relative flex flex-col justify-between overflow-hidden rounded-[2.5rem] p-8 md:p-10 transition-transform hover:-translate-y-1 group ${
+              className={`relative flex flex-col justify-between overflow-hidden rounded-[2rem] p-8 md:p-10 transition-transform hover:-translate-y-1 group ${
                 idx === 0
                   ? 'lg:col-span-2 bg-[#8ba05f]/10 border border-[#8ba05f]/30 shadow-md'
                   : idx === 3
@@ -68,7 +68,7 @@ export default function HowItWorks() {
               <div className="relative z-10 flex flex-col h-full">
                 <div className="flex-1">
                   <h3
-                    className={`text-2xl md:text-3xl font-semibold leading-snug mb-4 max-w-[80%] ${idx === 3 ? 'text-white' : 'text-[#0f0f0f]'}`}
+                    className={`text-2xl md:text-3xl font-semibold leading-snug mb-4 max-w-[80%] ${idx === 3 ? 'text-white' : 'text-gray-900'}`}
                   >
                     {step.title}
                   </h3>

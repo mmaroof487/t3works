@@ -113,7 +113,7 @@ export default function CandidatePortal() {
   }
 
   return (
-    <section className="w-full bg-[#f8f9fa] min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16">
+    <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16">
       <div className="w-full max-w-[1280px] bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
@@ -423,7 +423,7 @@ export default function CandidatePortal() {
 
 function SuccessScreen({ candidateId }: { candidateId: string }) {
   return (
-    <section className="w-full bg-[#f8f9fa] py-24 min-h-screen flex items-center justify-center p-4">
+    <section className="w-full bg-transparent py-24 min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-[600px]">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}

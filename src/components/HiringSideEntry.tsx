@@ -17,7 +17,7 @@ export default function HiringSideEntry() {
   }, [isVideoInView]);
 
   return (
-    <section className="w-full bg-transparent py-12 md:py-20">
+    <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:auto-rows-[240px]">
           {/* Title Card */}
@@ -31,7 +31,7 @@ export default function HiringSideEntry() {
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
               <Briefcase className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
             </div>
-            <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl mb-4 relative z-10">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 relative z-10">
               For Companies.
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl relative z-10 leading-relaxed">
@@ -124,7 +124,7 @@ export default function HiringSideEntry() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
                   Guided 4-Month Internship
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">Battle-tested in real projects</p>
@@ -153,7 +153,7 @@ export default function HiringSideEntry() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
                   Accelerated Full-time Hiring
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">Ready for Day-One impact</p>

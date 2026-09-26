@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function JobSeekerFunnel() {
   return (
-    <section className="w-full bg-transparent py-12 md:py-20">
+    <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6 lg:auto-rows-[240px]">
           {/* Title Card (Banner) */}
@@ -18,7 +18,7 @@ export default function JobSeekerFunnel() {
             <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
               <GraduationCap className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
             </div>
-            <h2 className="text-4xl font-semibold tracking-tight text-[#0f0f0f] md:text-5xl mb-4 relative z-10">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 relative z-10">
               For Universities and Candidates.
             </h2>
             <p className="text-lg text-gray-600 max-w-4xl relative z-10 leading-relaxed">
@@ -80,7 +80,7 @@ export default function JobSeekerFunnel() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
                   Real-world architectural reviews
                 </h3>
                 <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">
@@ -111,7 +111,7 @@ export default function JobSeekerFunnel() {
                 </div>
               </div>
               <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-[#0f0f0f] mb-2">
+                <h3 className="text-xl font-medium text-gray-900 mb-2">
                   Career realignment for seniors
                 </h3>
                 <p className="text-sm text-gray-500 font-medium uppercase tracking-wide">

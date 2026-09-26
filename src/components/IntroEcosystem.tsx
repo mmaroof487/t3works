@@ -16,7 +16,7 @@ export default function IntroEcosystem() {
   }, [isVideoInView]);
 
   return (
-    <section className="w-full bg-transparent pt-16 md:pt-24 pb-8 md:pb-12">
+    <section className="w-full bg-transparent py-16 md:py-24">
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -25,7 +25,7 @@ export default function IntroEcosystem() {
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-4xl text-center mb-20"
         >
-          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
             What T3 AI Works does.
           </h2>
           <p className="text-lg text-gray-600 mb-4">
@@ -84,7 +84,7 @@ export default function IntroEcosystem() {
               className={`flex flex-col items-center justify-center p-8 rounded-[2rem] border transition-transform hover:-translate-y-1 ${item.highlight ? 'bg-[#8ba05f]/10 border-[#8ba05f]/30 shadow-md' : 'bg-white border-gray-100 shadow-sm'}`}
             >
               <div
-                className={`text-4xl lg:text-5xl font-bold tracking-tight mb-3 whitespace-nowrap ${item.highlight ? 'text-[#8ba05f]' : 'text-[#0f0f0f]'}`}
+                className={`text-4xl lg:text-5xl font-bold tracking-tight mb-3 whitespace-nowrap ${item.highlight ? 'text-[#8ba05f]' : 'text-gray-900'}`}
               >
                 {item.stat}
               </div>

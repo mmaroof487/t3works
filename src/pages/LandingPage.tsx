@@ -6,6 +6,9 @@ import JobSeekerFunnel from '../components/JobSeekerFunnel';
 import HiringSideEntry from '../components/HiringSideEntry';
 import TalentFunnel from '../components/TalentFunnel';
 import HowItWorks from '../components/HowItWorks';
+import AdvisoryTeam from '../components/AdvisoryTeam';
+import ClientLogos from '../components/ClientLogos';
+import StudentJourney from '../components/StudentJourney';
 
 export default function LandingPage() {
   const location = useLocation();
@@ -57,11 +60,14 @@ export default function LandingPage() {
         <IntroEcosystem />
       </div>
       <JobSeekerFunnel />
+      <StudentJourney />
       <div id="clients">
         <HiringSideEntry />
+        <ClientLogos />
       </div>
       <TalentFunnel />
       <HowItWorks />
+      <AdvisoryTeam />
     </div>
   );
 }
