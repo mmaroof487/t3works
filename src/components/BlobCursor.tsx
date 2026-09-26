@@ -55,13 +55,15 @@ export default function BlobCursor() {
     <>
       <style>
         {`
-          * {
-            cursor: none !important;
+          @media (min-width: 768px) {
+            * {
+              cursor: none !important;
+            }
           }
         `}
       </style>
       <motion.div
-        className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference"
+        className="hidden md:block pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference"
         style={{
           x: cursorX,
           y: cursorY,

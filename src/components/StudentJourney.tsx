@@ -153,7 +153,7 @@ export default function StudentJourney() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
+          transition={{ delay: 0.1, duration: 0.5 }}
           className="mt-24 rounded-[2rem] bg-[#0f0f0f] p-8 sm:p-12 relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">

@@ -233,18 +233,26 @@ export default function Hero() {
   return (
     <section className="flex min-h-screen w-full items-center justify-center pt-[84px] pb-12 relative">
       <div className="absolute top-6 left-4 lg:hidden z-50">
-        <div className="inline-flex items-baseline text-black">
-          <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
-          <motion.span
-            initial={{ clipPath: 'inset(0 100% 0 0)' }}
-            animate={{ clipPath: 'inset(0 -10% 0 0)' }}
-            transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-            className="font-batangas text-2xl ml-1 text-[#4a5d23]"
-          >
-            works
-          </motion.span>
-        </div>
+        <Link
+          to="/"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+        >
+          <div className="inline-flex items-baseline text-black">
+            <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+            <motion.span
+              initial={{ clipPath: 'inset(0 100% 0 0)' }}
+              animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+              className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+            >
+              works
+            </motion.span>
+          </div>
+        </Link>
       </div>
+
       <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="relative h-auto lg:h-[650px] w-full">
           <AnimatePresence>
