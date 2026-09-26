@@ -114,7 +114,7 @@ export default function CandidatePortal() {
 
   return (
     <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16">
-      <div className="w-full max-w-[1280px] bg-white rounded-[2.5rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
+      <div className="w-full max-w-[1280px] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
@@ -429,7 +429,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
-          className="rounded-[2.5rem] bg-white shadow-xl border border-gray-100 p-10 sm:p-14 text-center overflow-hidden relative"
+          className="rounded-[2rem] bg-white shadow-xl border border-gray-100 p-10 sm:p-14 text-center overflow-hidden relative"
         >
           <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gray-800 to-black" />
 

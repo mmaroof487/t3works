@@ -253,7 +253,7 @@ export default function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                className="absolute inset-0 z-40 rounded-[2.5rem] bg-white/20 backdrop-blur-md pointer-events-auto"
+                className="absolute inset-0 z-40 rounded-[2rem] bg-white/20 backdrop-blur-md pointer-events-auto"
                 onHoverStart={() => {
                   setActiveCard(null);
                 }}
@@ -281,7 +281,7 @@ export default function Hero() {
                     }}
                     className={`
                       ${isActive ? 'absolute inset-0 z-50 shadow-2xl pointer-events-auto' : `relative h-full w-full z-10 ${isExpandable ? 'cursor-pointer' : ''}`}
-                      overflow-hidden rounded-[2.5rem] ${card.bgClass} ${card.textClass}
+                      overflow-hidden rounded-[2rem] ${card.bgClass} ${card.textClass}
                     `}
                   >
                     {card.bgImage && (

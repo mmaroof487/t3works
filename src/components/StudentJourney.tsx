@@ -50,7 +50,7 @@ const JOURNEY_STEPS = [
 
 export default function StudentJourney() {
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-16 md:py-24 bg-white relative">
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[#f8f9f5] rounded-l-[100px] opacity-50 transform translate-x-1/4" />
@@ -116,7 +116,7 @@ export default function StudentJourney() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ margin: '-20%' }}
                     transition={{ duration: 0.6 }}
-                    className="bg-[#f8f9f5] rounded-3xl p-10 lg:p-12 border border-gray-100 shadow-xl relative"
+                    className="bg-[#f8f9f5] rounded-[2rem] p-10 lg:p-12 border border-gray-100 shadow-xl relative"
                   >
                     <div className="absolute -top-8 -left-4 lg:-left-8 w-20 h-20 bg-white rounded-2xl shadow-xl flex items-center justify-center border border-gray-100">
                       <Icon className="w-10 h-10 text-[#4a5d23]" />
@@ -154,7 +154,7 @@ export default function StudentJourney() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-24 rounded-3xl bg-[#0f0f0f] p-8 sm:p-12 relative overflow-hidden"
+          className="mt-24 rounded-[2rem] bg-[#0f0f0f] p-8 sm:p-12 relative overflow-hidden"
         >
           <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
             <Compass className="w-64 h-64 text-white" />
