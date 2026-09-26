@@ -21,7 +21,6 @@ const ADVISORY_MEMBERS = [
       'Scaled a $2 Billion Healthcare Claims platform.',
       'Spearheaded $2.8 Billion in IP Value Created.',
     ],
-    imageUrl: 'https://hrshowcase.in/wp-content/uploads/2022/11/Subramanian-Sivakumar-copy.jpg',
     linkedin: '#',
   },
   {
@@ -33,7 +32,6 @@ const ADVISORY_MEMBERS = [
       "Built Asia's largest IT park training facility for 5,000 students.",
       'Industrial 4.0 & Robotics foundation for ISRO.',
     ],
-    imageUrl: 'https://cdn.hummz.it/indusequitypartners/gv-babu.png',
     linkedin: '#',
   },
   {
@@ -86,17 +84,9 @@ export default function AdvisoryTeam() {
               <div className="flex gap-6 flex-col sm:flex-row">
                 <div className="shrink-0">
                   <div className="w-20 h-20 sm:w-24 sm:h-24 bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
-                    {'imageUrl' in member && member.imageUrl ? (
-                      <img
-                        src={member.imageUrl}
-                        alt={member.name}
-                        className="w-full h-full object-cover object-top"
-                      />
-                    ) : (
-                      <span className="text-2xl sm:text-3xl font-bold text-gray-300">
-                        {member.name.charAt(0)}
-                      </span>
-                    )}
+                    <span className="text-2xl sm:text-3xl font-bold text-gray-300">
+                      {member.name.charAt(0)}
+                    </span>
                   </div>
                 </div>
                 <div className="text-left flex-1">

@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { name: 'Ecosystem', path: '#ecosystem' },
-  { name: 'Journey', path: '#student-journey' },
+  { name: 'University', path: '#funnel' },
+  { name: 'Students', path: '#student-journey' },
   { name: 'Companies', path: '#clients' },
   { name: 'How It Works', path: '#how-it-works' },
   { name: 'Leadership', path: '#leadership' },
@@ -192,10 +192,30 @@ export default function Header() {
             <Link
               to="/"
               className="hover:opacity-80 transition-opacity flex items-center"
-              onClick={() => {
+              onClick={(e) => {
                 setIsMobileMenuOpen(false);
                 if (location.pathname === '/') {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  e.preventDefault();
+                  const startPosition = window.pageYOffset;
+                  const distance = -startPosition;
+                  const duration = 800;
+                  let start: number | null = null;
+
+                  const step = (timestamp: number) => {
+                    start ??= timestamp;
+                    const progress = timestamp - start;
+                    const easeInOutCubic = (t: number) =>
+                      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+                    const percentage = Math.min(progress / duration, 1);
+
+                    window.scrollTo(0, startPosition + distance * easeInOutCubic(percentage));
+
+                    if (progress < duration) {
+                      window.requestAnimationFrame(step);
+                    }
+                  };
+
+                  window.requestAnimationFrame(step);
                 }
               }}
             >
