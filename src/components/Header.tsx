@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { name: 'Companies', path: '#clients' },
   { name: 'How It Works', path: '#how-it-works' },
   { name: 'Leadership', path: '#leadership' },
+  { name: 'Radix', path: '/radix' },
 ];
 
 export default function Header() {
