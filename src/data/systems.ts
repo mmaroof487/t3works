@@ -1,0 +1,74 @@
+export const SYSTEMS_DATA = [
+  {
+    num: "01",
+    title: "Parameter Discovery",
+    subtitle: "From 66 to 163 Parameters",
+    desc: "Define the intelligence framework by identifying and structuring 163 company parameters across business, financial, operational, and governance dimensions.",
+    tags: ["Data Modeling", "Research", "Excel", "Business Analysis"],
+    metrics: "66 Initial Parameters | 163 Final Parameters | 15+ Categories | 10+ Data Types",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "02",
+    title: "Database Normalization",
+    subtitle: "Distributing Across 100+ Tables",
+    desc: "Transform the parameter framework into a normalized relational database architecture with 100+ interconnected tables following enterprise-grade design principles.",
+    tags: ["Supabase", "SQL", "Database Design", "ERD"],
+    metrics: "100+ Tables | 3NF Normalization | 500+ Foreign Keys | 100% Relational Integrity",
+    img: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "03",
+    title: "Test Automation",
+    subtitle: "2,000+ Auto-Generated Tests",
+    desc: "Build a metadata-driven testing architecture that automatically generates thousands of validation checks to ensure data quality across the entire parameter system.",
+    tags: ["Python", "Pytest", "Automation", "Quality Assurance"],
+    metrics: "2,000+ Automated Tests | 99.8% Code Coverage | 0 Data Anomalies | Instant CI Validation",
+    img: "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "04",
+    title: "Agentic Research",
+    subtitle: "Multi-Model AI Research Automation",
+    desc: "Build AI-driven research agents that automatically collect, structure, and validate company intelligence data using multiple large language models.",
+    tags: ["LangChain", "Gemini", "Groq", "OpenRouter"],
+    metrics: "4 AI Models Integrated | 85% Automation Rate | 10x Research Velocity | Multi-Agent Orchestration",
+    img: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "05",
+    title: "Complete Agentic Ecosystem",
+    subtitle: "Orchestrated Multi-Agent Intelligence",
+    desc: "Transform isolated AI agents into a coordinated ecosystem with schema validation, orchestration workflows, and multi-layer verification using LangGraph.",
+    tags: ["LangGraph", "Pydantic", "LangChain", "Pytest"],
+    metrics: "Multi-Agent Graphs | Stateful Memory | Autonomous Tool Calling | Dynamic Routing",
+    img: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "06",
+    title: "DevOps & Cloud Infrastructure",
+    subtitle: "Production-Ready Deployment",
+    desc: "Transform the AI system into a deployable production platform using containerized services, CI/CD pipelines, and scalable cloud infrastructure.",
+    tags: ["Docker", "FastAPI", "CI/CD", "Cloud"],
+    metrics: "Containerized Deployment | Automated CI/CD | Zero-Downtime Releases | High Availability",
+    img: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "07",
+    title: "Vector Databases & ML",
+    subtitle: "Semantic Intelligence Layer",
+    desc: "Introduce vector intelligence and machine learning capabilities enabling semantic search, similarity analysis, and predictive analytics across the intelligence platform.",
+    tags: ["Vector DB", "Embeddings", "ML", "Python"],
+    metrics: "Vector Search Engine | Sub-50ms Latency | Hybrid Search | Embedding Pipelines",
+    img: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    num: "08",
+    title: "Enterprise System Architecture",
+    subtitle: "Production-Grade Platform Design",
+    desc: "Design and implement the final enterprise architecture integrating all layers into a unified, secure, scalable, and auditable AI intelligence platform.",
+    tags: ["Enterprise", "Security", "Scalability", "Governance"],
+    metrics: "Full Stack Integration | RBAC Security | Production UI | Scalable Microservices Architecture",
+    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80"
+  }
+];
