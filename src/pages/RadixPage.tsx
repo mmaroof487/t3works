@@ -311,9 +311,9 @@ export default function RadixPage() {
       </section>
 
       {/* Engineering Scale */}
-      <section className="py-20 bg-[#0f0f0f] text-white px-4 relative overflow-hidden">
+      <section className="min-h-[100dvh] py-20 bg-[#0f0f0f] text-white px-4 relative overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#8ba05f] via-transparent to-transparent pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10 text-center">
+        <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
           <motion.div
             initial="hidden"
             whileInView="show"
