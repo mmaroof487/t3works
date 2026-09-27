@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { useInView, useMotionValue, useSpring } from 'framer-motion';
 
-export function AnimatedCounter({ value, duration = 2.5 }: { value: string, duration?: number }) {
+export function AnimatedCounter({ value, duration = 2.5 }: { value: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: '-50px' });
 
   const numValue = parseInt(value.replace(/,/g, '').replace(/\+/g, ''));
   const suffix = value.includes('+') ? '+' : '';
