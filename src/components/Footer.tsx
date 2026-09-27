@@ -38,7 +38,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="w-full h-screen overflow-hidden flex flex-col justify-between bg-[#0a0a0a] py-8 md:py-12 lg:py-16 border-t border-white/5"
+      className="w-full min-h-[100dvh] flex flex-col justify-between bg-[#0a0a0a] pt-12 pb-32 xl:py-16 border-t border-white/5"
     >
       <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}

@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { name: 'Companies', path: '#clients' },
   { name: 'How It Works', path: '#how-it-works' },
   { name: 'Leadership', path: '#leadership' },
+  { name: 'Radix', path: '/radix' },
 ];
 
 export default function Header() {
@@ -18,7 +19,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
+      setIsMobile(window.innerWidth < 1280);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -186,7 +187,7 @@ export default function Header() {
         </AnimatePresence>
 
         {/* Main Bar */}
-        <div className="flex items-center min-h-[60px] h-[60px] px-4 lg:px-6 w-full">
+        <div className="flex items-center min-h-[60px] h-[60px] px-4 xl:px-6 w-full">
           {/* Left: Logo */}
           <motion.div layout className="flex-1 flex items-center justify-start">
             <Link
@@ -222,13 +223,13 @@ export default function Header() {
               <img
                 src="/images/t3works_nobg.webp"
                 alt="T3Works Logo"
-                className="h-8 lg:h-10 w-auto object-contain"
+                className="h-8 xl:h-10 w-auto object-contain"
               />
             </Link>
           </motion.div>
 
           {/* Center: Desktop Dynamic Content */}
-          <div className="hidden lg:flex shrink-0 items-center justify-center">
+          <div className="hidden xl:flex shrink-0 items-center justify-center">
             <motion.nav layout className="flex items-center gap-6 px-4">
               {NAV_ITEMS.map((item) => {
                 const isActive = activeSection === item.path.substring(1);
@@ -264,7 +265,7 @@ export default function Header() {
           </div>
 
           {/* Right: Mobile Menu Button */}
-          <motion.div layout className="flex lg:hidden flex-1 items-center justify-end">
+          <motion.div layout className="flex xl:hidden flex-1 items-center justify-end">
             <button
               onClick={() => {
                 setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -278,7 +279,7 @@ export default function Header() {
           </motion.div>
 
           {/* Right: CTAs (Desktop Only) */}
-          <motion.div layout className="hidden lg:flex flex-1 items-center justify-end gap-3">
+          <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
             <Link
               to="/apply"
               className="inline-flex items-center justify-center h-[44px] px-6 rounded-xl bg-white/5 border border-white/10 text-white text-[15px] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"

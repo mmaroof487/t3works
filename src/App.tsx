@@ -4,6 +4,7 @@ import MainLayout from './layouts/MainLayout';
 import LandingPage from './pages/LandingPage';
 import CandidatePortal from './pages/CandidatePortal';
 import EnterprisePortal from './pages/EnterprisePortal';
+import RadixPage from './pages/RadixPage';
 import Preloader from './components/Preloader';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route index element={<LandingPage />} />
             <Route path="apply" element={<CandidatePortal />} />
             <Route path="hire" element={<EnterprisePortal />} />
+            <Route path="radix" element={<RadixPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
