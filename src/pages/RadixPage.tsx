@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowRight,
@@ -13,7 +13,9 @@ import {
   BrainCircuit,
   Network,
   Server,
-  Lock
+  Lock,
+  Cloud,
+  Wrench
 } from 'lucide-react';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { SystemModal } from '../components/SystemModal';
@@ -81,13 +83,30 @@ export default function RadixPage() {
       {createPortal(
         <motion.div
           style={{ opacity: topGradientOpacity }}
-          className="fixed top-0 inset-x-0 h-40 bg-gradient-to-b from-[#4a5d23]/15 to-transparent z-50 pointer-events-none"
+          className="fixed top-0 inset-x-0 h-40 bg-gradient-to-b from-[#4a5d23]/15 to-transparent z-40 pointer-events-none"
         />,
         document.body
       )}
 
+      {/* Mobile Branding (Matching Homepage) */}
+      <div className="absolute top-6 left-6 xl:hidden z-50">
+        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="inline-flex items-baseline text-black hover:opacity-80 transition-opacity">
+          <span className="font-open-sauce text-3xl font-extrabold tracking-tight">t3</span>
+          <motion.span
+            initial={{ clipPath: 'inset(0 100% 0 0)' }}
+            animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+            transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+            className="font-batangas text-xl ml-1 text-[#4a5d23]"
+          >
+            works
+          </motion.span>
+          <span className="text-xl font-medium text-gray-400 mx-2">/</span>
+          <span className="text-xl font-bold text-[#0f0f0f]">Radix</span>
+        </Link>
+      </div>
+
       {/* Hero Section */}
-      <section className="relative pt-32 pb-16 lg:pt-36 lg:pb-20 px-4 overflow-hidden min-h-[85vh] flex flex-col justify-center">
+      <section className="relative pt-32 pb-16 md:pt-24 md:pb-12 lg:pt-36 lg:pb-20 px-4 overflow-hidden min-h-[85vh] md:min-h-[75vh] lg:min-h-[85vh] flex flex-col justify-center">
         <motion.div
           animate={{
             opacity: [0.2, 1, 0.2],
@@ -104,7 +123,7 @@ export default function RadixPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#4a5d23]/20 bg-white/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm mb-6"
+            className="inline-flex items-center gap-2 rounded-full border border-[#4a5d23]/20 bg-white/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm mb-6 md:mb-5 lg:mb-6"
           >
             Engineering the Future of Digital Intelligence Systems
           </motion.div>
@@ -113,7 +132,7 @@ export default function RadixPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-4xl leading-[1.1] text-[#0f0f0f] mb-6"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-4xl leading-[1.1] text-[#0f0f0f] mb-6 md:mb-5 lg:mb-6"
           >
             Where Academic Rigour <br /> Meets Production Engineering
           </motion.h1>
@@ -122,7 +141,7 @@ export default function RadixPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-            className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mb-6"
+            className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mb-6 md:mb-4 lg:mb-6"
           >
             Real Product Engineering • System Architecture & Data Design • DevOps & Cloud Infrastructure • AI Systems & Agent Orchestration • Enterprise Platform Design
           </motion.p>
@@ -131,7 +150,7 @@ export default function RadixPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed mb-10"
+            className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed mb-10 md:mb-8 lg:mb-10"
           >
             Students contribute to the design and development of real-world engineering systems spanning product platforms, AI architectures, cloud infrastructure, and enterprise-grade system design — building technology that operates at production scale.
           </motion.p>
@@ -244,49 +263,45 @@ export default function RadixPage() {
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {SYSTEMS_DATA.map((sys) => (
               <motion.div
                 key={sys.num}
                 onClick={() => setSelectedSystem(sys)}
                 variants={fadeUpItem}
-                className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-shadow duration-300 relative overflow-hidden group flex flex-col h-full cursor-pointer"
+                className="bg-white rounded-[2rem] border border-transparent shadow-[0_4px_30px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:-translate-y-1 hover:border-gray-100 transition-all duration-500 relative overflow-hidden group flex flex-col h-full cursor-pointer"
               >
                 {/* Image Header */}
-                <div className="h-32 w-full relative overflow-hidden shrink-0">
+                <div className="h-44 w-full relative overflow-hidden shrink-0 bg-gray-50">
                   <img 
                     src={sys.img} 
                     alt={sys.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-
-                  <div className="absolute bottom-3 left-4 right-4 flex items-center gap-3">
-                    <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[#8ba05f] text-white font-bold text-xs shadow-sm shrink-0">
-                      S{sys.num}
-                    </div>
-                    <h3 className="text-sm font-bold text-white leading-tight">{sys.title}</h3>
-                  </div>
+                  {/* Clean image, no dark gradient overlay */}
                 </div>
 
                 {/* Content */}
-                <div className="p-4 md:p-5 flex-1 flex flex-col">
-                  <p className="text-[#8ba05f] text-[10px] font-bold tracking-wider uppercase mb-2">{sys.subtitle}</p>
-                  <p className="text-gray-600 text-xs leading-relaxed mb-4 flex-1">{sys.desc}</p>
-
-                  <div className="bg-gray-50/80 rounded-lg p-2.5 mb-4 border border-gray-100">
-                    <p className="text-[10px] text-gray-500 font-mono leading-relaxed">
-                      {sys.metrics.split(' | ').join(' • ')}
-                    </p>
+                <div className="p-6 md:p-8 flex-1 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-[10px] font-bold px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-500 rounded-md uppercase tracking-wider">Sys {sys.num}</span>
+                    <p className="text-[#8ba05f] text-[10px] font-bold tracking-widest uppercase truncate">{sys.subtitle}</p>
                   </div>
+                  
+                  <h3 className="text-2xl font-bold text-gray-900 tracking-tight leading-tight mb-4 group-hover:text-[#4a5d23] transition-colors">{sys.title}</h3>
+                  
+                  <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">{sys.desc}</p>
 
-                  <div className="flex flex-wrap gap-1.5 mt-auto">
-                    {sys.tags.map(tag => (
-                      <span key={tag} className="px-2 py-0.5 bg-white border border-gray-200 rounded-md text-[9px] font-semibold text-gray-500 uppercase tracking-wider group-hover:border-[#8ba05f]/30 transition-colors">
-                        {tag}
-                      </span>
-                    ))}
+                  <div className="pt-5 border-t border-gray-100/60 mt-auto">
+                    <p className="text-[11px] text-gray-400 font-medium tracking-wide uppercase leading-relaxed flex flex-wrap items-center">
+                      {sys.metrics.split(' | ').map((m, idx, arr) => (
+                        <span key={idx} className="flex items-center whitespace-nowrap">
+                          {m}
+                          {idx < arr.length - 1 && <span className="mx-2 text-gray-200 text-[8px]">•</span>}
+                        </span>
+                      ))}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -337,82 +352,112 @@ export default function RadixPage() {
         </div>
       </section>
 
-      {/* Technology Ecosystem & Complexity */}
-      <section id="tech" className="py-24 px-4 bg-white relative overflow-hidden">
+      {/* Technology Ecosystem */}
+      <section id="tech" className="pt-24 pb-12 px-4 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
-
-            {/* Tech Stack */}
             <motion.div
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-20px" }}
               variants={staggerContainer}
+              className="mb-12 text-center"
             >
               <motion.div variants={fadeUpItem}>
                 <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">Production-Grade</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#0f0f0f] mb-6">Technology Ecosystem</h2>
-                <p className="text-gray-600 mb-10 text-lg">
+                <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">Technology Ecosystem</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                   Industry-standard tools and frameworks used across all 8 engineering systems — the same technologies that power modern software companies.
                 </p>
               </motion.div>
-
-              <div className="space-y-6">
-                {[
-                  { title: "AI & Agent Systems", tools: "LangChain, LangGraph, Google Gemini, Groq, OpenRouter, Pydantic" },
-                  { title: "Cloud & DevOps", tools: "Docker, GitHub Actions, Azure Pipelines, Cloud Deployment, FastAPI" },
-                  { title: "Data Infrastructure", tools: "Supabase, PostgreSQL, Vector Databases, Relational Schemas" },
-                  { title: "Programming & APIs", tools: "Python, SQL, JSON, REST APIs" },
-                  { title: "Testing & Quality Engineering", tools: "Pytest, Automated Validation, Schema Enforcement, CI/CD Testing" },
-                  { title: "Development Tools", tools: "VS Code, Git, Excel, Jupyter" }
-                ].map((cat, i) => (
-                  <motion.div key={i} variants={fadeUpItem} className="border-b border-gray-100 pb-4">
-                    <h4 className="font-bold text-gray-900 mb-2">{cat.title}</h4>
-                    <p className="text-gray-600 text-sm">{cat.tools}</p>
-                  </motion.div>
-                ))}
-              </div>
             </motion.div>
 
-            {/* Technical Complexity */}
+            <motion.div 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: "-20px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+                {[
+                  { title: "AI & Agent Systems", tools: "LangChain, LangGraph, Gemini, Groq, Pydantic", icon: <BrainCircuit size={24} /> },
+                  { title: "Cloud & DevOps", tools: "Docker, GitHub Actions, Azure Pipelines, FastAPI", icon: <Cloud size={24} /> },
+                  { title: "Data Infrastructure", tools: "Supabase, PostgreSQL, Vector Databases", icon: <Database size={24} /> },
+                  { title: "Programming", tools: "Python, SQL, JSON, REST APIs", icon: <Code2 size={24} /> },
+                  { title: "Quality Engineering", tools: "Pytest, CI/CD Testing, Schema Enforcement", icon: <Terminal size={24} /> },
+                  { title: "Development Tools", tools: "VS Code, Git, Jupyter, Unix CLI", icon: <Wrench size={24} /> }
+                ].map((cat, i) => (
+                  <motion.div key={i} variants={fadeUpItem} className="bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 group">
+                    <div className="h-14 w-14 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-[#4a5d23] mb-6 group-hover:scale-110 group-hover:bg-[#8ba05f] group-hover:text-white group-hover:border-transparent transition-all duration-300">
+                      {cat.icon}
+                    </div>
+                    <h4 className="font-bold text-xl text-gray-900 mb-2">{cat.title}</h4>
+                    <p className="text-gray-500 leading-relaxed">{cat.tools}</p>
+                  </motion.div>
+                ))}
+            </motion.div>
+        </div>
+      </section>
+
+      {/* Technical Complexity */}
+      <section className="pt-12 pb-24 px-4 bg-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto">
             <motion.div
               initial="hidden"
               whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-20px" }}
               variants={staggerContainer}
             >
-              <motion.div variants={fadeUpItem}>
+              <motion.div variants={fadeUpItem} className="text-center mb-12">
                 <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">Progressive</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-[#0f0f0f] mb-6">Technical Complexity</h2>
-                <p className="text-gray-600 mb-10 text-lg">
+                <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">Technical Complexity</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto text-lg">
                   A deliberate engineering progression — each system builds on the architecture, skills, and infrastructure of the previous one.
                 </p>
               </motion.div>
 
-              <div className="relative border-l-2 border-gray-100 ml-4 space-y-8">
+              <div className="space-y-4">
                 {[
-                  { sys: "System 01", name: "Parameter Discovery", perc: "12.5%", tag: "Foundational Data Architecture" },
-                  { sys: "System 02", name: "Database Normalization", perc: "25%", tag: "Relational System Design" },
-                  { sys: "System 03", name: "Test Automation", perc: "37.5%", tag: "Validation Engine" },
-                  { sys: "System 04", name: "Agentic Research", perc: "50%", tag: "AI Automation" },
-                  { sys: "System 05", name: "Agentic Ecosystem", perc: "62.5%", tag: "Multi-Agent Orchestration" },
-                  { sys: "System 06", name: "DevOps & Cloud", perc: "75%", tag: "Production Infrastructure" },
-                  { sys: "System 07", name: "Vector DB & ML", perc: "87.5%", tag: "Semantic Intelligence Layer" },
-                  { sys: "System 08", name: "Enterprise Architecture", perc: "100%", tag: "Full System Integration" }
+                  { sys: "System 01", name: "Parameter Discovery", perc: 12.5, startPerc: 0, tag: "Foundational Data Architecture" },
+                  { sys: "System 02", name: "Database Normalization", perc: 25, startPerc: 12.5, tag: "Relational System Design" },
+                  { sys: "System 03", name: "Test Automation", perc: 37.5, startPerc: 25, tag: "Validation Engine" },
+                  { sys: "System 04", name: "Agentic Research", perc: 50, startPerc: 37.5, tag: "AI Automation" },
+                  { sys: "System 05", name: "Agentic Ecosystem", perc: 62.5, startPerc: 50, tag: "Multi-Agent Orchestration" },
+                  { sys: "System 06", name: "DevOps & Cloud", perc: 75, startPerc: 62.5, tag: "Production Infrastructure" },
+                  { sys: "System 07", name: "Vector DB & ML", perc: 87.5, startPerc: 75, tag: "Semantic Intelligence Layer" },
+                  { sys: "System 08", name: "Enterprise Architecture", perc: 100, startPerc: 87.5, tag: "Full System Integration" }
                 ].map((stage, i) => (
-                  <motion.div key={i} variants={fadeUpItem} className="relative pl-8 group">
-                    <div className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-white border-2 border-[#8ba05f] group-hover:scale-125 group-hover:bg-[#8ba05f] transition-all duration-300" />
-                    <div className="flex justify-between items-start mb-1">
-                      <span className="font-bold text-gray-900 group-hover:text-[#4a5d23] transition-colors">{stage.sys}: {stage.name}</span>
-                      <span className="text-sm font-bold text-[#4a5d23]">{stage.perc}</span>
+                  <motion.div key={i} variants={fadeUpItem} className="relative group bg-gray-50 border border-gray-100 rounded-3xl p-5 sm:p-6 hover:border-[#8ba05f]/30 hover:bg-white hover:shadow-xl transition-all duration-300 overflow-hidden">
+                    {/* Background Progress Highlight */}
+                    <div className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-[#8ba05f]/5 to-transparent origin-left opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ width: `${stage.perc}%` }} />
+                    
+                    <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                      <div>
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-[10px] sm:text-xs font-bold px-2.5 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-lg group-hover:bg-[#8ba05f] group-hover:border-[#8ba05f] group-hover:text-white transition-colors uppercase tracking-wider shadow-sm">
+                            {stage.sys}
+                          </span>
+                          <span className="font-bold text-gray-900 text-base sm:text-lg">{stage.name}</span>
+                        </div>
+                        <span className="text-sm text-gray-500 font-medium pl-1">{stage.tag}</span>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 self-end sm:self-auto w-full sm:w-auto mt-2 sm:mt-0">
+                        <div className="h-2.5 w-full sm:w-32 bg-gray-200 rounded-full overflow-hidden flex-1 sm:flex-none shadow-inner relative">
+                          <motion.div 
+                            initial={{ width: `${stage.startPerc}%` }}
+                            whileInView={{ width: `${stage.perc}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.2, ease: "easeOut", delay: i * 0.1 }}
+                            className="absolute top-0 left-0 bottom-0 bg-gradient-to-r from-[#8ba05f] to-[#4a5d23] rounded-full" 
+                          />
+                        </div>
+                        <span className="text-base font-black text-[#4a5d23] w-14 text-right tabular-nums">{stage.perc}%</span>
+                      </div>
                     </div>
-                    <span className="text-sm text-gray-500">{stage.tag}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
-
-          </div>
         </div>
       </section>
 

@@ -10,7 +10,7 @@ interface SystemModalProps {
 
 export function SystemModal({ system, onClose }: SystemModalProps) {
   return createPortal(
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 overflow-hidden pointer-events-auto">
+    <div className="fixed inset-0 z-[100] flex items-end sm:items-center justify-center sm:p-6 md:p-12 overflow-hidden pointer-events-auto">
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -20,22 +20,22 @@ export function SystemModal({ system, onClose }: SystemModalProps) {
       />
       
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        initial={{ opacity: 0, scale: 0.95, y: 40 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        exit={{ opacity: 0, scale: 0.95, y: 40 }}
         transition={{ type: "spring", damping: 30, stiffness: 300 }}
-        className="bg-white rounded-3xl overflow-hidden w-full max-w-4xl max-h-[90vh] flex flex-col relative z-10 shadow-2xl flex-1 transform-gpu"
+        className="bg-white rounded-t-3xl sm:rounded-3xl overflow-hidden w-full h-[90dvh] sm:h-auto max-w-4xl sm:max-h-[90vh] flex flex-col relative z-10 shadow-2xl flex-1 transform-gpu"
       >
         <button 
           onClick={onClose}
-          className="absolute top-4 right-4 z-20 bg-black/40 hover:bg-black/60 p-2 rounded-full text-white transition-colors"
+          className="absolute top-4 sm:top-6 right-4 sm:right-6 z-20 bg-black/40 hover:bg-black/60 p-2.5 rounded-full text-white transition-colors backdrop-blur-sm"
         >
           <X size={20} />
         </button>
 
         <div data-lenis-prevent className="overflow-y-auto w-full h-full custom-scrollbar pb-10">
           {/* Hero Image */}
-          <div className="h-64 sm:h-80 w-full relative shrink-0">
+          <div className="h-56 sm:h-80 w-full relative shrink-0">
             <img 
               src={system.img} 
               alt={system.title} 
