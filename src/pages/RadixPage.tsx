@@ -77,7 +77,7 @@ export default function RadixPage() {
   }, [selectedSystem]);
 
   return (
-    <div className="bg-[#f8f9f5] min-h-screen text-gray-900 font-sans selection:bg-[#4a5d23] selection:text-white pb-20">
+    <div className="bg-[#f5f5f0] min-h-screen text-gray-900 font-sans selection:bg-[#4a5d23] selection:text-white pb-20">
       {/* Ambient Scroll Shadow */}
       {createPortal(
         <motion.div

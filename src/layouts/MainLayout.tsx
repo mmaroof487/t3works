@@ -48,7 +48,7 @@ export default function MainLayout() {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f8f9f5] cursor-none">
+    <div className="flex min-h-screen flex-col bg-[#f5f5f0] cursor-none">
       <BlobCursor />
       <Header />
       <main className="flex-1 relative">

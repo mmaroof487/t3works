@@ -9,6 +9,7 @@ import HowItWorks from '../components/HowItWorks';
 import AdvisoryTeam from '../components/AdvisoryTeam';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
+import RoleEntry from '../components/RoleEntry';
 
 export default function LandingPage() {
   const location = useLocation();
@@ -60,6 +61,9 @@ export default function LandingPage() {
       </div>
       <div id="ecosystem">
         <IntroEcosystem />
+      </div>
+      <div id="get-started">
+        <RoleEntry />
       </div>
       <div id="funnel">
         <JobSeekerFunnel />

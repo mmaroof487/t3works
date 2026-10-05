@@ -30,9 +30,26 @@
   }
 }
 
+/* Play button pulse ring */
+@media (prefers-reduced-motion: no-preference) {
+  .play-pulse {
+    animation: play-pulse 2.6s ease-out infinite;
+  }
+}
+@keyframes play-pulse {
+  from {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(1.35);
+    opacity: 0;
+  }
+}
+
 body {
   font-family: var(--font-sans);
-  @apply bg-[#f8f9f5] text-gray-900;
+  @apply bg-[#f5f5f0] text-gray-900;
 }
 
 /* Lenis smooth scrolling base styles */

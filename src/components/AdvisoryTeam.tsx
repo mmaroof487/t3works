@@ -79,7 +79,7 @@ export default function AdvisoryTeam() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative rounded-[2rem] bg-[#f8f9f5] p-8 border border-gray-100 hover:border-[#4a5d23]/30 hover:shadow-xl hover:shadow-[#4a5d23]/5 transition-all duration-300"
+              className="group relative rounded-[2rem] bg-[#f5f5f0] p-8 border border-gray-100 hover:border-[#4a5d23]/30 hover:shadow-xl hover:shadow-[#4a5d23]/5 transition-all duration-300"
             >
               <div className="flex gap-6 flex-col sm:flex-row">
                 <div className="shrink-0">
