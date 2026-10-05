@@ -34,7 +34,7 @@ function targetRect(): Rect {
 interface Props {
   from: Rect;
   src: string;
-  poster: string;
+  poster?: string;
   reduceMotion: boolean;
   onClose: () => void;
 }
@@ -113,7 +113,9 @@ export default function VideoWindow({ from, src, poster, reduceMotion, onClose }
         className="fixed overflow-hidden bg-black shadow-2xl"
         style={{ position: 'fixed' }}
       >
-        <img src={poster} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        {poster && (
+          <img src={poster} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        )}
         {showVideo && (
           <video
             ref={videoRef}

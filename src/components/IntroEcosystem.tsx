@@ -1,8 +1,6 @@
-import { useCallback, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { GraduationCap, Users, Building2, Play } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import VideoWindow, { type Rect } from './VideoWindow';
+import { motion } from 'framer-motion';
+import VideoLauncher from './VideoLauncher';
 
 const VIDEO_SRC = '/videos/t3aiworks-vid1.webm';
 const THUMBNAIL = '/images/AI%20Workspace%20Mentors.webp';
@@ -33,31 +31,9 @@ const STATS = [
 ];
 
 export default function IntroEcosystem() {
-  const cardRef = useRef<HTMLButtonElement>(null);
-  const reduceMotion = useReducedMotion() ?? false;
-  const [open, setOpen] = useState(false);
-  const [from, setFrom] = useState<Rect>({ top: 0, left: 0, width: 0, height: 0 });
-
-  const measure = () => {
-    const r = cardRef.current?.getBoundingClientRect();
-    if (r) setFrom({ top: r.top, left: r.left, width: r.width, height: r.height });
-  };
-
-  const openVideo = () => {
-    measure();
-    setOpen(true);
-  };
-
-  // re-measure so the window shrinks back onto the card even if the page moved
-  const closeVideo = useCallback(() => {
-    measure();
-    setOpen(false);
-    cardRef.current?.focus({ preventScroll: true });
-  }, []);
-
   return (
-    <section className="w-full bg-transparent py-16 md:py-24">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+    <section className="w-full bg-transparent pb-16 pt-8 md:pb-24 md:pt-12">
+      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -118,18 +94,13 @@ export default function IntroEcosystem() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative lg:top-3"
           >
-            <button
-              ref={cardRef}
-              type="button"
-              onClick={openVideo}
-              aria-label="Play video: Industry Mentors, Experts and Consultants"
-              className="group relative block aspect-[1.9/1] w-full overflow-hidden rounded-[32px] border border-black/5 bg-[#14150f] shadow-2xl"
+            <VideoLauncher
+              src={VIDEO_SRC}
+              poster={THUMBNAIL}
+              label="Play video: Industry Mentors, Experts and Consultants"
+              alt="Industry mentors guiding engineers at an AI workspace"
+              className="aspect-[1.9/1] w-full rounded-[32px] border border-black/5 bg-[#14150f] shadow-2xl"
             >
-              <img
-                src={THUMBNAIL}
-                alt="Industry mentors guiding engineers at an AI workspace"
-                className="h-full w-full object-cover"
-              />
               <span className="absolute inset-0 grid place-items-center">
                 <span className="relative grid h-20 w-20 place-items-center transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-24">
                   <span
@@ -148,7 +119,7 @@ export default function IntroEcosystem() {
                   </span>
                 </span>
               </span>
-            </button>
+            </VideoLauncher>
 
             <div className="mt-6 grid grid-cols-2 gap-4">
               {STATS.map((item) => (
@@ -170,20 +141,6 @@ export default function IntroEcosystem() {
           </motion.div>
         </div>
       </div>
-      {createPortal(
-        <AnimatePresence>
-          {open && (
-            <VideoWindow
-              from={from}
-              src={VIDEO_SRC}
-              poster={THUMBNAIL}
-              reduceMotion={reduceMotion}
-              onClose={closeVideo}
-            />
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
     </section>
   );
 }

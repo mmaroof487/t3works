@@ -5,11 +5,12 @@ import IntroEcosystem from '../components/IntroEcosystem';
 import JobSeekerFunnel from '../components/JobSeekerFunnel';
 import HiringSideEntry from '../components/HiringSideEntry';
 import TalentFunnel from '../components/TalentFunnel';
-import HowItWorks from '../components/HowItWorks';
 import AdvisoryTeam from '../components/AdvisoryTeam';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
 import RoleEntry from '../components/RoleEntry';
+import PrecisionPipeline from '../components/PrecisionPipeline';
+import UltimateVision from '../components/UltimateVision';
 
 export default function LandingPage() {
   const location = useLocation();
@@ -62,6 +63,12 @@ export default function LandingPage() {
       <div id="ecosystem">
         <IntroEcosystem />
       </div>
+      <div id="pipeline">
+        <PrecisionPipeline />
+      </div>
+      <div id="vision">
+        <UltimateVision />
+      </div>
       <div id="get-started">
         <RoleEntry />
       </div>
@@ -77,9 +84,6 @@ export default function LandingPage() {
       </div>
       <div id="talent-funnel">
         <TalentFunnel />
-      </div>
-      <div id="how-it-works">
-        <HowItWorks />
       </div>
       <AdvisoryTeam />
     </div>
