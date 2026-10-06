@@ -48,8 +48,11 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center bg-[#f5f5f0] pt-[5.25rem] pb-12">
+    <section className="relative flex min-h-screen w-full flex-col items-center bg-[#f5f5f0] pt-[5.25rem] pb-12">
       <Backdrop />
+      {/* equal spacers centre the content vertically; the top one never shrinks below the gap
+          that keeps the heading clear of the fixed nav pill on short desktop viewports */}
+      <div aria-hidden="true" className="min-h-0 flex-1 lg:min-h-[4rem]" />
       <div className="absolute top-6 left-4 lg:hidden z-50">
         <Link
           to="/"
@@ -57,7 +60,7 @@ export default function Hero() {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="inline-flex items-baseline text-black">
+          <div className="inline-flex items-baseline text-[#232621]">
             <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
             <motion.span
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -130,6 +133,7 @@ export default function Hero() {
           </a>
         </div>
       </div>
+      <div aria-hidden="true" className="flex-1" />
     </section>
   );
 }

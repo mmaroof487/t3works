@@ -74,7 +74,7 @@ export function SystemModal({ system, onClose }: SystemModalProps) {
                     key={idx}
                     className="bg-gray-50 border border-gray-100 rounded-2xl p-5 flex flex-col items-center justify-center text-center hover:border-[#8ba05f]/30 transition-colors"
                   >
-                    <span className="text-2xl font-black text-[#0f0f0f] mb-1">{value}</span>
+                    <span className="text-2xl font-black text-[#232621] mb-1">{value}</span>
                     <span className="text-[0.625rem] font-bold text-gray-500 uppercase tracking-wider">
                       {label || 'Metric'}
                     </span>

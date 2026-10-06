@@ -21,7 +21,10 @@ export default function LandingPage() {
       setTimeout(() => {
         const element = document.querySelector(path);
         if (element) {
-          const headerOffset = 100;
+          // in rem so it tracks the scaled nav pill: the section's own top padding then lands its
+          // first line just under the pill (4.5rem = 72px at the design width)
+          const headerOffset =
+            4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
           const elementPosition = element.getBoundingClientRect().top;
           const targetPosition = elementPosition + window.pageYOffset - headerOffset;
           const startPosition = window.pageYOffset;

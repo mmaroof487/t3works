@@ -84,7 +84,7 @@ export default function RoleEntry() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-8 flex flex-col items-center text-center"
+          className="mb-5 flex flex-col items-center text-center"
         >
           <div className="mb-2 flex items-center gap-4">
             <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
@@ -112,7 +112,7 @@ export default function RoleEntry() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative overflow-hidden rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-8"
+              className="relative overflow-hidden rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-7"
             >
               <img
                 src={path.image}
@@ -123,7 +123,7 @@ export default function RoleEntry() {
               />
 
               <div className="relative flex h-full flex-col items-start">
-                <div className="mb-5 flex items-center gap-4">
+                <div className="mb-4 flex items-center gap-4">
                   <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-black/5 bg-white shadow-[0_8px_24px_-6px_rgba(40,50,20,0.22)]">
                     <path.icon className={`h-6 w-6 ${path.accentClass}`} aria-hidden="true" />
                   </span>
@@ -139,12 +139,12 @@ export default function RoleEntry() {
                   <br />
                   {path.lead} <span className={path.accentClass}>{path.accent}</span>
                 </h3>
-                <p className="mb-5 max-w-[21rem] text-[0.9375rem] leading-relaxed text-gray-600">
+                <p className="mb-4 max-w-[21rem] text-[0.9375rem] leading-relaxed text-gray-600">
                   {path.text}
                 </p>
 
                 {/* steps on a dotted timeline */}
-                <ol className="relative mb-6 space-y-1.5 pl-8">
+                <ol className="relative mb-5 space-y-1 pl-8">
                   <span
                     className="absolute bottom-6 left-[0.3125rem] top-6 w-px bg-black/15"
                     aria-hidden="true"
@@ -155,7 +155,7 @@ export default function RoleEntry() {
                         className={`absolute -left-8 top-1/2 h-[0.6875rem] w-[0.6875rem] -translate-y-1/2 rounded-full ring-4 ring-[#fbfbf9] ${path.dotClass}`}
                         aria-hidden="true"
                       />
-                      <div className="flex items-center gap-3 rounded-xl bg-[#f3f3ee] py-1.5 pl-2 pr-6">
+                      <div className="flex items-center gap-3 rounded-xl bg-[#f3f3ee] py-1 pl-2 pr-6">
                         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white shadow-sm">
                           <step.icon className={`h-5 w-5 ${path.accentClass}`} aria-hidden="true" />
                         </span>

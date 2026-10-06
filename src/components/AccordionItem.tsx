@@ -25,7 +25,7 @@ export function AccordionItem({ title, icon, children, defaultOpen = false }: Ac
           >
             {icon}
           </div>
-          <span className="font-bold text-[#0f0f0f] text-base">{title}</span>
+          <span className="font-bold text-[#232621] text-base">{title}</span>
         </div>
         <ChevronDown
           size={20}

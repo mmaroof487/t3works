@@ -49,7 +49,7 @@ const ADVISORY_MEMBERS = [
 
 export default function AdvisoryTeam() {
   return (
-    <section id="leadership" className="py-16 md:py-24 bg-white">
+    <section id="leadership" className="min-h-screen bg-white py-16 md:py-24 lg:pt-40">
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-24">
           <motion.h2

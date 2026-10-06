@@ -85,7 +85,7 @@ export default function PrecisionPipeline() {
             </p>
 
             {/* video, joined to the funnel by the pipe in the artwork */}
-            <p className="absolute left-[63.5%] top-[2.4%] w-[34%] whitespace-nowrap text-center text-[1.5cqw] font-semibold leading-none tracking-tight text-[#1b1b14]">
+            <p className="absolute left-[63.5%] top-[2.4%] w-[34%] whitespace-nowrap text-center text-[1.5cqw] font-semibold leading-none tracking-tight text-[#232621]">
               Watch the deep dive video <span className="font-medium">(Next step)</span>
             </p>
             <VideoLauncher
@@ -103,7 +103,7 @@ export default function PrecisionPipeline() {
                     aria-hidden="true"
                     className="play-pulse absolute -inset-[1.3cqw] rounded-full border border-[#d8cf6a]/50"
                   />
-                  <span className="grid h-full w-full place-items-center rounded-full bg-[#10120c]/70 shadow-[0_0_2.2cqw_rgba(200,190,80,0.35)] ring-[0.28cqw] ring-[#b5ad45] backdrop-blur-sm">
+                  <span className="grid h-full w-full place-items-center rounded-full bg-[#232621]/70 shadow-[0_0_2.2cqw_rgba(200,190,80,0.35)] ring-[0.28cqw] ring-[#b5ad45] backdrop-blur-sm">
                     <Play
                       className="ml-[0.3cqw] h-[2cqw] w-[2cqw] fill-white text-white"
                       aria-hidden="true"

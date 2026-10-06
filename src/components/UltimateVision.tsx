@@ -90,7 +90,7 @@ export default function UltimateVision() {
 
             <Link
               to="/radix"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#0f0f0f] px-7 py-3.5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-[#1f1f1f]"
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#232621] px-7 py-3.5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-[#2f332c]"
             >
               Know more
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

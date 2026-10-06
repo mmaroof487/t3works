@@ -47,6 +47,34 @@
   }
 }
 
+/* Nav "Apply Now" button while the path chooser is on screen: a breathing gold glow, kept within
+   the nav pill's clipped edge */
+.cta-glow {
+  box-shadow:
+    0 0 0 0.125rem rgb(227 211 168 / 0.55),
+    0 0 0.75rem rgb(227 211 168 / 0.7);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .cta-glow {
+    animation: cta-glow 1.6s ease-in-out infinite;
+  }
+}
+@keyframes cta-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0 rgb(227 211 168 / 0),
+      0 0 0.25rem rgb(227 211 168 / 0.3);
+    filter: brightness(1);
+  }
+  50% {
+    box-shadow:
+      0 0 0 0.1875rem rgb(227 211 168 / 0.6),
+      0 0 1rem rgb(255 236 170 / 0.95);
+    filter: brightness(1.18);
+  }
+}
+
 /* Desktop: scale the whole rem-based design with the viewport so every screen shows the same
    layout, gaps, type sizes and line breaks as the 1512px design width (where 1rem = 16px). */
 @media (min-width: 1280px) {

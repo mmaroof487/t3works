@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import CandidatePortal from './pages/CandidatePortal';
 import EnterprisePortal from './pages/EnterprisePortal';
 import RadixPage from './pages/RadixPage';
+import AdvisoryTeam from './components/AdvisoryTeam';
 import Preloader from './components/Preloader';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="apply" element={<CandidatePortal />} />
             <Route path="hire" element={<EnterprisePortal />} />
             <Route path="radix" element={<RadixPage />} />
+            <Route path="leadership" element={<AdvisoryTeam />} />
           </Route>
         </Routes>
       </BrowserRouter>

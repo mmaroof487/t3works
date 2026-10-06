@@ -121,7 +121,7 @@ export default function CandidatePortal() {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="inline-flex items-baseline text-black">
+          <div className="inline-flex items-baseline text-[#232621]">
             <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
             <motion.span
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -139,10 +139,10 @@ export default function CandidatePortal() {
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/80 to-transparent" />
 
           <div className="relative z-10 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#0f0f0f] font-bold text-xl">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#232621] font-bold text-xl">
               T3
             </div>
             <span className="text-xl font-bold tracking-tight">AI Works</span>
@@ -172,16 +172,16 @@ export default function CandidatePortal() {
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="lg:hidden mb-10 text-center flex flex-col items-center">
             <div className="flex items-center gap-2 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0f0f0f] text-white font-bold text-xl">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#232621] text-white font-bold text-xl">
                 T3
               </div>
-              <span className="text-xl font-bold tracking-tight text-[#0f0f0f]">AI Works</span>
+              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
             </div>
 
             <span className="inline-flex rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-semibold text-gray-700 mb-4">
               Candidate Application Portal
             </span>
-            <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] mb-3">
+            <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
               Enter the T3 Talent Funnel
             </h1>
             <p className="text-gray-600 text-sm">
@@ -452,7 +452,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="inline-flex items-baseline text-black">
+          <div className="inline-flex items-baseline text-[#232621]">
             <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
             <motion.span
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -473,13 +473,13 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="rounded-[2rem] bg-white shadow-xl border border-gray-100 p-10 sm:p-14 text-center overflow-hidden relative"
         >
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gray-800 to-black" />
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gray-800 to-[#232621]" />
 
-          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#0f0f0f]/5 text-[#0f0f0f] ring-8 ring-gray-50">
+          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#232621]/5 text-[#232621] ring-8 ring-gray-50">
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] md:text-4xl mb-4">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
             Application received.
           </h1>
 
@@ -488,7 +488,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
           </p>
 
           <div className="inline-flex items-center justify-center rounded-2xl bg-gray-50 border border-gray-200 px-8 py-4 mb-8 w-full sm:w-auto">
-            <span className="text-2xl font-mono font-bold text-[#0f0f0f] tracking-wider">
+            <span className="text-2xl font-mono font-bold text-[#232621] tracking-wider">
               {candidateId}
             </span>
           </div>
@@ -500,7 +500,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
 
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-10 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+            className="inline-flex items-center justify-center rounded-full bg-[#232621] px-10 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#2f332c] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
           >
             Return to Homepage
           </Link>

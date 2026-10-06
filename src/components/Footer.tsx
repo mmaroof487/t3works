@@ -38,7 +38,7 @@ export default function Footer() {
   return (
     <footer
       id="contact"
-      className="w-full min-h-[100dvh] flex flex-col justify-between bg-[#0a0a0a] pt-12 pb-32 xl:py-16 border-t border-white/5"
+      className="w-full min-h-[100dvh] flex flex-col justify-between bg-[#232621] pt-12 pb-32 xl:py-16 border-t border-white/5"
     >
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}
@@ -61,7 +61,7 @@ export default function Footer() {
             </Link>
             <Link
               to="/hire"
-              className="whitespace-nowrap rounded-3xl bg-[#8ba05f] px-8 py-4 text-base font-bold text-[#0f0f0f] hover:bg-[#9cb36a] transition-colors text-center shadow-sm shadow-[#8ba05f]/20 border border-white/5"
+              className="whitespace-nowrap rounded-3xl bg-[#8ba05f] px-8 py-4 text-base font-bold text-[#232621] hover:bg-[#9cb36a] transition-colors text-center shadow-sm shadow-[#8ba05f]/20 border border-white/5"
             >
               Hire AI Talent
             </Link>

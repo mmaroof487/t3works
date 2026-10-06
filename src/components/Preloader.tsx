@@ -33,7 +33,7 @@ export default function Preloader({ onComplete }: PreloaderProps) {
           initial={{ clipPath: 'inset(0 0% 0 0)' }}
           exit={{ clipPath: 'inset(0 0% 0 100%)' }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#14150f]"
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#232621]"
         >
           <div className="font-batangas inline-flex items-baseline text-5xl text-white sm:text-6xl md:text-7xl">
             <span>t3</span>

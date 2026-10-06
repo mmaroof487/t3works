@@ -119,7 +119,7 @@ export default function EnterprisePortal() {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="inline-flex items-baseline text-black">
+          <div className="inline-flex items-baseline text-[#232621]">
             <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
             <motion.span
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -137,7 +137,7 @@ export default function EnterprisePortal() {
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/70 to-[#050505]/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/70 to-[#232621]/20" />
 
           <div className="relative z-10 flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ba05f] text-white font-bold text-xl">
@@ -173,13 +173,13 @@ export default function EnterprisePortal() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ba05f] text-white font-bold text-xl">
                 T3
               </div>
-              <span className="text-xl font-bold tracking-tight text-[#0f0f0f]">AI Works</span>
+              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
             </div>
 
             <span className="inline-flex rounded-full border border-[#8ba05f]/20 bg-[#8ba05f]/5 px-4 py-1.5 text-xs font-semibold text-[#667744] mb-4">
               Enterprise Hiring Portal
             </span>
-            <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] mb-3">
+            <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
               Deploy Day-One ready AI engineers
             </h1>
             <p className="text-gray-600 text-sm">Submit your requirement. Zero upfront fee.</p>
@@ -453,7 +453,7 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
             window.scrollTo(0, 0);
           }}
         >
-          <div className="inline-flex items-baseline text-black">
+          <div className="inline-flex items-baseline text-[#232621]">
             <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
             <motion.span
               initial={{ clipPath: 'inset(0 100% 0 0)' }}
@@ -480,7 +480,7 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight text-[#0f0f0f] md:text-4xl mb-4">
+          <h1 className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
             Requirement received.
           </h1>
 
@@ -488,7 +488,7 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
             <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">
               Your T3 Talent Architect
             </p>
-            <p className="text-2xl font-semibold text-[#0f0f0f]">{talentArchitect}</p>
+            <p className="text-2xl font-semibold text-[#232621]">{talentArchitect}</p>
           </div>
 
           <p className="text-gray-600 mb-10 leading-relaxed text-sm sm:text-base">
@@ -498,7 +498,7 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
 
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-10 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+            className="inline-flex items-center justify-center rounded-full bg-[#232621] px-10 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#2f332c] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
           >
             Return to Homepage
           </Link>

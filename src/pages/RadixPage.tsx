@@ -94,7 +94,7 @@ export default function RadixPage() {
           onClick={() => {
             window.scrollTo(0, 0);
           }}
-          className="inline-flex items-baseline text-black hover:opacity-80 transition-opacity"
+          className="inline-flex items-baseline text-[#232621] hover:opacity-80 transition-opacity"
         >
           <span className="font-open-sauce text-3xl font-extrabold tracking-tight">t3</span>
           <motion.span
@@ -106,7 +106,7 @@ export default function RadixPage() {
             works
           </motion.span>
           <span className="text-xl font-medium text-gray-400 mx-2">/</span>
-          <span className="text-xl font-bold text-[#0f0f0f]">Radix</span>
+          <span className="text-xl font-bold text-[#232621]">Radix</span>
         </Link>
       </div>
 
@@ -137,7 +137,7 @@ export default function RadixPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-4xl leading-[1.1] text-[#0f0f0f] mb-6 md:mb-5 lg:mb-6"
+            className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-4xl leading-[1.1] text-[#232621] mb-6 md:mb-5 lg:mb-6"
           >
             Where Academic Rigour <br /> Meets Production Engineering
           </motion.h1>
@@ -171,7 +171,7 @@ export default function RadixPage() {
           >
             <a
               href="#projects"
-              className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-8 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto gap-2 group"
+              className="inline-flex items-center justify-center rounded-full bg-[#232621] px-8 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#2f332c] transition-all shadow-md hover:shadow-lg w-full sm:w-auto gap-2 group"
             >
               Explore the 8 Engineering Systems
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
@@ -199,7 +199,7 @@ export default function RadixPage() {
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
               Program Architecture
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
               Where Academic Rigour Meets Production Engineering
             </h2>
             <p className="text-gray-600 max-w-3xl mx-auto text-lg">
@@ -256,7 +256,7 @@ export default function RadixPage() {
                 <div className="h-12 w-12 rounded-xl bg-[#8ba05f]/20 flex items-center justify-center text-[#4a5d23] mb-6 group-hover:bg-[#8ba05f]/30 transition-all duration-300">
                   {pillar.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#0f0f0f] mb-2">{pillar.title}</h3>
+                <h3 className="text-xl font-bold text-[#232621] mb-2">{pillar.title}</h3>
                 <p className="text-sm font-medium text-[#8ba05f] mb-4">{pillar.subtitle}</p>
                 <p className="text-gray-600 text-sm leading-relaxed">{pillar.desc}</p>
               </motion.div>
@@ -278,7 +278,7 @@ export default function RadixPage() {
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
               Engineering Systems
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
               8 Systems. One Integrated Platform.
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -351,7 +351,7 @@ export default function RadixPage() {
       </section>
 
       {/* Engineering Scale */}
-      <section className="min-h-[100dvh] py-20 bg-[#0f0f0f] text-white px-4 relative overflow-hidden flex flex-col justify-center">
+      <section className="min-h-[100dvh] py-20 bg-[#232621] text-white px-4 relative overflow-hidden flex flex-col justify-center">
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#8ba05f] via-transparent to-transparent pointer-events-none" />
         <div className="max-w-7xl mx-auto w-full relative z-10 text-center">
           <motion.div
@@ -434,7 +434,7 @@ export default function RadixPage() {
               <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
                 Production-Grade
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
                 Technology Ecosystem
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -512,7 +512,7 @@ export default function RadixPage() {
               <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
                 Progressive
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
                 Technical Complexity
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -639,7 +639,7 @@ export default function RadixPage() {
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
               Engineering Outcomes
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#0f0f0f] mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
               What Engineers Walk Away With
             </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-lg">
@@ -690,7 +690,7 @@ export default function RadixPage() {
                   size={28}
                   className="text-[#8ba05f] transition-transform duration-300"
                 />
-                <h3 className="text-xl font-bold text-[#0f0f0f]">{outcome.title}</h3>
+                <h3 className="text-xl font-bold text-[#232621]">{outcome.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">{outcome.desc}</p>
               </motion.div>
             ))}
@@ -726,7 +726,7 @@ export default function RadixPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[0.9375rem] font-bold text-[#0f0f0f] hover:bg-gray-100 transition-all w-full sm:w-auto shadow-lg"
+                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[0.9375rem] font-bold text-[#232621] hover:bg-gray-100 transition-all w-full sm:w-auto shadow-lg"
               >
                 Explore Engineering Systems
               </a>

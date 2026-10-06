@@ -23,7 +23,7 @@ export default function FormButton({
       className={cn(
         'group relative inline-flex items-center justify-center gap-2 rounded-full px-8 py-3.5 text-[0.9375rem] font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-60',
         isPrimary
-          ? 'bg-[#0f0f0f] text-white hover:bg-[#1a1a1a] shadow-sm'
+          ? 'bg-[#232621] text-white hover:bg-[#2f332c] shadow-sm'
           : 'border border-gray-200 bg-white text-gray-700 hover:border-[#4a5d23]/40',
         className
       )}

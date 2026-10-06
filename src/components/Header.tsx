@@ -4,12 +4,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { name: 'University', path: '#ecosystem' },
+  { name: 'What We Do', path: '#ecosystem' },
+  { name: 'How We Do', path: '#pipeline' },
   { name: 'Students', path: '#student-journey' },
   { name: 'Companies', path: '#clients' },
-  { name: 'How It Works', path: '#pipeline' },
-  { name: 'Radix', path: '/radix' },
+  { name: 'Radix', path: '#vision' },
+  { name: 'Leadership', path: '/leadership' },
 ];
+
+// the nav CTA scrolls to the students / companies chooser
+const APPLY_PATH = '#get-started';
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('home');
@@ -29,32 +33,31 @@ export default function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = NAV_ITEMS.map((item) => item.path.substring(1)).filter(Boolean);
+      const navSections = NAV_ITEMS.filter((item) => item.path.startsWith('#')).map((item) =>
+        item.path.substring(1)
+      );
+      // the chooser has no nav link, but being on it makes the Apply Now button glow
+      const sections = [...navSections, APPLY_PATH.substring(1)];
       let current = '';
 
       // Check if user is at the very bottom of the page
       const isAtBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 100;
 
-      if (isAtBottom && sections.length > 0) {
-        current = sections[sections.length - 1];
+      const last = navSections.at(-1);
+      if (isAtBottom && last && document.getElementById(last)) {
+        current = last;
       } else {
+        // the section crossing a line 300px down the viewport is the active one; sections
+        // without a nav link (hero, path chooser, logos) leave nothing highlighted
         for (const section of sections) {
-          const element = document.getElementById(section);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            // Increased threshold to 300px to trigger slightly earlier when scrolling down
-            if (rect.top <= 300) {
-              current = section;
-            }
+          const rect = document.getElementById(section)?.getBoundingClientRect();
+          if (rect && rect.top <= 300 && rect.bottom > 300) {
+            current = section;
           }
         }
       }
 
-      if (current) {
-        setActiveSection(current);
-      } else if (window.scrollY < 300) {
-        setActiveSection('');
-      }
+      setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -62,6 +65,8 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const applyGlow = activeSection === APPLY_PATH.substring(1) ? ' cta-glow' : '';
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -74,7 +79,9 @@ export default function Header() {
       e.preventDefault();
       const element = document.querySelector(path);
       if (element) {
-        const headerOffset = 100;
+        // in rem so it tracks the scaled nav pill: the section's own top padding then lands its
+        // first line just under the pill (4.5rem = 72px at the design width)
+        const headerOffset = 4.5 * parseFloat(getComputedStyle(document.documentElement).fontSize);
         const elementPosition = element.getBoundingClientRect().top;
         const targetPosition = elementPosition + window.pageYOffset - headerOffset;
         const startPosition = window.pageYOffset;
@@ -104,7 +111,7 @@ export default function Header() {
   };
 
   return (
-    <div className="fixed bottom-4 lg:bottom-auto lg:top-4 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
+    <div className="fixed bottom-4 lg:bottom-auto lg:top-10 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
       <motion.header
         layout={!isMobile}
         initial={{ borderRadius: 20 }}
@@ -113,7 +120,7 @@ export default function Header() {
           borderRadius: 20,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
-        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto"
+        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto xl:w-[59.77rem]"
       >
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -127,7 +134,9 @@ export default function Header() {
             >
               <div className="flex flex-col items-center gap-6 pt-8 pb-4 border-b border-white/10 mx-6">
                 {NAV_ITEMS.map((item) => {
-                  const isActive = activeSection === item.path.substring(1);
+                  const isActive = item.path.startsWith('#')
+                    ? activeSection === item.path.substring(1)
+                    : location.pathname === item.path;
                   return item.path.startsWith('#') ? (
                     <button
                       key={item.name}
@@ -154,31 +163,22 @@ export default function Header() {
                       onClick={() => {
                         setIsMobileMenuOpen(false);
                       }}
-                      className="relative text-[1rem] px-2 py-1 font-medium text-[#c4cdbe] hover:text-white transition-colors"
+                      className={`relative text-[1rem] px-2 py-1 font-medium transition-colors ${isActive ? 'text-white' : 'text-[#c4cdbe] hover:text-white'}`}
                     >
                       <span className="relative z-10">{item.name}</span>
                     </Link>
                   );
                 })}
                 <div className="flex flex-col gap-3 w-full mt-2">
-                  <Link
-                    to="/apply"
-                    onClick={() => {
+                  <button
+                    onClick={(e) => {
+                      handleSmoothScroll(e, APPLY_PATH);
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-white text-[#0f0f0f] text-[0.9375rem] font-medium hover:bg-white/90 transition-colors shadow-sm"
+                    className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
                   >
                     Apply Now
-                  </Link>
-                  <Link
-                    to="/hire"
-                    onClick={() => {
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40"
-                  >
-                    Hire AI Talent
-                  </Link>
+                  </button>
                 </div>
               </div>
             </motion.div>
@@ -231,7 +231,9 @@ export default function Header() {
           <div className="hidden xl:flex shrink-0 items-center justify-center">
             <motion.nav layout className="flex items-center gap-6 px-4">
               {NAV_ITEMS.map((item) => {
-                const isActive = activeSection === item.path.substring(1);
+                const isActive = item.path.startsWith('#')
+                  ? activeSection === item.path.substring(1)
+                  : location.pathname === item.path;
                 return item.path.startsWith('#') ? (
                   <button
                     key={item.name}
@@ -254,9 +256,17 @@ export default function Header() {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className="relative text-[0.9375rem] px-1 py-1 mx-2 font-normal text-[#c9c9c0] hover:text-white transition-colors whitespace-nowrap"
+                    className={`relative text-[0.9375rem] px-1 py-1 mx-2 font-normal transition-colors whitespace-nowrap ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
                   >
                     <span className="relative z-10">{item.name}</span>
+                    {isActive && (
+                      <motion.div
+                        layoutId="desktopNavUnderline"
+                        className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#c9b27a] rounded-full"
+                        initial={false}
+                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                      />
+                    )}
                   </Link>
                 );
               })}
@@ -279,18 +289,14 @@ export default function Header() {
 
           {/* Right: CTAs (Desktop Only) */}
           <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
-            <Link
-              to="/apply"
-              className="inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-white/5 border border-[#c9b27a]/60 text-white text-[0.9375rem] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
+            <button
+              onClick={(e) => {
+                handleSmoothScroll(e, APPLY_PATH);
+              }}
+              className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
             >
               Apply Now
-            </Link>
-            <Link
-              to="/hire"
-              className="inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer"
-            >
-              Hire AI Talent
-            </Link>
+            </button>
           </motion.div>
         </div>
       </motion.header>

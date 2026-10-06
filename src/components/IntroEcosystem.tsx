@@ -99,7 +99,7 @@ export default function IntroEcosystem() {
               poster={THUMBNAIL}
               label="Play video: Industry Mentors, Experts and Consultants"
               alt="Industry mentors guiding engineers at an AI workspace"
-              className="aspect-[1.9/1] w-full rounded-[2rem] border border-black/5 bg-[#14150f] shadow-2xl"
+              className="aspect-[1.9/1] w-full rounded-[2rem] border border-black/5 bg-[#232621] shadow-2xl"
             >
               <span className="absolute inset-0 grid place-items-center">
                 <span className="relative grid h-20 w-20 place-items-center transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-24">
@@ -111,7 +111,7 @@ export default function IntroEcosystem() {
                     aria-hidden="true"
                     className="play-pulse absolute -inset-5 rounded-full border border-[#d8cf6a]/50 sm:-inset-6"
                   />
-                  <span className="grid h-full w-full place-items-center rounded-full bg-[#10120c]/70 shadow-[0_0_40px_rgba(200,190,80,0.35)] ring-4 ring-[#b5ad45] backdrop-blur-sm">
+                  <span className="grid h-full w-full place-items-center rounded-full bg-[#232621]/70 shadow-[0_0_40px_rgba(200,190,80,0.35)] ring-4 ring-[#b5ad45] backdrop-blur-sm">
                     <Play
                       className="ml-1 h-8 w-8 fill-white text-white sm:h-9 sm:w-9"
                       aria-hidden="true"
