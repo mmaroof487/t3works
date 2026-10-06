@@ -10,6 +10,7 @@ import AdvisoryTeam from '../components/AdvisoryTeam';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
 import RoleEntry from '../components/RoleEntry';
+import EngineerComparison from '../components/EngineerComparison';
 
 export default function LandingPage() {
   const location = useLocation();
@@ -73,6 +74,7 @@ export default function LandingPage() {
       </div>
       <div id="clients">
         <HiringSideEntry />
+        <EngineerComparison />
         <ClientLogos />
       </div>
       <div id="talent-funnel">
