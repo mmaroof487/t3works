@@ -13,7 +13,7 @@ const POINTS = [
 export default function UltimateVision() {
   return (
     <section className="w-full py-16 md:py-24">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export default function UltimateVision() {
 
             <Link
               to="/radix"
-              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#0f0f0f] px-7 py-3.5 text-[15px] font-medium text-white transition-colors hover:bg-[#1f1f1f]"
+              className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#0f0f0f] px-7 py-3.5 text-[0.9375rem] font-medium text-white transition-colors hover:bg-[#1f1f1f]"
             >
               Know more
               <ArrowUpRight className="h-4 w-4" aria-hidden="true" />

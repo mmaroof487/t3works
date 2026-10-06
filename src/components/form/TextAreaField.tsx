@@ -39,7 +39,7 @@ export default function TextAreaField({
           onChange(e.target.value);
         }}
         className={cn(
-          'w-full resize-none rounded-2xl border bg-white px-5 py-3.5 text-[15px] text-gray-900 placeholder:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#4a5d23]/30',
+          'w-full resize-none rounded-2xl border bg-white px-5 py-3.5 text-[0.9375rem] text-gray-900 placeholder:text-gray-400 transition-colors focus:outline-none focus:ring-2 focus:ring-[#4a5d23]/30',
           error ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#4a5d23]'
         )}
         aria-invalid={!!error}

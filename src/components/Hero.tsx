@@ -48,7 +48,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-screen w-full items-center justify-center bg-[#f5f5f0] pt-[84px] pb-12">
+    <section className="relative flex min-h-screen w-full items-center justify-center bg-[#f5f5f0] pt-[5.25rem] pb-12">
       <Backdrop />
       <div className="absolute top-6 left-4 lg:hidden z-50">
         <Link
@@ -71,14 +71,14 @@ export default function Hero() {
         </Link>
       </div>
 
-      <div className="relative mx-auto flex w-full max-w-[1400px] flex-col items-center px-4 text-center sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex w-full max-w-[87.5rem] flex-col items-center px-4 text-center sm:px-6 lg:px-8">
         <h1 className="text-4xl sm:text-5xl lg:text-7xl font-semibold leading-[1.1] tracking-tight text-gray-900">
           Not more engineers. <br className="lg:hidden" />
           <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
             More engineering.
           </span>
         </h1>
-        <p className="mt-4 max-w-3xl text-lg lg:text-xl leading-relaxed text-gray-800">
+        <p className="mt-4 max-w-[54rem] text-lg lg:text-xl leading-relaxed text-gray-800">
           Bridging university, enterprise and AI demand, converting raw talent into mentor-trained
           builders through a rigour-driven pipeline.
         </p>
@@ -104,7 +104,7 @@ export default function Hero() {
           </figcaption>
         </figure>
 
-        <p className="mt-5 max-w-2xl text-sm sm:text-base text-gray-700">
+        <p className="mt-5 max-w-[44.5rem] text-sm sm:text-base text-gray-700">
           Candidates are trained as engineers in AI and multi-agent systems, then connected directly
           with enterprise opportunities.
         </p>
@@ -117,14 +117,14 @@ export default function Hero() {
                 .getElementById('ecosystem')
                 ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
             }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[15px] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70"
+            className="inline-flex items-center gap-2 rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70"
           >
             See how it works
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
           <a
             href="mailto:hello@t3works.com"
-            className="inline-flex items-center rounded-full border border-gray-900/70 whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[15px] font-medium text-gray-900 transition-colors hover:bg-white"
+            className="inline-flex items-center rounded-full border border-gray-900/70 whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-gray-900 transition-colors hover:bg-white"
           >
             Speak to an Expert
           </a>

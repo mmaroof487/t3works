@@ -127,7 +127,7 @@ export default function ClientLogos() {
     <section className="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden relative">
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5" />
 
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
+      <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
         <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

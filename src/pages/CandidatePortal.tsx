@@ -135,7 +135,7 @@ export default function CandidatePortal() {
         </Link>
       </div>
 
-      <div className="w-full max-w-[1280px] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
+      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
@@ -466,7 +466,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
         </Link>
       </div>
 
-      <div className="w-full max-w-[600px]">
+      <div className="w-full max-w-[37.5rem]">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -500,7 +500,7 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
 
           <Link
             to="/"
-            className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-10 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
+            className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-10 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto"
           >
             Return to Homepage
           </Link>

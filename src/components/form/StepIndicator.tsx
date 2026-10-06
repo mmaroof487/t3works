@@ -55,7 +55,7 @@ export default function StepIndicator({ steps, currentStep }: StepIndicatorProps
                 </span>
               </div>
               {idx < steps.length - 1 && (
-                <div className="flex-1 h-px mx-3 bg-gray-200 relative top-[-12px] min-w-6">
+                <div className="flex-1 h-px mx-3 bg-gray-200 relative top-[-0.75rem] min-w-6">
                   <motion.div
                     className="h-full bg-[#4a5d23]"
                     initial={false}

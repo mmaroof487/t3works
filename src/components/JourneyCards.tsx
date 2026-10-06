@@ -50,6 +50,9 @@ const RING = 10;
 const START_X = NOTCH_W / 2 + 12; // ring centre, px right of the card's centre line
 const END_X = GAP + BADGE_INSET; // next badge's centre, px right of this card's edge
 
+// sizes are authored in px but emitted in rem so they scale with the root font size
+const rem = (px: number) => `${String(px / 16)}rem`;
+
 const RING_CLASS =
   'absolute z-10 hidden rounded-full border-[1.5px] border-[#2f3b16] bg-[#f5f5f0] xl:block';
 const NOTCH_CURVE = `C20 0 18 ${String(NOTCH_D)} 46 ${String(NOTCH_D)}H82C110 ${String(NOTCH_D)} 108 0 ${String(NOTCH_W)} 0`;
@@ -74,14 +77,14 @@ export default function JourneyCards({ steps, className = '' }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative flex flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] px-6 pb-6 pt-[68px] shadow-sm"
+              className="relative flex flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] px-6 pb-6 pt-[4.25rem] shadow-sm"
             >
               {/* notch: the page colour scoops into the card's top edge around the icon */}
               <svg
                 aria-hidden="true"
                 viewBox={`0 -2 ${String(NOTCH_W)} ${String(NOTCH_D + 3)}`}
                 className="absolute left-1/2 -translate-x-1/2"
-                style={{ top: -2, width: NOTCH_W, height: NOTCH_D + 3 }}
+                style={{ top: rem(-2), width: rem(NOTCH_W), height: rem(NOTCH_D + 3) }}
               >
                 <path d={`M0 -2H${String(NOTCH_W)}V0L0 0Z M0 0${NOTCH_CURVE}Z`} fill={PAGE_BG} />
                 <path d={`M0 0${NOTCH_CURVE}`} fill="none" stroke="#000" strokeOpacity="0.07" />
@@ -89,7 +92,7 @@ export default function JourneyCards({ steps, className = '' }: Props) {
 
               <span
                 className="absolute left-1/2 z-10 flex -translate-x-1/2 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white shadow-[0_8px_24px_-6px_rgba(40,50,20,0.22)]"
-                style={{ top: -TILE / 2, width: TILE, height: TILE }}
+                style={{ top: rem(-TILE / 2), width: rem(TILE), height: rem(TILE) }}
               >
                 <Icon
                   className="h-9 w-9 text-[#3f4f1f]"
@@ -100,12 +103,12 @@ export default function JourneyCards({ steps, className = '' }: Props) {
 
               {/* step number, centred on the card's top-left corner */}
               <span
-                className="absolute z-20 flex items-center justify-center rounded-full bg-[#4a5d23] text-[13px] font-semibold text-white shadow-md"
+                className="absolute z-20 flex items-center justify-center rounded-full bg-[#4a5d23] text-[0.8125rem] font-semibold text-white shadow-md"
                 style={{
-                  width: BADGE,
-                  height: BADGE,
-                  top: BADGE_INSET - BADGE / 2,
-                  left: BADGE_INSET - BADGE / 2,
+                  width: rem(BADGE),
+                  height: rem(BADGE),
+                  top: rem(BADGE_INSET - BADGE / 2),
+                  left: rem(BADGE_INSET - BADGE / 2),
                 }}
               >
                 {id}
@@ -119,10 +122,10 @@ export default function JourneyCards({ steps, className = '' }: Props) {
                     aria-hidden="true"
                     className={RING_CLASS}
                     style={{
-                      width: RING,
-                      height: RING,
-                      left: `calc(50% + ${String(START_X - RING / 2)}px)`,
-                      top: -RING / 2,
+                      width: rem(RING),
+                      height: rem(RING),
+                      left: `calc(50% + ${rem(START_X - RING / 2)})`,
+                      top: rem(-RING / 2),
                     }}
                   />
                   <svg
@@ -130,11 +133,11 @@ export default function JourneyCards({ steps, className = '' }: Props) {
                     viewBox="0 0 112 44"
                     preserveAspectRatio="none"
                     fill="none"
-                    className="pointer-events-none absolute hidden h-[44px] xl:block"
+                    className="pointer-events-none absolute hidden h-[2.75rem] xl:block"
                     style={{
-                      left: `calc(50% + ${String(START_X)}px)`,
-                      width: `calc(50% - ${String(START_X - END_X)}px)`,
-                      top: -32,
+                      left: `calc(50% + ${rem(START_X)})`,
+                      width: `calc(50% - ${rem(START_X - END_X)})`,
+                      top: rem(-32),
                     }}
                   >
                     <path
@@ -157,7 +160,7 @@ export default function JourneyCards({ steps, className = '' }: Props) {
                   {kicker}
                 </p>
               )}
-              <p className="mb-6 text-[15px] leading-relaxed text-gray-600">{description}</p>
+              <p className="mb-6 text-[0.9375rem] leading-relaxed text-gray-600">{description}</p>
 
               <ul className="mt-auto space-y-2">
                 {highlights.map((h) => (

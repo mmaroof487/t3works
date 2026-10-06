@@ -44,7 +44,7 @@ const COMPARISON = [
 export default function HiringSideEntry() {
   return (
     <section className="relative w-full overflow-x-clip bg-[#f5f5f0] py-8 md:py-12">
-      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +90,7 @@ export default function HiringSideEntry() {
               className="relative z-10 flex h-full flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-5 shadow-sm"
             >
               <h3 className="mb-3 text-xl font-semibold text-gray-900">Why Companies Choose Us</h3>
-              <table className="w-full flex-1 border-separate border-spacing-y-1.5 text-[13px]">
+              <table className="w-full flex-1 border-separate border-spacing-y-1.5 text-[0.8125rem]">
                 <thead>
                   <tr className="text-left">
                     <th

@@ -120,7 +120,7 @@ export default function RadixPage() {
           }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           style={{ transformOrigin: 'top center' }}
-          className="absolute top-0 inset-x-0 h-[650px] bg-gradient-to-b from-[#c4cdbe] via-[#e5e9db] to-transparent pointer-events-none"
+          className="absolute top-0 inset-x-0 h-[40.625rem] bg-gradient-to-b from-[#c4cdbe] via-[#e5e9db] to-transparent pointer-events-none"
         />
 
         <div className="max-w-7xl mx-auto relative z-10 text-center flex flex-col items-center">
@@ -171,14 +171,14 @@ export default function RadixPage() {
           >
             <a
               href="#projects"
-              className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-8 py-4 text-[15px] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto gap-2 group"
+              className="inline-flex items-center justify-center rounded-full bg-[#0f0f0f] px-8 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#1a1a1a] transition-all shadow-md hover:shadow-lg w-full sm:w-auto gap-2 group"
             >
               Explore the 8 Engineering Systems
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#overview"
-              className="inline-flex items-center justify-center rounded-full bg-white border border-gray-200 px-8 py-4 text-[15px] font-medium text-gray-900 hover:bg-gray-50 transition-all shadow-sm w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-full bg-white border border-gray-200 px-8 py-4 text-[0.9375rem] font-medium text-gray-900 hover:bg-gray-50 transition-all shadow-sm w-full sm:w-auto"
             >
               Program Architecture
             </a>
@@ -317,10 +317,10 @@ export default function RadixPage() {
                 {/* Content */}
                 <div className="p-6 md:p-8 flex-1 flex flex-col">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-[10px] font-bold px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-500 rounded-md uppercase tracking-wider">
+                    <span className="text-[0.625rem] font-bold px-2.5 py-1 bg-gray-50 border border-gray-100 text-gray-500 rounded-md uppercase tracking-wider">
                       Sys {sys.num}
                     </span>
-                    <p className="text-[#8ba05f] text-[10px] font-bold tracking-widest uppercase truncate">
+                    <p className="text-[#8ba05f] text-[0.625rem] font-bold tracking-widest uppercase truncate">
                       {sys.subtitle}
                     </p>
                   </div>
@@ -332,12 +332,12 @@ export default function RadixPage() {
                   <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">{sys.desc}</p>
 
                   <div className="pt-5 border-t border-gray-100/60 mt-auto">
-                    <p className="text-[11px] text-gray-400 font-medium tracking-wide uppercase leading-relaxed flex flex-wrap items-center">
+                    <p className="text-[0.6875rem] text-gray-400 font-medium tracking-wide uppercase leading-relaxed flex flex-wrap items-center">
                       {sys.metrics.split(' | ').map((m, idx, arr) => (
                         <span key={idx} className="flex items-center whitespace-nowrap">
                           {m}
                           {idx < arr.length - 1 && (
-                            <span className="mx-2 text-gray-200 text-[8px]">•</span>
+                            <span className="mx-2 text-gray-200 text-[0.5rem]">•</span>
                           )}
                         </span>
                       ))}
@@ -594,7 +594,7 @@ export default function RadixPage() {
                   <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-[10px] sm:text-xs font-bold px-2.5 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-lg group-hover:bg-[#8ba05f] group-hover:border-[#8ba05f] group-hover:text-white transition-colors uppercase tracking-wider shadow-sm">
+                        <span className="text-[0.625rem] sm:text-xs font-bold px-2.5 py-1.5 bg-white border border-gray-200 text-gray-600 rounded-lg group-hover:bg-[#8ba05f] group-hover:border-[#8ba05f] group-hover:text-white transition-colors uppercase tracking-wider shadow-sm">
                           {stage.sys}
                         </span>
                         <span className="font-bold text-gray-900 text-base sm:text-lg">
@@ -726,13 +726,13 @@ export default function RadixPage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[15px] font-bold text-[#0f0f0f] hover:bg-gray-100 transition-all w-full sm:w-auto shadow-lg"
+                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[0.9375rem] font-bold text-[#0f0f0f] hover:bg-gray-100 transition-all w-full sm:w-auto shadow-lg"
               >
                 Explore Engineering Systems
               </a>
               <a
                 href="#overview"
-                className="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-white/30 px-8 py-4 text-[15px] font-bold text-white hover:bg-white/10 transition-all w-full sm:w-auto"
+                className="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-white/30 px-8 py-4 text-[0.9375rem] font-bold text-white hover:bg-white/10 transition-all w-full sm:w-auto"
               >
                 Program Architecture
               </a>

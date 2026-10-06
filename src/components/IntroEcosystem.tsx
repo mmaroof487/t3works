@@ -33,7 +33,7 @@ const STATS = [
 export default function IntroEcosystem() {
   return (
     <section className="w-full bg-transparent py-8 md:py-12">
-      <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export default function IntroEcosystem() {
               </span>
               <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
             </div>
-            <h2 className="mb-6 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+            <h2 className="mb-6 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-[3.25rem]">
               What T3 AI Works{' '}
               <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
                 does.
@@ -67,13 +67,13 @@ export default function IntroEcosystem() {
             <ul className="relative space-y-6">
               <span
                 aria-hidden="true"
-                className="absolute left-[3px] top-8 bottom-8 w-px bg-[#4a5d23]/30"
+                className="absolute left-[0.1875rem] top-8 bottom-8 w-px bg-[#4a5d23]/30"
               />
               {FEATURES.map(({ icon: Icon, title, text }) => (
                 <li key={title} className="relative flex items-start gap-5">
                   <span
                     aria-hidden="true"
-                    className="mt-8 h-[7px] w-[7px] shrink-0 rounded-full bg-[#4a5d23]"
+                    className="mt-8 h-[0.4375rem] w-[0.4375rem] shrink-0 rounded-full bg-[#4a5d23]"
                   />
                   <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#4a5d23]/10 text-[#4a5d23]">
                     <Icon className="h-7 w-7" aria-hidden="true" />
@@ -99,7 +99,7 @@ export default function IntroEcosystem() {
               poster={THUMBNAIL}
               label="Play video: Industry Mentors, Experts and Consultants"
               alt="Industry mentors guiding engineers at an AI workspace"
-              className="aspect-[1.9/1] w-full rounded-[32px] border border-black/5 bg-[#14150f] shadow-2xl"
+              className="aspect-[1.9/1] w-full rounded-[2rem] border border-black/5 bg-[#14150f] shadow-2xl"
             >
               <span className="absolute inset-0 grid place-items-center">
                 <span className="relative grid h-20 w-20 place-items-center transition-transform duration-300 group-hover:scale-105 sm:h-24 sm:w-24">

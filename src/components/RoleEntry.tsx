@@ -78,7 +78,7 @@ const IMAGE_FADE = {
 export default function RoleEntry() {
   return (
     <section className="w-full pb-16 pt-8 md:pb-24 md:pt-12">
-      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[100rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -139,20 +139,20 @@ export default function RoleEntry() {
                   <br />
                   {path.lead} <span className={path.accentClass}>{path.accent}</span>
                 </h3>
-                <p className="mb-5 max-w-[21rem] text-[15px] leading-relaxed text-gray-600">
+                <p className="mb-5 max-w-[21rem] text-[0.9375rem] leading-relaxed text-gray-600">
                   {path.text}
                 </p>
 
                 {/* steps on a dotted timeline */}
                 <ol className="relative mb-6 space-y-1.5 pl-8">
                   <span
-                    className="absolute bottom-6 left-[5px] top-6 w-px bg-black/15"
+                    className="absolute bottom-6 left-[0.3125rem] top-6 w-px bg-black/15"
                     aria-hidden="true"
                   />
                   {path.steps.map((step) => (
                     <li key={step.title} className="relative">
                       <span
-                        className={`absolute -left-8 top-1/2 h-[11px] w-[11px] -translate-y-1/2 rounded-full ring-4 ring-[#fbfbf9] ${path.dotClass}`}
+                        className={`absolute -left-8 top-1/2 h-[0.6875rem] w-[0.6875rem] -translate-y-1/2 rounded-full ring-4 ring-[#fbfbf9] ${path.dotClass}`}
                         aria-hidden="true"
                       />
                       <div className="flex items-center gap-3 rounded-xl bg-[#f3f3ee] py-1.5 pl-2 pr-6">
@@ -160,10 +160,10 @@ export default function RoleEntry() {
                           <step.icon className={`h-5 w-5 ${path.accentClass}`} aria-hidden="true" />
                         </span>
                         <span>
-                          <span className="block text-[15px] font-medium leading-snug text-gray-900">
+                          <span className="block text-[0.9375rem] font-medium leading-snug text-gray-900">
                             {step.title}
                           </span>
-                          <span className="block text-[13px] text-gray-600">{step.text}</span>
+                          <span className="block text-[0.8125rem] text-gray-600">{step.text}</span>
                         </span>
                       </div>
                     </li>
@@ -172,7 +172,7 @@ export default function RoleEntry() {
 
                 <Link
                   to={path.to}
-                  className={`mt-auto inline-flex items-center gap-3 whitespace-nowrap rounded-full px-8 py-3 text-[15px] font-medium shadow-md transition-colors ${path.ctaClass}`}
+                  className={`mt-auto inline-flex items-center gap-3 whitespace-nowrap rounded-full px-8 py-3 text-[0.9375rem] font-medium shadow-md transition-colors ${path.ctaClass}`}
                 >
                   {path.cta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />

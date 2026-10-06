@@ -47,6 +47,14 @@
   }
 }
 
+/* Desktop: scale the whole rem-based design with the viewport so every screen shows the same
+   layout, gaps, type sizes and line breaks as the 1512px design width (where 1rem = 16px). */
+@media (min-width: 1280px) {
+  html {
+    font-size: calc(100vw * 16 / 1512);
+  }
+}
+
 body {
   font-family: var(--font-sans);
   @apply bg-[#f5f5f0] text-gray-900;

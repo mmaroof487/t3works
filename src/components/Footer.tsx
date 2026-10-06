@@ -40,7 +40,7 @@ export default function Footer() {
       id="contact"
       className="w-full min-h-[100dvh] flex flex-col justify-between bg-[#0a0a0a] pt-12 pb-32 xl:py-16 border-t border-white/5"
     >
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
+      <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8 flex-1 flex flex-col justify-between">
         {/* Top CTA Section */}
         <div className="mb-6 lg:mb-8 pb-6 lg:pb-8 border-b border-[#232621] flex flex-col md:flex-row justify-between items-start md:items-end gap-6 md:gap-8">
           <div className="max-w-2xl">
@@ -92,7 +92,7 @@ export default function Footer() {
                   onMouseEnter={() => {
                     setHoveredSocial(social.id);
                   }}
-                  className="relative w-12 h-12 rounded-[16px] bg-[#1a1f16] flex items-center justify-center text-white overflow-hidden group border border-white/5"
+                  className="relative w-12 h-12 rounded-[1rem] bg-[#1a1f16] flex items-center justify-center text-white overflow-hidden group border border-white/5"
                 >
                   {hoveredSocial === social.id && (
                     <motion.div

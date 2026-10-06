@@ -74,7 +74,7 @@ export default function StudentJourney() {
         // centred on the seam with the section above (the image is 0.655 x its width tall)
         style={{ top: 'calc(-1.5rem - 9.8vw)' }}
       />
-      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -95,7 +95,7 @@ export default function StudentJourney() {
               Need.
             </span>
           </h2>
-          <p className="max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
+          <p className="max-w-4xl text-base leading-relaxed text-gray-600 sm:text-lg">
             Students deserve complete transparency. See exactly what you&apos;ll learn, how
             you&apos;ll prepare, and how this platform systematically accelerates your career from
             discovery to placement.

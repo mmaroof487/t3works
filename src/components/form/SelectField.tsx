@@ -37,7 +37,7 @@ export default function SelectField({
             onChange(e.target.value);
           }}
           className={cn(
-            'w-full appearance-none rounded-2xl border bg-white px-5 py-3.5 pr-12 text-[15px] text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-[#4a5d23]/30',
+            'w-full appearance-none rounded-2xl border bg-white px-5 py-3.5 pr-12 text-[0.9375rem] text-gray-900 transition-colors focus:outline-none focus:ring-2 focus:ring-[#4a5d23]/30',
             !value && 'text-gray-400',
             error ? 'border-red-400 focus:border-red-400' : 'border-gray-200 focus:border-[#4a5d23]'
           )}

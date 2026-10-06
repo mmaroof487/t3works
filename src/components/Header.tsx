@@ -135,7 +135,7 @@ export default function Header() {
                         handleSmoothScroll(e, item.path);
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`relative text-[15px] px-2 py-1 font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c4cdbe] hover:text-white'}`}
+                      className={`relative text-[0.9375rem] px-2 py-1 font-medium transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c4cdbe] hover:text-white'}`}
                     >
                       <span className="relative z-10">{item.name}</span>
                       {isActive && (
@@ -154,7 +154,7 @@ export default function Header() {
                       onClick={() => {
                         setIsMobileMenuOpen(false);
                       }}
-                      className="relative text-[16px] px-2 py-1 font-medium text-[#c4cdbe] hover:text-white transition-colors"
+                      className="relative text-[1rem] px-2 py-1 font-medium text-[#c4cdbe] hover:text-white transition-colors"
                     >
                       <span className="relative z-10">{item.name}</span>
                     </Link>
@@ -166,7 +166,7 @@ export default function Header() {
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-xl bg-white text-[#0f0f0f] text-[15px] font-medium hover:bg-white/90 transition-colors shadow-sm"
+                    className="inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-white text-[#0f0f0f] text-[0.9375rem] font-medium hover:bg-white/90 transition-colors shadow-sm"
                   >
                     Apply Now
                   </Link>
@@ -175,7 +175,7 @@ export default function Header() {
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className="inline-flex items-center justify-center h-[44px] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[15px] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40"
+                    className="inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40"
                   >
                     Hire AI Talent
                   </Link>
@@ -186,7 +186,7 @@ export default function Header() {
         </AnimatePresence>
 
         {/* Main Bar */}
-        <div className="flex items-center min-h-[60px] h-[60px] pl-4 pr-2 xl:pl-6 xl:pr-2 w-full">
+        <div className="flex items-center min-h-[3.75rem] h-[3.75rem] pl-4 pr-2 xl:pl-6 xl:pr-2 w-full">
           {/* Left: Logo */}
           <motion.div layout className="flex-1 flex items-center justify-start">
             <Link
@@ -238,7 +238,7 @@ export default function Header() {
                     onClick={(e) => {
                       handleSmoothScroll(e, item.path);
                     }}
-                    className={`relative text-[15px] px-1 py-1 mx-2 font-normal transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
+                    className={`relative text-[0.9375rem] px-1 py-1 mx-2 font-normal transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
                   >
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
@@ -254,7 +254,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className="relative text-[15px] px-1 py-1 mx-2 font-normal text-[#c9c9c0] hover:text-white transition-colors whitespace-nowrap"
+                    className="relative text-[0.9375rem] px-1 py-1 mx-2 font-normal text-[#c9c9c0] hover:text-white transition-colors whitespace-nowrap"
                   >
                     <span className="relative z-10">{item.name}</span>
                   </Link>
@@ -281,13 +281,13 @@ export default function Header() {
           <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
             <Link
               to="/apply"
-              className="inline-flex items-center justify-center h-[44px] px-6 rounded-xl bg-white/5 border border-[#c9b27a]/60 text-white text-[15px] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
+              className="inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-white/5 border border-[#c9b27a]/60 text-white text-[0.9375rem] font-medium hover:bg-white/10 transition-colors whitespace-nowrap"
             >
               Apply Now
             </Link>
             <Link
               to="/hire"
-              className="inline-flex items-center justify-center h-[44px] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[15px] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer"
+              className="inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#1a1a14] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer"
             >
               Hire AI Talent
             </Link>

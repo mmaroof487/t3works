@@ -48,7 +48,7 @@ export default function RadioGroup({
                 onChange(option);
               }}
               className={cn(
-                'relative rounded-full border px-5 py-2.5 text-[14px] font-medium transition-colors',
+                'relative rounded-full border px-5 py-2.5 text-[0.875rem] font-medium transition-colors',
                 isActive
                   ? 'border-[#4a5d23] text-white'
                   : 'border-gray-200 bg-white text-gray-700 hover:border-[#4a5d23]/40'

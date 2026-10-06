@@ -29,7 +29,7 @@ export default function PrecisionPipeline() {
         className="pointer-events-none absolute -right-[6vw] hidden w-[38vw] max-w-none -scale-x-100 sm:block"
         style={{ ...EDGE_FADE, top: 'calc(-1rem - 12.45vw)' }}
       />
-      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export default function PrecisionPipeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative mx-auto aspect-[1677/780] w-full min-w-[820px] [container-type:inline-size]"
+            className="relative mx-auto aspect-[1677/780] w-full min-w-[51.25rem] [container-type:inline-size]"
           >
             <div className="absolute inset-0 overflow-hidden" style={EDGE_FADE}>
               <img
