@@ -2,10 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import IntroEcosystem from '../components/IntroEcosystem';
-import JobSeekerFunnel from '../components/JobSeekerFunnel';
 import HiringSideEntry from '../components/HiringSideEntry';
-import TalentFunnel from '../components/TalentFunnel';
-import AdvisoryTeam from '../components/AdvisoryTeam';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
 import RoleEntry from '../components/RoleEntry';
@@ -66,26 +63,21 @@ export default function LandingPage() {
       <div id="pipeline">
         <PrecisionPipeline />
       </div>
-      <div id="vision">
-        <UltimateVision />
-      </div>
-      <div id="get-started">
-        <RoleEntry />
-      </div>
-      <div id="funnel">
-        <JobSeekerFunnel />
-      </div>
       <div id="student-journey">
         <StudentJourney />
       </div>
       <div id="clients">
         <HiringSideEntry />
+      </div>
+      <div id="get-started">
+        <RoleEntry />
+      </div>
+      <div id="trusted">
         <ClientLogos />
       </div>
-      <div id="talent-funnel">
-        <TalentFunnel />
+      <div id="vision">
+        <UltimateVision />
       </div>
-      <AdvisoryTeam />
     </div>
   );
 }

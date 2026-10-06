@@ -1,165 +1,131 @@
-import { useRef, useEffect, useState } from 'react';
-import { Volume2, VolumeX, ArrowRight, Target, GraduationCap, Briefcase } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
+import { ArrowRight, FileSearch, Users } from 'lucide-react';
+import JourneyCards, { SolidBriefcase, type IconType, type JourneyStep } from './JourneyCards';
+
+const STEPS: JourneyStep[] = [
+  {
+    id: '01',
+    icon: FileSearch as IconType,
+    title: 'Pre-Engagement PoC',
+    kicker: 'Zero-risk validation',
+    description: 'Evaluate an engineer on a real business problem before committing to a hire.',
+    highlights: ['Real business problem', 'Defined success criteria', 'Technical evaluation'],
+  },
+  {
+    id: '02',
+    icon: Users as IconType,
+    title: 'Guided 4-Month Internship',
+    kicker: 'Build before you hire',
+    description: 'Put emerging engineers through mentor-led projects built around your technology.',
+    highlights: ['Mentor supervision', 'Real project exposure', 'Continuous assessment'],
+  },
+  {
+    id: '03',
+    icon: SolidBriefcase as IconType,
+    title: 'Accelerated Full-Time Hiring',
+    kicker: 'Hire for day-one impact',
+    description: 'Access engineers with proven technical capability, execution and collaboration.',
+    highlights: [
+      'Validated engineering skills',
+      'Role-specific matching',
+      'Faster hiring decisions',
+    ],
+  },
+];
+
+const COMPARISON = [
+  ['Resume screening', 'AI capability mapping'],
+  ['Manual interviews', 'Continuous assessment'],
+  ['Hiring uncertainty', 'PoC validation'],
+  ['Generic candidates', 'Role-specific matching'],
+  ['Onboarding risk', 'Mentor-trained engineers'],
+];
 
 export default function HiringSideEntry() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const isVideoInView = useInView(videoRef, { margin: '-100px' });
-  const [isMuted, setIsMuted] = useState(true);
-
-  useEffect(() => {
-    if (isVideoInView && videoRef.current) {
-      videoRef.current.play().catch(() => undefined);
-    } else if (!isVideoInView && videoRef.current) {
-      videoRef.current.pause();
-    }
-  }, [isVideoInView]);
-
   return (
-    <section className="w-full bg-transparent py-16 md:py-24">
-      <div className="mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 lg:auto-rows-[240px]">
-          {/* Title Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="col-span-1 lg:col-span-2 lg:row-span-1 bg-white border border-gray-100 rounded-[2rem] p-8 md:p-12 flex flex-col justify-center shadow-sm relative overflow-hidden group"
-          >
-            <div className="absolute top-0 right-0 p-8 opacity-[0.03] pointer-events-none">
-              <Briefcase className="w-64 h-64 -rotate-12 translate-x-12 -translate-y-12" />
-            </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 relative z-10">
-              For Companies.
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl relative z-10 leading-relaxed">
-              Deploy Day-One ready AI engineers, battle-tested in autonomous agents, RAG pipelines,
-              and full-stack security. Start with a zero-risk Pre-Engagement PoC, move to a guided
-              4-month internship, or hire full-time.
-            </p>
-          </motion.div>
+    <section className="relative w-full overflow-x-clip bg-[#f5f5f0] py-8 md:py-12">
+      <div className="relative mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16 max-w-5xl md:mb-20"
+        >
+          <div className="mb-6 flex items-center gap-4">
+            <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
+              For companies
+            </span>
+            <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
+          </div>
+          <h2 className="mb-5 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+            Hire Engineers{' '}
+            <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
+              Built for Real Work.
+            </span>
+          </h2>
+          <p className="max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
+            Deploy AI engineers trained across autonomous agents, RAG pipelines, full-stack security
+            and real-world projects — validated before they reach your hiring pipeline.
+          </p>
+        </motion.div>
 
-          {/* Option 1: Pre-Engagement PoC */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="col-span-1 lg:row-span-1"
-          >
-            <Link
-              to="/hire"
-              className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-[#0f0f0f] text-white rounded-[2rem] p-8 flex flex-col justify-between shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg"
-            >
-              <div className="absolute -inset-[1px] rounded-[2rem] border border-white/10" />
-              <div className="flex justify-between items-start relative z-10">
-                <div className="p-3 bg-white/10 rounded-2xl backdrop-blur-md border border-white/5">
-                  <Target className="w-7 h-7 text-white" />
-                </div>
-                <div className="p-3 bg-white/5 rounded-full group-hover:bg-white/20 transition-colors duration-300">
-                  <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
-                </div>
-              </div>
-              <div className="relative z-10 mt-6 lg:mt-0">
-                <h3 className="text-2xl font-medium mb-2">Pre-Engagement PoC</h3>
-                <p className="text-sm text-gray-400 font-medium tracking-wide uppercase">
-                  Zero-Risk Trial
-                </p>
-              </div>
-            </Link>
-          </motion.div>
+        <div className="grid gap-x-6 gap-y-10 xl:grid-cols-[3fr_1.3fr]">
+          <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-3" />
 
-          {/* Video Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="col-span-1 lg:col-span-2 lg:row-span-2 min-h-[300px] lg:min-h-0 relative rounded-[2rem] overflow-hidden shadow-sm border border-gray-100 bg-[#14150f] group"
-          >
-            <video
-              ref={videoRef}
-              className="w-full h-full object-cover absolute inset-0"
-              playsInline
-              autoPlay
-              muted={isMuted}
-              loop
-              preload="metadata"
+          <div className="relative">
+            {/* business district rising from behind the panel (transparent image, wide screens only) */}
+            <img
+              src="/images/Isometric%20Smart%20City%20Business%20District.webp"
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-full right-0 hidden w-[118%] max-w-none translate-y-[14%] xl:block"
+            />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="relative z-10 flex h-full flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-5 shadow-sm"
             >
-              <source src="/videos/t3aiworks-vid2.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <button
-              onClick={() => {
-                setIsMuted(!isMuted);
-              }}
-              className="absolute bottom-6 right-6 p-4 rounded-full bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:bg-black/60 z-10 sm:opacity-0 sm:group-hover:opacity-100 hover:scale-110"
-              aria-label={isMuted ? 'Unmute' : 'Mute'}
-            >
-              {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-            </button>
-          </motion.div>
-
-          {/* Option 2: Internship */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="col-span-1 lg:row-span-1"
-          >
-            <Link
-              to="/hire"
-              className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
-            >
-              <div className="flex justify-between items-start">
-                <div className="p-3 bg-gray-50 border border-gray-100 rounded-2xl group-hover:bg-[#0f0f0f] group-hover:text-white transition-colors duration-300">
-                  <GraduationCap className="w-7 h-7" />
-                </div>
-                <div className="p-3 rounded-full bg-gray-50 border border-gray-100 group-hover:bg-gray-100 transition-colors duration-300">
-                  <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-gray-400 group-hover:text-[#0f0f0f]" />
-                </div>
-              </div>
-              <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  Guided 4-Month Internship
-                </h3>
-                <p className="text-sm text-gray-500 font-medium">Battle-tested in real projects</p>
-              </div>
-            </Link>
-          </motion.div>
-
-          {/* Option 3: Full-time */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="col-span-1 lg:row-span-1"
-          >
-            <Link
-              to="/hire"
-              className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
-            >
-              <div className="flex justify-between items-start">
-                <div className="p-3 bg-gray-50 border border-gray-100 rounded-2xl group-hover:bg-[#0f0f0f] group-hover:text-white transition-colors duration-300">
-                  <Briefcase className="w-7 h-7" />
-                </div>
-                <div className="p-3 rounded-full bg-gray-50 border border-gray-100 group-hover:bg-gray-100 transition-colors duration-300">
-                  <ArrowRight className="w-5 h-5 -rotate-45 group-hover:rotate-0 transition-transform duration-300 text-gray-400 group-hover:text-[#0f0f0f]" />
-                </div>
-              </div>
-              <div className="mt-6 lg:mt-0">
-                <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  Accelerated Full-time Hiring
-                </h3>
-                <p className="text-sm text-gray-500 font-medium">Ready for Day-One impact</p>
-              </div>
-            </Link>
-          </motion.div>
+              <h3 className="mb-3 text-xl font-semibold text-gray-900">Why Companies Choose Us</h3>
+              <table className="w-full flex-1 border-separate border-spacing-y-1.5 text-[13px]">
+                <thead>
+                  <tr className="text-left">
+                    <th
+                      scope="col"
+                      className="rounded-lg bg-black/[0.035] px-2.5 py-2 font-semibold text-gray-700"
+                    >
+                      Traditional Hiring
+                    </th>
+                    <th aria-hidden="true" className="w-6" />
+                    <th
+                      scope="col"
+                      className="rounded-lg bg-[#4a5d23]/10 px-2.5 py-2 font-semibold text-gray-900"
+                    >
+                      T3 AI Works
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {COMPARISON.map(([before, after]) => (
+                    <tr key={before}>
+                      <td className="rounded-lg bg-black/[0.035] px-2.5 py-2 text-gray-600">
+                        {before}
+                      </td>
+                      <td aria-hidden="true" className="w-6 text-center text-gray-500">
+                        <ArrowRight className="mx-auto h-4 w-4" />
+                      </td>
+                      <td className="rounded-lg bg-black/[0.035] px-2.5 py-2 font-medium text-gray-900">
+                        {after}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

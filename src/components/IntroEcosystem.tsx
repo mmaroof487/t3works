@@ -32,7 +32,7 @@ const STATS = [
 
 export default function IntroEcosystem() {
   return (
-    <section className="w-full bg-transparent pb-16 pt-8 md:pb-24 md:pt-12">
+    <section className="w-full bg-transparent py-8 md:py-12">
       <div className="relative z-10 mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-16">
           <motion.div

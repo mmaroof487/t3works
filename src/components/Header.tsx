@@ -4,11 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const NAV_ITEMS = [
-  { name: 'University', path: '#funnel' },
+  { name: 'University', path: '#ecosystem' },
   { name: 'Students', path: '#student-journey' },
   { name: 'Companies', path: '#clients' },
   { name: 'How It Works', path: '#pipeline' },
-  { name: 'Leadership', path: '#leadership' },
   { name: 'Radix', path: '/radix' },
 ];
 

@@ -20,7 +20,7 @@ const EDGE_FADE: React.CSSProperties = {
 // Below md the picture keeps a minimum width and scrolls sideways instead of shrinking.
 export default function PrecisionPipeline() {
   return (
-    <section className="relative w-full overflow-x-clip pb-16 pt-2 md:pb-24 md:pt-4">
+    <section className="relative w-full overflow-x-clip py-8 md:py-12">
       {/* geometric network, mirrored from the hero's, centred on the seam with the section above, bleeding off the right edge */}
       <img
         src="/images/Minimalist%20Neural%20Network%20Background.webp"
