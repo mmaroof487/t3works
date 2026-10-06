@@ -128,7 +128,7 @@ export default function ClientLogos() {
       <div className="absolute inset-0 bg-[url('/images/grid-pattern.svg')] opacity-5" />
 
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8 relative z-10 mb-16">
-        <div className="flex flex-col items-center text-center max-w-3xl mx-auto">
+        <div className="flex flex-col items-center text-center max-w-[52rem] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -143,7 +143,7 @@ export default function ClientLogos() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-white mb-6 lg:whitespace-nowrap"
           >
             Trusted by Industry Leaders
           </motion.h2>
