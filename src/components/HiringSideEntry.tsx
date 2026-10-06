@@ -49,8 +49,7 @@ export default function HiringSideEntry() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/hire"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-[#0f0f0f] text-white rounded-[2rem] p-8 flex flex-col justify-between shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg"
             >
               <div className="absolute -inset-[1px] rounded-[2rem] border border-white/10" />
@@ -68,7 +67,7 @@ export default function HiringSideEntry() {
                   Zero-Risk Trial
                 </p>
               </div>
-            </Link>
+            </div>
           </motion.div>
 
           {/* Video Card */}
@@ -111,8 +110,7 @@ export default function HiringSideEntry() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/hire"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
             >
               <div className="flex justify-between items-start">
@@ -129,7 +127,7 @@ export default function HiringSideEntry() {
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">Battle-tested in real projects</p>
               </div>
-            </Link>
+            </div>
           </motion.div>
 
           {/* Option 3: Full-time */}
@@ -140,8 +138,7 @@ export default function HiringSideEntry() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/hire"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
             >
               <div className="flex justify-between items-start">
@@ -158,7 +155,7 @@ export default function HiringSideEntry() {
                 </h3>
                 <p className="text-sm text-gray-500 font-medium">Ready for Day-One impact</p>
               </div>
-            </Link>
+            </div>
           </motion.div>
         </div>
       </div>

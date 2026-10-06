@@ -37,8 +37,7 @@ export default function JobSeekerFunnel() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/apply"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-[#0f0f0f] text-white rounded-[2rem] p-8 flex flex-col justify-between shadow-sm relative overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg"
             >
               <div className="absolute -inset-[1px] rounded-[2rem] border border-white/10" />
@@ -56,7 +55,7 @@ export default function JobSeekerFunnel() {
                   Expert Guidance
                 </p>
               </div>
-            </Link>
+            </div>
           </motion.div>
 
           {/* Option 2 */}
@@ -67,8 +66,7 @@ export default function JobSeekerFunnel() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/apply"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
             >
               <div className="flex justify-between items-start">
@@ -87,7 +85,7 @@ export default function JobSeekerFunnel() {
                   Code Audits
                 </p>
               </div>
-            </Link>
+            </div>
           </motion.div>
 
           {/* Option 3 */}
@@ -98,8 +96,7 @@ export default function JobSeekerFunnel() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="col-span-1 lg:row-span-1"
           >
-            <Link
-              to="/apply"
+            <div
               className="group block h-full w-full min-h-[220px] lg:min-h-0 bg-white border border-gray-100 rounded-[2rem] p-8 flex flex-col justify-between shadow-sm transition-all duration-300 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1"
             >
               <div className="flex justify-between items-start">
@@ -118,7 +115,7 @@ export default function JobSeekerFunnel() {
                   Path to AI
                 </p>
               </div>
-            </Link>
+            </div>
           </motion.div>
         </div>
       </div>
