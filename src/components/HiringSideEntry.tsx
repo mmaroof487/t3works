@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, FileSearch, Users } from 'lucide-react';
 import JourneyCards, { SolidBriefcase, type IconType, type JourneyStep } from './JourneyCards';
+import PinnedJourney from './PinnedJourney';
+import { usePinnedJourney } from '../lib/usePinnedJourney';
 
 const STEPS: JourneyStep[] = [
   {
@@ -41,38 +43,57 @@ const COMPARISON = [
   ['Onboarding risk', 'Mentor-trained engineers'],
 ];
 
+const COMPANY_ACCENT = '#c9b27a';
+
+function Heading({ className }: { className: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className={className}
+    >
+      <div className="mb-6 flex items-center gap-4">
+        <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
+        <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
+          For companies
+        </span>
+        <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
+      </div>
+      <h2 className="mb-5 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
+        Hire Engineers{' '}
+        <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
+          Built for Real Work.
+        </span>
+      </h2>
+      <p className="max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
+        Deploy AI engineers trained across autonomous agents, RAG pipelines, full-stack security and
+        real-world projects — validated before they reach your hiring pipeline.
+      </p>
+    </motion.div>
+  );
+}
+
 export default function HiringSideEntry() {
+  const pinned = usePinnedJourney();
+
   return (
     <section className="relative w-full overflow-x-clip bg-[#f5f5f0] py-8 md:py-12">
       <div className="relative mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 max-w-5xl md:mb-20"
-        >
-          <div className="mb-6 flex items-center gap-4">
-            <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
-              For companies
-            </span>
-            <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
-          </div>
-          <h2 className="mb-5 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-            Hire Engineers{' '}
-            <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
-              Built for Real Work.
-            </span>
-          </h2>
-          <p className="max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
-            Deploy AI engineers trained across autonomous agents, RAG pipelines, full-stack security
-            and real-world projects — validated before they reach your hiring pipeline.
-          </p>
-        </motion.div>
+        {pinned ? (
+          <PinnedJourney
+            steps={STEPS}
+            accent={COMPANY_ACCENT}
+            accentInk="#232621"
+            heading={<Heading className="mb-5 max-w-5xl" />}
+          />
+        ) : (
+          <Heading className="mb-16 max-w-5xl md:mb-20" />
+        )}
 
-        <div className="grid gap-x-6 gap-y-10 xl:grid-cols-[3fr_1.3fr]">
-          <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-3" />
+        <div className={`${pinned ? 'mt-10 ' : ''}grid gap-x-6 gap-y-10 xl:grid-cols-[3fr_1.3fr]`}>
+          {!pinned && <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-3" />}
 
           <div className="relative">
             {/* business district rising from behind the panel (transparent image, wide screens only) */}
