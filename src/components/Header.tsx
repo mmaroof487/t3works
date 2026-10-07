@@ -111,7 +111,7 @@ export default function Header() {
   };
 
   return (
-    <div className="fixed bottom-4 lg:bottom-auto lg:top-10 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
+    <div className="fixed bottom-4 md:bottom-20 lg:bottom-auto lg:top-10 left-0 right-0 z-[100] flex justify-center w-full px-4 pointer-events-none">
       <motion.header
         layout={!isMobile}
         initial={{ borderRadius: 20 }}
