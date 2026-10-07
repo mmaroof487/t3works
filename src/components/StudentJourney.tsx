@@ -2,16 +2,8 @@ import { motion } from 'framer-motion';
 import { ChartNoAxesCombined, FileUser, GraduationCap } from 'lucide-react';
 import JourneyCards, { SolidBriefcase, type IconType, type JourneyStep } from './JourneyCards';
 import PinnedJourney from './PinnedJourney';
+import { ART_EDGE_FADE } from '../lib/artEdgeFade';
 import { usePinnedJourney } from '../lib/usePinnedJourney';
-
-const EDGE_FADE: React.CSSProperties = {
-  maskImage:
-    'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent), linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-  maskComposite: 'intersect',
-  WebkitMaskImage:
-    'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent), linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
-  WebkitMaskComposite: 'source-in',
-};
 
 const STEPS: JourneyStep[] = [
   {
@@ -123,7 +115,7 @@ export default function StudentJourney() {
                 alt=""
                 aria-hidden="true"
                 className="pointer-events-none absolute bottom-full right-0 hidden w-[38%] max-w-none translate-y-[16%] mix-blend-darken xl:block"
-                style={EDGE_FADE}
+                style={ART_EDGE_FADE}
               />
               <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-4" />
             </div>

@@ -5,6 +5,7 @@ import IntroEcosystem from '../components/IntroEcosystem';
 import HiringSideEntry from '../components/HiringSideEntry';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
+import UniversityJourney from '../components/UniversityJourney';
 import RoleEntry from '../components/RoleEntry';
 import PrecisionPipeline from '../components/PrecisionPipeline';
 import UltimateVision from '../components/UltimateVision';
@@ -65,6 +66,9 @@ export default function LandingPage() {
       </div>
       <div id="pipeline">
         <PrecisionPipeline />
+      </div>
+      <div id="universities">
+        <UniversityJourney />
       </div>
       <div id="student-journey">
         <StudentJourney />
