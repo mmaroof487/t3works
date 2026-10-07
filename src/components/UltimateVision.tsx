@@ -12,7 +12,7 @@ const POINTS = [
 
 export default function UltimateVision() {
   return (
-    <section className="w-full py-16 md:py-24">
+    <section className="w-full pb-8 pt-16 md:pt-24">
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
