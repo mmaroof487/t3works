@@ -2,12 +2,6 @@ import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
-const LABELS = [
-  { title: 'Universities', text: 'Raw talent enters', align: 'text-left' },
-  { title: 'T3 AI Works', text: 'Rigour-driven pipeline', align: 'text-center' },
-  { title: 'Enterprises', text: 'Mentor-trained builders emerge', align: 'text-right' },
-];
-
 // fade the image edges to transparent so the crop never shows a hard line
 const FADE: React.CSSProperties = {
   maskImage:
@@ -48,7 +42,7 @@ export default function Hero() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="relative flex min-h-screen w-full flex-col items-center bg-[#f5f5f0] pt-[5.25rem] pb-12">
+    <section className="relative flex min-h-svh w-full sm:min-h-screen flex-col items-center bg-[#f5f5f0] pt-[4.5rem] pb-28 sm:pt-[5.25rem] sm:pb-12">
       <Backdrop />
       {/* equal spacers centre the content vertically; the top one never shrinks below the gap
           that keeps the heading clear of the fixed nav pill on short desktop viewports */}
@@ -81,38 +75,35 @@ export default function Hero() {
             More engineering.
           </span>
         </h1>
-        <p className="mt-4 max-w-[54rem] text-lg lg:text-xl leading-relaxed text-gray-800">
+        <p className="mt-3 max-w-[54rem] text-base sm:mt-4 sm:text-lg lg:text-xl leading-relaxed text-gray-800">
           Bridging university, enterprise and AI demand, converting raw talent into mentor-trained
           builders through a rigour-driven pipeline.
         </p>
 
-        {/* phones: zoom to the university -> hub -> arrows core and swap the baked-in labels for real text */}
-        <figure className="w-full max-w-6xl sm:-mt-2 sm:-mb-4">
-          <div className="aspect-[49/20] overflow-hidden sm:aspect-auto">
-            <img
-              src="/images/Talent%20Pipeline.webp"
-              width={2172}
-              height={724}
-              alt="Raw talent from universities flows into the T3 AI Works rigour-driven pipeline and emerges as mentor-trained builders for enterprises."
-              className="-ml-[30%] h-auto w-[160%] max-w-none mix-blend-multiply sm:ml-0 sm:w-full sm:[mask-image:linear-gradient(to_right,transparent,black_1.5%,black_98.5%,transparent)]"
-            />
-          </div>
-          <figcaption className="mt-3 grid grid-cols-3 gap-2 sm:hidden">
-            {LABELS.map((label) => (
-              <div key={label.title} className={label.align}>
-                <p className="text-sm font-semibold text-gray-900">{label.title}</p>
-                <p className="text-xs text-gray-600">{label.text}</p>
-              </div>
-            ))}
-          </figcaption>
+        {/* phones get their own artwork with the labels baked in, bled to the screen edges */}
+        <figure className="-mx-4 mt-0 w-[calc(100%+2rem)] max-w-6xl sm:mx-0 sm:-mt-2 sm:-mb-4 sm:w-full">
+          <img
+            src="/images/hero-mobile.webp"
+            width={2400}
+            height={1194}
+            alt="Raw talent from universities flows into the T3 AI Works rigour-driven pipeline and emerges as mentor-trained builders for enterprises."
+            className="h-auto w-full brightness-[1.012] sm:hidden"
+          />
+          <img
+            src="/images/Talent%20Pipeline.webp"
+            width={2172}
+            height={724}
+            alt="Raw talent from universities flows into the T3 AI Works rigour-driven pipeline and emerges as mentor-trained builders for enterprises."
+            className="hidden h-auto w-full mix-blend-multiply sm:block sm:[mask-image:linear-gradient(to_right,transparent,black_1.5%,black_98.5%,transparent)]"
+          />
         </figure>
 
-        <p className="mt-5 max-w-[44.5rem] text-sm sm:text-base text-gray-700">
+        <p className="mt-2 max-w-[44.5rem] text-[0.9375rem] sm:mt-5 sm:text-base text-gray-700">
           Candidates are trained as engineers in AI and multi-agent systems, then connected directly
           with enterprise opportunities.
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+        <div className="mt-7 flex w-full flex-wrap sm:mt-6 items-center justify-center gap-3 sm:w-auto sm:gap-4">
           <button
             type="button"
             onClick={() => {
@@ -120,14 +111,14 @@ export default function Hero() {
                 .getElementById('ecosystem')
                 ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
             }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] whitespace-nowrap px-4 py-3.5 text-base sm:w-auto sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70"
           >
             See how it works
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
           <a
             href="mailto:hello@t3works.com"
-            className="inline-flex items-center rounded-full border border-gray-900/70 whitespace-nowrap px-4 py-3.5 text-sm sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-gray-900 transition-colors hover:bg-white"
+            className="hidden items-center rounded-full border border-gray-900/70 whitespace-nowrap px-8 py-4 text-[0.9375rem] sm:inline-flex font-medium text-gray-900 transition-colors hover:bg-white"
           >
             Speak to an Expert
           </a>
