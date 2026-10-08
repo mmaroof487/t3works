@@ -6,7 +6,6 @@ import HiringSideEntry from '../components/HiringSideEntry';
 import ClientLogos from '../components/ClientLogos';
 import StudentJourney from '../components/StudentJourney';
 import UniversityJourney from '../components/UniversityJourney';
-import RoleEntry from '../components/RoleEntry';
 import PrecisionPipeline from '../components/PrecisionPipeline';
 import UltimateVision from '../components/UltimateVision';
 
@@ -76,9 +75,7 @@ export default function LandingPage() {
       <div id="clients">
         <HiringSideEntry />
       </div>
-      <div id="get-started">
-        <RoleEntry />
-      </div>
+
       <div id="trusted">
         <ClientLogos />
       </div>

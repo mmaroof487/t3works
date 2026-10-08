@@ -46,8 +46,8 @@ const LINK_GROUPS = [
     links: [
       { label: 'Talent Solutions', to: '#clients' },
       { label: 'How It Works', to: '#pipeline' },
-      { label: 'PoC Engagement', to: '/hire' },
-      { label: 'Hire AI Talent', to: '/hire' },
+      { label: 'PoC Engagement', to: '/apply' },
+      { label: 'Hire AI Talent', to: '/apply' },
       { label: 'FAQs', to: '#' },
     ],
   },

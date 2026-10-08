@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import LandingPage from './pages/LandingPage';
-import CandidatePortal from './pages/CandidatePortal';
-import EnterprisePortal from './pages/EnterprisePortal';
+import ApplyPage from './pages/ApplyPage';
 import RadixPage from './pages/RadixPage';
 import LeadershipPage from './pages/LeadershipPage';
 import Preloader from './components/Preloader';
@@ -24,8 +23,9 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<LandingPage />} />
-            <Route path="apply" element={<CandidatePortal />} />
-            <Route path="hire" element={<EnterprisePortal />} />
+            <Route path="apply" element={<ApplyPage />} />
+            {/* Legacy /hire route — redirect to unified apply page */}
+            <Route path="hire" element={<Navigate to="/apply" replace />} />
             <Route path="radix" element={<RadixPage />} />
             <Route path="leadership" element={<LeadershipPage />} />
           </Route>

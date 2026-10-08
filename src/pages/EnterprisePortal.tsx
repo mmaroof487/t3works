@@ -33,7 +33,11 @@ const STEP_SCHEMAS = [
   enterpriseStep4Schema,
 ];
 
-export default function EnterprisePortal() {
+interface EnterprisePortalProps {
+  onBack?: () => void;
+}
+
+export default function EnterprisePortal({ onBack }: EnterprisePortalProps) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<EnterpriseFormData>(enterpriseFormDefaults);
   const [jdFile, setJdFile] = useState<File | null>(null);
@@ -136,23 +140,27 @@ export default function EnterprisePortal() {
       <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/70 to-[#232621]/20" />
+          <div
+            className="absolute inset-0 bg-[url('/images/Isometric%20Smart%20City%20Business%20District.webp')] bg-cover bg-center scale-110 transition-transform duration-700 hover:scale-125"
+            style={{ backgroundPosition: '60% center', filter: 'saturate(0.8)' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#6b5530] via-[#a3854a]/85 to-[#a3854a]/40" />
 
-          <div className="relative z-10 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ba05f] text-white font-bold text-xl">
-              T3
-            </div>
-            <span className="text-xl font-bold tracking-tight">AI Works</span>
+          <div className="relative z-10">
+            <img
+              src="/images/t3works_nobg.webp"
+              alt="t3works"
+              className="h-9 w-auto brightness-0 invert"
+            />
           </div>
 
           <div className="relative z-10 mt-auto mb-auto pt-12">
             <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md mb-6">
               Enterprise Hiring Portal
             </span>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
+            <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
               Deploy Day-One ready AI engineers
-            </h1>
+            </h2>
             <p className="text-lg text-white/70 max-w-md leading-relaxed">
               Submit your hiring requirement and we'll scope the match within 48 hours — zero
               upfront fee until PoC or internship validation.
@@ -167,16 +175,26 @@ export default function EnterprisePortal() {
 
         {/* Right Side: Form */}
         <div className="w-full lg:w-7/12 p-6 sm:p-10 md:p-14 lg:p-16 flex flex-col justify-center">
+          {/* Back to path chooser */}
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="mb-6 self-start inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#a3854a] transition-colors"
+            >
+              <ArrowLeft size={14} />
+              Back to paths
+            </button>
+          )}
+
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="lg:hidden mb-10 text-center flex flex-col items-center">
-            <div className="flex items-center gap-2 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#8ba05f] text-white font-bold text-xl">
-                T3
-              </div>
-              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
-            </div>
+            <img
+              src="/images/t3works_whitebg.webp"
+              alt="t3works"
+              className="mb-6 h-10 w-auto rounded-xl border border-black/[0.07] object-contain"
+            />
 
-            <span className="inline-flex rounded-full border border-[#8ba05f]/20 bg-[#8ba05f]/5 px-4 py-1.5 text-xs font-semibold text-[#667744] mb-4">
+            <span className="inline-flex rounded-full border border-[#a3854a]/20 bg-[#a3854a]/5 px-4 py-1.5 text-xs font-semibold text-[#a3854a] mb-4">
               Enterprise Hiring Portal
             </span>
             <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
@@ -474,9 +492,9 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
           transition={{ duration: 0.5, ease: 'easeOut' }}
           className="rounded-[2rem] bg-white shadow-xl border border-gray-100 p-10 sm:p-14 text-center overflow-hidden relative"
         >
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#8ba05f] to-[#4a5d23]" />
+          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#a3854a] to-[#c9b27a]" />
 
-          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#8ba05f]/10 text-[#8ba05f] ring-8 ring-[#8ba05f]/5">
+          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-[#a3854a]/10 text-[#a3854a] ring-8 ring-[#a3854a]/5">
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
 

@@ -13,8 +13,7 @@ const NAV_ITEMS = [
   { name: 'Leadership', path: '/leadership' },
 ];
 
-// the nav CTA scrolls to the students / companies chooser
-const APPLY_PATH = '#get-started';
+// the nav CTA goes directly to the unified apply page
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('home');
@@ -37,8 +36,8 @@ export default function Header() {
       const navSections = NAV_ITEMS.filter((item) => item.path.startsWith('#')).map((item) =>
         item.path.substring(1)
       );
-      // the chooser has no nav link, but being on it makes the Apply Now button glow
-      const sections = [...navSections, APPLY_PATH.substring(1)];
+      // the chooser has no nav link
+      const sections = [...navSections];
       let current = '';
 
       // Check if user is at the very bottom of the page
@@ -66,8 +65,6 @@ export default function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-
-  const applyGlow = activeSection === APPLY_PATH.substring(1) ? ' cta-glow' : '';
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -171,15 +168,15 @@ export default function Header() {
                   );
                 })}
                 <div className="flex flex-col gap-3 w-full mt-2">
-                  <button
-                    onClick={(e) => {
-                      handleSmoothScroll(e, APPLY_PATH);
+                  <Link
+                    to="/apply"
+                    onClick={() => {
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+                    className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer`}
                   >
                     Apply Now
-                  </button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
@@ -290,14 +287,12 @@ export default function Header() {
 
           {/* Right: CTAs (Desktop Only) */}
           <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
-            <button
-              onClick={(e) => {
-                handleSmoothScroll(e, APPLY_PATH);
-              }}
-              className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+            <Link
+              to="/apply"
+              className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer`}
             >
               Apply Now
-            </button>
+            </Link>
           </motion.div>
         </div>
       </motion.header>

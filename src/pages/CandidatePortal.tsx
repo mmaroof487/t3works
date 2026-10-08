@@ -41,7 +41,11 @@ const DEGREE_OPTIONS = [
 
 const INTERNSHIP_COUNT_OPTIONS = ['0', '1', '2', '3', '4+'];
 
-export default function CandidatePortal() {
+interface CandidatePortalProps {
+  onBack?: () => void;
+}
+
+export default function CandidatePortal({ onBack }: CandidatePortalProps) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<CandidateFormData>(candidateFormDefaults);
   const [resume, setResume] = useState<File | null>(null);
@@ -138,23 +142,27 @@ export default function CandidatePortal() {
       <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/80 to-transparent" />
+          <div
+            className="absolute inset-0 bg-[url('/images/Students%20Image.webp')] bg-cover bg-center scale-110 transition-transform duration-700 hover:scale-125"
+            style={{ backgroundPosition: '60% center' }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2f3b16] via-[#4a5d23]/85 to-[#4a5d23]/40" />
 
-          <div className="relative z-10 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#232621] font-bold text-xl">
-              T3
-            </div>
-            <span className="text-xl font-bold tracking-tight">AI Works</span>
+          <div className="relative z-10">
+            <img
+              src="/images/t3works_nobg.webp"
+              alt="t3works"
+              className="h-9 w-auto brightness-0 invert"
+            />
           </div>
 
           <div className="relative z-10 mt-auto mb-auto pt-12">
             <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md mb-6">
               Candidate Application Portal
             </span>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
+            <h2 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
               Enter the T3 Talent Funnel
-            </h1>
+            </h2>
             <p className="text-lg text-white/70 max-w-md leading-relaxed">
               Apply in a few minutes. Your application enters the Phase 0 assessment pipeline
               immediately after submission.
@@ -169,16 +177,26 @@ export default function CandidatePortal() {
 
         {/* Right Side: Form */}
         <div className="w-full lg:w-7/12 p-6 sm:p-10 md:p-14 lg:p-16 flex flex-col justify-center">
+          {/* Back to path chooser */}
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="mb-6 self-start inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#4a5d23] transition-colors"
+            >
+              <ArrowLeft size={14} />
+              Back to paths
+            </button>
+          )}
+
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="lg:hidden mb-10 text-center flex flex-col items-center">
-            <div className="flex items-center gap-2 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#232621] text-white font-bold text-xl">
-                T3
-              </div>
-              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
-            </div>
+            <img
+              src="/images/t3works_whitebg.webp"
+              alt="t3works"
+              className="mb-6 h-10 w-auto rounded-xl border border-black/[0.07] object-contain"
+            />
 
-            <span className="inline-flex rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-semibold text-gray-700 mb-4">
+            <span className="inline-flex rounded-full border border-[#4a5d23]/20 bg-[#4a5d23]/5 px-4 py-1.5 text-xs font-semibold text-[#4a5d23] mb-4">
               Candidate Application Portal
             </span>
             <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
