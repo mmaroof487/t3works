@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Mail, MapPin } from 'lucide-react';
 
 const SOCIALS = [
@@ -36,7 +36,7 @@ const LINK_GROUPS = [
     links: [
       { label: 'How It Works', to: '#pipeline' },
       { label: 'Student Journey', to: '#student-journey' },
-      { label: 'Apply Now', to: '/apply' },
+      { label: 'Apply Now', to: '/apply/form' },
       { label: 'Success Stories', to: '#trusted' },
       { label: 'FAQs', to: '#' },
     ],
@@ -47,7 +47,7 @@ const LINK_GROUPS = [
       { label: 'Talent Solutions', to: '#clients' },
       { label: 'How It Works', to: '#pipeline' },
       { label: 'PoC Engagement', to: '/hire' },
-      { label: 'Hire AI Talent', to: '/hire' },
+      { label: 'Hire AI Talent', to: '/hire/form' },
       { label: 'FAQs', to: '#' },
     ],
   },
@@ -112,7 +112,21 @@ function FooterLink({ to, children }: { to: string; children: ReactNode }) {
 
 const [STUDENT_LINKS, COMPANY_LINKS, ABOUT_LINKS] = LINK_GROUPS;
 
+// the vision line and the company blurb are worded for the audience of the page above them
+const VISION =
+  'We connect ambitious students with forward-thinking enterprises to build real-world engineering talent for a better tomorrow.';
+const COMPANY_VISION =
+  'We connect forward-thinking enterprises with ambitious engineers through real-world engineering systems, creating a stronger bridge between technical talent and the demands of modern digital products.';
+const ABOUT =
+  'T3 AI Works is a merit-gated talent transformation engine connecting AI-ready engineers with enterprise opportunities worldwide.';
+const STUDENT_ABOUT =
+  'T3 AI Works is a merit-gated talent transformation engine connecting ambitious engineers with real-world engineering opportunities.';
+
 export default function Footer() {
+  const { pathname } = useLocation();
+  const vision = pathname === '/hire' ? COMPANY_VISION : VISION;
+  const about = pathname === '/apply' ? STUDENT_ABOUT : ABOUT;
+
   return (
     <footer
       id="contact"
@@ -151,8 +165,7 @@ export default function Footer() {
                 </span>
               </h2>
               <p className="text-[0.8125rem] leading-relaxed text-gray-600 sm:text-sm md:max-w-[30rem] md:text-balance md:text-base">
-                We connect ambitious students with forward-thinking enterprises to build real-world
-                engineering talent for a better tomorrow.
+                {vision}
               </p>
             </div>
 
@@ -276,10 +289,7 @@ export default function Footer() {
                 engineering.
               </span>
             </h2>
-            <p className="max-w-[28rem] text-lg leading-relaxed text-gray-600">
-              We connect ambitious students with forward-thinking enterprises to build real-world
-              engineering talent for a better tomorrow.
-            </p>
+            <p className="max-w-[28rem] text-lg leading-relaxed text-gray-600">{vision}</p>
             <div className="mt-7 flex items-center" aria-hidden="true">
               <span className="h-2.5 w-2.5 rounded-full bg-[#4a5d23]" />
               <span className="h-px w-28 bg-[#4a5d23]/50" />
@@ -305,10 +315,7 @@ export default function Footer() {
               alt="T3 AI Works"
               className="mb-4 h-12 w-auto rounded-xl border border-black/[0.07] object-contain"
             />
-            <p className="mb-4 max-w-[19rem] text-sm leading-relaxed text-gray-600">
-              T3 AI Works is a merit-gated talent transformation engine connecting AI-ready
-              engineers with enterprise opportunities worldwide.
-            </p>
+            <p className="mb-4 max-w-[19rem] text-sm leading-relaxed text-gray-600">{about}</p>
             <div className="flex items-center gap-4">
               {SOCIALS.map((social) => (
                 <button

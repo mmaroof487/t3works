@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation, Link } from 'react-router-dom';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
@@ -17,14 +17,36 @@ import {
 } from 'lucide-react';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { SystemModal } from '../components/SystemModal';
-import { SYSTEMS_DATA } from '../data/systems';
+import { RADIX_GENERAL, type RadixContent, type RadixLink, type RadixSystem } from '../data/radix';
 
-export default function RadixPage() {
+// one icon per pillar and per technology group, in the order the content lists them
+const PILLAR_ICONS = [Code2, Database, Server, BrainCircuit, Lock];
+const TECH_ICONS = [BrainCircuit, Cloud, Database, Code2, Terminal, Wrench];
+
+const NOTE_CLASS = 'mx-auto mt-12 max-w-3xl text-center text-base font-medium';
+
+// "#id" links scroll within the page; anything else is a route
+function CtaLink({ link, className }: { link: RadixLink; className: string }) {
+  return link.href.startsWith('#') ? (
+    <a href={link.href} className={className}>
+      {link.label}
+    </a>
+  ) : (
+    <Link to={link.href} className={className}>
+      {link.label}
+    </Link>
+  );
+}
+
+// The Radix page. Radix for Students and Radix for Companies pass their own wording; the layout
+// is shared.
+export default function RadixPage({ content = RADIX_GENERAL }: { content?: RadixContent }) {
+  const { hero, overview, systems, scale, tech, complexity, outcomes, cta } = content;
   const location = useLocation();
   const { scrollY } = useScroll();
   const topGradientOpacity = useTransform(scrollY, [0, 400], [0, 1]);
 
-  const [selectedSystem, setSelectedSystem] = useState<(typeof SYSTEMS_DATA)[0] | null>(null);
+  const [selectedSystem, setSelectedSystem] = useState<RadixSystem | null>(null);
 
   const staggerContainer = {
     hidden: { opacity: 0 },
@@ -130,7 +152,7 @@ export default function RadixPage() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="inline-flex items-center gap-2 rounded-full border border-[#4a5d23]/20 bg-white/50 backdrop-blur-md px-4 py-1.5 text-xs font-semibold text-[#4a5d23] shadow-sm mb-6 md:mb-5 lg:mb-6"
           >
-            Engineering the Future of Digital Intelligence Systems
+            {hero.eyebrow}
           </motion.div>
 
           <motion.h1
@@ -139,7 +161,17 @@ export default function RadixPage() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
             className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight max-w-4xl leading-[1.1] text-[#232621] mb-6 md:mb-5 lg:mb-6"
           >
-            Where Academic Rigour <br /> Meets Production Engineering
+            {hero.title.map((line, index) => (
+              <Fragment key={line}>
+                {index > 0 && (
+                  <>
+                    {' '}
+                    <br />{' '}
+                  </>
+                )}
+                {line}
+              </Fragment>
+            ))}
           </motion.h1>
 
           <motion.p
@@ -148,8 +180,7 @@ export default function RadixPage() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             className="text-base md:text-lg text-gray-600 max-w-3xl leading-relaxed mb-6 md:mb-4 lg:mb-6"
           >
-            Real Product Engineering • System Architecture & Data Design • DevOps & Cloud
-            Infrastructure • AI Systems & Agent Orchestration • Enterprise Platform Design
+            {hero.tagline}
           </motion.p>
 
           <motion.p
@@ -158,9 +189,7 @@ export default function RadixPage() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="text-sm md:text-base text-gray-500 max-w-2xl leading-relaxed mb-10 md:mb-8 lg:mb-10"
           >
-            Students contribute to the design and development of real-world engineering systems
-            spanning product platforms, AI architectures, cloud infrastructure, and enterprise-grade
-            system design — building technology that operates at production scale.
+            {hero.body}
           </motion.p>
 
           <motion.div
@@ -170,17 +199,17 @@ export default function RadixPage() {
             className="flex flex-col sm:flex-row items-center gap-4"
           >
             <a
-              href="#projects"
+              href={hero.primary.href}
               className="inline-flex items-center justify-center rounded-full bg-[#232621] px-8 py-4 text-[0.9375rem] font-medium text-white hover:bg-[#2f332c] transition-all shadow-md hover:shadow-lg w-full sm:w-auto gap-2 group"
             >
-              Explore the 8 Engineering Systems
+              {hero.primary.label}
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </a>
             <a
-              href="#overview"
+              href={hero.secondary.href}
               className="inline-flex items-center justify-center rounded-full bg-white border border-gray-200 px-8 py-4 text-[0.9375rem] font-medium text-gray-900 hover:bg-gray-50 transition-all shadow-sm w-full sm:w-auto"
             >
-              Program Architecture
+              {hero.secondary.label}
             </a>
           </motion.div>
         </div>
@@ -197,16 +226,10 @@ export default function RadixPage() {
             className="text-center mb-16"
           >
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
-              Program Architecture
+              {overview.label}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
-              Where Academic Rigour Meets Production Engineering
-            </h2>
-            <p className="text-gray-600 max-w-3xl mx-auto text-lg">
-              Traditional programs teach theory in isolation. This initiative immerses students in
-              the engineering of complex digital systems — bridging the gap between classroom
-              knowledge and the demands of building technology at scale.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">{overview.title}</h2>
+            <p className="text-gray-600 max-w-3xl mx-auto text-lg">{overview.intro}</p>
           </motion.div>
 
           <motion.div
@@ -216,52 +239,25 @@ export default function RadixPage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {[
-              {
-                icon: <Code2 size={24} />,
-                title: '8 Engineering Systems',
-                subtitle: 'Real Product Engineering',
-                desc: 'Architect and build a production-grade AI-powered intelligence platform — not simulations, but systems designed for real-world deployment.',
-              },
-              {
-                icon: <Database size={24} />,
-                title: '100+ Tables',
-                subtitle: 'System Architecture & Data Design',
-                desc: 'Decompose complex domains into normalized databases, structured schemas, and scalable multi-layer architectures with 100+ relational tables.',
-              },
-              {
-                icon: <Server size={24} />,
-                title: 'Cloud-Native',
-                subtitle: 'DevOps & Cloud Infrastructure',
-                desc: 'Deploy containerized services with CI/CD pipelines, cloud-native infrastructure, observability frameworks, and automated deployment workflows.',
-              },
-              {
-                icon: <BrainCircuit size={24} />,
-                title: 'Multi-Agent AI',
-                subtitle: 'AI Systems & Agent Orchestration',
-                desc: 'Design multi-agent AI systems using LangChain, LangGraph, vector databases, and orchestrated ML pipelines with schema-enforced validation.',
-              },
-              {
-                icon: <Lock size={24} />,
-                title: 'Enterprise-Grade',
-                subtitle: 'Enterprise Platform Design',
-                desc: 'Architect enterprise-grade platforms with security governance, role-based access control, audit trails, and high-availability design patterns.',
-              },
-            ].map((pillar, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUpItem}
-                className="bg-gray-50 border border-gray-100 p-8 rounded-[2rem] hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="h-12 w-12 rounded-xl bg-[#8ba05f]/20 flex items-center justify-center text-[#4a5d23] mb-6 group-hover:bg-[#8ba05f]/30 transition-all duration-300">
-                  {pillar.icon}
-                </div>
-                <h3 className="text-xl font-bold text-[#232621] mb-2">{pillar.title}</h3>
-                <p className="text-sm font-medium text-[#8ba05f] mb-4">{pillar.subtitle}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{pillar.desc}</p>
-              </motion.div>
-            ))}
+            {overview.pillars.map((pillar, i) => {
+              const Icon = PILLAR_ICONS[i];
+              return (
+                <motion.div
+                  key={i}
+                  variants={fadeUpItem}
+                  className="bg-gray-50 border border-gray-100 p-8 rounded-[2rem] hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div className="h-12 w-12 rounded-xl bg-[#8ba05f]/20 flex items-center justify-center text-[#4a5d23] mb-6 group-hover:bg-[#8ba05f]/30 transition-all duration-300">
+                    <Icon size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-[#232621] mb-2">{pillar.title}</h3>
+                  <p className="text-sm font-medium text-[#8ba05f] mb-4">{pillar.subtitle}</p>
+                  <p className="text-gray-600 text-sm leading-relaxed">{pillar.desc}</p>
+                </motion.div>
+              );
+            })}
           </motion.div>
+          {overview.note && <p className={`${NOTE_CLASS} text-[#4a5d23]`}>{overview.note}</p>}
         </div>
       </section>
 
@@ -276,16 +272,10 @@ export default function RadixPage() {
             className="text-center mb-20"
           >
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
-              Engineering Systems
+              {systems.label}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
-              8 Systems. One Integrated Platform.
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Each system builds upon the previous — from foundational data architecture to
-              enterprise-grade AI platform engineering. Students don't just learn; they build
-              production-scale technology.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">{systems.title}</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">{systems.intro}</p>
           </motion.div>
 
           <motion.div
@@ -295,7 +285,7 @@ export default function RadixPage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {SYSTEMS_DATA.map((sys) => (
+            {systems.items.map((sys) => (
               <motion.div
                 key={sys.num}
                 onClick={() => {
@@ -331,6 +321,15 @@ export default function RadixPage() {
 
                   <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-1">{sys.desc}</p>
 
+                  {sys.focus && (
+                    <p className="mb-6 text-xs leading-relaxed text-gray-600">
+                      <span className="mb-1 block text-[0.625rem] font-bold uppercase tracking-widest text-[#4a5d23]">
+                        {systems.focusLabel}
+                      </span>
+                      {sys.focus}
+                    </p>
+                  )}
+
                   <div className="pt-5 border-t border-gray-100/60 mt-auto">
                     <p className="text-[0.6875rem] text-gray-400 font-medium tracking-wide uppercase leading-relaxed flex flex-wrap items-center">
                       {sys.metrics.split(' | ').map((m, idx, arr) => (
@@ -361,14 +360,10 @@ export default function RadixPage() {
             variants={fadeUpItem}
           >
             <span className="text-[#8ba05f] font-semibold tracking-wider uppercase text-sm mb-4 block">
-              Engineering Scale
+              {scale.label}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Systems Built at Production Scale
-            </h2>
-            <p className="text-gray-400 mb-16 max-w-2xl mx-auto">
-              The scope and complexity of a real engineering organization.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">{scale.title}</h2>
+            <p className="text-gray-400 mb-16 max-w-2xl mx-auto">{scale.intro}</p>
           </motion.div>
 
           <motion.div
@@ -378,34 +373,7 @@ export default function RadixPage() {
             variants={staggerContainer}
             className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12"
           >
-            {[
-              {
-                val: '8',
-                label: 'Engineering Systems',
-                sub: 'End-to-end product development lifecycle',
-              },
-              {
-                val: '163',
-                label: 'Intelligence Parameters',
-                sub: 'Comprehensive company data architecture',
-              },
-              {
-                val: '100+',
-                label: 'Relational Tables',
-                sub: 'Enterprise-grade normalized database',
-              },
-              {
-                val: '2,000+',
-                label: 'Automated Validations',
-                sub: 'Quality-first engineering culture',
-              },
-              {
-                val: '3+',
-                label: 'AI Models Orchestrated',
-                sub: 'Multi-model intelligence architecture',
-              },
-              { val: '7+', label: 'Architecture Layers', sub: 'Full-stack system integration' },
-            ].map((stat, i) => (
+            {scale.stats.map((stat, i) => (
               <motion.div key={i} variants={fadeUpItem} className="flex flex-col items-center">
                 <span className="text-4xl md:text-6xl font-bold text-white mb-2">
                   <AnimatedCounter value={stat.val} />
@@ -417,6 +385,7 @@ export default function RadixPage() {
               </motion.div>
             ))}
           </motion.div>
+          {scale.note && <p className={`${NOTE_CLASS} text-[#c4cdbe]`}>{scale.note}</p>}
         </div>
       </section>
 
@@ -432,15 +401,10 @@ export default function RadixPage() {
           >
             <motion.div variants={fadeUpItem}>
               <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
-                Production-Grade
+                {tech.label}
               </span>
-              <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
-                Technology Ecosystem
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                Industry-standard tools and frameworks used across all 8 engineering systems — the
-                same technologies that power modern software companies.
-              </p>
+              <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">{tech.title}</h2>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg">{tech.intro}</p>
             </motion.div>
           </motion.div>
 
@@ -451,51 +415,27 @@ export default function RadixPage() {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {[
-              {
-                title: 'AI & Agent Systems',
-                tools: 'LangChain, LangGraph, Gemini, Groq, Pydantic',
-                icon: <BrainCircuit size={24} />,
-              },
-              {
-                title: 'Cloud & DevOps',
-                tools: 'Docker, GitHub Actions, Azure Pipelines, FastAPI',
-                icon: <Cloud size={24} />,
-              },
-              {
-                title: 'Data Infrastructure',
-                tools: 'Supabase, PostgreSQL, Vector Databases',
-                icon: <Database size={24} />,
-              },
-              {
-                title: 'Programming',
-                tools: 'Python, SQL, JSON, REST APIs',
-                icon: <Code2 size={24} />,
-              },
-              {
-                title: 'Quality Engineering',
-                tools: 'Pytest, CI/CD Testing, Schema Enforcement',
-                icon: <Terminal size={24} />,
-              },
-              {
-                title: 'Development Tools',
-                tools: 'VS Code, Git, Jupyter, Unix CLI',
-                icon: <Wrench size={24} />,
-              },
-            ].map((cat, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUpItem}
-                className="bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 group"
-              >
-                <div className="h-14 w-14 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-[#4a5d23] mb-6 group-hover:scale-110 group-hover:bg-[#8ba05f] group-hover:text-white group-hover:border-transparent transition-all duration-300">
-                  {cat.icon}
-                </div>
-                <h4 className="font-bold text-xl text-gray-900 mb-2">{cat.title}</h4>
-                <p className="text-gray-500 leading-relaxed">{cat.tools}</p>
-              </motion.div>
-            ))}
+            {tech.groups.map((cat, i) => {
+              const Icon = TECH_ICONS[i];
+              return (
+                <motion.div
+                  key={i}
+                  variants={fadeUpItem}
+                  className="bg-gray-50 border border-gray-100 rounded-3xl p-6 hover:bg-white hover:shadow-xl transition-all duration-300 group"
+                >
+                  <div className="h-14 w-14 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-center text-[#4a5d23] mb-6 group-hover:scale-110 group-hover:bg-[#8ba05f] group-hover:text-white group-hover:border-transparent transition-all duration-300">
+                    <Icon size={24} />
+                  </div>
+                  <h4 className="font-bold text-xl text-gray-900 mb-2">{cat.title}</h4>
+                  <p className="text-gray-500 leading-relaxed">{cat.tools}</p>
+                  {cat.framing && (
+                    <p className="mt-3 text-sm font-medium text-[#4a5d23]">{cat.framing}</p>
+                  )}
+                </motion.div>
+              );
+            })}
           </motion.div>
+          {tech.note && <p className={`${NOTE_CLASS} text-[#4a5d23]`}>{tech.note}</p>}
         </div>
       </section>
 
@@ -510,76 +450,16 @@ export default function RadixPage() {
           >
             <motion.div variants={fadeUpItem} className="text-center mb-12">
               <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
-                Progressive
+                {complexity.label}
               </span>
               <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
-                Technical Complexity
+                {complexity.title}
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-                A deliberate engineering progression — each system builds on the architecture,
-                skills, and infrastructure of the previous one.
-              </p>
+              <p className="text-gray-600 max-w-2xl mx-auto text-lg">{complexity.intro}</p>
             </motion.div>
 
             <div className="space-y-4">
-              {[
-                {
-                  sys: 'System 01',
-                  name: 'Parameter Discovery',
-                  perc: 12.5,
-                  startPerc: 0,
-                  tag: 'Foundational Data Architecture',
-                },
-                {
-                  sys: 'System 02',
-                  name: 'Database Normalization',
-                  perc: 25,
-                  startPerc: 12.5,
-                  tag: 'Relational System Design',
-                },
-                {
-                  sys: 'System 03',
-                  name: 'Test Automation',
-                  perc: 37.5,
-                  startPerc: 25,
-                  tag: 'Validation Engine',
-                },
-                {
-                  sys: 'System 04',
-                  name: 'Agentic Research',
-                  perc: 50,
-                  startPerc: 37.5,
-                  tag: 'AI Automation',
-                },
-                {
-                  sys: 'System 05',
-                  name: 'Agentic Ecosystem',
-                  perc: 62.5,
-                  startPerc: 50,
-                  tag: 'Multi-Agent Orchestration',
-                },
-                {
-                  sys: 'System 06',
-                  name: 'DevOps & Cloud',
-                  perc: 75,
-                  startPerc: 62.5,
-                  tag: 'Production Infrastructure',
-                },
-                {
-                  sys: 'System 07',
-                  name: 'Vector DB & ML',
-                  perc: 87.5,
-                  startPerc: 75,
-                  tag: 'Semantic Intelligence Layer',
-                },
-                {
-                  sys: 'System 08',
-                  name: 'Enterprise Architecture',
-                  perc: 100,
-                  startPerc: 87.5,
-                  tag: 'Full System Integration',
-                },
-              ].map((stage, i) => (
+              {complexity.stages.map((stage, i) => (
                 <motion.div
                   key={i}
                   variants={fadeUpItem}
@@ -622,6 +502,11 @@ export default function RadixPage() {
                 </motion.div>
               ))}
             </div>
+            {complexity.note && (
+              <motion.p variants={fadeUpItem} className={`${NOTE_CLASS} text-[#4a5d23]`}>
+                {complexity.note}
+              </motion.p>
+            )}
           </motion.div>
         </div>
       </section>
@@ -637,15 +522,10 @@ export default function RadixPage() {
             className="text-center mb-16"
           >
             <span className="text-[#4a5d23] font-semibold tracking-wider uppercase text-sm mb-4 block">
-              Engineering Outcomes
+              {outcomes.label}
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">
-              What Engineers Walk Away With
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-              Students don't receive certificates — they build systems. Every competency is earned
-              through direct engineering contribution.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#232621] mb-6">{outcomes.title}</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">{outcomes.intro}</p>
           </motion.div>
 
           <motion.div
@@ -655,32 +535,7 @@ export default function RadixPage() {
             variants={staggerContainer}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {[
-              {
-                title: 'Production Engineering Experience',
-                desc: 'Contribute to the development of a real AI-powered intelligence platform — gaining experience comparable to working in a technology company.',
-              },
-              {
-                title: 'Portfolio-Grade Systems',
-                desc: 'Build demonstrable engineering artifacts: database architectures, AI agent systems, containerized deployments, and enterprise platform designs.',
-              },
-              {
-                title: 'System Architecture Mastery',
-                desc: 'Design multi-layered system architectures with 100+ tables, validation engines, and orchestrated AI workflows from first principles.',
-              },
-              {
-                title: 'Industry Development Workflows',
-                desc: 'Operate with Git-based version control, CI/CD pipelines, containerized environments, and production deployment processes.',
-              },
-              {
-                title: 'Cloud & Infrastructure Engineering',
-                desc: 'Deploy Docker containers, configure cloud infrastructure, implement monitoring systems, and manage scalable production environments.',
-              },
-              {
-                title: 'Enterprise Engineering Thinking',
-                desc: 'Understand scalability patterns, security governance, role-based access control, audit trails, and high-availability system design.',
-              },
-            ].map((outcome, i) => (
+            {outcomes.items.map((outcome, i) => (
               <motion.div
                 key={i}
                 variants={fadeUpItem}
@@ -695,6 +550,7 @@ export default function RadixPage() {
               </motion.div>
             ))}
           </motion.div>
+          {outcomes.note && <p className={`${NOTE_CLASS} text-[#4a5d23]`}>{outcomes.note}</p>}
         </div>
       </section>
 
@@ -707,36 +563,46 @@ export default function RadixPage() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl mx-auto bg-[#4a5d23] rounded-[3rem] p-10 md:p-16 text-center text-white relative"
         >
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-            className="absolute -top-20 -right-20 p-20 opacity-10 pointer-events-none"
-          >
-            <Network size={400} />
-          </motion.div>
+          {cta.art ? (
+            <img
+              src="/images/Minimalist%20Sage%20Network%20UI%20UX.webp"
+              alt=""
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 h-full w-full rounded-[3rem] object-cover opacity-30 mix-blend-multiply"
+            />
+          ) : (
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+              className="absolute -top-20 -right-20 p-20 opacity-10 pointer-events-none"
+            >
+              <Network size={400} />
+            </motion.div>
+          )}
           <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">
-              Begin Engineering Real Digital Systems
-            </h2>
-            <p className="text-white/80 max-w-2xl mx-auto mb-10 text-lg">
-              Join a flagship engineering initiative where students participate in building
-              production-grade technology systems — from data architecture to enterprise AI
-              platforms.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">{cta.title}</h2>
+            <p className="text-white/80 max-w-2xl mx-auto mb-10 text-lg">{cta.body}</p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="#projects"
+              {cta.action && (
+                <CtaLink
+                  link={cta.action}
+                  className="inline-flex items-center justify-center rounded-full border border-[#e3d3a8]/40 bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] px-8 py-4 text-[0.9375rem] font-bold text-[#232621] hover:brightness-110 transition-[filter] w-full sm:w-auto shadow-lg"
+                />
+              )}
+              <CtaLink
+                link={cta.primary}
                 className="inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-[0.9375rem] font-bold text-[#232621] hover:bg-gray-100 transition-all w-full sm:w-auto shadow-lg"
-              >
-                Explore Engineering Systems
-              </a>
-              <a
-                href="#overview"
+              />
+              <CtaLink
+                link={cta.secondary}
                 className="inline-flex items-center justify-center rounded-full bg-transparent border-2 border-white/30 px-8 py-4 text-[0.9375rem] font-bold text-white hover:bg-white/10 transition-all w-full sm:w-auto"
-              >
-                Program Architecture
-              </a>
+              />
             </div>
+            {cta.note && (
+              <p className="mt-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
+                {cta.note}
+              </p>
+            )}
           </div>
         </motion.div>
       </section>

@@ -6,6 +6,7 @@ import CandidatePortal from './pages/CandidatePortal';
 import EnterprisePortal from './pages/EnterprisePortal';
 import RadixPage from './pages/RadixPage';
 import LeadershipPage from './pages/LeadershipPage';
+import { RADIX_COMPANY, RADIX_STUDENT } from './data/radix';
 import Preloader from './components/Preloader';
 
 function App() {
@@ -24,8 +25,10 @@ function App() {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<LandingPage />} />
-            <Route path="apply" element={<CandidatePortal />} />
-            <Route path="hire" element={<EnterprisePortal />} />
+            <Route path="apply" element={<RadixPage content={RADIX_STUDENT} />} />
+            <Route path="apply/form" element={<CandidatePortal />} />
+            <Route path="hire" element={<RadixPage content={RADIX_COMPANY} />} />
+            <Route path="hire/form" element={<EnterprisePortal />} />
             <Route path="radix" element={<RadixPage />} />
             <Route path="leadership" element={<LeadershipPage />} />
           </Route>
