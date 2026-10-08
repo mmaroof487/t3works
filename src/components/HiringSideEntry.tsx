@@ -123,22 +123,26 @@ export default function HiringSideEntry() {
                     <th aria-hidden="true" className="w-6" />
                     <th
                       scope="col"
-                      className="rounded-lg bg-[#4a5d23]/10 px-2.5 py-2 font-semibold text-gray-900"
+                      className="rounded-t-lg bg-[#4a5d23] px-2.5 py-2 font-semibold text-white"
                     >
                       T3 AI Works
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {COMPARISON.map(([before, after]) => (
+                  {COMPARISON.map(([before, after], i) => (
                     <tr key={before}>
                       <td className="rounded-lg bg-black/[0.035] px-2.5 py-2 text-gray-600">
                         {before}
                       </td>
-                      <td aria-hidden="true" className="w-6 text-center text-gray-500">
+                      <td aria-hidden="true" className="w-6 text-center text-[#4a5d23]/70">
                         <ArrowRight className="mx-auto h-4 w-4" />
                       </td>
-                      <td className="rounded-lg bg-black/[0.035] px-2.5 py-2 font-medium text-gray-900">
+                      <td
+                        className={`bg-[#e9ebe4] px-2.5 py-2 font-medium text-gray-900 shadow-[0_-6px_0_#e9ebe4] ${
+                          i === COMPARISON.length - 1 ? 'rounded-b-lg' : ''
+                        }`}
+                      >
                         {after}
                       </td>
                     </tr>
