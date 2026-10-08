@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 const NAV_ITEMS = [
   { name: 'What We Do', path: '#ecosystem' },
   { name: 'How We Do', path: '#pipeline' },
+  { name: 'Universities', path: '#universities' },
   { name: 'Students', path: '#student-journey' },
   { name: 'Companies', path: '#clients' },
   { name: 'Radix', path: '#vision' },
@@ -120,7 +121,7 @@ export default function Header() {
           borderRadius: 20,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
-        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto xl:w-[59.77rem]"
+        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto xl:w-[66rem]"
       >
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
