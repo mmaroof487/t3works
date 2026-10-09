@@ -17,7 +17,16 @@ import { cn } from '../lib/cn';
 // edges show. Positions below are in steps: 0 = first card, count - 1 = last card landed.
 const STEP_SCROLL = '70svh';
 // keeps the pile clear of the nav pill fixed to the bottom of the screen
-const NAV_RESERVE = '5.25rem';
+const NAV_RESERVE_REM = 5.25;
+const NAV_RESERVE = `${String(NAV_RESERVE_REM)}rem`;
+// The stage is laid out for a phone this wide (px) and zoomed to the real width, so every phone
+// gets the same line breaks. If it is then taller than the room above the nav pill it zooms out
+// further, down to MIN_ZOOM; past that the heading scrolls off instead (see `fit`).
+const DESIGN_WIDTH = 393;
+const MIN_ZOOM = 0.75;
+const MAX_ZOOM = 1.3;
+// gap kept between the top of the screen and a stage that only just fits
+const EDGE_REM = 0.5;
 // the progress bar never gets closer to the top of the screen than this (px)
 const BAR_MARGIN = 10;
 const PEEK_REM = 0.75;
@@ -51,10 +60,14 @@ interface CardProps {
   index: number;
   count: number;
   position: MotionValue<number>;
+  /** the stage's zoom, which the slide-in distance has to undo to stay a full screen wide */
+  zoom: MotionValue<number>;
 }
 
-function StackCard({ step, index, count, position }: CardProps) {
-  const x = useTransform(position, (p) => `${String((1 - landed(index, p)) * 100)}vw`);
+function StackCard({ step, index, count, position, zoom }: CardProps) {
+  const x = useTransform(
+    () => `${String(((1 - landed(index, position.get())) * 100) / zoom.get())}vw`
+  );
   const y = useTransform(position, (p) => `${String(-buried(index, count, p) * PEEK_REM)}rem`);
   const scale = useTransform(position, (p) => 1 - buried(index, count, p) * PEEK_SHRINK);
   // the number badge and icon tile overhang the card, so they fade out once it is covered
@@ -124,7 +137,9 @@ export default function PinnedJourney({
   const count = steps.length;
   const trackRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const zoom = useMotionValue(1);
   const target = useMotionValue(0);
   const position = useSpring(target, { stiffness: 220, damping: 30, mass: 0.5 });
   const { scrollY } = useScroll();
@@ -143,14 +158,38 @@ export default function PinnedJourney({
   useLayoutEffect(() => {
     const track = trackRef.current;
     const stage = stageRef.current;
+    const content = contentRef.current;
     const bar = barRef.current;
-    if (!track || !stage || !bar) return;
+    if (!track || !stage || !content || !bar) return;
     const fit = () => {
+      const root = document.documentElement;
+      const room =
+        root.clientHeight -
+        (NAV_RESERVE_REM + EDGE_REM) * parseFloat(getComputedStyle(root).fontSize);
+      const fitsAt = (value: number) => {
+        content.style.setProperty('zoom', String(value));
+        return stage.offsetHeight <= room;
+      };
+      // the largest zoom, up to the one that matches the design width, at which the stage fits
+      let best = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, root.clientWidth / DESIGN_WIDTH));
+      if (!fitsAt(best)) {
+        let tooBig = best;
+        best = MIN_ZOOM;
+        for (let pass = 0; pass < 5; pass++) {
+          const mid = (best + tooBig) / 2;
+          if (fitsAt(mid)) best = mid;
+          else tooBig = mid;
+        }
+        content.style.setProperty('zoom', String(best));
+      }
+      zoom.set(best);
+
       const height = `${String(stage.offsetHeight)}px`;
       track.style.height = `calc(${height} + ${String(count - 1)} * ${STEP_SCROLL})`;
       // taller than the screen: pin by the bottom edge, so the heading scrolls off and the pile
       // stays, but never so far that the progress bar leaves the screen
-      const barOnScreen = `${String(BAR_MARGIN - bar.offsetTop)}px`;
+      const barTop = bar.getBoundingClientRect().top - stage.getBoundingClientRect().top;
+      const barOnScreen = `${String(BAR_MARGIN - barTop)}px`;
       stage.style.top = `max(${barOnScreen}, min(1.5rem, calc(100svh - ${height} - ${NAV_RESERVE})))`;
       measure();
     };
@@ -161,7 +200,7 @@ export default function PinnedJourney({
       observer.disconnect();
       window.removeEventListener('resize', fit);
     };
-  }, [measure, count]);
+  }, [measure, count, zoom]);
 
   return (
     <div ref={trackRef}>
@@ -170,15 +209,26 @@ export default function PinnedJourney({
         className="sticky"
         style={{ '--accent': accent, '--accent-ink': accentInk } as React.CSSProperties}
       >
-        {heading}
-        <div ref={barRef}>
-          <ProgressBar count={count} position={position} />
+        {/* zoomed as one block (see `fit`); kept off the sticky element so its `top` stays in
+            screen pixels */}
+        <div ref={contentRef}>
+          {heading}
+          <div ref={barRef}>
+            <ProgressBar count={count} position={position} />
+          </div>
+          <ol className="mx-auto grid max-w-md pt-11">
+            {steps.map((step, index) => (
+              <StackCard
+                key={step.id}
+                step={step}
+                index={index}
+                count={count}
+                position={position}
+                zoom={zoom}
+              />
+            ))}
+          </ol>
         </div>
-        <ol className="mx-auto grid max-w-md pt-11">
-          {steps.map((step, index) => (
-            <StackCard key={step.id} step={step} index={index} count={count} position={position} />
-          ))}
-        </ol>
       </div>
     </div>
   );

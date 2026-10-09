@@ -9,6 +9,9 @@
   font-style: normal;
 }
 
+/* portrait tablets (sm up to xl): the hero spreads out and scales its type for these */
+@custom-variant tablet-portrait (@media (width >= 40rem) and (width < 80rem) and (orientation: portrait));
+
 @theme {
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-open-sauce: 'Open Sauce Sans', sans-serif;

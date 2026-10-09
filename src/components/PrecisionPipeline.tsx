@@ -114,7 +114,7 @@ function DesktopPipeline() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative mx-auto aspect-[2750/1536] w-full min-w-[51.25rem] [container-type:inline-size]"
+          className="relative mx-auto aspect-[2750/1536] w-full [container-type:inline-size]"
         >
           <div className="absolute inset-0 overflow-hidden" style={EDGE_FADE}>
             <img

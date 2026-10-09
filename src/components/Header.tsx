@@ -37,7 +37,7 @@ export default function Header() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1280);
+      setIsMobile(window.innerWidth < 1024);
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -136,7 +136,7 @@ export default function Header() {
           borderRadius: 20,
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} // smooth spring-like ease
-        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto xl:w-[66rem]"
+        className="pointer-events-auto flex flex-col shadow-2xl shadow-black/25 border border-white/10 overflow-hidden w-full lg:w-auto lg:max-w-full xl:w-[66rem]"
       >
         {/* Mobile Menu Overlay */}
         <AnimatePresence>
@@ -256,9 +256,9 @@ export default function Header() {
             </Link>
           </motion.div>
 
-          {/* Center: Desktop Dynamic Content */}
-          <div className="hidden xl:flex shrink-0 items-center justify-center">
-            <motion.nav layout className="flex items-center gap-6 px-4">
+          {/* Center: Desktop Dynamic Content (tighter between lg and xl so it fits a 1024px screen) */}
+          <div className="hidden lg:flex shrink-0 items-center justify-center">
+            <motion.nav layout className="flex items-center gap-1 px-3 xl:gap-6 xl:px-4">
               {NAV_ITEMS.map((item) => {
                 const isActive = item.path.startsWith('#')
                   ? activeSection === item.path.substring(1) ||
@@ -270,7 +270,7 @@ export default function Header() {
                     onClick={(e) => {
                       handleSmoothScroll(e, item.path);
                     }}
-                    className={`relative text-[0.9375rem] px-1 py-1 mx-2 font-normal transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
+                    className={`relative text-sm xl:text-[0.9375rem] px-1 py-1 mx-1 xl:mx-2 font-normal transition-colors whitespace-nowrap cursor-pointer ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
                   >
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
@@ -286,7 +286,7 @@ export default function Header() {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`relative text-[0.9375rem] px-1 py-1 mx-2 font-normal transition-colors whitespace-nowrap ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
+                    className={`relative text-sm xl:text-[0.9375rem] px-1 py-1 mx-1 xl:mx-2 font-normal transition-colors whitespace-nowrap ${isActive ? 'text-white' : 'text-[#c9c9c0] hover:text-white'}`}
                   >
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
@@ -304,7 +304,7 @@ export default function Header() {
           </div>
 
           {/* Right: Mobile Menu Button */}
-          <motion.div layout className="flex xl:hidden flex-1 items-center justify-end">
+          <motion.div layout className="flex lg:hidden flex-1 items-center justify-end">
             <button
               onClick={() => {
                 setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -318,11 +318,11 @@ export default function Header() {
           </motion.div>
 
           {/* Right: CTAs (Desktop Only) */}
-          <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
+          <motion.div layout className="hidden lg:flex flex-1 items-center justify-end gap-3">
             {routeCta ? (
               <Link
                 to={routeCta.to}
-                className={`inline-flex items-center justify-center h-[2.75rem] ${routeCta.compact ? 'px-3.5' : 'px-6'} rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40`}
+                className={`inline-flex items-center justify-center h-[2.75rem] ${routeCta.compact ? 'px-3.5' : 'px-4 xl:px-6'} rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40`}
               >
                 {routeCta.label}
               </Link>
@@ -331,7 +331,7 @@ export default function Header() {
                 onClick={(e) => {
                   handleSmoothScroll(e, APPLY_PATH);
                 }}
-                className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+                className={`inline-flex items-center justify-center h-[2.75rem] px-4 xl:px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
               >
                 Apply Now
               </button>
