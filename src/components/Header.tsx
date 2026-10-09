@@ -3,18 +3,32 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-const NAV_ITEMS = [
+interface NavItem {
+  name: string;
+  path: string;
+  /** pages on which this link is shown as the current one */
+  routes?: string[];
+}
+
+const NAV_ITEMS: NavItem[] = [
   { name: 'What We Do', path: '#ecosystem' },
   { name: 'How We Do', path: '#pipeline' },
   { name: 'Universities', path: '#universities' },
   { name: 'Students', path: '#student-journey' },
   { name: 'Companies', path: '#clients' },
-  { name: 'Radix', path: '#vision' },
+  { name: 'Radix', path: '#vision', routes: ['/radix', '/apply', '/hire'] },
   { name: 'Leadership', path: '/leadership' },
 ];
 
 // the nav CTA scrolls to the students / companies chooser
 const APPLY_PATH = '#get-started';
+
+// on the two audience pages it leads to that audience's form instead
+// (`compact` trims the padding so a longer label still fits the fixed-width pill)
+const ROUTE_CTA: Record<string, { label: string; to: string; compact?: boolean } | undefined> = {
+  '/apply': { label: 'Apply Now', to: '/apply/form' },
+  '/hire': { label: 'Hire AI Talent', to: '/hire/form', compact: true },
+};
 
 export default function Header() {
   const [activeSection, setActiveSection] = useState('home');
@@ -71,6 +85,7 @@ export default function Header() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const routeCta = ROUTE_CTA[location.pathname];
 
   const handleSmoothScroll = (
     e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
@@ -136,7 +151,8 @@ export default function Header() {
               <div className="flex flex-col items-center gap-6 pt-8 pb-4 border-b border-white/10 mx-6">
                 {NAV_ITEMS.map((item) => {
                   const isActive = item.path.startsWith('#')
-                    ? activeSection === item.path.substring(1)
+                    ? activeSection === item.path.substring(1) ||
+                      Boolean(item.routes?.includes(location.pathname))
                     : location.pathname === item.path;
                   return item.path.startsWith('#') ? (
                     <button
@@ -171,15 +187,27 @@ export default function Header() {
                   );
                 })}
                 <div className="flex flex-col gap-3 w-full mt-2">
-                  <button
-                    onClick={(e) => {
-                      handleSmoothScroll(e, APPLY_PATH);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
-                  >
-                    Apply Now
-                  </button>
+                  {routeCta ? (
+                    <Link
+                      to={routeCta.to}
+                      onClick={() => {
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40"
+                    >
+                      {routeCta.label}
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={(e) => {
+                        handleSmoothScroll(e, APPLY_PATH);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+                    >
+                      Apply Now
+                    </button>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -233,7 +261,8 @@ export default function Header() {
             <motion.nav layout className="flex items-center gap-6 px-4">
               {NAV_ITEMS.map((item) => {
                 const isActive = item.path.startsWith('#')
-                  ? activeSection === item.path.substring(1)
+                  ? activeSection === item.path.substring(1) ||
+                    Boolean(item.routes?.includes(location.pathname))
                   : location.pathname === item.path;
                 return item.path.startsWith('#') ? (
                   <button
@@ -290,14 +319,23 @@ export default function Header() {
 
           {/* Right: CTAs (Desktop Only) */}
           <motion.div layout className="hidden xl:flex flex-1 items-center justify-end gap-3">
-            <button
-              onClick={(e) => {
-                handleSmoothScroll(e, APPLY_PATH);
-              }}
-              className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
-            >
-              Apply Now
-            </button>
+            {routeCta ? (
+              <Link
+                to={routeCta.to}
+                className={`inline-flex items-center justify-center h-[2.75rem] ${routeCta.compact ? 'px-3.5' : 'px-6'} rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40`}
+              >
+                {routeCta.label}
+              </Link>
+            ) : (
+              <button
+                onClick={(e) => {
+                  handleSmoothScroll(e, APPLY_PATH);
+                }}
+                className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+              >
+                Apply Now
+              </button>
+            )}
           </motion.div>
         </div>
       </motion.header>
