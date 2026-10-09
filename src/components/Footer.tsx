@@ -36,7 +36,7 @@ const LINK_GROUPS = [
     links: [
       { label: 'How It Works', to: '#pipeline' },
       { label: 'Student Journey', to: '#student-journey' },
-      { label: 'Apply Now', to: '/apply/form' },
+      { label: 'Apply Now', to: '/apply-now' },
       { label: 'Success Stories', to: '#trusted' },
       { label: 'FAQs', to: '#' },
     ],
