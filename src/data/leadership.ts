@@ -13,8 +13,16 @@ export interface Leader {
   name: string;
   title: string;
   bio: string[];
+  /** portrait under /public; the initials tile stands in when there is none */
+  photo?: string;
+  company: string;
+  email: string;
+  linkedin: string;
+  /** the longer story shown in the profile modal, one paragraph per entry */
+  about: string[];
 }
 
+// PLACEHOLDER: every email, linkedin and about below is dummy copy until the real details arrive.
 export const LEADERS: Leader[] = [
   {
     id: 'somashekhar',
@@ -25,6 +33,15 @@ export const LEADERS: Leader[] = [
       'Architect of G2G and B2B Collaborations (CECA).',
       'Managed S$150M Technology Growth Fund.',
       'Mentorship/growth support for Over 50 Startups.',
+    ],
+    photo: '/images/leadership/somashekhar.webp',
+    company: 'Talencia Global',
+    email: 'somashekhar@example.com',
+    linkedin: 'https://www.linkedin.com/in/example-somashekhar',
+    about: [
+      'Somashekhar has spent his career at the point where capital, policy and technology meet. He helped architect government-to-government and business-to-business collaborations under CECA, building the bridges that let companies and institutions work across borders.',
+      'He went on to manage a S$150M Technology Growth Fund, backing technology ventures from early promise through to scale, and has mentored and supported the growth of more than 50 startups along the way.',
+      'At T3 AI Works he shapes the capital and ecosystem strategy, connecting universities, industry and investors so that engineering talent has somewhere meaningful to go.',
     ],
   },
   {
@@ -37,6 +54,14 @@ export const LEADERS: Leader[] = [
       'Scaled a $2 Billion Healthcare Claims platform.',
       'Spearheaded $2.8 Billion in IP Value Created.',
     ],
+    company: 'Talencia Global',
+    email: 'subramanian.sivakumar@example.com',
+    linkedin: 'https://www.linkedin.com/in/example-subramanian-sivakumar',
+    about: [
+      'Subramanian Sivakumar has built his career around one question: how do you find exceptional engineers early and make them productive fast? His answer is the "0.3%" elite talent identification funnel, a selection model that surfaces the few candidates ready for demanding engineering work.',
+      'He has paired that with deep platform experience, scaling a $2 Billion healthcare claims platform and spearheading work credited with $2.8 Billion in IP value created.',
+      'At T3 AI Works he leads the talent pipeline, turning campus potential into deployment-ready engineering teams.',
+    ],
   },
   {
     id: 'gv-babu',
@@ -48,6 +73,14 @@ export const LEADERS: Leader[] = [
       "Built Asia's largest IT park training facility for 5,000 students.",
       'Industrial 4.0 & Robotics foundation for ISRO.',
     ],
+    company: 'Talencia Global',
+    email: 'gv.babu@example.com',
+    linkedin: 'https://www.linkedin.com/in/example-gv-babu',
+    about: [
+      'GV Babu is an infrastructure builder across enterprise, BFSI and edutech. His work has consistently been about putting real, working technology environments in front of the people who need to learn on them.',
+      "He built Asia's largest IT park training facility, serving 5,000 students, and laid an Industrial 4.0 and robotics foundation for ISRO.",
+      'At T3 AI Works he leads applied technology and infrastructure, making sure the labs, platforms and tooling match what industry actually runs.',
+    ],
   },
   {
     id: 'syed-tajuddeen',
@@ -58,6 +91,14 @@ export const LEADERS: Leader[] = [
       '"32+ Years" of composite Engineering & Management leadership.',
       'Turnkey global infrastructure consultancy.',
       'Vast professional associate network.',
+    ],
+    company: 'Talencia Global',
+    email: 'syed.tajuddeen@example.com',
+    linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
+    about: [
+      'Syed Tajuddeen brings more than 32 years of composite engineering and management leadership, spanning the full arc from design through delivery.',
+      'His turnkey global infrastructure consultancy has taken projects from concept to handover, and over the decades he has built a vast network of professional associates across disciplines and geographies.',
+      'At T3 AI Works he leads strategic engineering and the global network, opening doors for the talent and the partners the programme brings together.',
     ],
   },
 ];
@@ -179,18 +220,19 @@ export const CASE_STUDIES: CaseStudy[] = [
     impact: [{ value: '90%', label: 'Of the 125-member technology team were campus graduates' }],
     breakdown: {
       title: 'Platform scale',
+      // most telling first
       items: [
-        { value: '12', label: 'Applications' },
-        { value: '692', label: 'Health plans' },
         { value: '3.8M+', label: 'Members' },
-        { value: '1.7M+', label: 'Claims' },
-        { value: '949K+', label: 'Hospitalization records' },
         { value: '$2B', label: 'Hospitalization costs' },
+        { value: '692', label: 'Health plans' },
+        { value: '1.7M+', label: 'Claims' },
+        { value: '258K', label: 'Providers' },
+        { value: '32', label: 'States' },
+        { value: '12', label: 'Applications' },
+        { value: '949K+', label: 'Hospitalization records' },
         { value: '$204M+', label: 'OPD claims' },
         { value: '4.5M+', label: 'Pharmacy records' },
         { value: '$58M+', label: 'Pharmacy' },
-        { value: '258K', label: 'Providers' },
-        { value: '32', label: 'States' },
         { value: '3', label: 'Major clearing houses' },
       ],
     },
