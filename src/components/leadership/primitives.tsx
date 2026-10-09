@@ -45,6 +45,8 @@ interface SectionHeadingProps {
   description?: ReactNode;
   tone?: keyof typeof TONES;
   className?: string;
+  /** overrides the heading's type scale, for narrow columns */
+  titleClassName?: string;
 }
 
 export function SectionHeading({
@@ -53,6 +55,7 @@ export function SectionHeading({
   description,
   tone = 'olive',
   className,
+  titleClassName,
 }: SectionHeadingProps) {
   const dark = tone === 'dark';
   const { rule, label } = TONES[tone];
@@ -75,7 +78,8 @@ export function SectionHeading({
       <h2
         className={cn(
           'text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl',
-          dark ? 'text-white' : 'text-gray-900'
+          dark ? 'text-white' : 'text-gray-900',
+          titleClassName
         )}
       >
         {title}

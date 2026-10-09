@@ -11,6 +11,7 @@ import {
 } from 'framer-motion';
 import { JOURNEY_CARD_CLASS, JourneyCardBody, type JourneyStep } from './JourneyCards';
 import { cn } from '../lib/cn';
+import { scrollByAnimated } from '../lib/scrollToSection';
 
 // Phones: the section pins while the page scrolls STEP_SCROLL per step. Each next card slides in
 // from the right and lands on the pile; the cards beneath shrink and rise a little so their top
@@ -22,11 +23,15 @@ const NAV_RESERVE = '5.25rem';
 const BAR_MARGIN = 10;
 const PEEK_REM = 0.75;
 const PEEK_SHRINK = 0.045;
+// only the nearest few cards beneath show their edges, however many are stacked
+const MAX_PEEK = 3;
+// a horizontal swipe has to travel this far (px), and mostly sideways, to change card
+const SWIPE_MIN = 48;
 // tighter card spacing than the grid's, so a whole card fits a short phone screen under the bar;
 // the round number badge takes the accent colour
 const STACK_CARD_CLASS = cn(
   JOURNEY_CARD_CLASS,
-  'pb-5 pt-14 will-change-transform [grid-area:1/1] [&>p:last-of-type]:mb-4 [&>p:last-of-type]:text-sm [&>span.rounded-full]:bg-[var(--accent)] [&>span.rounded-full]:text-[var(--accent-ink)] [&>span]:opacity-[var(--overhang)] [&>ul>li]:py-2'
+  'pb-5 pt-14 [&>p:last-of-type]:mb-4 [&>p:last-of-type]:text-sm [&>span.rounded-full]:bg-[var(--accent)] [&>span.rounded-full]:text-[var(--accent-ink)] [&>span]:opacity-[var(--overhang)] [&>ul>li]:py-2'
 );
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v));
@@ -47,16 +52,18 @@ function buried(index: number, count: number, position: number) {
 }
 
 interface CardProps {
-  step: JourneyStep;
   index: number;
   count: number;
   position: MotionValue<number>;
+  className?: string;
+  children: ReactNode;
 }
 
-function StackCard({ step, index, count, position }: CardProps) {
+function StackCard({ index, count, position, className, children }: CardProps) {
   const x = useTransform(position, (p) => `${String((1 - landed(index, p)) * 100)}vw`);
-  const y = useTransform(position, (p) => `${String(-buried(index, count, p) * PEEK_REM)}rem`);
-  const scale = useTransform(position, (p) => 1 - buried(index, count, p) * PEEK_SHRINK);
+  const peek = (p: number) => Math.min(buried(index, count, p), MAX_PEEK);
+  const y = useTransform(position, (p) => `${String(-peek(p) * PEEK_REM)}rem`);
+  const scale = useTransform(position, (p) => 1 - peek(p) * PEEK_SHRINK);
   // the number badge and icon tile overhang the card, so they fade out once it is covered
   const overhang = useTransform(
     position,
@@ -66,9 +73,9 @@ function StackCard({ step, index, count, position }: CardProps) {
   return (
     <motion.li
       style={{ x, y, scale, transformOrigin: '50% 0%', '--overhang': overhang } as MotionStyle}
-      className={STACK_CARD_CLASS}
+      className={cn('will-change-transform [grid-area:1/1]', className)}
     >
-      <JourneyCardBody step={step} thread={false} />
+      {children}
     </motion.li>
   );
 }
@@ -90,7 +97,10 @@ function ProgressBar({ count, position }: { count: number; position: MotionValue
   const line = useTransform(position, (p) => clamp01(p / (count - 1)));
 
   return (
-    <div aria-hidden="true" className="relative mx-auto h-[1.375rem] w-44">
+    <div
+      aria-hidden="true"
+      className={cn('relative mx-auto h-[1.375rem]', count > 6 ? 'w-64' : 'w-44')}
+    >
       <span className="absolute inset-x-[0.6875rem] top-1/2 h-0.5 -translate-y-1/2 bg-[var(--accent)] opacity-25" />
       <motion.span
         style={{ scaleX: line }}
@@ -105,26 +115,39 @@ function ProgressBar({ count, position }: { count: number; position: MotionValue
   );
 }
 
-interface Props {
-  steps: JourneyStep[];
+interface StackProps {
+  count: number;
+  /** the content of card `index`; the wrapper around it only moves and layers the cards */
+  renderCard: (index: number) => ReactNode;
   /** the section's heading block, pinned above the progress bar while it fits the screen */
   heading: ReactNode;
   /** colour of the progress bar and the cards' number badges */
   accent?: string;
   /** number colour on the badges */
   accentInk?: string;
+  /** styling for each card's wrapper */
+  cardClassName?: string;
+  /** page scroll per step, as a CSS length */
+  stepScroll?: string;
+  /** let a horizontal swipe on the pile step to the next or previous card */
+  swipe?: boolean;
 }
 
-export default function PinnedJourney({
-  steps,
+/** A pinned pile of cards that slide in one by one as the page scrolls. */
+export function PinnedStack({
+  count,
+  renderCard,
   heading,
   accent = '#4a5d23',
   accentInk = '#fff',
-}: Props) {
-  const count = steps.length;
+  cardClassName,
+  stepScroll = STEP_SCROLL,
+  swipe = false,
+}: StackProps) {
   const trackRef = useRef<HTMLDivElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const target = useMotionValue(0);
   const position = useSpring(target, { stiffness: 220, damping: 30, mass: 0.5 });
   const { scrollY } = useScroll();
@@ -147,7 +170,7 @@ export default function PinnedJourney({
     if (!track || !stage || !bar) return;
     const fit = () => {
       const height = `${String(stage.offsetHeight)}px`;
-      track.style.height = `calc(${height} + ${String(count - 1)} * ${STEP_SCROLL})`;
+      track.style.height = `calc(${height} + ${String(count - 1)} * ${stepScroll})`;
       // taller than the screen: pin by the bottom edge, so the heading scrolls off and the pile
       // stays, but never so far that the progress bar leaves the screen
       const barOnScreen = `${String(BAR_MARGIN - bar.offsetTop)}px`;
@@ -161,7 +184,30 @@ export default function PinnedJourney({
       observer.disconnect();
       window.removeEventListener('resize', fit);
     };
-  }, [measure, count]);
+  }, [measure, count, stepScroll]);
+
+  // A sideways swipe is the same as scrolling one step: the page scroll drives the pile, so we
+  // scroll the page by the distance between here and the neighbouring card.
+  const endSwipe = (event: React.TouchEvent) => {
+    const start = swipeStart.current;
+    swipeStart.current = null;
+    const touch = event.changedTouches[0] as React.Touch | undefined;
+    const track = trackRef.current;
+    const stage = stageRef.current;
+    if (!start || !touch || !track || !stage) return;
+
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (Math.abs(dx) < SWIPE_MIN || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+    // before the stage pins, scrolling would only move the page, not the pile
+    if (stage.getBoundingClientRect().top > parseFloat(getComputedStyle(stage).top) + 4) return;
+
+    const here = target.get();
+    const next = Math.min(count - 1, Math.max(0, Math.round(here) + (dx < 0 ? 1 : -1)));
+    if (next === here) return;
+    const travel = track.offsetHeight - stage.offsetHeight;
+    scrollByAnimated(((next - here) / (count - 1)) * travel, 450);
+  };
 
   return (
     <div ref={trackRef}>
@@ -174,12 +220,54 @@ export default function PinnedJourney({
         <div ref={barRef}>
           <ProgressBar count={count} position={position} />
         </div>
-        <ol className="mx-auto grid max-w-md pt-11">
-          {steps.map((step, index) => (
-            <StackCard key={step.id} step={step} index={index} count={count} position={position} />
+        <ol
+          className={cn('mx-auto grid max-w-md pt-11', swipe && 'touch-pan-y')}
+          onTouchStart={
+            swipe
+              ? (event) => {
+                  const touch = event.touches[0] as React.Touch | undefined;
+                  swipeStart.current = touch ? { x: touch.clientX, y: touch.clientY } : null;
+                }
+              : undefined
+          }
+          onTouchEnd={swipe ? endSwipe : undefined}
+        >
+          {Array.from({ length: count }, (_, index) => (
+            <StackCard
+              key={index}
+              index={index}
+              count={count}
+              position={position}
+              className={cardClassName}
+            >
+              {renderCard(index)}
+            </StackCard>
           ))}
         </ol>
       </div>
     </div>
+  );
+}
+
+interface Props {
+  steps: JourneyStep[];
+  /** the section's heading block, pinned above the progress bar while it fits the screen */
+  heading: ReactNode;
+  /** colour of the progress bar and the cards' number badges */
+  accent?: string;
+  /** number colour on the badges */
+  accentInk?: string;
+}
+
+export default function PinnedJourney({ steps, heading, accent, accentInk }: Props) {
+  return (
+    <PinnedStack
+      count={steps.length}
+      heading={heading}
+      accent={accent}
+      accentInk={accentInk}
+      cardClassName={STACK_CARD_CLASS}
+      renderCard={(index) => <JourneyCardBody step={steps[index]} thread={false} />}
+    />
   );
 }
