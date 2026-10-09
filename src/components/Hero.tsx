@@ -108,7 +108,7 @@ export default function Hero() {
             type="button"
             onClick={() => {
               document
-                .getElementById('ecosystem')
+                .getElementById('pipeline')
                 ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
             }}
             className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] whitespace-nowrap px-4 py-3.5 text-base sm:w-auto sm:px-8 sm:py-4 sm:text-[0.9375rem] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70"
@@ -116,12 +116,6 @@ export default function Hero() {
             See how it works
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </button>
-          <a
-            href="mailto:hello@t3works.com"
-            className="hidden items-center rounded-full border border-gray-900/70 whitespace-nowrap px-8 py-4 text-[0.9375rem] sm:inline-flex font-medium text-gray-900 transition-colors hover:bg-white"
-          >
-            Speak to an Expert
-          </a>
         </div>
       </div>
       <div aria-hidden="true" className="flex-1" />
