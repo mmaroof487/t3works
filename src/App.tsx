@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/MainLayout';
 import LandingPage from './pages/LandingPage';
-import CandidatePortal from './pages/CandidatePortal';
-import EnterprisePortal from './pages/EnterprisePortal';
+import ApplyPortal from './pages/ApplyPortal';
 import RadixPage from './pages/RadixPage';
 import LeadershipPage from './pages/LeadershipPage';
 import { RADIX_COMPANY, RADIX_STUDENT } from './data/radix';
@@ -26,9 +25,8 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<LandingPage />} />
             <Route path="apply" element={<RadixPage content={RADIX_STUDENT} />} />
-            <Route path="apply/form" element={<CandidatePortal />} />
+            <Route path="apply-now" element={<ApplyPortal />} />
             <Route path="hire" element={<RadixPage content={RADIX_COMPANY} />} />
-            <Route path="hire/form" element={<EnterprisePortal />} />
             <Route path="radix" element={<RadixPage />} />
             <Route path="leadership" element={<LeadershipPage />} />
           </Route>

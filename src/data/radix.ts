@@ -432,7 +432,7 @@ export const RADIX_STUDENT: RadixContent = {
     body: 'Join a progressive engineering program where you move from foundational architecture to AI, infrastructure, machine learning, and enterprise systems — building the technical depth needed to contribute to modern engineering teams.',
     primary: { label: 'Explore Engineering Systems', href: '#projects' },
     secondary: { label: 'Explore Program Architecture', href: '#overview' },
-    action: { label: 'Apply Now', href: '/apply/form' },
+    action: { label: 'Apply Now', href: '/apply-now' },
     note: 'Learn the architecture. Build the systems. Develop the engineering depth.',
     art: true,
   },

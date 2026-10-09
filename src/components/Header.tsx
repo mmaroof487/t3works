@@ -26,8 +26,8 @@ const APPLY_PATH = '#get-started';
 // on the two audience pages it leads to that audience's form instead
 // (`compact` trims the padding so a longer label still fits the fixed-width pill)
 const ROUTE_CTA: Record<string, { label: string; to: string; compact?: boolean } | undefined> = {
-  '/apply': { label: 'Apply Now', to: '/apply/form' },
-  '/hire': { label: 'Hire AI Talent', to: '/hire/form', compact: true },
+  '/apply': { label: 'Apply Now', to: '/apply-now' },
+  '/hire': { label: 'Hire AI Talent', to: '/apply-now?type=enterprise', compact: true },
 };
 
 export default function Header() {
@@ -198,15 +198,15 @@ export default function Header() {
                       {routeCta.label}
                     </Link>
                   ) : (
-                    <button
-                      onClick={(e) => {
-                        handleSmoothScroll(e, APPLY_PATH);
+                    <Link
+                      to="/apply-now"
+                      onClick={() => {
                         setIsMobileMenuOpen(false);
                       }}
-                      className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+                      className={`inline-flex items-center justify-center h-[2.75rem] px-8 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40${applyGlow}`}
                     >
                       Apply Now
-                    </button>
+                    </Link>
                   )}
                 </div>
               </div>
@@ -327,14 +327,12 @@ export default function Header() {
                 {routeCta.label}
               </Link>
             ) : (
-              <button
-                onClick={(e) => {
-                  handleSmoothScroll(e, APPLY_PATH);
-                }}
-                className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40 cursor-pointer${applyGlow}`}
+              <Link
+                to="/apply-now"
+                className={`inline-flex items-center justify-center h-[2.75rem] px-6 rounded-xl bg-gradient-to-r from-[#d3be8f] to-[#a88f5c] text-[#232621] text-[0.9375rem] font-medium hover:brightness-110 transition-[filter] whitespace-nowrap shadow-sm shadow-[#c9b27a]/20 border border-[#e3d3a8]/40${applyGlow}`}
               >
                 Apply Now
-              </button>
+              </Link>
             )}
           </motion.div>
         </div>

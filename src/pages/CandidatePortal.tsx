@@ -41,7 +41,7 @@ const DEGREE_OPTIONS = [
 
 const INTERNSHIP_COUNT_OPTIONS = ['0', '1', '2', '3', '4+'];
 
-export default function CandidatePortal() {
+export default function CandidatePortal({ isEmbedded = false }: { isEmbedded?: boolean }) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<CandidateFormData>(candidateFormDefaults);
   const [resume, setResume] = useState<File | null>(null);
@@ -113,7 +113,9 @@ export default function CandidatePortal() {
   }
 
   return (
-    <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16 relative">
+    <section
+      className={`w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16 relative ${isEmbedded ? 'hide-portal-chrome' : ''}`}
+    >
       <div className="absolute top-6 left-4 lg:hidden z-50">
         <Link
           to="/"
@@ -135,7 +137,7 @@ export default function CandidatePortal() {
         </Link>
       </div>
 
-      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
+      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row lg:min-h-[600px]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
@@ -407,21 +409,19 @@ export default function CandidatePortal() {
             </div>
           )}
 
-          <div className="mt-10 flex items-center justify-between gap-4">
-            <FormButton
-              type="button"
-              variant="secondary"
-              onClick={handleBack}
-              disabled={step === 0}
-              className={step === 0 ? 'invisible' : ''}
-            >
-              <ArrowLeft size={16} />
-              Back
-            </FormButton>
+          <div
+            className={`mt-10 flex items-center gap-4 ${step === 0 ? 'justify-center' : 'justify-between'}`}
+          >
+            {step > 0 && (
+              <FormButton type="button" variant="secondary" onClick={handleBack}>
+                <ArrowLeft size={16} />
+                Back
+              </FormButton>
+            )}
 
             {step < STEPS.length - 1 ? (
               <FormButton type="button" onClick={handleNext}>
-                Next
+                Apply Now
                 <ArrowRight size={16} />
               </FormButton>
             ) : (
@@ -432,7 +432,7 @@ export default function CandidatePortal() {
                 }}
                 loading={isSubmitting}
               >
-                Submit Application
+                Apply Now
               </FormButton>
             )}
           </div>

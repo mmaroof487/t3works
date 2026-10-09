@@ -105,3 +105,34 @@ html.lenis body {
 .lenis.lenis-smooth iframe {
   pointer-events: none;
 }
+
+/* ApplyPortal Embedded Styles */
+.hide-portal-chrome {
+  min-height: auto !important;
+  padding: 0 !important;
+}
+
+.hide-portal-chrome > div.absolute {
+  display: none !important;
+}
+
+.hide-portal-chrome > div.max-w-\[80rem\] {
+  box-shadow: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  min-height: auto !important;
+}
+
+.hide-portal-chrome .lg\:flex.lg\:w-5\/12 {
+  display: none !important;
+}
+
+.hide-portal-chrome .lg\:w-7\/12 {
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.hide-portal-chrome .lg\:hidden.mb-10.text-center {
+  display: none !important;
+}
