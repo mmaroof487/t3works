@@ -17,20 +17,9 @@ const EDGE_FADE: React.CSSProperties = {
   WebkitMaskComposite: 'source-in',
 };
 
-const PAPER = '#f5f5f0';
-
 // The tall artwork has its copy, video still and play button drawn in, so only the video needs a
-// live control. Shown is its content box, x 189-995 and y 400-3576 of 1184x3584; everything on top
-// is placed in % of that box. Its paper is white, so it is multiplied onto the page colour.
-// Drawn into the artwork but not part of the design: the 01 / 02 / 03 screen markers and a
-// faint sparkle mark beside the DNA strand.
-const MOBILE_COVERS = [
-  { left: '2.85%', top: '2.015%', width: '9.31%', height: '2.204%' },
-  { left: '2.85%', top: '30.29%', width: '10.3%', height: '2.204%' },
-  { left: '87.1%', top: '66.18%', width: '10.05%', height: '2.236%' },
-  { left: '88.83%', top: '90.37%', width: '11.17%', height: '4.72%' },
-];
-
+// live control, placed in % of the image. Its paper is a shade off the page colour, with white
+// bands between its screens, so it is darken-blended onto the page colour to lose both.
 function MobilePipeline() {
   return (
     <div className="relative">
@@ -58,35 +47,26 @@ function MobilePipeline() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.05 }}
         transition={{ duration: 0.7 }}
-        className="relative mx-auto aspect-[806/3176] w-full max-w-[30rem] overflow-hidden [container-type:inline-size]"
-        style={{ backgroundColor: PAPER }}
+        className="relative mx-auto aspect-[1120/3776] w-full max-w-[30rem] bg-[#f5f5f0] [container-type:inline-size]"
       >
         <img
           src={FUNNEL_MOBILE}
-          alt="Selection pipeline. Phase 0 pre-assessment: 500 applicants are screened with online tests and the top 25% go through. Rigor-driven filtering: 125 candidates are narrowed through bootcamps and hackathons into 50 to 75 elite T3 Talent engineers. Next step: watch the deep dive video explaining our filtering and acceleration process. Talent DNA: hiring for DNA, not just skills."
-          className="absolute max-w-none mix-blend-multiply"
-          style={{ width: '146.9%', left: '-23.449%', top: '-12.594%' }}
+          alt="Selection pipeline. 500 candidates enter Phase 0 pre-assessment and screening. 125 candidates go through the Phase 1 two-week bootcamp, the Phase 2 C1-C6 assessments and hackathons and the Phase 3 eight-week RADIX framework program, and 50 to 75 candidates reach the Phase 4 four-month internship. Next step: watch the deep dive video explaining our filtering and acceleration process. Talent DNA: hiring for DNA, not just skills."
+          className="absolute inset-0 h-full w-full mix-blend-darken"
         />
-        {MOBILE_COVERS.map((box) => (
-          <div
-            key={box.top}
-            aria-hidden="true"
-            className="absolute"
-            style={{ ...box, backgroundColor: PAPER }}
-          />
-        ))}
         {/* sits on the drawn video frame; the launcher's own preview stays hidden so the artwork shows */}
         <VideoLauncher
           src={VIDEO_SRC}
           label="Play the deep dive video"
-          className="absolute left-[14.02%] top-[74.685%] h-[9.761%] w-[71.71%] rounded-[3.4cqw] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23] [&>video]:opacity-0"
+          className="absolute left-[26.52%] top-[77.17%] h-[8.34%] w-[51.43%] rounded-[2cqw] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23] [&>video]:opacity-0"
         />
       </motion.div>
     </div>
   );
 }
 
-// The artwork has wide empty margins, so only its content box is shown: x 7.15%-91%, y 26.5%-96%, so the content sits centred.
+// The artwork has wide empty margins, so only its content box is shown: x 3.5%-91%, y 8.5%-96%, so the content sits centred.
+// The tier numbers and phase labels are drawn into the artwork.
 // Overlays are positioned in % of that box and sized in cqw, so it scales like one picture.
 // Below md the tall MobilePipeline artwork is rendered instead.
 export default function PrecisionPipeline() {
@@ -134,44 +114,30 @@ function DesktopPipeline() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative mx-auto aspect-[1677/780] w-full min-w-[51.25rem] [container-type:inline-size]"
+          className="relative mx-auto aspect-[2750/1536] w-full min-w-[51.25rem] [container-type:inline-size]"
         >
           <div className="absolute inset-0 overflow-hidden" style={EDGE_FADE}>
             <img
               src={FUNNEL}
-              alt="Selection funnel: 500 applicants are screened online, narrowed through bootcamps and hackathons, and emerge as 50 to 75 elite T3 Talent engineers."
+              alt="Selection funnel: 500 candidates enter Phase 0 pre-assessment and screening, 125 candidates go through the Phase 1 two-week bootcamp, the Phase 2 C1-C6 assessments and hackathon and the Phase 3 eight-week RADIX framework program, and 50 to 75 candidates reach the Phase 4 four-month internship."
               className="absolute max-w-none"
-              style={{ width: '119.26%', left: '-8.527%', top: '-38.129%' }}
+              style={{ width: '114.286%', left: '-4%', top: '-9.714%' }}
             />
             {/* covers the sparkle mark baked into the artwork's corner */}
             <div
               aria-hidden="true"
-              className="absolute left-[97.6%] top-[78.4%] h-[10.8%] w-[6.5%] bg-[radial-gradient(circle,#f1eee4_55%,transparent_75%)]"
+              className="absolute left-[97.7%] top-[82.85%] h-[8.6%] w-[6.2%] bg-[radial-gradient(circle,#f5f5f0_55%,transparent_75%)]"
             />
           </div>
 
-          {/* numbers on the funnel tiers */}
-          <p className="absolute left-[28.4%] top-[23.5%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap font-bold text-white drop-shadow">
-            <span className="text-[3.1cqw]">500</span>{' '}
-            <span className="text-[1.75cqw]">Applicants</span>
-          </p>
-          <p className="absolute left-[28.4%] top-[43.3%] -translate-x-1/2 -translate-y-1/2 text-center font-bold leading-[1.05] text-[#1f2a10]">
-            <span className="block text-[3.35cqw]">125</span>
-            <span className="block text-[1.75cqw]">Candidates</span>
-          </p>
-          <p className="absolute left-[28.8%] top-[77%] w-[11.5cqw] -translate-x-1/2 -translate-y-1/2 text-center font-bold leading-[1.05] text-white drop-shadow">
-            <span className="block text-[3.1cqw]">50-75</span>
-            <span className="block text-[1.15cqw]">Elite &lsquo;T3 Talent&rsquo; Engineers</span>
-          </p>
-
           {/* video, joined to the funnel by the pipe in the artwork */}
-          <p className="absolute left-[63.5%] top-[2.4%] w-[34%] whitespace-nowrap text-center text-[1.5cqw] font-semibold leading-none tracking-tight text-[#232621]">
+          <p className="absolute left-[65%] top-[22.5%] w-[32.6%] whitespace-nowrap text-center text-[1.45cqw] font-semibold leading-none tracking-tight text-[#232621]">
             Watch the deep dive video <span className="font-medium">(Next step)</span>
           </p>
           <VideoLauncher
             src={VIDEO_SRC}
             label="Play the deep dive video"
-            className="absolute left-[65.6%] top-[9.6%] aspect-[2/1] w-[29.8%] rounded-[1.45cqw] border-[0.5cqw] border-[#b79b55] bg-[#0b1220] shadow-xl"
+            className="absolute left-[67.04%] top-[28.2%] aspect-[2/1] w-[28.56%] rounded-[1.45cqw] border-[0.5cqw] border-[#b79b55] bg-[#0b1220] shadow-xl"
           >
             <span className="absolute inset-0 grid place-items-center">
               <span className="relative grid h-[5cqw] w-[5cqw] place-items-center transition-transform duration-300 group-hover:scale-105">
@@ -192,15 +158,15 @@ function DesktopPipeline() {
               </span>
             </span>
           </VideoLauncher>
-          <p className="absolute left-[65.6%] top-[43.3%] w-[29.8%] text-center text-[1.5cqw] leading-snug text-gray-800">
+          <p className="absolute left-[67.04%] top-[55%] w-[28.56%] text-center text-[1.45cqw] leading-snug text-gray-800">
             Our rigorous filtering and acceleration process explained
           </p>
 
           {/* talent DNA */}
-          <p className="absolute left-[65.6%] top-[55.4%] w-[29.8%] text-center text-[1.7cqw] font-semibold uppercase leading-none tracking-[0.18em] text-[#4a5d23]">
+          <p className="absolute left-[67.04%] top-[64.6%] w-[28.56%] text-center text-[1.65cqw] font-semibold uppercase leading-none tracking-[0.18em] text-[#4a5d23]">
             Talent DNA:
           </p>
-          <p className="absolute left-[65.6%] top-[91.4%] w-[29.8%] text-center text-[1.55cqw] font-medium leading-tight tracking-tight text-gray-700">
+          <p className="absolute left-[67.04%] top-[93.2%] w-[28.56%] text-center text-[1.5cqw] font-medium leading-tight tracking-tight text-gray-700">
             Hiring for DNA, Not Just Skills
           </p>
         </motion.div>
