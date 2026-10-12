@@ -80,14 +80,12 @@ export default function SystemCard({
           {system.desc}
         </p>
 
-        <p
-          className={cn(
-            'font-semibold uppercase tracking-[0.15em] text-gray-400',
-            compact ? 'mb-1 text-[0.625rem]' : 'mb-2 text-[0.6875rem]'
-          )}
-        >
-          {focusLabel}
-        </p>
+        {/* the phone stack has no room for the heading above the chips */}
+        {!compact && (
+          <p className="mb-2 text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-gray-400">
+            {focusLabel}
+          </p>
+        )}
         <div className={cn('flex flex-wrap gap-2', compact ? 'mb-4 gap-1.5' : 'mb-6')}>
           {system.focus.map((item) => (
             <span

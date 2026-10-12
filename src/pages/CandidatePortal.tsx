@@ -41,7 +41,15 @@ const DEGREE_OPTIONS = [
 
 const INTERNSHIP_COUNT_OPTIONS = ['0', '1', '2', '3', '4+'];
 
-export default function CandidatePortal() {
+// shown beside the form when it closes a longer page; mirrors what the success screen promises
+const NEXT_STEPS = [
+  'Your application enters the Phase 0 assessment pipeline the moment you submit.',
+  'Phase 0 instructions and proctored assessment dates arrive in your inbox.',
+  'You get a Candidate ID to quote in any follow-up.',
+];
+
+/** `embedded`: rendered as the closing section of a longer page rather than as a page of its own */
+export default function CandidatePortal({ embedded = false }: { embedded?: boolean }) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<CandidateFormData>(candidateFormDefaults);
   const [resume, setResume] = useState<File | null>(null);
@@ -108,34 +116,43 @@ export default function CandidatePortal() {
     }
   };
 
+  // embedded, the host page already owns the h1
+  const Heading = embedded ? 'h2' : 'h1';
+
   if (candidateId) {
-    return <SuccessScreen candidateId={candidateId} />;
+    return <SuccessScreen candidateId={candidateId} embedded={embedded} />;
   }
 
   return (
-    <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16 relative">
-      <div className="absolute top-6 left-4 lg:hidden z-50">
-        <Link
-          to="/"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <div className="inline-flex items-baseline text-[#232621]">
-            <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
-            <motion.span
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 -10% 0 0)' }}
-              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-              className="font-batangas text-2xl ml-1 text-[#4a5d23]"
-            >
-              works
-            </motion.span>
-          </div>
-        </Link>
-      </div>
+    <section
+      className={`w-full bg-transparent flex items-center justify-center relative ${embedded ? 'px-4 sm:px-6 lg:px-8' : 'min-h-screen p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16'}`}
+    >
+      {!embedded && (
+        <div className="absolute top-6 left-4 lg:hidden z-50">
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <div className="inline-flex items-baseline text-[#232621]">
+              <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+              <motion.span
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+                transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+                className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+              >
+                works
+              </motion.span>
+            </div>
+          </Link>
+        </div>
+      )}
 
-      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
+      <div
+        className={`w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row ${embedded ? 'lg:min-h-[42rem]' : 'min-h-[85vh]'}`}
+      >
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
@@ -150,21 +167,42 @@ export default function CandidatePortal() {
 
           <div className="relative z-10 mt-auto mb-auto pt-12">
             <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md mb-6">
-              Candidate Application Portal
+              {embedded ? 'Apply now' : 'Candidate Application Portal'}
             </span>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
-              Enter the T3 Talent Funnel
-            </h1>
+            <Heading className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
+              {embedded
+                ? 'Start building the systems you want to be hired to build'
+                : 'Enter the T3 Talent Funnel'}
+            </Heading>
             <p className="text-lg text-white/70 max-w-md leading-relaxed">
-              Apply in a few minutes. Your application enters the Phase 0 assessment pipeline
-              immediately after submission.
+              {embedded
+                ? 'Learn the architecture. Build the systems. Develop the engineering depth.'
+                : 'Apply in a few minutes. Your application enters the Phase 0 assessment pipeline immediately after submission.'}
             </p>
           </div>
 
-          <div className="relative z-10 mt-12 flex items-center gap-4 text-sm font-medium text-white/50">
-            <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-            <span>Join the top 1% of AI Engineering</span>
-          </div>
+          {embedded ? (
+            <div className="relative z-10 mt-12">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#d3be8f]">
+                What happens next
+              </p>
+              <ol className="space-y-3">
+                {NEXT_STEPS.map((text, i) => (
+                  <li key={text} className="flex items-start gap-3 text-sm text-white/75">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-xs font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <span className="pt-0.5 leading-snug">{text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : (
+            <div className="relative z-10 mt-12 flex items-center gap-4 text-sm font-medium text-white/50">
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+              <span>Join the top 1% of AI Engineering</span>
+            </div>
+          )}
         </div>
 
         {/* Right Side: Form */}
@@ -179,13 +217,17 @@ export default function CandidatePortal() {
             </div>
 
             <span className="inline-flex rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-semibold text-gray-700 mb-4">
-              Candidate Application Portal
+              {embedded ? 'Apply now' : 'Candidate Application Portal'}
             </span>
-            <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
-              Enter the T3 Talent Funnel
-            </h1>
+            <Heading className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
+              {embedded
+                ? 'Start building the systems you want to be hired to build'
+                : 'Enter the T3 Talent Funnel'}
+            </Heading>
             <p className="text-gray-600 text-sm">
-              Apply in a few minutes to start your Phase 0 assessment.
+              {embedded
+                ? 'Your application enters the Phase 0 assessment pipeline as soon as you submit.'
+                : 'Apply in a few minutes to start your Phase 0 assessment.'}
             </p>
           </div>
 
@@ -442,29 +484,34 @@ export default function CandidatePortal() {
   );
 }
 
-function SuccessScreen({ candidateId }: { candidateId: string }) {
+function SuccessScreen({ candidateId, embedded }: { candidateId: string; embedded: boolean }) {
+  const Heading = embedded ? 'h2' : 'h1';
   return (
-    <section className="w-full bg-transparent py-24 min-h-screen flex items-center justify-center p-4 relative">
-      <div className="absolute top-6 left-4 lg:hidden z-50">
-        <Link
-          to="/"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <div className="inline-flex items-baseline text-[#232621]">
-            <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
-            <motion.span
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 -10% 0 0)' }}
-              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-              className="font-batangas text-2xl ml-1 text-[#4a5d23]"
-            >
-              works
-            </motion.span>
-          </div>
-        </Link>
-      </div>
+    <section
+      className={`w-full bg-transparent flex items-center justify-center p-4 relative ${embedded ? 'pb-24' : 'py-24 min-h-screen'}`}
+    >
+      {!embedded && (
+        <div className="absolute top-6 left-4 lg:hidden z-50">
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <div className="inline-flex items-baseline text-[#232621]">
+              <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+              <motion.span
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+                transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+                className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+              >
+                works
+              </motion.span>
+            </div>
+          </Link>
+        </div>
+      )}
 
       <div className="w-full max-w-[37.5rem]">
         <motion.div
@@ -479,9 +526,9 @@ function SuccessScreen({ candidateId }: { candidateId: string }) {
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
+          <Heading className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
             Application received.
-          </h1>
+          </Heading>
 
           <p className="text-gray-600 mb-6 font-medium">
             Thank you for applying to T3 AI Works. Your Candidate ID is:
