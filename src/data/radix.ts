@@ -27,6 +27,7 @@ export interface RadixContent {
     eyebrow: string;
     /** one entry per line of the heading */
     title: string[];
+    /** the short points under the heading, separated by ' · ' */
     tagline: string;
     body: string;
     primary: RadixLink;
@@ -445,18 +446,18 @@ export const RADIX_STUDENT: RadixContent = {
 export const RADIX_COMPANY: RadixContent = {
   hero: {
     eyebrow: 'Engineering Talent Built for Digital Intelligence Systems',
-    title: ['Where Engineering Talent Meets Production-Grade Systems'],
+    title: ['Open Radix Builds Day-One Production-Ready Engineers'],
     tagline:
-      'System Architecture · Data Engineering · AI & Agents · DevOps & Cloud · Enterprise Platform Engineering',
-    body: 'Radix develops engineers through direct work across complex digital systems — from normalized data architectures and automated validation to multi-agent AI, cloud infrastructure, machine learning, and enterprise platform design. Companies gain visibility into engineers who have worked across the technical layers required to build and operate modern AI-enabled products.',
+      '100+ Table Data Architecture · 2,000+ Automated Tests · Multi-Agent AI Workflows · Containerized Cloud Deployment · Enterprise Security & RBAC',
+    body: 'Open Radix develops engineers through direct work across complex digital systems — from normalized data architectures and automated validation to multi-agent AI, cloud infrastructure, machine learning, and enterprise platform design. Companies gain visibility into engineers who have worked across the technical layers required to build and operate modern AI-enabled products.',
     primary: { label: 'Explore the Engineering Systems', href: '#projects' },
-    secondary: { label: 'Explore Engineering Capability', href: '#overview' },
+    secondary: { label: 'Explore Engineering Capability', href: '#scale' },
   },
   overview: {
     label: 'Engineering Capability',
     title: 'A Structured Engineering Path Designed Around Real System Complexity',
     intro:
-      'Radix develops engineering capability through a connected progression of technical systems. Instead of evaluating isolated skills, the program exposes engineers to the architecture, data, AI, infrastructure, quality, and enterprise concerns that emerge when building a complete digital platform.',
+      'Open Radix develops engineering capability through a connected progression of technical systems. Instead of evaluating isolated skills, the program exposes engineers to the architecture, data, AI, infrastructure, quality, and enterprise concerns that emerge when building a complete digital platform.',
     pillars: pillars([
       {
         subtitle: 'End-to-End Product Engineering',
@@ -479,7 +480,7 @@ export const RADIX_COMPANY: RadixContent = {
         desc: 'Engineers are exposed to security governance, RBAC, auditability, high availability, scalable architecture, and production-oriented platform design.',
       },
     ]),
-    note: 'Radix evaluates and develops engineers through the complexity of real systems, not isolated technology checklists.',
+    note: 'Open Radix evaluates and develops engineers through the complexity of real systems, not isolated technology checklists.',
   },
   systems: {
     label: 'Engineering Systems',
@@ -527,7 +528,7 @@ export const RADIX_COMPANY: RadixContent = {
     label: 'Engineering Scale',
     title: 'Engineering Capability Measured by System Complexity',
     intro:
-      'The scope of Radix provides a concrete view of the engineering environments candidates have been exposed to — across data, quality, AI, infrastructure, and system architecture.',
+      'The scope of Open Radix provides a concrete view of the engineering environments candidates have been exposed to — across data, quality, AI, infrastructure, and system architecture.',
     stats: [
       {
         val: '8',
@@ -571,7 +572,6 @@ export const RADIX_COMPANY: RadixContent = {
       'Automated validation and engineering quality',
       'Standard development and engineering workflows',
     ]),
-    note: 'The value is the combination of technologies across a working system — not familiarity with individual tools in isolation.',
   },
   complexity: {
     label: 'Progressive Engineering Depth',
@@ -585,7 +585,7 @@ export const RADIX_COMPANY: RadixContent = {
     label: 'Engineering Outcomes',
     title: 'What Companies Can Expect Engineers to Understand',
     intro:
-      'Radix produces evidence of engineering exposure through systems built across multiple technical layers. The objective is to develop engineers who can reason about complete systems rather than operate only within isolated technology silos.',
+      'Open Radix produces evidence of engineering exposure through systems built across multiple technical layers. The objective is to develop engineers who can reason about complete systems rather than operate only within isolated technology silos.',
     items: [
       {
         title: 'Production Engineering Experience',

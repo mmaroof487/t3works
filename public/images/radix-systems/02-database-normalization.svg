@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" fill="none" stroke="#4a5d23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img">
+  <title>Three related tables joined by keys</title>
+  <path d="M34 19h12a4 4 0 0 1 4 4v0M34 19h28M48 30v6" stroke="#b89c5a"/>
+  <rect x="6" y="8" width="28" height="22" rx="3.5" fill="#d9e1c3"/><path d="M6 16h28" /><path d="M11 22h12"/>
+  <rect x="62" y="8" width="28" height="22" rx="3.5" fill="#d9e1c3"/><path d="M62 16h28" /><path d="M67 22h12"/>
+  <rect x="34" y="36" width="28" height="22" rx="3.5" fill="#d9e1c3"/><path d="M34 44h28" /><path d="M39 50h12"/>
+  <path d="M20 30v13a4 4 0 0 0 4 4h10M76 30v13a4 4 0 0 1-4 4H62" stroke="#b89c5a"/>
+</svg>

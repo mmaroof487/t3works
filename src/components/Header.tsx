@@ -27,7 +27,7 @@ const APPLY_PATH = '#get-started';
 // (`compact` trims the padding so a longer label still fits the fixed-width pill)
 const ROUTE_CTA: Record<string, { label: string; to: string; compact?: boolean } | undefined> = {
   '/apply': { label: 'Apply Now', to: '/apply/form' },
-  '/hire': { label: 'Hire AI Talent', to: '/hire/form', compact: true },
+  '/hire': { label: 'Apply Now', to: '/hire/form' },
 };
 
 export default function Header() {

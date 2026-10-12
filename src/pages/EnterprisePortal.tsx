@@ -33,7 +33,16 @@ const STEP_SCHEMAS = [
   enterpriseStep4Schema,
 ];
 
-export default function EnterprisePortal() {
+// shown beside the form when it closes a longer page; mirrors what the form and the success screen
+// already promise
+const NEXT_STEPS = [
+  'We scope the match within 48 hours, with zero upfront fee until PoC or internship validation.',
+  'A confirmation is emailed to your corporate inbox.',
+  'You are assigned a T3 Talent Architect and get a requirement scoping call.',
+];
+
+/** `embedded`: rendered as the closing section of a longer page rather than as a page of its own */
+export default function EnterprisePortal({ embedded = false }: { embedded?: boolean }) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<EnterpriseFormData>(enterpriseFormDefaults);
   const [jdFile, setJdFile] = useState<File | null>(null);
@@ -106,34 +115,43 @@ export default function EnterprisePortal() {
     }
   };
 
+  // embedded, the host page already owns the h1
+  const Heading = embedded ? 'h2' : 'h1';
+
   if (result) {
-    return <SuccessScreen talentArchitect={result.talentArchitect} />;
+    return <SuccessScreen talentArchitect={result.talentArchitect} embedded={embedded} />;
   }
 
   return (
-    <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16 relative">
-      <div className="absolute top-6 left-4 lg:hidden z-50">
-        <Link
-          to="/"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <div className="inline-flex items-baseline text-[#232621]">
-            <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
-            <motion.span
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 -10% 0 0)' }}
-              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-              className="font-batangas text-2xl ml-1 text-[#4a5d23]"
-            >
-              works
-            </motion.span>
-          </div>
-        </Link>
-      </div>
+    <section
+      className={`w-full bg-transparent flex items-center justify-center relative ${embedded ? 'px-4 sm:px-6 lg:px-8' : 'min-h-screen p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16'}`}
+    >
+      {!embedded && (
+        <div className="absolute top-6 left-4 lg:hidden z-50">
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <div className="inline-flex items-baseline text-[#232621]">
+              <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+              <motion.span
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+                transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+                className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+              >
+                works
+              </motion.span>
+            </div>
+          </Link>
+        </div>
+      )}
 
-      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh]">
+      <div
+        className={`w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row ${embedded ? 'lg:min-h-[42rem]' : 'min-h-[85vh]'}`}
+      >
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
@@ -150,19 +168,37 @@ export default function EnterprisePortal() {
             <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold text-white backdrop-blur-md mb-6">
               Enterprise Hiring Portal
             </span>
-            <h1 className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
+            <Heading className="text-4xl lg:text-5xl font-semibold tracking-tight leading-[1.15] mb-6">
               Deploy Day-One ready AI engineers
-            </h1>
+            </Heading>
             <p className="text-lg text-white/70 max-w-md leading-relaxed">
               Submit your hiring requirement and we'll scope the match within 48 hours — zero
               upfront fee until PoC or internship validation.
             </p>
           </div>
 
-          <div className="relative z-10 mt-12 flex items-center gap-4 text-sm font-medium text-white/50">
-            <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
-            <span>Merit-gated. Rigor-driven.</span>
-          </div>
+          {embedded ? (
+            <div className="relative z-10 mt-12">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#d3be8f]">
+                What happens next
+              </p>
+              <ol className="space-y-3">
+                {NEXT_STEPS.map((text, i) => (
+                  <li key={text} className="flex items-start gap-3 text-sm text-white/75">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/10 text-xs font-semibold text-white">
+                      {i + 1}
+                    </span>
+                    <span className="pt-0.5 leading-snug">{text}</span>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ) : (
+            <div className="relative z-10 mt-12 flex items-center gap-4 text-sm font-medium text-white/50">
+              <div className="h-px flex-1 bg-gradient-to-r from-white/20 to-transparent" />
+              <span>Merit-gated. Rigor-driven.</span>
+            </div>
+          )}
         </div>
 
         {/* Right Side: Form */}
@@ -179,9 +215,9 @@ export default function EnterprisePortal() {
             <span className="inline-flex rounded-full border border-[#8ba05f]/20 bg-[#8ba05f]/5 px-4 py-1.5 text-xs font-semibold text-[#667744] mb-4">
               Enterprise Hiring Portal
             </span>
-            <h1 className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
+            <Heading className="text-3xl font-semibold tracking-tight text-[#232621] mb-3">
               Deploy Day-One ready AI engineers
-            </h1>
+            </Heading>
             <p className="text-gray-600 text-sm">Submit your requirement. Zero upfront fee.</p>
           </div>
 
@@ -443,29 +479,40 @@ export default function EnterprisePortal() {
   );
 }
 
-function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
+function SuccessScreen({
+  talentArchitect,
+  embedded,
+}: {
+  talentArchitect: string;
+  embedded: boolean;
+}) {
+  const Heading = embedded ? 'h2' : 'h1';
   return (
-    <section className="w-full bg-transparent py-24 min-h-screen flex items-center justify-center p-4 relative">
-      <div className="absolute top-6 left-4 lg:hidden z-50">
-        <Link
-          to="/"
-          onClick={() => {
-            window.scrollTo(0, 0);
-          }}
-        >
-          <div className="inline-flex items-baseline text-[#232621]">
-            <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
-            <motion.span
-              initial={{ clipPath: 'inset(0 100% 0 0)' }}
-              animate={{ clipPath: 'inset(0 -10% 0 0)' }}
-              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-              className="font-batangas text-2xl ml-1 text-[#4a5d23]"
-            >
-              works
-            </motion.span>
-          </div>
-        </Link>
-      </div>
+    <section
+      className={`w-full bg-transparent flex items-center justify-center p-4 relative ${embedded ? 'pb-24' : 'py-24 min-h-screen'}`}
+    >
+      {!embedded && (
+        <div className="absolute top-6 left-4 lg:hidden z-50">
+          <Link
+            to="/"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            <div className="inline-flex items-baseline text-[#232621]">
+              <span className="font-open-sauce text-4xl font-extrabold tracking-tight">t3</span>
+              <motion.span
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ clipPath: 'inset(0 -10% 0 0)' }}
+                transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
+                className="font-batangas text-2xl ml-1 text-[#4a5d23]"
+              >
+                works
+              </motion.span>
+            </div>
+          </Link>
+        </div>
+      )}
 
       <div className="w-full max-w-[37.5rem]">
         <motion.div
@@ -480,9 +527,9 @@ function SuccessScreen({ talentArchitect }: { talentArchitect: string }) {
             <CheckCircle2 size={40} strokeWidth={2.5} />
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
+          <Heading className="text-3xl font-semibold tracking-tight text-[#232621] md:text-4xl mb-4">
             Requirement received.
-          </h1>
+          </Heading>
 
           <div className="bg-gray-50 rounded-2xl p-6 mb-8 border border-gray-100">
             <p className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-2">

@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import BlobCursor from '../components/BlobCursor';
 import Lenis from 'lenis';
+import { smoothScroller } from '../lib/smoothScroller';
 
 export default function MainLayout() {
   const location = useLocation();
@@ -20,6 +21,7 @@ export default function MainLayout() {
       wheelMultiplier: 1,
       touchMultiplier: 2,
     });
+    smoothScroller.current = lenis;
 
     let animationFrameId: number;
 
@@ -32,6 +34,7 @@ export default function MainLayout() {
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      smoothScroller.current = null;
       lenis.destroy();
     };
   }, []);
