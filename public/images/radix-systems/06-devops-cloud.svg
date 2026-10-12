@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" fill="none" stroke="#4a5d23" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" role="img">
+  <title>Containers moving through a pipeline into the cloud</title>
+  <path d="M60 46h20a11 11 0 0 0 1.5-21.9A15 15 0 0 0 52.5 21 12.5 12.5 0 0 0 54 46z" fill="#d9e1c3"/>
+  <path d="M67 40V29m-5 5 5-5 5 5" stroke="#b89c5a"/>
+  <rect x="6" y="38" width="14" height="14" rx="3" fill="#fbfbf9"/>
+  <rect x="24" y="38" width="14" height="14" rx="3" fill="#fbfbf9"/>
+  <rect x="15" y="20" width="14" height="14" rx="3" fill="#d9e1c3"/>
+  <path d="M10 43v4M15 43v4M28 43v4M33 43v4M19 25v4M24 25v4"/>
+  <path d="M4 58h88" stroke-dasharray="2 4"/>
+</svg>

@@ -24,3 +24,18 @@ export function scrollToSection(selector: string, duration = 800) {
 
   window.requestAnimationFrame(step);
 }
+
+/** Animated scroll by a distance (px) from wherever the page is now, frame by frame like the above. */
+export function scrollByAnimated(distance: number, duration = 450) {
+  const start = window.scrollY;
+  let startTime: number | null = null;
+
+  const step = (timestamp: number) => {
+    startTime ??= timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+    if (progress < 1) window.requestAnimationFrame(step);
+  };
+
+  window.requestAnimationFrame(step);
+}
