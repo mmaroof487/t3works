@@ -96,6 +96,7 @@ export const LEADERS: Leader[] = [
       '22+ years as a business and strategy consultant across industries.',
       'Global network of professional associates and organizations.',
     ],
+    photo: '/images/leadership/syed-tajuddeen.webp',
     // PLACEHOLDER: dummy email and linkedin until the real details arrive.
     email: 'syed.tajuddeen@example.com',
     linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
