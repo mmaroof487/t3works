@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import {
   ArrowRight,
   BrainCircuit,
@@ -24,6 +24,7 @@ import { SystemModal } from '../components/SystemModal';
 import { Accent, Reveal, SectionHeading } from '../components/leadership/primitives';
 import { SYSTEMS_DATA } from '../data/systems';
 import { STUDENT_OUTCOMES, STUDENT_PILLARS, STUDENT_SYSTEMS } from '../data/radixStudent';
+import { ART_EDGE_FADE } from '../lib/artEdgeFade';
 import { scrollToSection } from '../lib/scrollToSection';
 import { usePinnedJourney } from '../lib/usePinnedJourney';
 import { cn } from '../lib/cn';
@@ -79,27 +80,9 @@ function SectionLink({
   );
 }
 
-/** eight dots that light up in turn, the build path in miniature */
-function BuildPath() {
-  const still = useReducedMotion() ?? false;
-  return (
-    <div className="flex items-center gap-1.5" aria-hidden="true">
-      {Array.from({ length: 8 }, (_, i) => (
-        <motion.span
-          key={i}
-          className="h-1.5 w-1.5 rounded-full bg-[#4a5d23]"
-          initial={{ opacity: still ? 0.9 : 0.25 }}
-          animate={still ? undefined : { opacity: [0.25, 1, 0.25], scale: [1, 1.5, 1] }}
-          transition={{ duration: 1.1, delay: i * 0.16, repeat: Infinity, repeatDelay: 1.8 }}
-        />
-      ))}
-    </div>
-  );
-}
-
 function Hero() {
   return (
-    <section className="relative flex min-h-svh flex-col overflow-hidden px-4 pb-8 pt-24 sm:px-6 lg:h-svh lg:min-h-[32rem] lg:px-8 lg:pb-3 lg:pt-[7.5rem]">
+    <section className="relative flex min-h-svh flex-col overflow-hidden pb-8 pt-24 lg:pb-3 lg:pt-[7.5rem]">
       <motion.div
         animate={{
           opacity: [0.2, 1, 0.2],
@@ -111,21 +94,24 @@ function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[40.625rem] bg-gradient-to-b from-[#c4cdbe] via-[#e5e9db] to-transparent"
       />
 
-      {/* On wide screens the grid takes exactly the height left under the nav and above the scroll
-          cue, and every size inside it is capped by the viewport height, so the intro always fits. */}
-      <div className="relative z-10 mx-auto grid min-h-0 w-full max-w-[87.5rem] flex-1 gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:grid-rows-[minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)]">
+      {/* On wide screens the row is as tall as the copy, which is packed with even gaps, and sits
+          centred between the nav and the scroll cue. The asset column stretches to the copy's
+          height, so the artwork starts level with the eyebrow and the stats card ends level with
+          the intro card. */}
+      <div className="relative mx-auto grid w-full max-w-[87.5rem] gap-8 px-4 sm:px-6 lg:my-auto lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)] lg:px-8 lg:py-[clamp(0.5rem,2vh,1.5rem)]">
         {/* tagline, heading and explanation */}
-        <div className="flex min-h-0 flex-col justify-center gap-[clamp(1rem,3.4vh,2rem)]">
+        <div className="flex flex-col gap-[clamp(1.25rem,4.2vh,2.75rem)]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: heroEase }}
             className="flex items-center gap-4"
           >
-            <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
+            <span className="h-px w-10 shrink-0 bg-[#4a5d23]/60" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
               OpenRadix · For students
             </span>
+            <span className="h-px w-10 shrink-0 bg-[#4a5d23]/60" aria-hidden="true" />
           </motion.div>
 
           <div>
@@ -133,7 +119,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.1 }}
-              className="text-4xl font-semibold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-[length:clamp(2rem,min(3.5vw,7.4vh),4.5rem)]"
+              className="text-4xl font-semibold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-[length:clamp(2rem,min(3.6vw,7.8vh),4.75rem)]"
             >
               Stop collecting tutorials.
               <br />
@@ -144,7 +130,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.2 }}
-              className="mt-[clamp(0.75rem,2vh,1.25rem)] max-w-[40rem] text-base leading-relaxed text-gray-700 lg:text-lg xl:text-xl"
+              className="mt-[clamp(0.75rem,2.4vh,1.5rem)] max-w-[44rem] text-base leading-relaxed text-gray-700 lg:text-xl xl:text-2xl"
             >
               Eight systems. One platform. Every layer built by you.
             </motion.p>
@@ -154,9 +140,12 @@ function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
-            className={cn(CARD, 'max-w-[36rem] bg-[#fbfbf9]/85 p-5 backdrop-blur lg:p-6')}
+            className={cn(
+              CARD,
+              'max-w-[44rem] bg-[#fbfbf9]/85 p-5 backdrop-blur lg:p-[clamp(1.5rem,3.2vh,2.25rem)]'
+            )}
           >
-            <p className="mb-5 text-[0.9375rem] leading-relaxed text-gray-600">
+            <p className="mb-5 text-[0.9375rem] leading-relaxed text-gray-600 lg:mb-[clamp(1.25rem,2.8vh,1.75rem)] lg:text-[length:clamp(0.9375rem,1.9vh,1.125rem)]">
               OpenRadix hands you a messy business problem and a blank schema. Eight systems later,
               you have modeled the data, automated the tests, orchestrated AI agents and deployed
               the platform. You leave with the systems that prove you can do it.
@@ -182,31 +171,37 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* asset */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: heroEase, delay: 0.2 }}
-          className="relative h-[22rem] min-h-0 overflow-hidden rounded-[2rem] border border-black/5 bg-gradient-to-br from-[#eef1e3] via-[#e8ecda] to-[#dde4c8] shadow-[0_32px_64px_-24px_rgba(40,50,20,0.35)] sm:h-[28rem] lg:h-full"
-        >
-          {/* the illustration's paper is lighter than the card, so a darken blend leaves only the artwork */}
-          <motion.img
-            initial={{ scale: 1.08 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 1.8, ease: heroEase }}
-            src="/images/Students%20Image.webp"
-            alt="Three students walking across a campus, connected by a network of nodes"
-            className="absolute inset-0 h-full w-full object-cover mix-blend-darken"
-          />
+        {/* asset: bare artwork, with the stats card sitting on the same baseline as the intro card */}
+        <div className="flex min-h-0 flex-col gap-5 lg:self-stretch">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: heroEase, delay: 0.2 }}
+            className="relative h-[20rem] min-h-0 sm:h-[26rem] lg:h-auto lg:min-h-[14rem] lg:flex-1"
+          >
+            {/* the illustration's paper is lighter than the page, so a darken blend leaves only the
+                artwork. That needs the page behind it in the same stacking context, so nothing from
+                here up to the section sets a z-index. It is drawn larger than its box, as its own
+                margins are empty. */}
+            <motion.img
+              initial={{ scale: 1.08 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.8, ease: heroEase }}
+              src="/images/Students%20Image.webp"
+              alt="Three students walking across a campus, connected by a network of nodes"
+              className="pointer-events-none absolute left-[-14%] top-[-18%] h-[118%] w-[128%] max-w-none object-contain mix-blend-darken"
+            />
+          </motion.div>
 
-          <div className="absolute left-4 top-4 flex items-center gap-3 rounded-full border border-white/70 bg-white/65 px-4 py-2.5 shadow-[0_8px_32px_-8px_rgba(40,50,20,0.25)] backdrop-blur-xl sm:left-5 sm:top-5">
-            <span className="text-[0.6875rem] font-semibold uppercase tracking-[0.15em] text-[#4a5d23]">
-              Build path
-            </span>
-            <BuildPath />
-          </div>
-
-          <dl className="absolute inset-x-4 bottom-4 grid grid-cols-3 divide-x divide-black/10 rounded-2xl border border-white/70 bg-white/65 py-3.5 shadow-[0_8px_32px_-8px_rgba(40,50,20,0.25)] backdrop-blur-xl sm:inset-x-5 sm:bottom-5">
+          <motion.dl
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
+            className={cn(
+              CARD,
+              'grid shrink-0 grid-cols-3 divide-x divide-black/10 bg-[#fbfbf9]/85 py-5 backdrop-blur lg:-ml-10'
+            )}
+          >
             {HERO_STATS.map((stat) => (
               <div key={stat.label} className="flex flex-col-reverse px-3 text-center sm:px-4">
                 <dt className="text-[0.6875rem] leading-snug text-gray-600 sm:text-xs">
@@ -217,8 +212,8 @@ function Hero() {
                 </dd>
               </div>
             ))}
-          </dl>
-        </motion.div>
+          </motion.dl>
+        </div>
       </div>
 
       <SectionLink
@@ -343,11 +338,26 @@ function ProgramArchitecture() {
 
 function Outcomes() {
   return (
-    <section id="outcomes" className="relative py-6 md:py-12 lg:py-12">
+    <section id="outcomes" className="relative py-6 md:py-10">
+      {/* the homepage's geometric network in the background, straddling the seam with the systems
+          section above so it overlaps both */}
+      <img
+        src="/images/Minimalist%20Neural%20Network%20Background.webp"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-[5vw] -top-[14vw] hidden w-[40vw] max-w-none mix-blend-darken lg:block"
+        style={ART_EDGE_FADE}
+      />
+      {/* Laid out to fit one desktop screen, as on the company page: the heading, its intro and the
+          closing quote down the left, and the six outcomes as one panel of cells on the right,
+          stretched to the left column's height so both end level. */}
       <div
-        className={cn(CONTAINER, 'grid gap-8 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16')}
+        className={cn(
+          CONTAINER,
+          'relative grid gap-8 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-stretch lg:gap-12'
+        )}
       >
-        <div className="lg:sticky lg:top-32 lg:self-start">
+        <div className="lg:flex lg:flex-col lg:justify-between">
           <SectionHeading
             eyebrow="Engineering outcomes"
             title={
@@ -355,18 +365,18 @@ function Outcomes() {
                 What you build, learn, and <Accent>walk away with.</Accent>
               </>
             }
-            titleClassName="sm:text-4xl lg:text-5xl"
+            titleClassName="sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]"
             description="OpenRadix is designed around demonstrated engineering ability. You build systems and develop competencies through direct technical work, not only lectures, certificates or theoretical exercises."
-            className="mb-8 md:mb-8"
+            className="mb-6 md:mb-6"
           />
 
           <Reveal delay={0.1}>
-            <figure className="relative overflow-hidden rounded-[1.75rem] bg-[#232621] p-7 text-white">
+            <figure className="relative overflow-hidden rounded-[1.75rem] bg-[#232621] p-6 text-white">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,_var(--tw-gradient-stops))] from-[#c9b27a]/20 via-transparent to-transparent"
               />
-              <blockquote className="relative text-lg font-semibold leading-snug tracking-tight sm:text-xl">
+              <blockquote className="relative text-lg font-semibold leading-snug tracking-tight">
                 The outcome is not a certificate saying you studied engineering.{' '}
                 <span className="text-[#d3be8f]">
                   It is evidence that you have built engineering systems.
@@ -376,32 +386,39 @@ function Outcomes() {
           </Reveal>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
-          {STUDENT_OUTCOMES.map((outcome, i) => {
-            const Icon = OUTCOME_ICONS[i];
-            return (
-              <Reveal key={outcome.title} delay={(i % 2) * 0.08} className="h-full">
-                <article className={cn(CARD, 'flex h-full flex-col p-6')}>
-                  <div className="mb-5 flex items-start justify-between">
-                    <span className={ICON_TILE}>
-                      <Icon className="h-6 w-6 text-[#3f4f1f]" aria-hidden="true" />
-                    </span>
-                    <span
+        <Reveal delay={0.05} className="h-full">
+          <ol className="grid h-full overflow-hidden rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] shadow-sm sm:grid-cols-2 sm:grid-rows-3">
+            {STUDENT_OUTCOMES.map((outcome, i) => {
+              const Icon = OUTCOME_ICONS[i];
+              return (
+                <li
+                  key={outcome.title}
+                  className={cn(
+                    'group flex items-center gap-4 px-5 py-4 transition-colors duration-300 hover:bg-[#f3f5ea] lg:px-6',
+                    // hairlines between the cells: above every cell but the first row's, and
+                    // between the two columns
+                    i > 0 && 'border-t border-black/5',
+                    i === 1 && 'sm:border-t-0',
+                    i % 2 === 1 && 'sm:border-l sm:border-black/5'
+                  )}
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center self-start rounded-xl bg-[#4a5d23]/10 transition-colors duration-300 group-hover:bg-[#4a5d23] sm:self-center">
+                    <Icon
+                      className="h-5 w-5 text-[#3f4f1f] transition-colors duration-300 group-hover:text-white"
                       aria-hidden="true"
-                      className="text-xs font-semibold tracking-[0.2em] text-gray-300"
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
+                    />
+                  </span>
+                  <div className="min-w-0">
+                    <h3 className="mb-1 text-base font-semibold leading-snug text-gray-900">
+                      {outcome.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-gray-600">{outcome.desc}</p>
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold leading-snug text-gray-900">
-                    {outcome.title}
-                  </h3>
-                  <p className="text-[0.9375rem] leading-relaxed text-gray-600">{outcome.desc}</p>
-                </article>
-              </Reveal>
-            );
-          })}
-        </div>
+                </li>
+              );
+            })}
+          </ol>
+        </Reveal>
       </div>
     </section>
   );
