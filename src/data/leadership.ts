@@ -7,22 +7,25 @@ export interface Metric {
   label: string;
 }
 
-export interface Leader {
+// Contact details and the longer story are filled in only where the person's own profile supplies
+// them; anything not known yet is left out rather than invented.
+export interface Person {
   id: string;
   initials: string;
   name: string;
   title: string;
-  bio: string[];
   /** portrait under /public; the initials tile stands in when there is none */
   photo?: string;
-  company: string;
-  email: string;
-  linkedin: string;
-  /** the longer story shown in the profile modal, one paragraph per entry */
+  email?: string;
+  linkedin?: string;
+  /** the longer story, one paragraph per entry; empty when there is no profile to draw on yet */
   about: string[];
 }
 
-// PLACEHOLDER: every email, linkedin and about below is dummy copy until the real details arrive.
+export interface Leader extends Person {
+  bio: string[];
+}
+
 export const LEADERS: Leader[] = [
   {
     id: 'somashekhar',
@@ -35,13 +38,11 @@ export const LEADERS: Leader[] = [
       'Mentorship/growth support for Over 50 Startups.',
     ],
     photo: '/images/leadership/somashekhar.webp',
-    company: 'Talencia Global',
-    email: 'somashekhar@example.com',
-    linkedin: 'https://www.linkedin.com/in/example-somashekhar',
+    linkedin: 'https://www.linkedin.com/in/neralakere-somashekhar-soma-9151611/',
     about: [
-      'Somashekhar has spent his career at the point where capital, policy and technology meet. He helped architect government-to-government and business-to-business collaborations under CECA, building the bridges that let companies and institutions work across borders.',
-      'He went on to manage a S$150M Technology Growth Fund, backing technology ventures from early promise through to scale, and has mentored and supported the growth of more than 50 startups along the way.',
-      'At T3 AI Works he shapes the capital and ecosystem strategy, connecting universities, industry and investors so that engineering talent has somewhere meaningful to go.',
+      'Somashekhar (Soma) is an entrepreneur and leader with over three decades of experience across information and communication technology, venture capital, digital transformation and global innovation ecosystems, in both the public and private sectors. As a senior Singapore Government official at the Infocomm Media Development Authority (IMDA), he worked on industry development, internationalisation and marketing across India, the Middle East and the USA.',
+      "He managed the S$150 million Singapore Government Technology Growth Fund, now SGInnovate, which supported over 50 early-stage startups. He was part of the negotiating team for the India-Singapore Comprehensive Economic Cooperation Agreement (CECA), established Singapore's Government Office in Bangalore and led more than 20 business delegations to India.",
+      'He has been Entrepreneur-in-Residence at INSEAD Singapore and an adjunct professor at ESSEC Business School, SP Jain School of Global Management and Arabian Gulf University, Bahrain, and advises startups and corporates on digital transformation, ESG, AI/ML and immersive technologies. He holds an MBA from the MIT Sloan School of Management, where he is a Sloan Fellow in Innovation and Global Leadership.',
     ],
   },
   {
@@ -54,13 +55,12 @@ export const LEADERS: Leader[] = [
       'Scaled a $2 Billion Healthcare Claims platform.',
       'Spearheaded $2.8 Billion in IP Value Created.',
     ],
-    company: 'Talencia Global',
-    email: 'subramanian.sivakumar@example.com',
-    linkedin: 'https://www.linkedin.com/in/example-subramanian-sivakumar',
+    photo: '/images/leadership/subramanian-sivakumar.avif',
+    linkedin: 'https://www.linkedin.com/in/subramaniansivakumar/',
     about: [
-      'Subramanian Sivakumar has built his career around one question: how do you find exceptional engineers early and make them productive fast? His answer is the "0.3%" elite talent identification funnel, a selection model that surfaces the few candidates ready for demanding engineering work.',
-      'He has paired that with deep platform experience, scaling a $2 Billion healthcare claims platform and spearheading work credited with $2.8 Billion in IP value created.',
-      'At T3 AI Works he leads the talent pipeline, turning campus potential into deployment-ready engineering teams.',
+      'Subramanian Sivakumar (Subbu) is a serial entrepreneur, innovation enthusiast and servant leader with over 27 years in the IT industry. He has worked with Fortune 500 companies and technology startups across more than 15 global geographies as a technology advisor, software architect, digital transformation specialist and mentor, and has mentored close to 10,000 senior professionals associated with organizations including Microsoft, Cisco, Intel, Oracle, IBM, Siemens, GE and Philips.',
+      'He led a team of 150 technology professionals, working with around 100 healthcare professionals in Florida, USA, to build one of the largest healthcare platforms of its kind. It now runs across more than 125 locations in the United States and manages over USD 2 billion in healthcare claims. More than 90% of that team came straight from campuses in India, selected from nearly 40,000 candidates assessed across the country.',
+      'Having contributed to intellectual property in AI, XR and Blockchain associated with a valuation exceeding USD 2.8 billion, he is now focused on enabling talent on campuses to create high-value products, platforms and intellectual property, and aspires to incubate more than 1,000 successful startups.',
     ],
   },
   {
@@ -73,7 +73,7 @@ export const LEADERS: Leader[] = [
       "Built Asia's largest IT park training facility for 5,000 students.",
       'Industrial 4.0 & Robotics foundation for ISRO.',
     ],
-    company: 'Talencia Global',
+    // PLACEHOLDER: dummy email, linkedin and about until the real details arrive.
     email: 'gv.babu@example.com',
     linkedin: 'https://www.linkedin.com/in/example-gv-babu',
     about: [
@@ -92,13 +92,41 @@ export const LEADERS: Leader[] = [
       'Turnkey global infrastructure consultancy.',
       'Vast professional associate network.',
     ],
-    company: 'Talencia Global',
+    // PLACEHOLDER: dummy email, linkedin and about until the real details arrive.
     email: 'syed.tajuddeen@example.com',
     linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
     about: [
       'Syed Tajuddeen brings more than 32 years of composite engineering and management leadership, spanning the full arc from design through delivery.',
       'His turnkey global infrastructure consultancy has taken projects from concept to handover, and over the decades he has built a vast network of professional associates across disciplines and geographies.',
       'At T3 AI Works he leads strategic engineering and the global network, opening doors for the talent and the partners the programme brings together.',
+    ],
+  },
+];
+
+export const MENTORS: Person[] = [
+  {
+    id: 'prasanth-k',
+    photo: '/images/leadership/prasanth-k.webp',
+    initials: 'PK',
+    name: 'Prasanth K.',
+    title: 'Healthcare Technology Leader & Startup Advisor',
+    linkedin: 'https://www.linkedin.com/in/kollz/',
+    about: [
+      'Prasanth K. is a healthcare technology leader who has spent his career building systems, businesses and teams. In more than 14 years at CitiusTech, where he rose to Vice President of Healthcare and Medical Technologies, he grew a business unit from 10 people to over 1,500 full-time engineers, delivered 24 major software products and more than 170 service and patch releases, and established 130 strategic partnerships across the healthcare technology ecosystem. Earlier he worked at GE Healthcare and Philips Healthcare and co-chaired the technical committee of HL7 India.',
+      'Today he is co-founder of VTLWorks, an advisor at ValueTech Innovation Labs and an independent healthcare IT consultant, helping startups reach the market faster in collaboration with institutions such as MIT and UC Berkeley, and evaluating and recruiting the engineering talent they need.',
+    ],
+  },
+  {
+    id: 'krishna-kumar',
+    photo: '/images/leadership/krishna-kumar.webp',
+    initials: 'KK',
+    name: 'Krishna Kumar',
+    title: 'Technology Mentor, Coach & Enterprise Architect',
+    email: 'kk@talenciaglobal.com',
+    linkedin: 'https://www.linkedin.com/in/krishkumars/',
+    about: [
+      'Krishna Kumar (KK) is a technology mentor, coach and enterprise architect with more than 22 years of experience in enterprise product development and system architecture. He has trained and coached over 10,000 engineers in architecture, design patterns, cloud and full-stack development, including more than 1,000 senior programmers and architects at companies such as Microsoft, GE Healthcare, Philips, Cisco, Siemens and Cerner, and 2,600 graduate and junior engineers at Amadeus.',
+      'As an architect he led a team of 150 to build a healthcare ERP platform for Access Health Care in Florida, USA, managing 3.8 million patients and $2 billion in annual hospitalization costs across 125 locations. He has been a mentor for product development, enterprise technology and architecture at Talencia Global since 2023.',
     ],
   },
 ];

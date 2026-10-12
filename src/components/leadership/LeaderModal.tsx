@@ -1,28 +1,20 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Mail, X } from 'lucide-react';
+import { Mail, X } from 'lucide-react';
 import type { Leader } from '../../data/leadership';
 import { smoothScroller } from '../../lib/smoothScroller';
-import { Accent } from './primitives';
+import { Accent, LinkedinIcon } from './primitives';
 
 interface LeaderModalProps {
   leader: Leader;
   onClose: () => void;
 }
 
-// lucide dropped its brand icons, so the LinkedIn mark is drawn here
-function LinkedinIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z" />
-    </svg>
-  );
-}
-
 export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const titleId = `leader-${leader.id}-name`;
+  const hasContact = Boolean(leader.email) || Boolean(leader.linkedin);
 
   useEffect(() => {
     closeRef.current?.focus({ preventScroll: true });
@@ -120,7 +112,9 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
               </span>
             )}
 
-            <div className="flex min-w-0 flex-col justify-between gap-4 sm:min-h-44">
+            <div
+              className={`flex min-w-0 flex-col gap-4 sm:min-h-44 ${hasContact ? 'justify-between' : 'justify-center'}`}
+            >
               <div>
                 <h3
                   id={titleId}
@@ -133,44 +127,61 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
                 </p>
               </div>
 
-              <ul className="space-y-2 text-[0.9375rem] leading-snug text-gray-700">
-                <li className="flex items-center gap-2.5">
-                  <Building2 size={16} aria-hidden="true" className="shrink-0 text-[#a3854a]" />
-                  {leader.company}
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <Mail size={16} aria-hidden="true" className="shrink-0 text-[#a3854a]" />
-                  <a
-                    href={`mailto:${leader.email}`}
-                    className="truncate underline-offset-4 hover:text-[#4a5d23] hover:underline"
-                  >
-                    {leader.email}
-                  </a>
-                </li>
-                <li className="flex items-center gap-2.5">
-                  <LinkedinIcon className="h-4 w-4 shrink-0 text-[#a3854a]" />
-                  <a
-                    href={leader.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="truncate underline-offset-4 hover:text-[#4a5d23] hover:underline"
-                  >
-                    {leader.linkedin.replace(/^https?:\/\/(www\.)?/, '')}
-                  </a>
-                </li>
-              </ul>
+              {hasContact && (
+                <ul className="space-y-2 text-[0.9375rem] leading-snug text-gray-700">
+                  {leader.email && (
+                    <li className="flex items-center gap-2.5">
+                      <Mail size={16} aria-hidden="true" className="shrink-0 text-[#a3854a]" />
+                      <a
+                        href={`mailto:${leader.email}`}
+                        className="truncate underline-offset-4 hover:text-[#4a5d23] hover:underline"
+                      >
+                        {leader.email}
+                      </a>
+                    </li>
+                  )}
+                  {leader.linkedin && (
+                    <li className="flex items-center gap-2.5">
+                      <LinkedinIcon className="h-4 w-4 shrink-0 text-[#a3854a]" />
+                      <a
+                        href={leader.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="truncate underline-offset-4 hover:text-[#4a5d23] hover:underline"
+                      >
+                        {leader.linkedin.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              )}
             </div>
           </div>
 
           <div className="mt-7 rounded-2xl bg-black/[0.035] p-5 sm:p-6 lg:mt-6 lg:p-5">
+            {/* without a written profile yet, the card's own highlights stand in */}
             <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
-              About
+              {leader.about.length > 0 ? 'About' : 'Highlights'}
             </h4>
-            <div className="mt-3 space-y-4 text-[0.9375rem] leading-relaxed text-gray-700 sm:text-base lg:space-y-3 lg:text-[0.9375rem]">
-              {leader.about.map((paragraph) => (
-                <p key={paragraph}>{paragraph}</p>
-              ))}
-            </div>
+            {leader.about.length > 0 ? (
+              <div className="mt-3 space-y-4 text-[0.9375rem] leading-relaxed text-gray-700 sm:text-base lg:space-y-3 lg:text-[0.9375rem]">
+                {leader.about.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            ) : (
+              <ul className="mt-3 space-y-2 text-[0.9375rem] leading-relaxed text-gray-700 sm:text-base lg:text-[0.9375rem]">
+                {leader.bio.map((point) => (
+                  <li key={point} className="flex items-start gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#4a5d23]"
+                    />
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </div>
       </motion.div>
