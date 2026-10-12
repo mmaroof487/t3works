@@ -3,6 +3,7 @@ import { MotionConfig, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import CaseStudyExplorer from '../components/leadership/CaseStudyExplorer';
 import ClientTestimonials from '../components/leadership/ClientTestimonials';
+import MentorGrid from '../components/leadership/MentorGrid';
 import StepTestimonials from '../components/leadership/StepTestimonials';
 import SuccessStories from '../components/leadership/SuccessStories';
 import TeamGrid from '../components/leadership/TeamGrid';
@@ -106,6 +107,7 @@ export default function LeadershipPage() {
         </section>
 
         <TeamGrid />
+        <MentorGrid />
         <CaseStudyExplorer />
         <ClientTestimonials />
         <SuccessStories />
