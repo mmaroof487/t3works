@@ -101,7 +101,7 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
                 alt={`Portrait of ${leader.name}`}
                 width={400}
                 height={400}
-                className="h-32 w-32 shrink-0 rounded-[1.5rem] border border-black/5 object-cover shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-44 sm:w-44"
+                className="h-32 w-32 shrink-0 rounded-[1.5rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-44 sm:w-44"
               />
             ) : (
               <span

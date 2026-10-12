@@ -23,6 +23,7 @@ export interface Person {
 }
 
 export interface Leader extends Person {
+  /** three short highlights for the card, each summarised from the profile in `about` */
   bio: string[];
 }
 
@@ -69,17 +70,20 @@ export const LEADERS: Leader[] = [
     name: 'GV Babu',
     title: 'The Applied Tech & Infrastructure Architect',
     bio: [
-      'Enterprise, BFSI & Edutech infrastructure expert.',
-      "Built Asia's largest IT park training facility for 5,000 students.",
-      'Industrial 4.0 & Robotics foundation for ISRO.',
+      'COO of Pentasoft/Pentamedia: 20 offices, 8,000+ employees.',
+      "Designed Asia's largest IT park training campus (22 acres).",
+      'Now CEO of Gai Works (Singapore) and CTO of Cubedots.',
     ],
-    // PLACEHOLDER: dummy email, linkedin and about until the real details arrive.
+    photo: '/images/leadership/gv-babu.webp',
+    // PLACEHOLDER: dummy email and linkedin until the real details arrive.
     email: 'gv.babu@example.com',
     linkedin: 'https://www.linkedin.com/in/example-gv-babu',
     about: [
-      'GV Babu is an infrastructure builder across enterprise, BFSI and edutech. His work has consistently been about putting real, working technology environments in front of the people who need to learn on them.',
-      "He built Asia's largest IT park training facility, serving 5,000 students, and laid an Industrial 4.0 and robotics foundation for ISRO.",
-      'At T3 AI Works he leads applied technology and infrastructure, making sure the labs, platforms and tooling match what industry actually runs.',
+      'G. Venkatesh Babu is a senior technology executive, AI pioneer and digital transformation strategist with over 33 years of experience across global enterprise architecture, digital media, Industry 4.0 and educational ecosystems. His career spans scaling startups into multinational corporations (a $2B market valuation), establishing public-private partnerships across India and Southeast Asia, and pioneering emerging technologies from early AI scripting to Generative AI and Metaverse platforms.',
+      "He advanced from employee #1 to Chief Operating Officer of Pentasoft/Pentamedia, managing 20 global offices and 8,000+ employees, and led R&D across nine hardware and OS platforms. He designed the VISA Training Facility, Asia's largest IT park training campus (22 acres, a Novell backbone, 450+ nodes and 40 km of fiber), for Y2K migration.",
+      "In digital media he is a Silicon Studio (Hollywood) certified instructor who architected a $15M Digital Imaging Center, and produced Sinbad: Beyond the Veil of Mist, the world's first 3D real-time motion-capture feature film and an official Harvard Business School case study. He directed and supervised VFX for 125+ feature films, winning National Film Awards for Jeans and Pandavas and a Vancouver International Film Festival Award for Buddha.",
+      'As Head of Technology at Ramoji Film City (Eenadu TV) during the COVID-19 lockdowns, he deployed in-camera virtual production, OTT streaming apps, a 7-language assessment platform for the Ramoji Academy for Movies and an AI recommendation engine for screenwriters and archived media. He also ran the Siemens Centre of Excellence for Industry 4.0 across 35+ universities, designed NSDC-approved B.Voc degree programs, advised the Government of Maharashtra (MKCL) on digital university frameworks, and co-developed postgraduate programs in Data Science, AI and Blockchain with IGNOU.',
+      'Today he is CTO of Cubedots, a real estate Metaverse platform, and CEO of Gai Works Pte Ltd in Singapore, leading Generative AI content pipelines, real estate and data center Digital Twin frameworks, and ASEAN tech talent initiatives with Singapore government bodies such as IMDA and SWDA.',
     ],
   },
   {
@@ -88,17 +92,18 @@ export const LEADERS: Leader[] = [
     name: 'Syed Tajuddeen',
     title: 'The Strategic Engineering & Global Network Architect',
     bio: [
-      '"32+ Years" of composite Engineering & Management leadership.',
-      'Turnkey global infrastructure consultancy.',
-      'Vast professional associate network.',
+      'Mechanical engineer and manager with 32+ years of experience.',
+      '22+ years as a business and strategy consultant across industries.',
+      'Global network of professional associates and organizations.',
     ],
-    // PLACEHOLDER: dummy email, linkedin and about until the real details arrive.
+    // PLACEHOLDER: dummy email and linkedin until the real details arrive.
     email: 'syed.tajuddeen@example.com',
     linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
     about: [
-      'Syed Tajuddeen brings more than 32 years of composite engineering and management leadership, spanning the full arc from design through delivery.',
-      'His turnkey global infrastructure consultancy has taken projects from concept to handover, and over the decades he has built a vast network of professional associates across disciplines and geographies.',
-      'At T3 AI Works he leads strategic engineering and the global network, opening doors for the talent and the partners the programme brings together.',
+      'Syed Tajuddeen is a Mechanical Engineer and management professional with 32+ years of composite experience. An extrovert with a flair and passion for connecting with people and technology, he began his career in Dubai and, during his years in the engineering industry until 2004, took part in Automechanika in Frankfurt and visited Valeo in Lyon, France.',
+      'For the last 22+ years he has worked as a Business and Strategy Consultant for industries including IT and ITES, engineering outsourcing, engineering analysis and services, edutech, agritech, turnkey consultancy, infrastructure, petroleum, oil and gas, commodity and instrument trading, project finance and IPR, among others.',
+      'He has established a global network of professional associates and organizations, with whom he collaborates on a case-to-case basis.',
+      'Syed firmly believes in grassroots development through social engineering initiatives, and is associated with organizations working in this area in India and West African countries.',
     ],
   },
 ];
