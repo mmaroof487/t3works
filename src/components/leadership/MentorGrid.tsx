@@ -48,19 +48,21 @@ export default function MentorGrid() {
                     {String(index + 1).padStart(2, '0')}
                   </span>
 
-                  <div className="flex items-center gap-5 lg:gap-4">
+                  {/* photo on the left; beside it the name, designation and contact links, so the
+                      profile text below can run at one width for both mentors */}
+                  <div className="flex items-center gap-5">
                     {mentor.photo ? (
                       <img
                         src={mentor.photo}
                         alt=""
                         width={400}
                         height={400}
-                        className="h-[4.5rem] w-[4.5rem] shrink-0 rounded-[1.15rem] lg:h-14 lg:w-14 lg:rounded-2xl border border-black/5 object-cover shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)]"
+                        className="h-28 w-28 shrink-0 rounded-[1.15rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32 lg:h-28 lg:w-28 lg:rounded-2xl"
                       />
                     ) : (
                       <span
                         aria-hidden="true"
-                        className="flex h-[4.5rem] w-[4.5rem] shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-2xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)]"
+                        className="flex h-28 w-28 shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-4xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32 lg:h-28 lg:w-28 lg:rounded-2xl"
                       >
                         <Accent>{mentor.initials}</Accent>
                       </span>
@@ -72,48 +74,48 @@ export default function MentorGrid() {
                       <p className="mt-1.5 text-[0.9375rem] font-medium leading-snug text-[#4a5d23] lg:mt-1 lg:text-sm">
                         {mentor.title}
                       </p>
+
+                      {(mentor.email ?? mentor.linkedin) && (
+                        <ul className="mt-3 space-y-1.5 text-[0.9375rem] text-gray-700 lg:mt-2.5 lg:text-sm">
+                          {mentor.email && (
+                            <li className="min-w-0">
+                              <a href={`mailto:${mentor.email}`} className={CONTACT_LINK_CLASS}>
+                                <Mail
+                                  size={16}
+                                  aria-hidden="true"
+                                  className="shrink-0 text-[#a3854a]"
+                                />
+                                <span className="truncate">{mentor.email}</span>
+                              </a>
+                            </li>
+                          )}
+                          {mentor.linkedin && (
+                            <li className="min-w-0">
+                              <a
+                                href={mentor.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={CONTACT_LINK_CLASS}
+                              >
+                                <LinkedinIcon className="h-4 w-4 shrink-0 text-[#a3854a]" />
+                                <span className="truncate">
+                                  {mentor.linkedin
+                                    .replace(/^https?:\/\/(www\.)?/, '')
+                                    .replace(/\/$/, '')}
+                                </span>
+                              </a>
+                            </li>
+                          )}
+                        </ul>
+                      )}
                     </div>
                   </div>
 
-                  <div className="mt-6 space-y-3 text-[0.9375rem] leading-relaxed text-gray-700 lg:mt-4 lg:space-y-2 lg:text-sm lg:leading-relaxed">
+                  <div className="mt-5 space-y-3 text-[0.9375rem] leading-relaxed text-gray-700 lg:mt-4 lg:space-y-2 lg:text-sm lg:leading-relaxed">
                     {mentor.about.map((paragraph) => (
                       <p key={paragraph}>{paragraph}</p>
                     ))}
                   </div>
-
-                  {(mentor.email ?? mentor.linkedin) && (
-                    <ul className="mt-auto flex flex-wrap gap-x-6 gap-y-2 pt-6 text-[0.9375rem] text-gray-700 lg:pt-3 lg:text-sm">
-                      {mentor.email && (
-                        <li className="min-w-0">
-                          <a href={`mailto:${mentor.email}`} className={CONTACT_LINK_CLASS}>
-                            <Mail
-                              size={16}
-                              aria-hidden="true"
-                              className="shrink-0 text-[#a3854a]"
-                            />
-                            <span className="truncate">{mentor.email}</span>
-                          </a>
-                        </li>
-                      )}
-                      {mentor.linkedin && (
-                        <li className="min-w-0">
-                          <a
-                            href={mentor.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className={CONTACT_LINK_CLASS}
-                          >
-                            <LinkedinIcon className="h-4 w-4 shrink-0 text-[#a3854a]" />
-                            <span className="truncate">
-                              {mentor.linkedin
-                                .replace(/^https?:\/\/(www\.)?/, '')
-                                .replace(/\/$/, '')}
-                            </span>
-                          </a>
-                        </li>
-                      )}
-                    </ul>
-                  )}
                 </article>
               </Reveal>
             </li>
