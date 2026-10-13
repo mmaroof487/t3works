@@ -4,6 +4,17 @@ import JourneyCards, { SolidBriefcase, type IconType, type JourneyStep } from '.
 import PinnedJourney from './PinnedJourney';
 import { usePinnedJourney } from '../lib/usePinnedJourney';
 
+// The scene's paper is not pure white, so its edges are faded out rather than left as a box. The
+// left fade is short, as the first person stands close to that edge.
+const SCENE_FADE_MASK =
+  'linear-gradient(to right, transparent, black 5%, black 94%, transparent), linear-gradient(to bottom, transparent, black 14%)';
+const SCENE_FADE: React.CSSProperties = {
+  maskImage: SCENE_FADE_MASK,
+  maskComposite: 'intersect',
+  WebkitMaskImage: SCENE_FADE_MASK,
+  WebkitMaskComposite: 'source-in',
+};
+
 const STEPS: JourneyStep[] = [
   {
     id: '01',
@@ -96,12 +107,16 @@ export default function HiringSideEntry() {
           {!pinned && <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-3" />}
 
           <div className="relative">
-            {/* business district rising from behind the panel (transparent image, wide screens only) */}
+            {/* the team and the company's campus, standing on the panel's top edge (wide screens
+                only); the paper is blended away so only the artwork shows */}
             <img
-              src="/images/Isometric%20Smart%20City%20Business%20District.webp"
+              src="/images/Enterprise%20Campus%20Team.webp"
               alt=""
               aria-hidden="true"
-              className="pointer-events-none absolute bottom-full right-0 hidden w-[118%] max-w-none translate-y-[14%] xl:block"
+              width={2752}
+              height={1536}
+              className="pointer-events-none absolute bottom-full right-0 hidden h-auto w-[135%] max-w-none mix-blend-darken xl:block"
+              style={SCENE_FADE}
             />
             <motion.div
               initial={{ opacity: 0, y: 30 }}

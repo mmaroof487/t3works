@@ -3,6 +3,23 @@ import { motion } from 'framer-motion';
 import { ArrowRight, BarChart3, FileText, GraduationCap, Search, Users } from 'lucide-react';
 import { SolidBriefcase, type IconType } from './JourneyCards';
 
+// fade the illustration out towards the copy on the left and the card's top edge
+const IMAGE_FADE: React.CSSProperties = {
+  maskImage:
+    'linear-gradient(to right, transparent 5%, #000 45%), linear-gradient(to bottom, transparent, #000 25%)',
+  maskComposite: 'intersect',
+  WebkitMaskComposite: 'source-in',
+};
+
+// The company scene's people stand against the card's edges, so every side is feathered: they melt
+// into the card towards the list on the left and towards the bottom edge, as the students' do.
+const TEAM_FADE: React.CSSProperties = {
+  maskImage:
+    'linear-gradient(to right, transparent 8%, #000 38%), linear-gradient(to left, transparent, #000 7%), linear-gradient(to bottom, transparent, #000 18%), linear-gradient(to top, transparent, #000 24%)',
+  maskComposite: 'intersect',
+  WebkitMaskComposite: 'source-in',
+};
+
 interface Path {
   label: string;
   icon: IconType;
@@ -17,6 +34,8 @@ interface Path {
   image: string;
   /** image sizing/blend, differs per illustration */
   imageClass: string;
+  /** how the illustration fades into the card, differs per illustration */
+  imageFade: React.CSSProperties;
   accentClass: string;
   dotClass: string;
   ctaClass: string;
@@ -41,6 +60,7 @@ const PATHS: Path[] = [
     image: '/images/Students%20Image.webp',
     // paper is lighter than the card, so a darken blend leaves only the artwork
     imageClass: 'w-[62%] translate-x-[10%] mix-blend-darken xl:w-[88%] xl:translate-x-[8%]',
+    imageFade: IMAGE_FADE,
     accentClass: 'text-[#4a5d23]',
     dotClass: 'bg-[#4a5d23]',
     ctaClass: 'bg-[#4a5d23] text-white hover:bg-[#3f4f1f]',
@@ -59,21 +79,17 @@ const PATHS: Path[] = [
     ],
     to: '/hire',
     cta: 'Explore Talent Solutions',
-    image: '/images/Isometric%20Smart%20City%20Business%20District.webp',
-    imageClass: 'w-[95%] translate-x-[24%]',
+    image: '/images/Enterprise%20Partnership.webp',
+    // paper is lighter than the card, so a darken blend leaves only the artwork
+    // brightened so its paper is lighter than the card, which the darken blend then drops
+    imageClass:
+      'w-[90%] translate-x-[3%] mix-blend-darken brightness-[1.06] xl:w-[100%] xl:translate-x-[5%]',
+    imageFade: TEAM_FADE,
     accentClass: 'text-[#a3854a]',
     dotClass: 'bg-[#a3854a]',
     ctaClass: 'bg-[#c9b27a] text-gray-900 hover:bg-[#bda468]',
   },
 ];
-
-// fade the illustration out towards the copy on the left and the card's top edge
-const IMAGE_FADE = {
-  maskImage:
-    'linear-gradient(to right, transparent 5%, #000 45%), linear-gradient(to bottom, transparent, #000 25%)',
-  maskComposite: 'intersect',
-  WebkitMaskComposite: 'source-in',
-};
 
 export default function RoleEntry() {
   return (
@@ -119,7 +135,7 @@ export default function RoleEntry() {
                 alt=""
                 aria-hidden="true"
                 className={`pointer-events-none absolute bottom-0 right-0 hidden max-w-none sm:block ${path.imageClass}`}
-                style={IMAGE_FADE}
+                style={path.imageFade}
               />
 
               <div className="relative flex h-full flex-col items-start">
