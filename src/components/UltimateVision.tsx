@@ -1,5 +1,6 @@
+import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Maximize2, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const POINTS = [
@@ -10,7 +11,13 @@ const POINTS = [
   { title: 'Integrated Data Stack', text: 'Centralized Vector ML and Database systems.' },
 ];
 
+const MAP_SRC = '/images/Radix%20Core%20Architecture%20Map.webp';
+const MAP_ALT =
+  'Radix Core at the centre of a connected ecosystem: development tools, quality engineering, programming, data infrastructure, cloud and DevOps, and AI and agent systems feeding learning tools such as an AI tutor, a project hub and a global community, wrapped in security, governance, observability and DevOps.';
+
 export default function UltimateVision() {
+  const zoomRef = useRef<HTMLDialogElement>(null);
+
   return (
     <section className="w-full pb-8 pt-16 md:pt-24">
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
@@ -45,11 +52,20 @@ export default function UltimateVision() {
             transition={{ duration: 0.8 }}
             className="flex items-center justify-center overflow-hidden rounded-[2rem] border border-black/5 bg-[#f7f8f3] shadow-2xl"
           >
-            <img
-              src="/images/Radix%20Core%20Architecture%20Map.webp"
-              alt="Radix Core at the centre of a connected ecosystem: development tools, quality engineering, programming, data infrastructure, cloud and DevOps, and AI and agent systems feeding learning tools such as an AI tutor, a project hub and a global community, wrapped in security, governance, observability and DevOps."
-              className="h-auto w-full"
-            />
+            <button
+              type="button"
+              onClick={() => zoomRef.current?.showModal()}
+              aria-label="Enlarge the Radix architecture map"
+              className="group relative block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#4a5d23]"
+            >
+              <img src={MAP_SRC} alt={MAP_ALT} className="h-auto w-full" />
+              <span
+                aria-hidden="true"
+                className="absolute right-4 top-4 inline-flex rounded-full bg-[#232621]/85 p-2.5 text-white backdrop-blur-sm transition-colors group-hover:bg-[#232621]"
+              >
+                <Maximize2 className="h-3.5 w-3.5" />
+              </span>
+            </button>
           </motion.div>
 
           <motion.div
@@ -98,6 +114,28 @@ export default function UltimateVision() {
           </motion.div>
         </div>
       </div>
+
+      {/* native dialog: Esc, focus trap and backdrop come with it. A click anywhere closes it. */}
+      <dialog
+        ref={zoomRef}
+        data-lenis-prevent
+        aria-label="Radix architecture map"
+        onClick={() => zoomRef.current?.close()}
+        className="m-auto max-h-none max-w-none cursor-zoom-out bg-transparent p-4 backdrop:bg-[#232621]/85 backdrop:backdrop-blur-sm"
+      >
+        <img
+          src={MAP_SRC}
+          alt={MAP_ALT}
+          className="max-h-[calc(100dvh-2rem)] max-w-[calc(100vw-2rem)] rounded-2xl bg-[#f7f8f3] object-contain shadow-2xl"
+        />
+        <button
+          type="button"
+          aria-label="Close"
+          className="fixed right-4 top-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white text-[#232621] shadow-lg transition-colors hover:bg-[#eef1e3]"
+        >
+          <X className="h-5 w-5" aria-hidden="true" />
+        </button>
+      </dialog>
     </section>
   );
 }

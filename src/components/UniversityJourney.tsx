@@ -53,10 +53,11 @@ function Heading({ className }: { className: string }) {
         <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
       </div>
       <h2 className="mb-5 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl">
-        Bridging Academia to{' '}
+        Bridging{' '}
         <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
-          Enterprises.
-        </span>
+          Universities
+        </span>{' '}
+        to Enterprises.
       </h2>
       <p className="max-w-3xl text-base leading-relaxed text-gray-600 sm:text-lg">
         Higher education builds the foundation, but enterprise demands Day-One ready builders. T3 AI

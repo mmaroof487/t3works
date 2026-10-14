@@ -73,10 +73,11 @@ function Heading({ className }: { className: string }) {
         <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
       </div>
       <h2 className="mb-5 text-4xl font-semibold tracking-tight text-gray-900 sm:whitespace-nowrap sm:text-5xl lg:text-6xl">
-        We Know What Students{' '}
+        We Know What{' '}
         <span className="bg-gradient-to-r from-[#4a5d23] to-[#a3854a] bg-clip-text text-transparent">
-          Need.
-        </span>
+          Students
+        </span>{' '}
+        Need.
       </h2>
       <p className="max-w-4xl text-base leading-relaxed text-gray-600 sm:text-lg">
         Students deserve complete transparency. See exactly what you&apos;ll learn, how you&apos;ll
