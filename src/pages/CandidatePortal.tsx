@@ -240,7 +240,7 @@ export default function CandidatePortal({
             </p>
           </div>
 
-          <div className="mb-10 lg:mb-12">
+          <div className="mb-8 lg:mb-8">
             <StepIndicator steps={STEPS} currentStep={step} />
           </div>
 
@@ -459,7 +459,7 @@ export default function CandidatePortal({
           )}
 
           <div
-            className={`mt-10 flex items-center gap-4 ${step === 0 ? 'justify-center' : 'justify-between'}`}
+            className={`mt-8 flex items-center gap-4 ${step === 0 ? 'justify-center' : 'justify-between'}`}
           >
             {step > 0 && (
               <FormButton type="button" variant="secondary" onClick={handleBack}>

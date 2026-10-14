@@ -230,7 +230,7 @@ export default function EnterprisePortal({
             <p className="text-gray-600 text-sm">Submit your requirement. Zero upfront fee.</p>
           </div>
 
-          <div className="mb-10 lg:mb-12">
+          <div className="mb-8 lg:mb-8">
             <StepIndicator steps={STEPS} currentStep={step} />
           </div>
 
@@ -454,7 +454,7 @@ export default function EnterprisePortal({
           )}
 
           <div
-            className={`mt-10 flex items-center gap-4 ${step === 0 ? 'justify-center' : 'justify-between'}`}
+            className={`mt-8 flex items-center gap-4 ${step === 0 ? 'justify-center' : 'justify-between'}`}
           >
             {step > 0 && (
               <FormButton type="button" variant="secondary" onClick={handleBack}>

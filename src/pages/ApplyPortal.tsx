@@ -18,7 +18,7 @@ export default function ApplyPortal() {
   }, [searchParams]);
 
   return (
-    <section className="w-full bg-transparent min-h-screen flex items-center justify-center p-4 md:p-8 pt-28 md:pt-32 pb-12 md:pb-16 relative">
+    <section className="w-full bg-transparent flex items-center justify-center p-4 md:p-8 pt-24 md:pt-28 pb-2 md:pb-4 relative">
       <div className="absolute top-6 left-4 lg:hidden z-50">
         <Link
           to="/"
@@ -40,7 +40,7 @@ export default function ApplyPortal() {
         </Link>
       </div>
 
-      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row min-h-[85vh] lg:min-h-[950px]">
+      <div className="w-full max-w-[80rem] bg-white rounded-[2rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col lg:flex-row lg:min-h-[calc(100svh-9rem)]">
         {/* Left Side: Graphic / Branding */}
         <div className="hidden lg:flex lg:w-5/12 p-12 flex-col justify-between relative overflow-hidden text-white">
           <div
@@ -54,11 +54,12 @@ export default function ApplyPortal() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/80 to-[#232621]/40" />
 
-          <div className="relative z-10 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#232621] font-bold text-xl">
-              T3
-            </div>
-            <span className="text-xl font-bold tracking-tight">AI Works</span>
+          <div className="relative z-10 w-fit rounded-lg bg-black px-2 py-1">
+            <img
+              src="/images/t3works_nobg.webp"
+              alt="T3Works"
+              className="h-14 w-auto object-contain"
+            />
           </div>
 
           <div className="relative z-10 mt-auto mb-auto pt-12">
@@ -88,14 +89,8 @@ export default function ApplyPortal() {
         </div>
 
         {/* Right Side: Form Content & Switcher */}
-        <div className="w-full lg:w-7/12 p-6 sm:p-10 md:p-14 lg:p-16 flex flex-col items-center">
+        <div className="w-full lg:w-7/12 p-6 sm:p-10 md:p-12 lg:px-14 lg:py-10 flex flex-col items-center justify-center">
           <div className="lg:hidden mb-8 text-center flex flex-col items-center w-full">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#232621] text-white font-bold text-xl">
-                T3
-              </div>
-              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
-            </div>
             <h1 className="text-2xl font-semibold tracking-tight text-[#232621] mb-2">
               {type === 'student'
                 ? 'Enter the T3 Talent Funnel'
@@ -104,7 +99,7 @@ export default function ApplyPortal() {
           </div>
 
           {/* Switcher */}
-          <div className="flex w-full max-w-sm bg-gray-100 p-1.5 rounded-xl mb-10">
+          <div className="flex w-full max-w-sm bg-gray-100 p-1.5 rounded-xl mb-6">
             <button
               onClick={() => {
                 setType('student');

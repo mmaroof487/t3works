@@ -82,7 +82,7 @@ function SectionLink({
 
 function Hero() {
   return (
-    <section className="relative flex min-h-svh flex-col overflow-hidden pb-8 pt-24 lg:pb-3 lg:pt-[7.5rem]">
+    <section className="relative flex min-h-svh flex-col overflow-hidden pb-24 pt-20 md:pb-36 lg:pb-3 lg:pt-[7.5rem]">
       <motion.div
         animate={{
           opacity: [0.2, 1, 0.2],
@@ -98,14 +98,14 @@ function Hero() {
           centred between the nav and the scroll cue. The asset column stretches to the copy's
           height, so the artwork starts level with the eyebrow and the stats card ends level with
           the intro card. */}
-      <div className="relative mx-auto grid w-full max-w-[87.5rem] gap-8 px-4 sm:px-6 lg:my-auto lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)] lg:px-8 lg:py-[clamp(0.5rem,2vh,1.5rem)]">
+      <div className="relative mx-auto flex w-full max-w-[87.5rem] flex-col gap-3 px-4 max-lg:flex-1 max-lg:justify-center sm:px-6 lg:grid lg:my-auto lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)] lg:px-8 lg:py-[clamp(0.5rem,2vh,1.5rem)]">
         {/* tagline, heading and explanation */}
-        <div className="flex flex-col gap-[clamp(1.25rem,4.2vh,2.75rem)]">
+        <div className="contents lg:flex lg:flex-col lg:gap-[clamp(1.25rem,4.2vh,2.75rem)]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: heroEase }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-4 max-lg:hidden"
           >
             <span className="h-px w-10 shrink-0 bg-[#4a5d23]/60" aria-hidden="true" />
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
@@ -119,7 +119,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.1 }}
-              className="text-4xl font-semibold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-[length:clamp(2rem,min(3.6vw,7.8vh),4.75rem)]"
+              className="text-[6.4vw] font-semibold leading-[1.12] tracking-tight text-gray-900 lg:text-[length:clamp(2rem,min(3.6vw,7.8vh),4.75rem)]"
             >
               Stop collecting tutorials.
               <br />
@@ -130,7 +130,7 @@ function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.2 }}
-              className="mt-[clamp(0.75rem,2.4vh,1.5rem)] max-w-[44rem] text-base leading-relaxed text-gray-700 lg:text-xl xl:text-2xl"
+              className="mt-[clamp(0.75rem,2.4vh,1.5rem)] max-w-[44rem] text-base md:text-xl leading-relaxed text-gray-700 lg:text-xl xl:text-2xl"
             >
               Eight systems. One platform. Every layer built by you.
             </motion.p>
@@ -142,10 +142,10 @@ function Hero() {
             transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
             className={cn(
               CARD,
-              'max-w-[44rem] bg-[#fbfbf9]/85 p-5 backdrop-blur lg:p-[clamp(1.5rem,3.2vh,2.25rem)]'
+              'max-lg:order-2 max-lg:-mt-3 max-w-[44rem] md:max-lg:max-w-none md:max-lg:p-6 bg-[#fbfbf9]/85 p-5 backdrop-blur lg:p-[clamp(1.5rem,3.2vh,2.25rem)]'
             )}
           >
-            <p className="mb-5 text-[0.9375rem] leading-relaxed text-gray-600 lg:mb-[clamp(1.25rem,2.8vh,1.75rem)] lg:text-[length:clamp(0.9375rem,1.9vh,1.125rem)]">
+            <p className="mb-5 text-[0.9375rem] md:max-lg:mb-5 md:max-lg:text-lg leading-relaxed text-gray-600 lg:mb-[clamp(1.25rem,2.8vh,1.75rem)] lg:text-[length:clamp(0.9375rem,1.9vh,1.125rem)]">
               OpenRadix hands you a messy business problem and a blank schema. Eight systems later,
               you have modeled the data, automated the tests, orchestrated AI agents and deployed
               the platform. You leave with the systems that prove you can do it.
@@ -172,26 +172,25 @@ function Hero() {
         </div>
 
         {/* asset: bare artwork, with the stats card sitting on the same baseline as the intro card */}
-        <div className="flex min-h-0 flex-col gap-5 lg:self-stretch">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: heroEase, delay: 0.2 }}
-            className="relative h-[20rem] min-h-0 sm:h-[26rem] lg:h-auto lg:min-h-[14rem] lg:flex-1"
-          >
+        <div className="flex min-h-0 flex-col gap-5 max-lg:order-1 max-lg:-mt-3 max-md:flex-1 lg:self-stretch">
+          <div className="relative min-h-0 max-lg:min-h-[10rem] max-lg:flex-1 md:max-lg:h-[min(36rem,30svh)] md:max-lg:flex-none lg:min-h-[14rem] lg:flex-1">
             {/* the illustration's paper is lighter than the page, so a darken blend leaves only the
                 artwork. That needs the page behind it in the same stacking context, so nothing from
-                here up to the section sets a z-index. It is drawn larger than its box, as its own
-                margins are empty. */}
+                here up to the section sets a z-index, opacity or transform: the fade-in lives on the
+                image itself, as a faded wrapper would show the paper as a white box while it loads.
+                It is drawn larger than its box, as its own margins are empty. */}
             <motion.img
-              initial={{ scale: 1.08 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 1.8, ease: heroEase }}
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                opacity: { duration: 0.8, ease: heroEase, delay: 0.2 },
+                scale: { duration: 1.8, ease: heroEase },
+              }}
               src="/images/Students%20Image.webp"
               alt="Three students walking across a campus, connected by a network of nodes"
               className="pointer-events-none absolute left-[-14%] top-[-18%] h-[118%] w-[128%] max-w-none object-contain mix-blend-darken"
             />
-          </motion.div>
+          </div>
 
           <motion.dl
             initial={{ opacity: 0, y: 20 }}
@@ -199,7 +198,7 @@ function Hero() {
             transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
             className={cn(
               CARD,
-              'grid shrink-0 grid-cols-3 divide-x divide-black/10 bg-[#fbfbf9]/85 py-5 backdrop-blur lg:-ml-10'
+              'relative z-10 max-lg:hidden grid shrink-0 grid-cols-3 divide-x divide-black/10 bg-[#fbfbf9]/85 py-5 backdrop-blur lg:-ml-10'
             )}
           >
             {HERO_STATS.map((stat) => (
@@ -233,26 +232,20 @@ function Hero() {
   );
 }
 
-/** the eight systems as a connected chain, drawn inside the first pillar */
-function SystemChain() {
+/** the eight systems as a grid of numbered tiles, drawn inside the first pillar */
+function SystemGrid() {
   return (
-    <div className="mt-auto flex items-center pt-8" aria-hidden="true">
-      {Array.from({ length: 8 }, (_, i) => (
-        <div key={i} className={cn('flex items-center', i < 7 && 'flex-1')}>
-          <span
-            className={cn(
-              'flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-[0.6875rem] font-semibold',
-              i === 7
-                ? 'border-[#4a5d23] bg-[#4a5d23] text-white'
-                : 'border-[#4a5d23]/30 bg-white text-[#3f4f1f]'
-            )}
-          >
-            {i + 1}
-          </span>
-          {i < 7 && <span className="h-px flex-1 bg-[#4a5d23]/25" />}
-        </div>
+    <ul className="mt-auto grid grid-cols-2 gap-2.5 pt-8 sm:grid-cols-4" aria-hidden="true">
+      {STUDENT_SYSTEMS.map((system) => (
+        <li
+          key={system.num}
+          className="flex items-start gap-2.5 rounded-xl border border-[#4a5d23]/15 bg-[#4a5d23]/[0.05] px-3 py-2.5"
+        >
+          <span className="text-xs font-bold tabular-nums text-[#4a5d23]">{system.num}</span>
+          <span className="text-xs font-medium leading-snug text-[#3f4f1f]">{system.title}</span>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
@@ -299,7 +292,7 @@ function ProgramArchitecture() {
                   <p className="max-w-xl text-[0.9375rem] leading-relaxed text-gray-600">
                     {pillar.desc}
                   </p>
-                  {i === 0 && <SystemChain />}
+                  {i === 0 && <SystemGrid />}
                 </article>
               </Reveal>
             );
@@ -494,7 +487,7 @@ export default function RadixStudentPage() {
       )}
 
       {/* Mobile Branding (Matching Homepage) */}
-      <div className="absolute left-6 top-6 z-50 xl:hidden">
+      <div className="absolute left-6 top-6 z-50 lg:hidden">
         <Link
           to="/"
           onClick={() => {
@@ -513,6 +506,7 @@ export default function RadixStudentPage() {
           </motion.span>
           <span className="mx-2 text-xl font-medium text-gray-400">/</span>
           <span className="text-xl font-bold text-[#232621]">OpenRadix</span>
+          <span className="ml-2 text-xs font-medium text-[#232621]">for Students</span>
         </Link>
       </div>
 

@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Maximize2, X } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -16,7 +17,25 @@ const MAP_ALT =
   'Radix Core at the centre of a connected ecosystem: development tools, quality engineering, programming, data infrastructure, cloud and DevOps, and AI and agent systems feeding learning tools such as an AI tutor, a project hub and a global community, wrapped in security, governance, observability and DevOps.';
 
 export default function UltimateVision() {
-  const zoomRef = useRef<HTMLDialogElement>(null);
+  const [zoomed, setZoomed] = useState(false);
+  const closeRef = useRef<HTMLButtonElement>(null);
+
+  // a plain overlay rather than a native modal dialog: the dialog sits in the browser's top layer,
+  // above everything including the custom cursor, which would vanish behind the picture
+  useEffect(() => {
+    if (!zoomed) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setZoomed(false);
+    };
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    closeRef.current?.focus();
+    window.addEventListener('keydown', onKey);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = previous;
+    };
+  }, [zoomed]);
 
   return (
     <section className="w-full pb-8 pt-16 md:pt-24">
@@ -54,7 +73,9 @@ export default function UltimateVision() {
           >
             <button
               type="button"
-              onClick={() => zoomRef.current?.showModal()}
+              onClick={() => {
+                setZoomed(true);
+              }}
               aria-label="Enlarge the Radix architecture map"
               className="group relative block w-full cursor-zoom-in focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-[#4a5d23]"
             >
@@ -115,27 +136,34 @@ export default function UltimateVision() {
         </div>
       </div>
 
-      {/* native dialog: Esc, focus trap and backdrop come with it. A click anywhere closes it. */}
-      <dialog
-        ref={zoomRef}
-        data-lenis-prevent
-        aria-label="Radix architecture map"
-        onClick={() => zoomRef.current?.close()}
-        className="m-auto max-h-none max-w-none cursor-zoom-out bg-transparent p-4 backdrop:bg-[#232621]/85 backdrop:backdrop-blur-sm"
-      >
-        <img
-          src={MAP_SRC}
-          alt={MAP_ALT}
-          className="max-h-[calc(100dvh-2rem)] max-w-[calc(100vw-2rem)] rounded-2xl bg-[#f7f8f3] object-contain shadow-2xl"
-        />
-        <button
-          type="button"
-          aria-label="Close"
-          className="fixed right-4 top-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white text-[#232621] shadow-lg transition-colors hover:bg-[#eef1e3]"
-        >
-          <X className="h-5 w-5" aria-hidden="true" />
-        </button>
-      </dialog>
+      {zoomed &&
+        createPortal(
+          <div
+            role="dialog"
+            aria-modal="true"
+            aria-label="Radix architecture map"
+            data-lenis-prevent
+            onClick={() => {
+              setZoomed(false);
+            }}
+            className="fixed inset-0 z-[9000] flex cursor-zoom-out items-center justify-center bg-[#232621]/85 p-4 backdrop-blur-sm"
+          >
+            <img
+              src={MAP_SRC}
+              alt={MAP_ALT}
+              className="max-h-[calc(100dvh-2rem)] max-w-[calc(100vw-2rem)] rounded-2xl bg-[#f7f8f3] object-contain shadow-2xl"
+            />
+            <button
+              ref={closeRef}
+              type="button"
+              aria-label="Close"
+              className="fixed right-4 top-4 inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white text-[#232621] shadow-lg transition-colors hover:bg-[#eef1e3]"
+            >
+              <X className="h-5 w-5" aria-hidden="true" />
+            </button>
+          </div>,
+          document.body
+        )}
     </section>
   );
 }

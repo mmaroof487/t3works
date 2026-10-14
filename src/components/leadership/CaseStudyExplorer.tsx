@@ -28,13 +28,13 @@ const KEY_STEP: Record<string, number | undefined> = {
 
 // each funnel stage is a little more saturated than the one before it
 const FUNNEL_TONE = [
-  'border-white/10 bg-white/5',
-  'border-white/10 bg-[#c9b27a]/10',
-  'border-[#c9b27a]/25 bg-[#c9b27a]/20',
-  'border-[#c9b27a]/45 bg-[#c9b27a]/30',
+  'border-[#232621]/10 bg-[#232621]/5',
+  'border-[#232621]/10 bg-[#4a5d23]/10',
+  'border-[#4a5d23]/25 bg-[#4a5d23]/15',
+  'border-[#4a5d23]/45 bg-[#4a5d23]/25',
 ];
 
-const LABEL_CLASS = 'mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-white/45';
+const LABEL_CLASS = 'mb-3 text-xs font-semibold uppercase tracking-[0.15em] text-[#232621]/55';
 const FOCUS_CLASS =
   'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9b27a]';
 
@@ -126,19 +126,19 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
     <div className={compact ? 'flex flex-col' : 'space-y-8 md:space-y-10'}>
       <header>
         <div className="mb-5 flex flex-wrap items-center gap-3">
-          <span className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-wider text-white/60">
+          <span className="rounded-md border border-[#232621]/10 bg-[#232621]/5 px-2.5 py-1 text-[0.625rem] font-bold uppercase tracking-wider text-[#232621]/60">
             Case {study.number}
           </span>
-          <span className="text-[0.625rem] font-bold uppercase tracking-[0.2em] text-[#c9b27a]">
+          <span className="text-[0.625rem] font-bold uppercase tracking-[0.2em] text-[#4a5d23]">
             {study.tag}
           </span>
         </div>
-        <p className="mb-2 text-sm font-medium uppercase tracking-wide text-white/50">
+        <p className="mb-2 text-sm font-medium uppercase tracking-wide text-[#232621]/50">
           {study.client}
         </p>
         <h3
           className={cn(
-            'text-2xl font-semibold leading-tight tracking-tight text-white',
+            'text-2xl font-semibold leading-tight tracking-tight text-[#232621]',
             compact ? 'md:text-3xl' : 'md:text-4xl'
           )}
         >
@@ -150,7 +150,7 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
         {study.summary.map((paragraph) => (
           <p
             key={paragraph}
-            className={cn('text-base leading-relaxed text-white/70', !compact && 'md:text-lg')}
+            className={cn('text-base leading-relaxed text-[#232621]/70', !compact && 'md:text-lg')}
           >
             {paragraph}
           </p>
@@ -160,7 +160,7 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
             {study.topics.map((topic) => (
               <li
                 key={topic}
-                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/75"
+                className="rounded-full border border-[#232621]/10 bg-[#232621]/5 px-3 py-1 text-xs font-medium text-[#232621]/75"
               >
                 {topic}
               </li>
@@ -184,16 +184,16 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
                     FUNNEL_TONE[index]
                   )}
                 >
-                  <span className="block text-2xl font-bold tracking-tight text-white md:text-3xl">
+                  <span className="block text-2xl font-bold tracking-tight text-[#232621] md:text-3xl">
                     {stage.value}
                   </span>
-                  <span className="mt-1 block text-xs font-semibold uppercase tracking-wider text-white/55">
+                  <span className="mt-1 block text-xs font-semibold uppercase tracking-wider text-[#232621]/55">
                     {stage.label}
                   </span>
                   {index < (study.funnel?.length ?? 0) - 1 && (
                     <ChevronRight
                       aria-hidden="true"
-                      className="absolute -right-[1.4rem] top-1/2 hidden h-5 w-5 -translate-y-1/2 text-white/35 md:block"
+                      className="absolute -right-[1.4rem] top-1/2 hidden h-5 w-5 -translate-y-1/2 text-[#232621]/35 md:block"
                     />
                   )}
                 </li>
@@ -211,7 +211,7 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
             <div
               key={metric.label}
               className={cn(
-                'flex rounded-2xl border border-white/10 bg-white/[0.04]',
+                'flex rounded-2xl border border-[#232621]/10 bg-[#232621]/[0.05]',
                 // a single figure reads as one line: the number, then what it measures
                 loneImpact
                   ? 'flex-row-reverse items-center justify-end gap-5 px-5 py-4'
@@ -219,14 +219,14 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
                 !loneImpact && (compact ? 'justify-center' : 'justify-end')
               )}
             >
-              <dt className={cn('leading-snug text-white/55', fewImpact ? 'text-base' : 'text-sm')}>
+              <dt className={cn('leading-snug text-[#232621]/55', fewImpact ? 'text-base' : 'text-sm')}>
                 {metric.label}
               </dt>
               <dd
                 className={cn(
                   'whitespace-nowrap font-bold tracking-tight',
                   fewImpact ? 'text-4xl' : 'text-2xl sm:text-3xl',
-                  index === 0 ? 'text-[#c9b27a]' : 'text-white'
+                  index === 0 ? 'text-[#4a5d23]' : 'text-[#232621]'
                 )}
               >
                 {metric.value}
@@ -253,13 +253,13 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
                 <div
                   key={item.label}
                   className={cn(
-                    'flex flex-col-reverse gap-1 rounded-xl border border-white/5 bg-white/[0.04] px-4 py-3',
+                    'flex flex-col-reverse gap-1 rounded-xl border border-[#232621]/10 bg-[#232621]/[0.05] px-4 py-3',
                     compact ? 'justify-center' : 'justify-end'
                   )}
                 >
                   <dt
                     className={cn(
-                      'leading-snug text-white/45',
+                      'leading-snug text-[#232621]/45',
                       fewBreakdown ? 'text-sm' : 'text-xs'
                     )}
                   >
@@ -267,7 +267,7 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
                   </dt>
                   <dd
                     className={cn(
-                      'font-semibold tracking-tight text-white',
+                      'font-semibold tracking-tight text-[#232621]',
                       fewBreakdown ? 'text-2xl' : 'text-lg'
                     )}
                   >
@@ -287,14 +287,14 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
             {study.closing && (
               <p
                 className={cn(
-                  'max-w-3xl border-l-2 border-[#c9b27a] pl-4 text-base leading-relaxed text-white/85',
+                  'max-w-3xl border-l-2 border-[#4a5d23] pl-4 text-base leading-relaxed text-[#232621]/85',
                   !compact && 'md:text-lg'
                 )}
               >
                 {study.closing}
               </p>
             )}
-            {study.note && <p className="text-xs text-white/40">{study.note}</p>}
+            {study.note && <p className="text-xs text-[#232621]/40">{study.note}</p>}
           </footer>
         </>
       )}
@@ -505,7 +505,7 @@ export default function CaseStudyExplorer() {
                       key={study.id}
                       aria-hidden={index !== activeIndex}
                       className={cn(
-                        'col-start-1 row-start-1 rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-8 transition-opacity duration-300 ease-out',
+                        'col-start-1 row-start-1 rounded-[1.75rem] border border-[#232621]/10 bg-[#F5F5F0] p-8 transition-opacity duration-300 ease-out',
                         index === activeIndex ? 'opacity-100' : 'invisible opacity-0'
                       )}
                     >
@@ -551,7 +551,7 @@ export default function CaseStudyExplorer() {
               aria-labelledby={`case-tab-${active.id}`}
               tabIndex={0}
               className={cn(
-                'min-w-0 flex-1 rounded-[1.75rem] border border-white/10 bg-white/[0.04] p-6 md:p-10 lg:min-h-[40rem]',
+                'min-w-0 flex-1 rounded-[1.75rem] border border-[#232621]/10 bg-[#F5F5F0] p-6 md:p-10 lg:min-h-[40rem]',
                 FOCUS_CLASS
               )}
             >
