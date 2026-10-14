@@ -108,7 +108,7 @@ export default function Hero() {
         <p className="mt-1 max-w-[44.5rem] text-[length:clamp(0.8125rem,1.85svh,0.9375rem)] sm:mt-5 sm:text-base tablet-portrait:max-w-[72vw] tablet-portrait:text-[2vw] text-gray-700">
           Candidates are trained as{' '}
           <strong className="whitespace-nowrap rounded-md border border-[#4a5d23]/20 bg-[#4a5d23]/[0.08] px-1.5 py-px font-semibold text-[#3f4f1f]">
-            T3 (Top Tier Talent)
+            T3 (Top Tech Talent)
           </strong>{' '}
           engineers in AI and multi-agent systems, then connected directly with enterprise
           opportunities.
