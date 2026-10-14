@@ -91,6 +91,35 @@ body {
   @apply bg-[#f5f5f0] text-gray-900;
 }
 
+/* Phase 2 funnel label (a button over the artwork): a faint gold glow that breathes, so it reads
+   as clickable without changing the drawn label */
+.grading-hint {
+  box-shadow: 0 0 0 0.125rem rgb(201 178 122 / 0.45);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .grading-hint {
+    animation: grading-hint 2.4s ease-in-out infinite;
+  }
+}
+@keyframes grading-hint {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0.125rem rgb(201 178 122 / 0.45);
+  }
+  50% {
+    box-shadow:
+      0 0 0 0.125rem rgb(201 178 122 / 0.55),
+      0 0 0.9rem rgb(201 178 122 / 0.45);
+  }
+}
+.grading-hint:hover,
+.grading-hint:focus-visible {
+  animation: none;
+  box-shadow:
+    0 0 0 0.15rem rgb(201 178 122 / 0.8),
+    0 0 1.1rem rgb(201 178 122 / 0.55);
+}
+
 /* Lenis smooth scrolling base styles */
 html.lenis,
 html.lenis body {

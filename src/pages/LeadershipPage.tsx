@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { MotionConfig, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import AdvisorGrid from '../components/leadership/AdvisorGrid';
 import CaseStudyExplorer from '../components/leadership/CaseStudyExplorer';
 import ClientTestimonials from '../components/leadership/ClientTestimonials';
 import MentorGrid from '../components/leadership/MentorGrid';
@@ -108,6 +109,7 @@ export default function LeadershipPage() {
 
         <TeamGrid />
         <MentorGrid />
+        <AdvisorGrid />
         <CaseStudyExplorer />
         <ClientTestimonials />
         <SuccessStories />

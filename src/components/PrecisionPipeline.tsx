@@ -1,6 +1,7 @@
 import { Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import VideoLauncher from './VideoLauncher';
+import GradingTable from './GradingTable';
 import { useMediaQuery } from '../lib/useMediaQuery';
 
 const FUNNEL = '/images/Funnel.webp';
@@ -38,7 +39,7 @@ function MobilePipeline() {
         </h2>
         <span aria-hidden="true" className="mx-auto mt-5 block h-px w-16 bg-[#a3854a]/70" />
         <p className="mt-4 text-[clamp(0.875rem,4.4vw,1rem)] text-[#4a5d23]">
-          How we turn raw talent into T3 engineers
+          How we turn raw talent into T3 (Top Tier Talent) engineers
         </p>
       </motion.div>
 
@@ -59,6 +60,11 @@ function MobilePipeline() {
           src={VIDEO_SRC}
           label="Play the deep dive video"
           className="absolute left-[26.52%] top-[77.17%] h-[8.34%] w-[51.43%] rounded-[2cqw] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23] [&>video]:opacity-0"
+        />
+        {/* over the drawn Phase 2 label */}
+        <GradingTable
+          className="left-[72.41%] top-[42.11%] h-[3.39%] w-[24.64%] rounded-[2.2cqw]"
+          badgeClassName="h-[5.5cqw] w-[5.5cqw]"
         />
       </motion.div>
     </div>
@@ -104,7 +110,7 @@ function DesktopPipeline() {
           </span>
         </h2>
         <p className="mt-4 text-sm font-medium tracking-wide text-gray-700 sm:text-base lg:text-lg">
-          How we turn raw talent into T3 engineers
+          How we turn raw talent into T3 (Top Tier Talent) engineers
         </p>
       </motion.div>
 
@@ -129,6 +135,12 @@ function DesktopPipeline() {
               className="absolute left-[97.7%] top-[82.85%] h-[8.6%] w-[6.2%] bg-[radial-gradient(circle,#f5f5f0_55%,transparent_75%)]"
             />
           </div>
+
+          {/* over the drawn Phase 2 label: the image is 114.286% wide, offset -4% / -9.714% */}
+          <GradingTable
+            className="left-[37.56%] top-[48.84%] h-[8.1%] w-[16.12%] rounded-[0.8cqw]"
+            badgeClassName="h-[1.7cqw] w-[1.7cqw]"
+          />
 
           {/* video, joined to the funnel by the pipe in the artwork */}
           <p className="absolute left-[65%] top-[22.5%] w-[32.6%] whitespace-nowrap text-center text-[1.45cqw] font-semibold leading-none tracking-tight text-[#232621]">

@@ -16,10 +16,12 @@ import {
 } from 'lucide-react';
 import EnterprisePortal from './EnterprisePortal';
 import { AnimatedCounter } from '../components/AnimatedCounter';
+import { PinnedStack } from '../components/PinnedStack';
 import { SystemModal } from '../components/SystemModal';
 import { Accent, Reveal, SectionHeading } from '../components/leadership/primitives';
 import type { RadixContent } from '../data/radix';
 import { scrollToSection } from '../lib/scrollToSection';
+import { usePinnedJourney } from '../lib/usePinnedJourney';
 import { cn } from '../lib/cn';
 
 // Radix for Companies. All of its wording comes from `content` (data/radix.ts); this file only
@@ -130,7 +132,7 @@ function Hero({ content }: { content: RadixContent }) {
   const proofs = hero.tagline.split(' · ');
 
   return (
-    <section className="relative flex min-h-svh flex-col overflow-hidden pb-8 pt-24 lg:pb-3 lg:pt-[7.5rem]">
+    <section className="relative flex min-h-svh flex-col overflow-hidden pb-24 pt-20 md:pb-36 lg:justify-center lg:pb-3 lg:pt-[7.5rem] lg:portrait:min-h-0 lg:portrait:pb-6">
       <motion.div
         animate={{
           opacity: [0.2, 1, 0.2],
@@ -144,18 +146,20 @@ function Hero({ content }: { content: RadixContent }) {
 
       {/* On wide screens the row fills the screen between the nav and the scroll cue. The copy is
           spread down it and the asset column stretches to match, so the stats card ends level with
-          the intro card; if the copy is taller than the screen the section simply grows. */}
-      <div className="relative z-10 mx-auto grid min-h-0 w-full max-w-[87.5rem] flex-1 px-4 sm:px-6 lg:px-8 gap-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:grid-rows-[minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)] lg:py-[clamp(0.5rem,3.5vh,2.5rem)]">
+          the intro card; if the copy is taller than the screen the section simply grows. Below lg,
+          as on the student page, it is one column filling the screen above the nav pill: heading
+          and proof points, the artwork taking whatever height is left, then the intro card. */}
+      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-[87.5rem] flex-1 flex-col gap-3 px-4 max-lg:justify-center sm:px-6 lg:grid lg:max-h-[56rem] lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:px-8 lg:grid-rows-[minmax(0,1fr)] lg:gap-[clamp(2rem,4vw,4rem)] lg:py-[clamp(0.5rem,3.5vh,2.5rem)]">
         {/* tagline, heading and explanation */}
-        <div className="flex min-h-0 flex-col gap-[clamp(1rem,3vh,1.75rem)] lg:justify-between">
+        <div className="contents lg:flex lg:min-h-0 lg:flex-col lg:justify-between lg:gap-[clamp(1rem,3vh,1.75rem)]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: heroEase }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-4 max-lg:hidden"
           >
             <span className="h-px w-10 shrink-0 bg-[#4a5d23]/60" aria-hidden="true" />
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23] lg:text-[length:clamp(0.75rem,min(0.75vw,1.3vh),0.875rem)]">
               {hero.eyebrow}
             </span>
             <span className="h-px w-10 shrink-0 bg-[#4a5d23]/60" aria-hidden="true" />
@@ -166,7 +170,7 @@ function Hero({ content }: { content: RadixContent }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.1 }}
-              className="text-4xl font-semibold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl lg:text-[length:clamp(2rem,min(3.3vw,6.8vh),4.25rem)]"
+              className="text-[6.9vw] font-semibold max-md:[@media(max-height:52rem)]:text-[6.6vw] md:text-[6.4vw] leading-[1.12] tracking-tight text-gray-900 lg:text-[length:clamp(2rem,min(3.7vw,7.4vh),5rem)] lg:leading-[1.08]"
             >
               {hero.title.map((line, index) => (
                 <Fragment key={line}>
@@ -181,12 +185,12 @@ function Hero({ content }: { content: RadixContent }) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: heroEase, delay: 0.2 }}
-              className="mt-[clamp(0.75rem,2vh,1.25rem)] flex flex-wrap gap-2"
+              className="mt-3 flex gap-2 max-md:hidden max-sm:-mx-4 max-sm:scroll-px-4 max-sm:snap-x max-sm:overflow-x-auto max-sm:px-4 max-sm:pb-1 max-sm:[scrollbar-width:none] max-sm:[&::-webkit-scrollbar]:hidden sm:flex-wrap md:mt-4 lg:mt-[clamp(0.75rem,2vh,1.25rem)]"
             >
               {proofs.map((proof) => (
                 <li
                   key={proof}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-[#4a5d23]/15 bg-white/70 py-1.5 pl-2.5 pr-3.5 text-[0.8125rem] font-medium text-[#3f4f1f] backdrop-blur"
+                  className="inline-flex shrink-0 snap-start items-center gap-1.5 whitespace-nowrap rounded-full border border-[#4a5d23]/15 bg-white/70 py-1.5 pl-2.5 pr-3.5 text-xs font-medium text-[#3f4f1f] backdrop-blur sm:text-[0.8125rem] md:max-lg:text-sm lg:py-[clamp(0.375rem,0.9vh,0.625rem)] lg:pl-[clamp(0.625rem,1.1vh,0.875rem)] lg:pr-[clamp(0.875rem,1.5vh,1.25rem)] lg:text-[length:clamp(0.8125rem,min(0.95vw,1.6vh),1.0625rem)]"
                 >
                   <CircleCheck className="h-4 w-4 text-[#7d6f36]" aria-hidden="true" />
                   {proof}
@@ -199,13 +203,18 @@ function Hero({ content }: { content: RadixContent }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
-            className={cn(CARD, 'max-w-[42rem] bg-[#fbfbf9]/85 p-5 backdrop-blur lg:p-6')}
+            className={cn(
+              CARD,
+              'relative max-w-[42rem] bg-[#fbfbf9]/85 p-5 backdrop-blur max-md:[@media(max-height:52rem)]:p-4 max-lg:order-2 md:max-lg:-mt-3 md:max-lg:max-w-none md:max-lg:p-6 lg:max-w-[min(50rem,100%)] lg:p-[clamp(1.5rem,3vh,2.25rem)]'
+            )}
           >
-            <p className="mb-5 text-[0.9375rem] leading-relaxed text-gray-600">{hero.body}</p>
+            <p className="mb-5 text-sm leading-relaxed text-gray-600 max-md:[@media(max-height:52rem)]:mb-3 max-md:[@media(max-height:52rem)]:text-[0.8125rem] max-md:[@media(max-height:52rem)]:leading-normal md:text-[0.9375rem] md:max-lg:text-lg lg:mb-[clamp(1.25rem,2.6vh,1.75rem)] lg:text-[length:clamp(0.9375rem,min(1.05vw,1.85vh),1.25rem)]">
+              {hero.body}
+            </p>
             <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <SectionLink
                 to={hero.primary.href}
-                className="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] px-6 py-3.5 text-[0.9375rem] font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70 sm:w-auto"
+                className="group inline-flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#c9b27a] bg-gradient-to-r from-[#4a5d23] to-[#7d6f36] px-6 py-3.5 text-[0.9375rem] lg:px-[clamp(1.5rem,2.2vh,2rem)] lg:py-[clamp(0.875rem,1.6vh,1.125rem)] lg:text-[length:clamp(0.9375rem,min(1vw,1.75vh),1.1875rem)] max-md:[@media(max-height:52rem)]:py-2.5 font-medium text-white shadow-lg shadow-[#c9b27a]/40 transition-shadow hover:shadow-[#c9b27a]/70 sm:w-auto"
               >
                 {hero.primary.label}
                 <ArrowRight
@@ -215,7 +224,7 @@ function Hero({ content }: { content: RadixContent }) {
               </SectionLink>
               <SectionLink
                 to={hero.secondary.href}
-                className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border border-gray-900/70 px-6 py-3.5 text-[0.9375rem] font-medium text-gray-900 transition-colors hover:bg-white sm:w-auto"
+                className="inline-flex w-full items-center justify-center whitespace-nowrap rounded-full border border-gray-900/70 px-6 py-3.5 text-[0.9375rem] lg:px-[clamp(1.5rem,2.2vh,2rem)] lg:py-[clamp(0.875rem,1.6vh,1.125rem)] lg:text-[length:clamp(0.9375rem,min(1vw,1.75vh),1.1875rem)] max-md:[@media(max-height:52rem)]:py-2.5 font-medium text-gray-900 transition-colors hover:bg-white sm:w-auto"
               >
                 {hero.secondary.label}
               </SectionLink>
@@ -224,22 +233,24 @@ function Hero({ content }: { content: RadixContent }) {
         </div>
 
         {/* asset: bare artwork, with the stats card sitting on the same baseline as the intro card */}
-        <div className="flex min-h-0 flex-col gap-5 lg:self-stretch">
+        <div className="flex min-h-0 flex-col gap-5 max-lg:order-1 max-lg:-mt-3 max-lg:flex-1 lg:self-stretch">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: heroEase, delay: 0.2 }}
-            className="relative h-[20rem] min-h-0 sm:h-[26rem] lg:h-auto lg:min-h-[18rem] lg:flex-1"
+            className="relative min-h-0 max-lg:min-h-[10rem] max-lg:flex-1 max-md:[@media(max-height:52rem)]:min-h-[6.5rem] md:max-lg:min-h-[16rem] md:max-lg:max-h-[40rem] lg:min-h-[18rem] lg:flex-1"
           >
             {/* the illustration's paper is lighter than the page, so a darken blend leaves only the artwork;
-                it is drawn larger than its box, as its own margins are empty */}
+                on wide screens it is drawn larger than its box, as its own margins are empty; on
+                phones it stays inside its box, so it can neither touch the heading nor run over the
+                intro card, which is positioned so it paints above it */}
             <motion.img
               initial={{ scale: 1.08 }}
               animate={{ scale: 1 }}
               transition={{ duration: 1.8, ease: heroEase }}
               src="/images/Isometric%20Smart%20City%20Business%20District.webp"
               alt="Isometric office towers joined by a network of nodes"
-              className="pointer-events-none absolute left-[-24%] top-[-12%] h-[128%] w-[130%] max-w-none object-contain mix-blend-darken"
+              className="pointer-events-none absolute left-[-26%] top-0 h-full w-[130%] max-w-none object-contain object-center mix-blend-darken md:left-[-12%] md:top-[-10%] md:h-[120%] md:w-[124%] lg:left-[-24%] lg:top-[-12%] lg:h-[128%] lg:w-[130%]"
             />
           </motion.div>
 
@@ -249,15 +260,15 @@ function Hero({ content }: { content: RadixContent }) {
             transition={{ duration: 0.6, ease: heroEase, delay: 0.3 }}
             className={cn(
               CARD,
-              'grid shrink-0 grid-cols-3 divide-x lg:-ml-10 divide-black/10 bg-[#fbfbf9]/85 py-5 backdrop-blur'
+              'grid shrink-0 grid-cols-3 divide-x divide-black/10 bg-[#fbfbf9]/85 py-5 backdrop-blur max-lg:hidden lg:py-[clamp(1.25rem,2.6vh,2rem)] lg:-ml-10'
             )}
           >
             {stats.map((stat) => (
               <div key={stat.label} className="flex flex-col-reverse px-3 text-center sm:px-4">
-                <dt className="text-[0.6875rem] leading-snug text-gray-600 sm:text-xs">
+                <dt className="text-[0.6875rem] leading-snug text-gray-600 sm:text-xs lg:text-[length:clamp(0.75rem,min(0.85vw,1.4vh),0.9375rem)]">
                   {stat.label}
                 </dt>
-                <dd className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl">
+                <dd className="text-xl font-semibold tracking-tight text-gray-900 sm:text-2xl lg:text-[length:clamp(1.5rem,min(1.9vw,3.4vh),2.375rem)]">
                   {stat.val}
                 </dd>
               </div>
@@ -283,6 +294,76 @@ function Hero({ content }: { content: RadixContent }) {
   );
 }
 
+type CompanySystem = RadixContent['systems']['items'][number];
+
+/** one system as a quiet info card that opens its detail modal */
+function SystemTile({
+  system,
+  index,
+  focusLabel,
+  onSelect,
+}: {
+  system: CompanySystem;
+  index: number;
+  focusLabel: string;
+  onSelect: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      aria-label={`System ${system.num}: ${system.title}. Open details`}
+      className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-black/5 bg-[#fbfbf9] text-left shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-[#4a5d23]/30 hover:shadow-[0_18px_36px_-16px_rgba(40,50,20,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4a5d23]"
+    >
+      {/* the drawing is the card's header: a tinted, dotted band with the system number */}
+      <div className="relative flex h-[5.25rem] shrink-0 items-center justify-between overflow-hidden border-b border-[#4a5d23]/10 bg-gradient-to-br from-[#f3f5ea] to-[#e9eedb] px-5">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-[radial-gradient(circle,_rgba(74,93,35,0.16)_1px,_transparent_1px)] [background-size:0.75rem_0.75rem] [mask-image:linear-gradient(to_right,transparent,black)]"
+        />
+        <span className="relative text-[2.5rem] font-semibold leading-none tracking-tight text-[#4a5d23]/30 transition-colors group-hover:text-[#4a5d23]/70">
+          {system.num}
+        </span>
+        <img
+          src={SYSTEM_ART[index]}
+          alt=""
+          width={96}
+          height={64}
+          loading="lazy"
+          decoding="async"
+          className="relative h-[3.75rem] w-auto transition-transform duration-500 ease-out group-hover:scale-110"
+        />
+      </div>
+
+      <div className="flex flex-1 flex-col p-5 pt-4">
+        <h3 className="text-lg font-semibold leading-snug tracking-tight text-gray-900">
+          {system.title}
+        </h3>
+        <p className="mt-1 text-[0.8125rem] font-medium leading-snug text-[#4a5d23]">
+          {system.subtitle}
+        </p>
+        <p className="mt-2.5 line-clamp-2 text-[0.875rem] leading-relaxed text-gray-600">
+          {system.desc}
+        </p>
+
+        {system.focus && (
+          <p className="mt-auto pt-3.5 text-xs leading-relaxed text-gray-500">
+            <span className="mb-1.5 flex items-center justify-between border-t border-black/[0.07] pt-3 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-gray-400">
+              {focusLabel}
+              <ArrowUpRight
+                size={14}
+                aria-hidden="true"
+                className="transition-colors group-hover:text-[#4a5d23]"
+              />
+            </span>
+            {system.focus}
+          </p>
+        )}
+      </div>
+    </button>
+  );
+}
+
 function EngineeringSystems({ content }: { content: RadixContent }) {
   const { systems } = content;
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -290,6 +371,18 @@ function EngineeringSystems({ content }: { content: RadixContent }) {
   const close = useCallback(() => {
     setSelectedIndex(null);
   }, []);
+  const focusLabel = systems.focusLabel ?? 'Focus';
+  // phones get the pinned card pile, as on the student page; everything wider gets the grid
+  const pinned = usePinnedJourney();
+  const heading = (
+    <SectionHeading
+      eyebrow={systems.label}
+      title={<AccentTitle title={systems.title} accent={ACCENTS.systems} />}
+      titleClassName={HEADING_SIZE}
+      description={systems.intro}
+      className={pinned ? 'mb-5' : 'mb-6 md:mb-10'}
+    />
+  );
 
   return (
     <section id="projects" className="relative overflow-x-clip py-6 md:py-12 lg:py-12">
@@ -303,77 +396,45 @@ function EngineeringSystems({ content }: { content: RadixContent }) {
         style={FADE_EDGES}
       />
       <div className={cn(CONTAINER, 'relative')}>
-        <SectionHeading
-          eyebrow={systems.label}
-          title={<AccentTitle title={systems.title} accent={ACCENTS.systems} />}
-          titleClassName={HEADING_SIZE}
-          description={systems.intro}
-          className="mb-6 md:mb-10"
-        />
-
-        {/* Quiet info cards, already in place: no journey, no entrance animation. Each says three
-            things only (which system, what it is, what it signals), without a photo; the modal
-            carries the rest. Four to a row on wide screens, so all eight fit one screen. */}
-        <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {systems.items.map((system, i) => (
-            <li key={system.num} className="flex">
-              <button
-                type="button"
-                onClick={() => {
+        {pinned ? (
+          <PinnedStack
+            count={systems.items.length}
+            heading={heading}
+            stepScroll="60svh"
+            swipe
+            renderCard={(i) => (
+              <SystemTile
+                system={systems.items[i]}
+                index={i}
+                focusLabel={focusLabel}
+                onSelect={() => {
                   setSelectedIndex(i);
                 }}
-                aria-label={`System ${system.num}: ${system.title}. Open details`}
-                className="group flex w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-black/5 bg-[#fbfbf9] text-left shadow-sm transition-[box-shadow,border-color] duration-300 hover:border-[#4a5d23]/30 hover:shadow-[0_18px_36px_-16px_rgba(40,50,20,0.28)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#4a5d23]"
-              >
-                {/* the drawing is the card's header: a tinted, dotted band with the system number */}
-                <div className="relative flex h-[5.25rem] shrink-0 items-center justify-between overflow-hidden border-b border-[#4a5d23]/10 bg-gradient-to-br from-[#f3f5ea] to-[#e9eedb] px-5">
-                  <div
-                    aria-hidden="true"
-                    className="absolute inset-0 bg-[radial-gradient(circle,_rgba(74,93,35,0.16)_1px,_transparent_1px)] [background-size:0.75rem_0.75rem] [mask-image:linear-gradient(to_right,transparent,black)]"
+              />
+            )}
+          />
+        ) : (
+          <>
+            {heading}
+            {/* Quiet info cards, already in place: no journey, no entrance animation. Each says three
+            things only (which system, what it is, what it signals), without a photo; the modal
+            carries the rest. Four to a row on wide screens, so all eight fit one screen. */}
+            <ul className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+              {systems.items.map((system, i) => (
+                <li key={system.num} className="flex">
+                  <SystemTile
+                    system={system}
+                    index={i}
+                    focusLabel={focusLabel}
+                    onSelect={() => {
+                      setSelectedIndex(i);
+                    }}
                   />
-                  <span className="relative text-[2.5rem] font-semibold leading-none tracking-tight text-[#4a5d23]/30 transition-colors group-hover:text-[#4a5d23]/70">
-                    {system.num}
-                  </span>
-                  <img
-                    src={SYSTEM_ART[i]}
-                    alt=""
-                    width={96}
-                    height={64}
-                    loading="lazy"
-                    decoding="async"
-                    className="relative h-[3.75rem] w-auto transition-transform duration-500 ease-out group-hover:scale-110"
-                  />
-                </div>
-
-                <div className="flex flex-1 flex-col p-5 pt-4">
-                  <h3 className="text-lg font-semibold leading-snug tracking-tight text-gray-900">
-                    {system.title}
-                  </h3>
-                  <p className="mt-1 text-[0.8125rem] font-medium leading-snug text-[#4a5d23]">
-                    {system.subtitle}
-                  </p>
-                  <p className="mt-2.5 line-clamp-2 text-[0.875rem] leading-relaxed text-gray-600">
-                    {system.desc}
-                  </p>
-
-                  {system.focus && (
-                    <p className="mt-auto pt-3.5 text-xs leading-relaxed text-gray-500">
-                      <span className="mb-1.5 flex items-center justify-between border-t border-black/[0.07] pt-3 text-[0.625rem] font-semibold uppercase tracking-[0.15em] text-gray-400">
-                        {systems.focusLabel ?? 'Focus'}
-                        <ArrowUpRight
-                          size={14}
-                          aria-hidden="true"
-                          className="transition-colors group-hover:text-[#4a5d23]"
-                        />
-                      </span>
-                      {system.focus}
-                    </p>
-                  )}
-                </div>
-              </button>
-            </li>
-          ))}
-        </ul>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
 
       {/* the detail modal lies over this section only, as the leadership profiles do */}
@@ -708,7 +769,7 @@ export default function RadixCompanyPage({ content }: { content: RadixContent })
       )}
 
       {/* Mobile Branding (Matching Homepage) */}
-      <div className="absolute left-6 top-6 z-50 xl:hidden">
+      <div className="absolute left-6 top-6 z-50 lg:hidden">
         <Link
           to="/"
           onClick={() => {
@@ -727,6 +788,7 @@ export default function RadixCompanyPage({ content }: { content: RadixContent })
           </motion.span>
           <span className="mx-2 text-xl font-medium text-gray-400">/</span>
           <span className="text-xl font-bold text-[#232621]">Open Radix</span>
+          <span className="ml-2 text-xs font-medium text-[#232621]">for Companies</span>
         </Link>
       </div>
 

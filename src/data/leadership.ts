@@ -111,18 +111,6 @@ export const LEADERS: Leader[] = [
 
 export const MENTORS: Person[] = [
   {
-    id: 'prasanth-k',
-    photo: '/images/leadership/prasanth-k.webp',
-    initials: 'PK',
-    name: 'Prasanth K.',
-    title: 'Healthcare Technology Leader & Startup Advisor',
-    linkedin: 'https://www.linkedin.com/in/kollz/',
-    about: [
-      'Prasanth K. is a healthcare technology leader who has spent his career building systems, businesses and teams. In more than 14 years at CitiusTech, where he rose to Vice President of Healthcare and Medical Technologies, he grew a business unit from 10 people to over 1,500 full-time engineers, delivered 24 major software products and more than 170 service and patch releases, and established 130 strategic partnerships across the healthcare technology ecosystem. Earlier he worked at GE Healthcare and Philips Healthcare and co-chaired the technical committee of HL7 India.',
-      'Today he is co-founder of VTLWorks, an advisor at ValueTech Innovation Labs and an independent healthcare IT consultant, helping startups reach the market faster in collaboration with institutions such as MIT and UC Berkeley, and evaluating and recruiting the engineering talent they need.',
-    ],
-  },
-  {
     id: 'krishna-kumar',
     photo: '/images/leadership/krishna-kumar.webp',
     initials: 'KK',
@@ -134,6 +122,43 @@ export const MENTORS: Person[] = [
       'Krishna Kumar (KK) is a technology mentor, coach and enterprise architect with more than 22 years of experience in enterprise product development and system architecture. He has trained and coached over 10,000 engineers in architecture, design patterns, cloud and full-stack development, including more than 1,000 senior programmers and architects at companies such as Microsoft, GE Healthcare, Philips, Cisco, Siemens and Cerner, and 2,600 graduate and junior engineers at Amadeus.',
       'As an architect he led a team of 150 to build a healthcare ERP platform for Access Health Care in Florida, USA, managing 3.8 million patients and $2 billion in annual hospitalization costs across 125 locations. He has been a mentor for product development, enterprise technology and architecture at Talencia Global since 2023.',
     ],
+  },
+];
+
+// Advisors are listed by name and designation only; add `about`, `email` or `linkedin` as their
+// profiles arrive.
+export const ADVISORS: Person[] = [
+  {
+    id: 'kurt-hahlbeck',
+    initials: 'KH',
+    name: 'Kurt Hahlbeck',
+    title: 'Digital Innovation, Co‑founder Spiderlogic, USA',
+    photo: '/images/leadership/kurt-hahlbeck.avif',
+    about: [],
+  },
+  {
+    id: 'amar-gowda',
+    initials: 'AG',
+    name: 'Amar Gowda',
+    title: 'Azure Cloud Expert, Microsoft HQ, Seattle',
+    photo: '/images/leadership/amar-gowda.avif',
+    about: [],
+  },
+  {
+    id: 'mike-ortega',
+    initials: 'MO',
+    name: 'Mike Ortega',
+    title: 'Digital Business Expert & CEO, Petzey Inc, USA',
+    photo: '/images/leadership/mike-ortega.avif',
+    about: [],
+  },
+  {
+    id: 'prashanth-prakash',
+    initials: 'PP',
+    name: 'Prashanth Prakash',
+    title: 'Partner, Accel Partners',
+    photo: '/images/leadership/prasanth-prakash.avif',
+    about: [],
   },
 ];
 

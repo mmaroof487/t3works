@@ -167,11 +167,15 @@ export default function CandidatePortal({
           <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center transition-transform duration-700 hover:scale-105" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/80 to-transparent" />
 
-          <div className="relative z-10 flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-[#232621] font-bold text-xl">
-              T3
+          <div className="relative z-10 flex items-center gap-3">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#232621]">
+              <img
+                src="/images/t3works_nobg.webp"
+                alt="T3Works"
+                className="h-8 w-auto max-w-[2.25rem] object-contain"
+              />
             </div>
-            <span className="text-xl font-bold tracking-tight">AI Works</span>
+            <span className="text-xl font-bold tracking-tight">t3 AI Works</span>
           </div>
 
           <div className="relative z-10 mt-auto mb-auto pt-12">
@@ -218,11 +222,15 @@ export default function CandidatePortal({
         <div className="w-full lg:w-7/12 p-6 sm:p-10 md:p-14 lg:p-16 flex flex-col justify-center">
           {/* Mobile Header (Hidden on Desktop) */}
           <div className="lg:hidden mb-10 text-center flex flex-col items-center">
-            <div className="flex items-center gap-2 mb-8">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#232621] text-white font-bold text-xl">
-                T3
+            <div className="flex items-center gap-3 mb-8">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-[#232621]">
+                <img
+                  src="/images/t3works_nobg.webp"
+                  alt="T3Works"
+                  className="h-8 w-auto max-w-[2.25rem] object-contain"
+                />
               </div>
-              <span className="text-xl font-bold tracking-tight text-[#232621]">AI Works</span>
+              <span className="text-xl font-bold tracking-tight text-[#232621]">t3 AI Works</span>
             </div>
 
             <span className="inline-flex rounded-full border border-gray-200 bg-gray-50 px-4 py-1.5 text-xs font-semibold text-gray-700 mb-4">

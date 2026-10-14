@@ -6,7 +6,7 @@ import { Accent, LinkedinIcon, Reveal } from './primitives';
 const CONTACT_LINK_CLASS =
   'inline-flex min-w-0 items-center gap-2.5 underline-offset-4 hover:text-[#4a5d23] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23]';
 
-// From lg the whole section (heading and both cards) is sized to fit one screen below the nav
+// From lg the whole section (heading and card) is sized to fit one screen below the nav
 // pill, like the team section above it, so the spacing and type are tighter there.
 // The mentors' cards carry the whole profile, so unlike the team's they do not open a modal.
 export default function MentorGrid() {
@@ -28,11 +28,11 @@ export default function MentorGrid() {
             <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
           </div>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Guidance &amp; <Accent>Mentorship.</Accent>
+            <Accent>Mentorship.</Accent>
           </h2>
           <p className="mt-5 max-w-4xl text-base leading-relaxed text-gray-600 text-balance sm:text-lg lg:mt-2 lg:max-w-[42rem] lg:text-base">
-            Industry practitioners who coach our engineers, bringing decades of product,
-            architecture and healthcare technology experience.
+            An industry practitioner who coaches our engineers, bringing decades of product and
+            enterprise architecture experience.
           </p>
         </motion.div>
 
@@ -48,8 +48,7 @@ export default function MentorGrid() {
                     {String(index + 1).padStart(2, '0')}
                   </span>
 
-                  {/* photo on the left; beside it the name, designation and contact links, so the
-                      profile text below can run at one width for both mentors */}
+                  {/* photo on the left; beside it the name, designation and contact links */}
                   <div className="flex items-center gap-5">
                     {mentor.photo ? (
                       <img

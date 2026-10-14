@@ -2,7 +2,7 @@ import { GraduationCap, Users, Building2, Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 import VideoLauncher from './VideoLauncher';
 
-const VIDEO_SRC = '/videos/t3aiworks-vid1.webm';
+const VIDEO_SRC = '/videos/t3aiworks-vid1.mp4';
 const THUMBNAIL = '/images/AI%20Workspace%20Mentors.webp';
 
 const FEATURES = [

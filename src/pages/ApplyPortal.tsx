@@ -54,11 +54,11 @@ export default function ApplyPortal() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#232621] via-[#232621]/80 to-[#232621]/40" />
 
-          <div className="relative z-10 w-fit rounded-lg bg-black px-2 py-1">
+          <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-lg bg-[#232621]">
             <img
               src="/images/t3works_nobg.webp"
               alt="T3Works"
-              className="h-14 w-auto object-contain"
+              className="h-8 w-auto max-w-[2.25rem] object-contain"
             />
           </div>
 
