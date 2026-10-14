@@ -72,6 +72,11 @@ const MOBILE_RULE_CLASS = 'mt-4 border-t border-black/[0.07] pt-4';
 const SOCIAL_CLASS =
   'flex items-center justify-center rounded-xl border bg-[#fbfbf9] text-[#2f3b16] transition-colors hover:bg-[#4a5d23] hover:text-white';
 const CARD_CLASS = 'rounded-[1.75rem] border border-black/[0.07] bg-[#fbfbf9]';
+const OFFICES = [
+  { label: 'HQ', address: ['Sheridan, Wyoming', 'United States'] },
+  { label: 'Asian Office', address: ['Singapore'] },
+  { label: 'Indian Office', address: ['Bengaluru, Karnataka', 'India'] },
+];
 const NETWORK = '/images/Minimalist%20Sage%20Network%20UI%20UX.webp';
 
 // keep only the dense middle band of the network, so it straddles the seam with the section above
@@ -236,16 +241,14 @@ export default function Footer() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#2f3b16]" aria-hidden="true" />
-                  <div className="space-y-1 md:space-y-2">
-                    <p>
-                      <span className="font-semibold text-gray-900">HQ:</span> Bengaluru, Karnataka,
-                      India
-                    </p>
-                    <p>
-                      <span className="font-semibold text-gray-900">US Office:</span> Sheridan,
-                      Wyoming, United States
-                    </p>
-                  </div>
+                  <dl className="space-y-1 md:space-y-2">
+                    {OFFICES.map((office) => (
+                      <div key={office.label}>
+                        <dt className="inline font-semibold text-gray-900">{office.label}:</dt>{' '}
+                        <dd className="inline">{office.address.join(', ')}</dd>
+                      </div>
+                    ))}
+                  </dl>
                 </li>
               </ul>
             </div>
@@ -362,17 +365,18 @@ export default function Footer() {
                   aria-hidden="true"
                 />
                 <div className="space-y-2.5">
-                  <p>
-                    <span className="font-semibold text-gray-900">HQ:</span> Bengaluru, Karnataka
-                    <br />
-                    India
-                  </p>
-                  <p>
-                    <span className="font-semibold text-gray-900">US Office:</span> Sheridan,
-                    Wyoming
-                    <br />
-                    United States
-                  </p>
+                  {OFFICES.map(({ label, address: [first, ...rest] }) => (
+                    <p key={label}>
+                      <span className="whitespace-nowrap">
+                        <span className="font-semibold text-gray-900">{label}:</span> {first}
+                      </span>
+                      {rest.map((line) => (
+                        <span key={line} className="block">
+                          {line}
+                        </span>
+                      ))}
+                    </p>
+                  ))}
                 </div>
               </li>
             </ul>

@@ -1,42 +1,73 @@
-import { useState } from 'react';
+import { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { STEP_TESTIMONIALS, type StudentTestimonial } from '../../data/leadership';
 import { Accent, Reveal, SectionHeading } from './primitives';
+import { useMediaQuery } from '../../lib/useMediaQuery';
 
-function StudentCard({ student }: { student: StudentTestimonial }) {
+function StudentCard({
+  student,
+  summaryHeight,
+  onMeasure,
+}: {
+  student: StudentTestimonial;
+  /** the height every card's always-visible part is held to, so the collapsed cards match */
+  summaryHeight?: number;
+  onMeasure: (id: string, height: number) => void;
+}) {
   const [expanded, setExpanded] = useState(false);
   const [intro, ...rest] = student.body;
   const detailsId = `step-story-${student.id}`;
+  const summaryRef = useRef<HTMLDivElement>(null);
+
+  // report the natural height of the always-visible part (header, quote, first paragraph)
+  useLayoutEffect(() => {
+    const summary = summaryRef.current;
+    if (!summary) return;
+    const observer = new ResizeObserver(() => {
+      onMeasure(student.id, summary.offsetHeight);
+    });
+    observer.observe(summary);
+    return () => {
+      observer.disconnect();
+    };
+  }, [onMeasure, student.id]);
 
   return (
-    <article className="flex h-full flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-8 lg:p-10">
-      <header className="flex items-start gap-5">
-        <span
-          aria-hidden="true"
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-xl font-semibold shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)]"
-        >
-          <Accent>{student.name.charAt(0)}</Accent>
-        </span>
-        <div className="min-w-0">
-          <h3 className="text-2xl font-semibold leading-tight tracking-tight text-gray-900">
-            {student.name}
-          </h3>
-          <p className="mt-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#4a5d23]">
-            {student.programme}
-          </p>
-          <p className="mt-3 inline-flex rounded-full bg-[#4a5d23]/10 px-3 py-1 text-xs font-semibold text-[#4a5d23]">
-            {student.outcome}
-          </p>
+    <article className="flex flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-8 lg:p-10">
+      {/* Held to the tallest card's summary, so both collapsed cards end level; the rest of the
+          story opens below it, in this card only. */}
+      <div style={{ minHeight: expanded ? undefined : summaryHeight }}>
+        <div ref={summaryRef}>
+          <header className="flex items-start gap-5">
+            <span
+              aria-hidden="true"
+              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-xl font-semibold shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)]"
+            >
+              <Accent>{student.name.charAt(0)}</Accent>
+            </span>
+            <div className="min-w-0">
+              <h3 className="text-2xl font-semibold leading-tight tracking-tight text-gray-900">
+                {student.name}
+              </h3>
+              <p className="mt-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-[#4a5d23]">
+                {student.programme}
+              </p>
+              <p className="mt-3 inline-flex rounded-full bg-[#4a5d23]/10 px-3 py-1 text-xs font-semibold text-[#4a5d23]">
+                {student.outcome}
+              </p>
+            </div>
+          </header>
+
+          <blockquote className="mt-8 border-l-2 border-[#4a5d23] pl-5 text-xl font-medium leading-snug tracking-tight text-gray-900 md:text-2xl">
+            &ldquo;{student.pullQuote}&rdquo;
+          </blockquote>
+
+          <p className="mt-8 leading-relaxed text-gray-600">{intro}</p>
         </div>
-      </header>
+      </div>
 
-      <blockquote className="mt-8 border-l-2 border-[#4a5d23] pl-5 text-xl font-medium leading-snug tracking-tight text-gray-900 md:text-2xl">
-        &ldquo;{student.pullQuote}&rdquo;
-      </blockquote>
-
-      <div id={detailsId} className="mt-8 flex-1 space-y-4 leading-relaxed text-gray-600">
-        <p>{intro}</p>
+      <div id={detailsId} className="leading-relaxed text-gray-600">
         <AnimatePresence initial={false}>
           {expanded && (
             <motion.div
@@ -46,7 +77,7 @@ function StudentCard({ student }: { student: StudentTestimonial }) {
               transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="space-y-4">
+              <div className="space-y-4 pt-4">
                 {rest.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -89,8 +120,16 @@ function StudentCard({ student }: { student: StudentTestimonial }) {
 }
 
 export default function StepTestimonials() {
+  // side by side only from lg; stacked cards keep their own heights
+  const sideBySide = useMediaQuery('(width >= 64rem)');
+  const [heights, setHeights] = useState<Record<string, number>>({});
+  const measure = useCallback((id: string, height: number) => {
+    setHeights((current) => (current[id] === height ? current : { ...current, [id]: height }));
+  }, []);
+  const summaryHeight = sideBySide ? Math.max(0, ...Object.values(heights)) : undefined;
+
   return (
-    <section id="step" className="w-full py-8 md:py-12">
+    <section id="step" className="w-full pb-4 pt-8 md:pt-12 lg:pb-0">
       <div className="mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="STEP training"
@@ -106,7 +145,7 @@ export default function StepTestimonials() {
           {STEP_TESTIMONIALS.map((student, index) => (
             <li key={student.id}>
               <Reveal delay={index * 0.1}>
-                <StudentCard student={student} />
+                <StudentCard student={student} summaryHeight={summaryHeight} onMeasure={measure} />
               </Reveal>
             </li>
           ))}

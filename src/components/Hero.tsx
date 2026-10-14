@@ -106,8 +106,12 @@ export default function Hero() {
         </figure>
 
         <p className="mt-1 max-w-[44.5rem] text-[length:clamp(0.8125rem,1.85svh,0.9375rem)] sm:mt-5 sm:text-base tablet-portrait:max-w-[72vw] tablet-portrait:text-[2vw] text-gray-700">
-          Candidates are trained as T3 (Top Tier Talent) engineers in AI and multi-agent systems,
-          then connected directly with enterprise opportunities.
+          Candidates are trained as{' '}
+          <strong className="whitespace-nowrap rounded-md border border-[#4a5d23]/20 bg-[#4a5d23]/[0.08] px-1.5 py-px font-semibold text-[#3f4f1f]">
+            T3 (Top Tier Talent)
+          </strong>{' '}
+          engineers in AI and multi-agent systems, then connected directly with enterprise
+          opportunities.
         </p>
 
         <div className="mt-4 flex w-full flex-wrap sm:mt-6 items-center justify-center gap-3 sm:w-auto sm:gap-4">

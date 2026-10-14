@@ -219,7 +219,12 @@ function CasePanel({ study, compact = false }: { study: CaseStudy; compact?: boo
                 !loneImpact && (compact ? 'justify-center' : 'justify-end')
               )}
             >
-              <dt className={cn('leading-snug text-[#232621]/55', fewImpact ? 'text-base' : 'text-sm')}>
+              <dt
+                className={cn(
+                  'leading-snug text-[#232621]/55',
+                  fewImpact ? 'text-base' : 'text-sm'
+                )}
+              >
                 {metric.label}
               </dt>
               <dd
