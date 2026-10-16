@@ -72,7 +72,7 @@ export default function UniversityJourney() {
   const pinned = usePinnedJourney();
 
   return (
-    <section className="relative w-full overflow-x-clip bg-[#f5f5f0] pb-8 pt-4 md:pb-12 md:pt-6">
+    <section className="relative w-full overflow-x-clip bg-[#f5f5f0] py-8 md:py-12">
       {/* faint network backdrop straddling the seam with the section above, as in the students
           section */}
       <img

@@ -67,14 +67,14 @@ export default function LandingPage() {
       <div id="pipeline">
         <PrecisionPipeline />
       </div>
+      <div id="clients">
+        <HiringSideEntry />
+      </div>
       <div id="universities">
         <UniversityJourney />
       </div>
       <div id="student-journey">
         <StudentJourney />
-      </div>
-      <div id="clients">
-        <HiringSideEntry />
       </div>
       <div id="get-started">
         <RoleEntry />

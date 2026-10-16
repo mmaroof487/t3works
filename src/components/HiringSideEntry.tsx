@@ -90,7 +90,7 @@ export default function HiringSideEntry() {
   const pinned = usePinnedJourney();
 
   return (
-    <section className="relative w-full overflow-x-clip bg-[#f5f5f0] py-8 md:py-12">
+    <section className="relative w-full overflow-x-clip bg-[#f5f5f0] pb-8 pt-4 md:pb-12 md:pt-6">
       <div className="relative mx-auto w-full max-w-[87.5rem] px-4 sm:px-6 lg:px-8">
         {pinned ? (
           <PinnedJourney
@@ -104,7 +104,11 @@ export default function HiringSideEntry() {
         )}
 
         <div className={`${pinned ? 'mt-10 ' : ''}grid gap-x-6 gap-y-10 xl:grid-cols-[3fr_1.3fr]`}>
-          {!pinned && <JourneyCards steps={STEPS} className="sm:grid-cols-2 lg:grid-cols-3" />}
+          {!pinned && (
+            // lifted above the next section's backdrop art, which straddles the seam and would
+            // otherwise tint the corner of the first card
+            <JourneyCards steps={STEPS} className="relative z-10 sm:grid-cols-2 lg:grid-cols-3" />
+          )}
 
           <div className="relative">
             {/* the team and the company's campus, standing on the panel's top edge (wide screens

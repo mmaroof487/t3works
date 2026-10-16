@@ -13,9 +13,9 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
   { name: 'What We Do', path: '#ecosystem' },
   { name: 'How We Do', path: '#pipeline' },
+  { name: 'Companies', path: '#clients' },
   { name: 'Universities', path: '#universities' },
   { name: 'Students', path: '#student-journey' },
-  { name: 'Companies', path: '#clients' },
   { name: 'Radix', path: '#vision', routes: ['/radix', '/apply', '/hire'] },
   { name: 'Leadership', path: '/leadership' },
 ];
