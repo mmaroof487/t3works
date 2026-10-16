@@ -5,7 +5,7 @@ import PersonCard from './PersonCard';
 import { useProfileModal } from './useProfileModal';
 import { Accent } from './primitives';
 
-// From lg the whole section (heading and all four cards) is sized to fit one screen below the nav
+// From lg the whole section (heading and all three cards) is sized to fit one screen below the nav
 // pill, so the spacing and type here are tighter than in the other sections, and the top padding
 // clears the pill when the page is scrolled to #team.
 export default function TeamGrid() {
@@ -33,12 +33,12 @@ export default function TeamGrid() {
             Advisory &amp; <Accent>Leadership.</Accent>
           </h2>
           <p className="mt-5 max-w-4xl text-base leading-relaxed text-gray-600 text-balance sm:text-lg lg:mt-2 lg:max-w-[42rem] lg:text-base">
-            Four leaders spanning capital and ecosystems, talent pipelines, applied technology and
-            global engineering networks, validating core business requirements.
+            Three leaders across strategy, operations and technology, bringing experience in capital
+            and ecosystems, applied technology and talent pipelines.
           </p>
         </motion.div>
 
-        <ol className="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:gap-y-4">
+        <ol className="grid gap-x-6 gap-y-8 lg:grid-cols-3 lg:gap-y-4">
           {LEADERS.map((leader, index) => (
             <PersonCard key={leader.id} person={leader} index={index} onSelect={open} />
           ))}

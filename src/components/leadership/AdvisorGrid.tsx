@@ -23,15 +23,15 @@ export default function AdvisorGrid() {
             <span className="h-px w-10 bg-[#4a5d23]/60" aria-hidden="true" />
           </div>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            Our <Accent>Advisors.</Accent>
+            Strategic <Accent>Counsel.</Accent>
           </h2>
           <p className="mt-5 max-w-4xl text-base leading-relaxed text-gray-600 text-balance sm:text-lg lg:mt-2 lg:max-w-[42rem] lg:text-base">
-            Senior voices from digital innovation, cloud, digital business and venture investing who
-            advise on our direction.
+            Senior voices from digital innovation, cloud, digital business, venture investing and
+            business strategy who advise on our direction.
           </p>
         </motion.div>
 
-        <ol className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-y-4">
+        <ol className="grid gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-4">
           {ADVISORS.map((advisor, index) => (
             <li key={advisor.id}>
               <Reveal delay={(index % 4) * 0.08} className="h-full">

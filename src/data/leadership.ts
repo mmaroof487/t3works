@@ -23,7 +23,8 @@ export interface Person {
 }
 
 export interface Leader extends Person {
-  /** three short highlights for the card, each summarised from the profile in `about` */
+  /** three short highlights for the card, each summarised from the profile in `about`; wrap a key
+   *  figure in ** ** to have the card set it in bold */
   bio: string[];
 }
 
@@ -32,11 +33,11 @@ export const LEADERS: Leader[] = [
     id: 'somashekhar',
     initials: 'S',
     name: 'Somashekhar',
-    title: 'The Capital & Ecosystem Architect',
+    title: 'Chief Executive Officer, Singapore',
     bio: [
-      'Architect of G2G and B2B Collaborations (CECA).',
-      'Managed S$150M Technology Growth Fund.',
-      'Mentorship/growth support for Over 50 Startups.',
+      'Architect of G2G and B2B Collaborations (**CECA**).',
+      'Managed **S$150M** Technology Growth Fund.',
+      'Mentorship/growth support for Over **50 Startups**.',
     ],
     photo: '/images/leadership/somashekhar.webp',
     linkedin: 'https://www.linkedin.com/in/neralakere-somashekhar-soma-9151611/',
@@ -47,34 +48,17 @@ export const LEADERS: Leader[] = [
     ],
   },
   {
-    id: 'subramanian-sivakumar',
-    initials: 'SS',
-    name: 'Subramanian Sivakumar',
-    title: 'The Talent Pipeline Architect',
-    bio: [
-      'Creator of the "0.3%" elite talent identification funnel.',
-      'Scaled a $2 Billion Healthcare Claims platform.',
-      'Spearheaded $2.8 Billion in IP Value Created.',
-    ],
-    photo: '/images/leadership/subramanian-sivakumar.avif',
-    linkedin: 'https://www.linkedin.com/in/subramaniansivakumar/',
-    about: [
-      'Subramanian Sivakumar (Subbu) is a serial entrepreneur, innovation enthusiast and servant leader with over 27 years in the IT industry. He has worked with Fortune 500 companies and technology startups across more than 15 global geographies as a technology advisor, software architect, digital transformation specialist and mentor, and has mentored close to 10,000 senior professionals associated with organizations including Microsoft, Cisco, Intel, Oracle, IBM, Siemens, GE and Philips.',
-      'He led a team of 150 technology professionals, working with around 100 healthcare professionals in Florida, USA, to build one of the largest healthcare platforms of its kind. It now runs across more than 125 locations in the United States and manages over USD 2 billion in healthcare claims. More than 90% of that team came straight from campuses in India, selected from nearly 40,000 candidates assessed across the country.',
-      'Having contributed to intellectual property in AI, XR and Blockchain associated with a valuation exceeding USD 2.8 billion, he is now focused on enabling talent on campuses to create high-value products, platforms and intellectual property, and aspires to incubate more than 1,000 successful startups.',
-    ],
-  },
-  {
     id: 'gv-babu',
     initials: 'GV',
     name: 'GV Babu',
-    title: 'The Applied Tech & Infrastructure Architect',
+    title: 'Chief Operating Officer, Singapore',
     bio: [
-      'COO of Pentasoft/Pentamedia: 20 offices, 8,000+ employees.',
-      "Designed Asia's largest IT park training campus (22 acres).",
-      'Now CEO of Gai Works (Singapore) and CTO of Cubedots.',
+      'COO of Pentasoft/Pentamedia: **20 offices, 8,000+ employees**.',
+      "Designed Asia's largest IT park training campus (**22 acres**).",
+      'Now CEO of Gai Works (**Singapore**) and CTO of Cubedots.',
     ],
-    photo: '/images/leadership/gv-babu.webp',
+    // square crop of gv-babu.webp, framed from just above the head like the other portraits
+    photo: '/images/leadership/gv-babu-square.webp',
     // PLACEHOLDER: dummy email and linkedin until the real details arrive.
     email: 'gv.babu@example.com',
     linkedin: 'https://www.linkedin.com/in/example-gv-babu',
@@ -87,24 +71,21 @@ export const LEADERS: Leader[] = [
     ],
   },
   {
-    id: 'syed-tajuddeen',
-    initials: 'ST',
-    name: 'Syed Tajuddeen',
-    title: 'The Strategic Engineering & Global Network Architect',
+    id: 'subramanian-sivakumar',
+    initials: 'SS',
+    name: 'Subramanian Sivakumar',
+    title: 'Chief Technology Officer',
     bio: [
-      'Mechanical engineer and manager with 32+ years of experience.',
-      '22+ years as a business and strategy consultant across industries.',
-      'Global network of professional associates and organizations.',
+      'Creator of the "**0.3%**" elite talent identification funnel.',
+      'Scaled a **$2 Billion** Healthcare Claims platform.',
+      'Spearheaded **$2.8 Billion** in IP Value Created.',
     ],
-    photo: '/images/leadership/syed-tajuddeen.webp',
-    // PLACEHOLDER: dummy email and linkedin until the real details arrive.
-    email: 'syed.tajuddeen@example.com',
-    linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
+    photo: '/images/leadership/subramanian-sivakumar.avif',
+    linkedin: 'https://www.linkedin.com/in/subramaniansivakumar/',
     about: [
-      'Syed Tajuddeen is a Mechanical Engineer and management professional with 32+ years of composite experience. An extrovert with a flair and passion for connecting with people and technology, he began his career in Dubai and, during his years in the engineering industry until 2004, took part in Automechanika in Frankfurt and visited Valeo in Lyon, France.',
-      'For the last 22+ years he has worked as a Business and Strategy Consultant for industries including IT and ITES, engineering outsourcing, engineering analysis and services, edutech, agritech, turnkey consultancy, infrastructure, petroleum, oil and gas, commodity and instrument trading, project finance and IPR, among others.',
-      'He has established a global network of professional associates and organizations, with whom he collaborates on a case-to-case basis.',
-      'Syed firmly believes in grassroots development through social engineering initiatives, and is associated with organizations working in this area in India and West African countries.',
+      'Subramanian Sivakumar (Subbu) is a serial entrepreneur, innovation enthusiast and servant leader with over 27 years in the IT industry. He has worked with Fortune 500 companies and technology startups across more than 15 global geographies as a technology advisor, software architect, digital transformation specialist and mentor, and has mentored close to 10,000 senior professionals associated with organizations including Microsoft, Cisco, Intel, Oracle, IBM, Siemens, GE and Philips.',
+      'He led a team of 150 technology professionals, working with around 100 healthcare professionals in Florida, USA, to build one of the largest healthcare platforms of its kind. It now runs across more than 125 locations in the United States and manages over USD 2 billion in healthcare claims. More than 90% of that team came straight from campuses in India, selected from nearly 40,000 candidates assessed across the country.',
+      'Having contributed to intellectual property in AI, XR and Blockchain associated with a valuation exceeding USD 2.8 billion, he is now focused on enabling talent on campuses to create high-value products, platforms and intellectual property, and aspires to incubate more than 1,000 successful startups.',
     ],
   },
 ];
@@ -121,6 +102,19 @@ export const MENTORS: Person[] = [
     about: [
       'Krishna Kumar (KK) is a technology mentor, coach and enterprise architect with more than 22 years of experience in enterprise product development and system architecture. He has trained and coached over 10,000 engineers in architecture, design patterns, cloud and full-stack development, including more than 1,000 senior programmers and architects at companies such as Microsoft, GE Healthcare, Philips, Cisco, Siemens and Cerner, and 2,600 graduate and junior engineers at Amadeus.',
       'As an architect he led a team of 150 to build a healthcare ERP platform for Access Health Care in Florida, USA, managing 3.8 million patients and $2 billion in annual hospitalization costs across 125 locations. He has been a mentor for product development, enterprise technology and architecture at Talencia Global since 2023.',
+    ],
+  },
+  {
+    id: 'rahul-menon',
+    photo: '/images/leadership/rahul-menon.webp',
+    initials: 'RM',
+    name: 'Rahul Menon',
+    title: 'Data Analytics Mentor',
+    email: 'rm9110@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/rahul-menon-873224191/',
+    about: [
+      'Rahul Menon is a data analytics professional and team lead at Ernst & Young (EY) in Kochi, where since June 2022 he has led a six-member analytics delivery team for Switzerland Audit Analytics. He owns analytics workstreams end to end, from problem structuring and data modelling to executive delivery, using SQL, Power BI and Azure Databricks, and led the analytics and product strategy for an LLM-based solution that won the EY Business Case Competition.',
+      'He led the analytics design for an AI-powered recruitment and placement platform. A guest lecturer at SRM University, Chennai, he teaches AI, product thinking and analytics and mentors students on projects. He holds a B.Tech from the Federal Institute of Science & Technology, Cochin, and executive education from the Indian School of Business.',
     ],
   },
 ];
@@ -159,6 +153,22 @@ export const ADVISORS: Person[] = [
     title: 'Partner, Accel Partners',
     photo: '/images/leadership/prasanth-prakash.avif',
     about: [],
+  },
+  {
+    id: 'syed-tajuddeen',
+    initials: 'ST',
+    name: 'Syed Tajuddeen',
+    title: 'Business & Strategy Consultant, Global Engineering Network',
+    photo: '/images/leadership/syed-tajuddeen.webp',
+    // PLACEHOLDER: dummy email and linkedin until the real details arrive.
+    email: 'syed.tajuddeen@example.com',
+    linkedin: 'https://www.linkedin.com/in/example-syed-tajuddeen',
+    about: [
+      'Syed Tajuddeen is a Mechanical Engineer and management professional with 32+ years of composite experience. An extrovert with a flair and passion for connecting with people and technology, he began his career in Dubai and, during his years in the engineering industry until 2004, took part in Automechanika in Frankfurt and visited Valeo in Lyon, France.',
+      'For the last 22+ years he has worked as a Business and Strategy Consultant for industries including IT and ITES, engineering outsourcing, engineering analysis and services, edutech, agritech, turnkey consultancy, infrastructure, petroleum, oil and gas, commodity and instrument trading, project finance and IPR, among others.',
+      'He has established a global network of professional associates and organizations, with whom he collaborates on a case-to-case basis.',
+      'Syed firmly believes in grassroots development through social engineering initiatives, and is associated with organizations working in this area in India and West African countries.',
+    ],
   },
 ];
 

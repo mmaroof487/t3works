@@ -22,6 +22,27 @@ export function Reveal({ children, className, delay = 0 }: RevealProps) {
   );
 }
 
+/** text with **key figures** set in bold; the markers are never shown. A short figure never
+ *  breaks across lines ("22 / acres"); a long one may. */
+export function RichText({ text }: { text: string }) {
+  return (
+    <>
+      {text.split('**').map((part, i) =>
+        i % 2 === 1 ? (
+          <strong
+            key={i}
+            className={`font-semibold text-gray-900${part.length <= 16 ? ' whitespace-nowrap' : ''}`}
+          >
+            {part}
+          </strong>
+        ) : (
+          part
+        )
+      )}
+    </>
+  );
+}
+
 // the olive-to-gold run used for the emphasised words in headings across the site
 export function Accent({ children }: { children: ReactNode }) {
   return (

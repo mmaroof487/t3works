@@ -4,7 +4,7 @@ import { MENTORS } from '../../data/leadership';
 import { Accent, LinkedinIcon, Reveal } from './primitives';
 
 const CONTACT_LINK_CLASS =
-  'inline-flex min-w-0 items-center gap-2.5 underline-offset-4 hover:text-[#4a5d23] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23]';
+  'inline-flex min-w-0 max-w-full items-center gap-2.5 underline-offset-4 hover:text-[#4a5d23] hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23]';
 
 // From lg the whole section (heading and card) is sized to fit one screen below the nav
 // pill, like the team section above it, so the spacing and type are tighter there.
@@ -31,16 +31,16 @@ export default function MentorGrid() {
             <Accent>Mentorship.</Accent>
           </h2>
           <p className="mt-5 max-w-4xl text-base leading-relaxed text-gray-600 text-balance sm:text-lg lg:mt-2 lg:max-w-[42rem] lg:text-base">
-            An industry practitioner who coaches our engineers, bringing decades of product and
-            enterprise architecture experience.
+            Industry practitioners who coach our engineers, bringing product, enterprise
+            architecture and data analytics experience.
           </p>
         </motion.div>
 
         <ol className="grid gap-x-6 gap-y-8 md:grid-cols-2 lg:gap-y-4">
           {MENTORS.map((mentor, index) => (
-            <li key={mentor.id}>
+            <li key={mentor.id} className="min-w-0">
               <Reveal delay={(index % 2) * 0.1} className="h-full">
-                <article className="relative flex h-full flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-8 lg:p-5">
+                <article className="relative flex h-full flex-col rounded-[1.75rem] border border-black/5 bg-[#fbfbf9] p-6 shadow-sm sm:p-8 lg:p-6">
                   <span
                     aria-hidden="true"
                     className="absolute -left-2.5 -top-2.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#4a5d23] text-[0.8125rem] font-semibold text-white shadow-md lg:h-8 lg:w-8 lg:text-xs"
@@ -56,12 +56,12 @@ export default function MentorGrid() {
                         alt=""
                         width={400}
                         height={400}
-                        className="h-28 w-28 shrink-0 rounded-[1.15rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32 lg:h-28 lg:w-28 lg:rounded-2xl"
+                        className="h-28 w-28 shrink-0 rounded-[1.15rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32"
                       />
                     ) : (
                       <span
                         aria-hidden="true"
-                        className="flex h-28 w-28 shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-4xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32 lg:h-28 lg:w-28 lg:rounded-2xl"
+                        className="flex h-28 w-28 shrink-0 items-center justify-center rounded-[1.15rem] border border-black/5 bg-white text-4xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-32 sm:w-32"
                       >
                         <Accent>{mentor.initials}</Accent>
                       </span>

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Mail, X } from 'lucide-react';
 import type { Leader } from '../../data/leadership';
 import { smoothScroller } from '../../lib/smoothScroller';
-import { Accent, LinkedinIcon } from './primitives';
+import { Accent, LinkedinIcon, RichText } from './primitives';
 
 interface LeaderModalProps {
   leader: Leader;
@@ -23,8 +23,23 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKey);
+
+    // The overlay only covers its own section, so a click anywhere else on the page never reaches
+    // its backdrop; close on any click outside the dialog. A click, not a pointer-down, so
+    // dragging the page's scrollbar does not close it. Added a tick late so that the click which
+    // opened the profile, still bubbling, does not close it straight away.
+    const onClickAway = (e: MouseEvent) => {
+      const dialog = overlayRef.current?.querySelector('[role="dialog"]');
+      if (e.target instanceof Node && !dialog?.contains(e.target)) onClose();
+    };
+    const timer = window.setTimeout(() => {
+      document.addEventListener('click', onClickAway);
+    }, 0);
+
     return () => {
       window.removeEventListener('keydown', onKey);
+      window.clearTimeout(timer);
+      document.removeEventListener('click', onClickAway);
     };
   }, [onClose]);
 
@@ -86,35 +101,36 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-gray-600 transition-colors hover:bg-[#4a5d23] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23]"
+          className="absolute right-4 top-4 z-20 flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white text-gray-600 transition-colors hover:bg-[#4a5d23]/10 hover:text-[#4a5d23] focus-visible:bg-[#4a5d23]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4a5d23]"
         >
           <X size={16} aria-hidden="true" />
         </button>
 
-        <div data-lenis-prevent className="overflow-y-auto overscroll-contain p-6 sm:p-8 lg:p-7">
-          {/* photo on the left; beside it the name lines up with the photo's top edge and the
-              contact details with its bottom edge, so the two read as one block */}
-          <div className="flex flex-col gap-5 pr-10 sm:flex-row sm:items-start sm:gap-7">
+        <div
+          data-lenis-prevent
+          className="overflow-y-auto overscroll-contain p-6 [scrollbar-color:rgba(35,38,33,0.22)_transparent] [scrollbar-width:thin] sm:p-8 lg:p-7"
+        >
+          {/* photo on the left; beside it the name, designation and contact details as one tight
+              block, centred on the photo, so there is no empty band between them */}
+          <div className="flex flex-col gap-5 pr-10 sm:flex-row sm:items-center sm:gap-7">
             {leader.photo ? (
               <img
                 src={leader.photo}
                 alt={`Portrait of ${leader.name}`}
                 width={400}
                 height={400}
-                className="h-32 w-32 shrink-0 rounded-[1.5rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-44 sm:w-44"
+                className="h-32 w-32 shrink-0 rounded-[1.5rem] border border-black/5 object-cover object-top shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-36 sm:w-36"
               />
             ) : (
               <span
                 aria-hidden="true"
-                className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[1.5rem] border border-black/5 bg-white text-5xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-44 sm:w-44"
+                className="flex h-32 w-32 shrink-0 items-center justify-center rounded-[1.5rem] border border-black/5 bg-white text-5xl font-semibold tracking-tight shadow-[0_0.5rem_1.5rem_-0.375rem_rgba(40,50,20,0.22)] sm:h-36 sm:w-36"
               >
                 <Accent>{leader.initials}</Accent>
               </span>
             )}
 
-            <div
-              className={`flex min-w-0 flex-col gap-4 sm:min-h-44 ${hasContact ? 'justify-between' : 'justify-center'}`}
-            >
+            <div className="flex min-w-0 flex-col gap-4">
               <div>
                 <h3
                   id={titleId}
@@ -158,13 +174,13 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
             </div>
           </div>
 
-          <div className="mt-7 rounded-2xl bg-black/[0.035] p-5 sm:p-6 lg:mt-6 lg:p-5">
+          <div className="mt-7 rounded-2xl bg-[#f6f6f1] p-5 sm:p-6 lg:mt-6 lg:p-5">
             {/* without a written profile yet, the card's own highlights stand in */}
-            <h4 className="text-xs font-semibold uppercase tracking-[0.25em] text-[#4a5d23]">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#4a5d23]">
               {leader.about.length > 0 ? 'About' : 'Highlights'}
             </h4>
             {leader.about.length > 0 ? (
-              <div className="mt-3 space-y-4 text-[0.9375rem] leading-relaxed text-gray-700 sm:text-base lg:space-y-3 lg:text-[0.9375rem]">
+              <div className="mt-3 space-y-3.5 text-[0.9375rem] leading-[1.65] text-gray-700 sm:text-base lg:text-[0.9375rem]">
                 {leader.about.map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
                 ))}
@@ -177,7 +193,7 @@ export default function LeaderModal({ leader, onClose }: LeaderModalProps) {
                       aria-hidden="true"
                       className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#4a5d23]"
                     />
-                    {point}
+                    <RichText text={point} />
                   </li>
                 ))}
               </ul>

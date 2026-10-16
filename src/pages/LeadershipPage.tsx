@@ -108,8 +108,8 @@ export default function LeadershipPage() {
         </section>
 
         <TeamGrid />
-        <MentorGrid />
         <AdvisorGrid />
+        <MentorGrid />
         <CaseStudyExplorer />
         <ClientTestimonials />
         <SuccessStories />
